@@ -1654,6 +1654,178 @@
       }
     }
 
+  
+    /* FIX v10: Native Claude accordion. No JS, no radio tabs. */
+    .claude-tabs-system,
+    .claude-click-map,
+    .claude-panels {
+      display: none !important;
+    }
+
+    .claude-accordion {
+      display: grid;
+      gap: 14px;
+    }
+
+    .claude-accordion-item {
+      border: 1px solid rgba(0,245,255,.22);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(0,245,255,.08), transparent 28%),
+        linear-gradient(180deg, rgba(0,245,255,.045), rgba(255,43,214,.028)),
+        rgba(8,10,28,.68);
+      box-shadow: var(--shadow-deep), 0 0 28px rgba(0,245,255,.06);
+      overflow: hidden;
+    }
+
+    .claude-accordion-item summary {
+      list-style: none;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 82px 260px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 22px 24px;
+      user-select: none;
+      position: relative;
+    }
+
+    .claude-accordion-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .claude-accordion-item summary::after {
+      content: "+";
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 28px;
+      text-shadow: 0 0 14px rgba(53,255,159,.6);
+    }
+
+    .claude-accordion-item[open] summary::after {
+      content: "–";
+    }
+
+    .claude-accordion-item[open] summary {
+      border-bottom: 1px solid rgba(0,245,255,.16);
+      background:
+        linear-gradient(90deg, rgba(53,255,159,.08), rgba(0,245,255,.05), rgba(255,43,214,.035));
+    }
+
+    .claude-acc-num {
+      color: var(--pink);
+      font-family: var(--mono);
+      font-size: 28px;
+      letter-spacing: .14em;
+      text-shadow: 0 0 16px rgba(255,43,214,.62);
+    }
+
+    .claude-acc-title strong {
+      display: block;
+      color: var(--text);
+      font-size: 22px;
+      line-height: 1.15;
+      margin-bottom: 5px;
+    }
+
+    .claude-acc-title em {
+      display: block;
+      color: var(--cyan);
+      font-style: normal;
+      font-size: 14px;
+      letter-spacing: .06em;
+    }
+
+    .claude-accordion-item summary small {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      padding-right: 42px;
+    }
+
+    .claude-accordion-body {
+      padding: 28px;
+      animation: claudeOpen .22s ease both;
+    }
+
+    @keyframes claudeOpen {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #claude-layer h2 {
+      font-size: clamp(30px, 4.4vw, 58px);
+      line-height: 1.02;
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+
+    #claude-layer .claude-accordion-body h2.cn {
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    .claude-theory-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .claude-prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .claude-theory-card,
+    .claude-prompt-card {
+      padding: 20px;
+      border: 1px solid rgba(100,210,255,.20);
+      border-radius: 22px;
+      background: rgba(255,255,255,.035);
+      box-shadow: inset 0 0 18px rgba(0,245,255,.025);
+    }
+
+    .claude-prompt-card {
+      border-color: rgba(255,230,109,.22);
+      background: linear-gradient(180deg, rgba(255,230,109,.035), rgba(255,255,255,.025));
+    }
+
+    .claude-theory-card p,
+    .claude-prompt-card p {
+      margin-top: 10px;
+    }
+
+    .claude-prompt-eyebrow {
+      margin-top: 28px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .claude-accordion-item summary {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding-right: 52px;
+      }
+
+      .claude-theory-grid,
+      .claude-prompt-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #claude-layer h2,
+      #claude-layer .claude-accordion-body h2.cn {
+        font-size: clamp(26px, 9vw, 44px);
+      }
+    }
+
   </style>
 </head>
 
@@ -2622,117 +2794,46 @@
     
     
 
+
 <section id="claude-layer">
   <div class="grid">
     <div class="card span-12 neon-card">
-      <div class="eyebrow">CORE 03 // CLAUDE MIRROR EXCAVATOR // PURE CSS CLICKABLE RESTORATION</div>
-      <h2>Claude's theory layer now opens without JavaScript.</h2>
-      <h2 class="cn">Claude 理论层现在不用 JavaScript 也能点开。</h2>
+      <div class="eyebrow">CORE 03 // CLAUDE MIRROR EXCAVATOR // NATIVE ACCORDION RESTORATION</div>
+      <h2>Claude now uses native browser accordions.</h2>
+      <h2 class="cn">Claude 现在使用浏览器原生折叠展开。</h2>
       <p class="sub en">
-        This version fixes the click issue by using pure HTML/CSS radio tabs. Click any Claude title below:
-        the matching bilingual deep explanation opens immediately. No iframe height problem, no script dependency.
+        This version removes the previous click-tab mechanism entirely. Claude’s 00–10 theory layers are now native
+        HTML details/summary accordions: click the row itself, and the browser opens the detailed bilingual explanation.
+        No JavaScript dependency, no iframe blank space, no radio-tab conflict.
       </p>
       <p class="sub cn">
-        这一版用纯 HTML/CSS radio tabs 修复点击问题。点击下面任意 Claude 标题，
-        对应的中英双语深挖说明会立刻打开。没有 iframe 留白问题，也不依赖脚本。
+        这一版完全移除之前的点击 tab 机制。Claude 的 00–10 理论层现在改成浏览器原生
+        details/summary 折叠面板：直接点击整行标题，浏览器会打开对应的中英双语详细说明。
+        不依赖 JavaScript，没有 iframe 留白，也没有 radio-tab 冲突。
       </p>
     </div>
 
-    <div class="span-12 claude-tabs-system">
-      <input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-home" checked><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s1"><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s2"><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s3"><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s4"><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s5"><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s6"><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s7"><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s8"><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s9"><input class="claude-radio" type="radio" name="claude-layer-tabs" id="claude-radio-s10">
-      <div class="card claude-click-shell">
-        <div class="claude-click-map">
-          
-      <label class="claude-title-card" for="claude-radio-home">
-        <span>00</span>
-        <strong>总览地图</strong>
-        <em>Overview Map</em>
-        <small>HRP 是一个完整的人类节律返回系统，不是单一 App、硬件或治疗概念。<br>HRP is a complete human rhythm-return system, not merely an app, a device, or a therapy concept.</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s1">
-        <span>01</span>
-        <strong>哲学基础</strong>
-        <em>Philosophical Foundation</em>
-        <small>从 Qualia before Cognition 到 Rhythm Sovereignty，HRP 的基础不是行为管理，而是经验质地与身体时间。<br>From Qualia before Cognition to Rhythm Sovereignty, HRP begins not with behavior management but with experiential texture and embodied time.</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s2">
-        <span>02</span>
-        <strong>系统架构</strong>
-        <em>System Architecture</em>
-        <small>Cuff → QDR Engine → App → Multimodal Feedback → Rhythm Map → Return，每一个箭头都是一次转译，也都是一个风险点。<br>Cuff → QDR Engine → App → Multimodal Feedback → Rhythm Map → Return: every arrow is a translation, and every translation is a risk point.</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s3">
-        <span>03</span>
-        <strong>硬件逻辑</strong>
-        <em>Hardware Logic</em>
-        <small>44271 Neural Cuff 不是手表，不是生产力设备，而是贴近内腕脉线的神经—身体节律接口。<br>44271 Neural Cuff is not a watch or a productivity device, but a neuro-somatic rhythm interface placed near the inner-wrist pulse line.</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s4">
-        <span>04</span>
-        <strong>QDR 治疗框架</strong>
-        <em>QDR Therapeutic Framework</em>
-        <small>QDR Therapy：感质驱动节律疗法。痛苦不是故障，痛苦是节律信息。<br>QDR Therapy: Qualia-Driven Rhythm Therapy. Pain is not malfunction; pain is rhythm information.</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s5">
-        <span>05</span>
-        <strong>研究定位</strong>
-        <em>Research Positioning</em>
-        <small>HRP 的最强学术落点是 Learning Sciences + HCI + Sound + AI。<br>HRP’s strongest academic position is Learning Sciences + HCI + Sound + AI.</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s6">
-        <span>06</span>
-        <strong>内在张力</strong>
-        <em>Internal Tensions</em>
-        <small>系统最大的张力：外部 BCI 干预如何通向内部节律主权？<br>The core tension: how can external BCI intervention lead to internal rhythm sovereignty?</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s7">
-        <span>07</span>
-        <strong>竞争格局</strong>
-        <em>Competitive Landscape</em>
-        <small>HRP 与 Muse、Whoop、Oura、Apple Watch、Calm、Headspace、Neuralink 的差异在于：它不是优化系统，而是返回系统。<br>HRP differs from Muse, Whoop, Oura, Apple Watch, Calm, Headspace, and Neuralink because it is not an optimization system but a return system.</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s8">
-        <span>08</span>
-        <strong>声音科学</strong>
-        <em>Sound Science</em>
-        <small>声音不是背景氛围，而是身体干预：entrainment、自主神经调节、空间锚点与感质返回。<br>Sound is not background ambience but bodily intervention: entrainment, autonomic regulation, spatial anchoring, and qualia return.</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s9">
-        <span>09</span>
-        <strong>伦理框架</strong>
-        <em>Ethics Framework</em>
-        <small>HRP 的伦理核心：无诊断、无监控、用户可修正、创伤知情、数据最小化、神经多样性肯定。<br>HRP’s ethical core: no diagnosis, no surveillance, user-correctable labels, trauma-informed design, data minimization, and neurodiversity affirmation.</small>
-      </label>
-    
-      <label class="claude-title-card" for="claude-radio-s10">
-        <span>10</span>
-        <strong>下一步行动</strong>
-        <em>Action Roadmap</em>
-        <small>路线图：现在 4 周、三个月、一年。交付物必须具体，概念必须可解释，原型必须可测试。<br>Roadmap: now, three months, one year. Deliverables must be concrete, concepts explainable, and prototypes testable.</small>
-      </label>
-    
-        </div>
-      </div>
+    <div class="span-12 claude-accordion">
+      
+      <details class="claude-accordion-item" open>
+        <summary>
+          <span class="claude-acc-num">00</span>
+          <span class="claude-acc-title">
+            <strong>总览地图</strong>
+            <em>Overview Map</em>
+          </span>
+          <small>HRP 是一个完整的人类节律返回系统，不是单一 App、硬件或治疗概念。<br>HRP is a complete human rhythm-return system, not merely an app, a device, or a therapy concept.</small>
+        </summary>
 
-      <div class="claude-panels">
-        
-      <div class="claude-detail-panel" data-panel="home">
-        <div class="eyebrow">00 // EXCAVATION MAP</div>
-        <h2>Overview Map</h2>
-        <h2 class="cn">总览地图</h2>
-        <p class="sub en">HRP is a complete human rhythm-return system, not merely an app, a device, or a therapy concept.</p>
-        <p class="sub cn">HRP 是一个完整的人类节律返回系统，不是单一 App、硬件或治疗概念。</p>
-        <div class="claude-theory-grid">
-          
+        <div class="claude-accordion-body">
+          <div class="eyebrow">00 // EXCAVATION MAP</div>
+          <h2>Overview Map</h2>
+          <h2 class="cn">总览地图</h2>
+          <p class="sub en">HRP is a complete human rhythm-return system, not merely an app, a device, or a therapy concept.</p>
+          <p class="sub cn">HRP 是一个完整的人类节律返回系统，不是单一 App、硬件或治疗概念。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Historical Significance / 系统历史意义</div>
             <p class="en">Claude’s original judgment: HRP matters because it moves technology away from optimizing human output and toward helping humans perceive, protect, regulate, and return to their own rhythm.</p>
@@ -2753,27 +2854,40 @@
             <p class="cn">最大挑战不是“能不能做出硬件”，而是如何把感质、节律主权和返回能力转译成可研究、可测试、可展示的系统，同时不把它们压扁成生产力指标。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Start System Judgment / 启动总评</div>
             <p class="cn">作为跨越哲学、神经科学、学习科学、HCI 设计和心理治疗的深度分析师，请评价 HRP 在人类技术史上的位置、最激进的原创贡献、根本挑战，以及成功后会改变哪些领域。</p>
             <p class="en">As a deep analyst across philosophy, neuroscience, learning sciences, HCI, and psychotherapy, evaluate HRP’s place in technological history, its most radical contribution, its core challenge, and what fields it could change if successful.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s1">
-        <div class="eyebrow">01 // PHILOSOPHICAL FOUNDATION</div>
-        <h2>Philosophical Foundation</h2>
-        <h2 class="cn">哲学基础</h2>
-        <p class="sub en">From Qualia before Cognition to Rhythm Sovereignty, HRP begins not with behavior management but with experiential texture and embodied time.</p>
-        <p class="sub cn">从 Qualia before Cognition 到 Rhythm Sovereignty，HRP 的基础不是行为管理，而是经验质地与身体时间。</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">01</span>
+          <span class="claude-acc-title">
+            <strong>哲学基础</strong>
+            <em>Philosophical Foundation</em>
+          </span>
+          <small>从 Qualia before Cognition 到 Rhythm Sovereignty，HRP 的基础不是行为管理，而是经验质地与身体时间。<br>From Qualia before Cognition to Rhythm Sovereignty, HRP begins not with behavior management but with experiential texture and embodied time.</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">01 // PHILOSOPHICAL FOUNDATION</div>
+          <h2>Philosophical Foundation</h2>
+          <h2 class="cn">哲学基础</h2>
+          <p class="sub en">From Qualia before Cognition to Rhythm Sovereignty, HRP begins not with behavior management but with experiential texture and embodied time.</p>
+          <p class="sub cn">从 Qualia before Cognition 到 Rhythm Sovereignty，HRP 的基础不是行为管理，而是经验质地与身体时间。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Phenomenological Root / 现象学根基</div>
             <p class="en">Husserl’s time-consciousness, Merleau-Ponty’s embodied perception, Varela’s neurophenomenology, and William James’s stream of consciousness support one stance: experience exists first as flowing texture before it becomes proposition.</p>
@@ -2794,10 +2908,11 @@
             <p class="cn">节律主权连接 Foucault 的生命政治、Zuboff 的监控资本主义、注意力政治与神经多样性权利：真正的问题不是用户是否高效，而是谁有权决定用户应该进入什么节律。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Phenomenology / 挖现象学根基</div>
             <p class="cn">分析 Qualia before Cognition 的哲学谱系：Husserl、Merleau-Ponty、Varela、William James、Fodor 与 Chalmers。</p>
@@ -2818,17 +2933,29 @@
             <p class="en">Analyze how QDR philosophically challenges CBT, DBT, and ACT, and how it relates to Somatic Experiencing, EMDR, and Focusing.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s2">
-        <div class="eyebrow">02 // SYSTEM ARCHITECTURE</div>
-        <h2>System Architecture</h2>
-        <h2 class="cn">系统架构</h2>
-        <p class="sub en">Cuff → QDR Engine → App → Multimodal Feedback → Rhythm Map → Return: every arrow is a translation, and every translation is a risk point.</p>
-        <p class="sub cn">Cuff → QDR Engine → App → Multimodal Feedback → Rhythm Map → Return，每一个箭头都是一次转译，也都是一个风险点。</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">02</span>
+          <span class="claude-acc-title">
+            <strong>系统架构</strong>
+            <em>System Architecture</em>
+          </span>
+          <small>Cuff → QDR Engine → App → Multimodal Feedback → Rhythm Map → Return，每一个箭头都是一次转译，也都是一个风险点。<br>Cuff → QDR Engine → App → Multimodal Feedback → Rhythm Map → Return: every arrow is a translation, and every translation is a risk point.</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">02 // SYSTEM ARCHITECTURE</div>
+          <h2>System Architecture</h2>
+          <h2 class="cn">系统架构</h2>
+          <p class="sub en">Cuff → QDR Engine → App → Multimodal Feedback → Rhythm Map → Return: every arrow is a translation, and every translation is a risk point.</p>
+          <p class="sub cn">Cuff → QDR Engine → App → Multimodal Feedback → Rhythm Map → Return，每一个箭头都是一次转译，也都是一个风险点。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Loop Assumption / 闭环假设</div>
             <p class="en">The move from physiological signal to rhythm state must never be framed as mind-reading. It must be marked as probabilistic inference based on HRV, EDA, temperature, micro-motion, and contextual records.</p>
@@ -2849,10 +2976,11 @@
             <p class="cn">Stuck、Drifting、Overloaded、Numb、In Flow、Transition-locked、Recovery 不应被设计为互斥诊断，而应被设计为可重叠的节律场状态。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Loop Assumptions / 挖闭环假设</div>
             <p class="cn">分析 Cuff → Engine → App → Feedback → Return 每一步的隐藏假设、失效条件与系统影响。</p>
@@ -2866,17 +2994,29 @@
             <p class="en">Analyze the HRV, EDA, movement features, overlap, and hardest-to-distinguish pairs of the seven rhythm states.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s3">
-        <div class="eyebrow">03 // HARDWARE LOGIC</div>
-        <h2>Hardware Logic</h2>
-        <h2 class="cn">硬件逻辑</h2>
-        <p class="sub en">44271 Neural Cuff is not a watch or a productivity device, but a neuro-somatic rhythm interface placed near the inner-wrist pulse line.</p>
-        <p class="sub cn">44271 Neural Cuff 不是手表，不是生产力设备，而是贴近内腕脉线的神经—身体节律接口。</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">03</span>
+          <span class="claude-acc-title">
+            <strong>硬件逻辑</strong>
+            <em>Hardware Logic</em>
+          </span>
+          <small>44271 Neural Cuff 不是手表，不是生产力设备，而是贴近内腕脉线的神经—身体节律接口。<br>44271 Neural Cuff is not a watch or a productivity device, but a neuro-somatic rhythm interface placed near the inner-wrist pulse line.</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">03 // HARDWARE LOGIC</div>
+          <h2>Hardware Logic</h2>
+          <h2 class="cn">硬件逻辑</h2>
+          <p class="sub en">44271 Neural Cuff is not a watch or a productivity device, but a neuro-somatic rhythm interface placed near the inner-wrist pulse line.</p>
+          <p class="sub cn">44271 Neural Cuff 不是手表，不是生产力设备，而是贴近内腕脉线的神经—身体节律接口。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Sensor Science / 传感器科学</div>
             <p class="en">PPG/HRV reads cardiovascular rhythm, EDA reads arousal pressure, skin temperature reads thermal drift, and IMU reads micro-motion and restlessness. Together they form rhythm inference; no single metric is enough.</p>
@@ -2897,10 +3037,11 @@
             <p class="cn">无表盘意味着拒绝把时间变成压迫界面。44271 不要求用户表演进度，而是用光、触觉与声音帮助用户重新进入节律。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Sensor Science / 挖传感器科学</div>
             <p class="cn">分析 PPG、HRV、EDA、皮肤温度、IMU 在手腕内侧的测量原理、准确性限制、噪声来源与多传感器融合。</p>
@@ -2914,17 +3055,29 @@
             <p class="en">Analyze the design semantics of inner-wrist placement, radial pulse line, semi-open cuff, no watch face, haptic language, and material language.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s4">
-        <div class="eyebrow">04 // THERAPEUTIC FRAMEWORK</div>
-        <h2>QDR Therapeutic Framework</h2>
-        <h2 class="cn">QDR 治疗框架</h2>
-        <p class="sub en">QDR Therapy: Qualia-Driven Rhythm Therapy. Pain is not malfunction; pain is rhythm information.</p>
-        <p class="sub cn">QDR Therapy：感质驱动节律疗法。痛苦不是故障，痛苦是节律信息。</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">04</span>
+          <span class="claude-acc-title">
+            <strong>QDR 治疗框架</strong>
+            <em>QDR Therapeutic Framework</em>
+          </span>
+          <small>QDR Therapy：感质驱动节律疗法。痛苦不是故障，痛苦是节律信息。<br>QDR Therapy: Qualia-Driven Rhythm Therapy. Pain is not malfunction; pain is rhythm information.</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">04 // THERAPEUTIC FRAMEWORK</div>
+          <h2>QDR Therapeutic Framework</h2>
+          <h2 class="cn">QDR 治疗框架</h2>
+          <p class="sub en">QDR Therapy: Qualia-Driven Rhythm Therapy. Pain is not malfunction; pain is rhythm information.</p>
+          <p class="sub cn">QDR Therapy：感质驱动节律疗法。痛苦不是故障，痛苦是节律信息。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Full Theoretical Model / 完整理论模型</div>
             <p class="en">QDR’s five steps are: sample the qualia, locate the rhythm field, de-bind the sentence, re-tune the system, and find the minimum real action. Its goal is not normalization but rhythm sovereignty.</p>
@@ -2945,10 +3098,11 @@
             <p class="cn">QDR 对 ADHD、自闭症谱系、高敏感、创伤后状态尤其重要，因为这些体验常常不是“缺陷”，而是节律调节、感觉阈值、转换难度与环境压强的差异。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate QDR Theory / 挖 QDR 理论建构</div>
             <p class="cn">把 QDR Therapy 建构为严格理论框架：正式模型、操作定义、改变机制、目标人群、禁忌症和科学验证路径。</p>
@@ -2969,17 +3123,29 @@
             <p class="en">Analyze how QDR offers neurodiversity-affirming pathways for ADHD, autism spectrum, HSP, and PTSD.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s5">
-        <div class="eyebrow">05 // RESEARCH POSITIONING</div>
-        <h2>Research Positioning</h2>
-        <h2 class="cn">研究定位</h2>
-        <p class="sub en">HRP’s strongest academic position is Learning Sciences + HCI + Sound + AI.</p>
-        <p class="sub cn">HRP 的最强学术落点是 Learning Sciences + HCI + Sound + AI。</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">05</span>
+          <span class="claude-acc-title">
+            <strong>研究定位</strong>
+            <em>Research Positioning</em>
+          </span>
+          <small>HRP 的最强学术落点是 Learning Sciences + HCI + Sound + AI。<br>HRP’s strongest academic position is Learning Sciences + HCI + Sound + AI.</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">05 // RESEARCH POSITIONING</div>
+          <h2>Research Positioning</h2>
+          <h2 class="cn">研究定位</h2>
+          <p class="sub en">HRP’s strongest academic position is Learning Sciences + HCI + Sound + AI.</p>
+          <p class="sub cn">HRP 的最强学术落点是 Learning Sciences + HCI + Sound + AI。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Learning Sciences / 学习科学</div>
             <p class="en">HRP can be framed as Rhythm-Regulated Learning: students do not simply lack attention; they need to identify, protect, regulate, and return to their learning rhythm.</p>
@@ -3000,10 +3166,11 @@
             <p class="cn">研究不应只测 productivity，而应测 rhythm awareness、shame reduction、perceived agency、return ability、transition success 与 self-description quality。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Generate Research Proposal / 生成研究计划框架</div>
             <p class="cn">为 UPenn 学习科学或 HCI 方向生成完整研究计划：标题、文献定位、研究问题、理论框架、方法、测量指标、贡献和 IRB。</p>
@@ -3017,17 +3184,29 @@
             <p class="en">Identify relevant research areas: embodied cognition, emotion and learning, metacognition, self-regulation, affective computing, personal informatics, sound studies, and technological autonomy.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s6">
-        <div class="eyebrow">06 // INTERNAL TENSIONS</div>
-        <h2>Internal Tensions</h2>
-        <h2 class="cn">内在张力</h2>
-        <p class="sub en">The core tension: how can external BCI intervention lead to internal rhythm sovereignty?</p>
-        <p class="sub cn">系统最大的张力：外部 BCI 干预如何通向内部节律主权？</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">06</span>
+          <span class="claude-acc-title">
+            <strong>内在张力</strong>
+            <em>Internal Tensions</em>
+          </span>
+          <small>系统最大的张力：外部 BCI 干预如何通向内部节律主权？<br>The core tension: how can external BCI intervention lead to internal rhythm sovereignty?</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">06 // INTERNAL TENSIONS</div>
+          <h2>Internal Tensions</h2>
+          <h2 class="cn">内在张力</h2>
+          <p class="sub en">The core tension: how can external BCI intervention lead to internal rhythm sovereignty?</p>
+          <p class="sub cn">系统最大的张力：外部 BCI 干预如何通向内部节律主权？</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Sovereignty Paradox / 主权悖论</div>
             <p class="en">If the system uses an external device to help a person return to themselves, does it create new dependency? It depends on whether it is designed as scaffolding: helping users internalize rhythm awareness rather than permanently judging for them.</p>
@@ -3048,10 +3227,11 @@
             <p class="cn">最大风险不是技术失败，而是被旧世界语言捕获：被误读成效率工具、健康 App、诊断设备或普通 mindfulness 产品。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Sovereignty Paradox / 挖主权悖论</div>
             <p class="cn">分析外部 BCI 干预与节律主权之间是否矛盾，并用 Vygotsky 脚手架理论、治疗依赖、药物依赖等框架回应。</p>
@@ -3065,17 +3245,29 @@
             <p class="en">Analyze the tension between 427Hz as personal resonance and product anchor, and design a personalized frequency calibration process.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s7">
-        <div class="eyebrow">07 // COMPETITIVE LANDSCAPE</div>
-        <h2>Competitive Landscape</h2>
-        <h2 class="cn">竞争格局</h2>
-        <p class="sub en">HRP differs from Muse, Whoop, Oura, Apple Watch, Calm, Headspace, and Neuralink because it is not an optimization system but a return system.</p>
-        <p class="sub cn">HRP 与 Muse、Whoop、Oura、Apple Watch、Calm、Headspace、Neuralink 的差异在于：它不是优化系统，而是返回系统。</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">07</span>
+          <span class="claude-acc-title">
+            <strong>竞争格局</strong>
+            <em>Competitive Landscape</em>
+          </span>
+          <small>HRP 与 Muse、Whoop、Oura、Apple Watch、Calm、Headspace、Neuralink 的差异在于：它不是优化系统，而是返回系统。<br>HRP differs from Muse, Whoop, Oura, Apple Watch, Calm, Headspace, and Neuralink because it is not an optimization system but a return system.</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">07 // COMPETITIVE LANDSCAPE</div>
+          <h2>Competitive Landscape</h2>
+          <h2 class="cn">竞争格局</h2>
+          <p class="sub en">HRP differs from Muse, Whoop, Oura, Apple Watch, Calm, Headspace, and Neuralink because it is not an optimization system but a return system.</p>
+          <p class="sub cn">HRP 与 Muse、Whoop、Oura、Apple Watch、Calm、Headspace、Neuralink 的差异在于：它不是优化系统，而是返回系统。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Consumer Neurotech / 消费级神经技术</div>
             <p class="en">Devices like Muse focus on meditation training or EEG feedback. HRP does not pursue one brain state, but a rhythm-return loop between body, sound, AI, and environment.</p>
@@ -3096,27 +3288,40 @@
             <p class="cn">Calm、Headspace 等以冥想或内容为中心。HRP 的差异是硬件信号 + QDR 解释 + 声音/触觉反馈 + 个人节律记忆。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Competitive Landscape / 挖竞争格局</div>
             <p class="cn">对比消费级神经技术、高端生物反馈可穿戴、心理健康 App、神经刺激设备和研究级工具，说明 HRP 的差异化。</p>
             <p class="en">Compare consumer neurotech, biofeedback wearables, mental health apps, neurostimulation devices, and research tools to clarify HRP’s differentiation.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s8">
-        <div class="eyebrow">08 // SOUND SCIENCE</div>
-        <h2>Sound Science</h2>
-        <h2 class="cn">声音科学</h2>
-        <p class="sub en">Sound is not background ambience but bodily intervention: entrainment, autonomic regulation, spatial anchoring, and qualia return.</p>
-        <p class="sub cn">声音不是背景氛围，而是身体干预：entrainment、自主神经调节、空间锚点与感质返回。</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">08</span>
+          <span class="claude-acc-title">
+            <strong>声音科学</strong>
+            <em>Sound Science</em>
+          </span>
+          <small>声音不是背景氛围，而是身体干预：entrainment、自主神经调节、空间锚点与感质返回。<br>Sound is not background ambience but bodily intervention: entrainment, autonomic regulation, spatial anchoring, and qualia return.</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">08 // SOUND SCIENCE</div>
+          <h2>Sound Science</h2>
+          <h2 class="cn">声音科学</h2>
+          <p class="sub en">Sound is not background ambience but bodily intervention: entrainment, autonomic regulation, spatial anchoring, and qualia return.</p>
+          <p class="sub cn">声音不是背景氛围，而是身体干预：entrainment、自主神经调节、空间锚点与感质返回。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Neural Entrainment / 神经同步</div>
             <p class="en">Sound rhythm can influence attention, arousal, and bodily timing. HRP uses music, pink noise, white noise, and plant-style generative music not for decoration but as different return channels for different rhythm states.</p>
@@ -3137,10 +3342,11 @@
             <p class="cn">声音不是信息媒介而是振动物质。它经过空气、皮肤、骨骼和空间进入身体，因此声音设计就是身体界面设计。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Sound Neuroscience / 挖声音神经科学</div>
             <p class="cn">分析 neural entrainment、自主神经系统、Polyvagal Theory、HRV 与音乐节奏耦合、空间音频、低频振动与 427Hz。</p>
@@ -3154,17 +3360,29 @@
             <p class="en">Analyze HRP’s sound design through Sound Studies: soundscape, materiality of voice, sound practice, and spatial-body relations.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s9">
-        <div class="eyebrow">09 // ETHICS FRAMEWORK</div>
-        <h2>Ethics Framework</h2>
-        <h2 class="cn">伦理框架</h2>
-        <p class="sub en">HRP’s ethical core: no diagnosis, no surveillance, user-correctable labels, trauma-informed design, data minimization, and neurodiversity affirmation.</p>
-        <p class="sub cn">HRP 的伦理核心：无诊断、无监控、用户可修正、创伤知情、数据最小化、神经多样性肯定。</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">09</span>
+          <span class="claude-acc-title">
+            <strong>伦理框架</strong>
+            <em>Ethics Framework</em>
+          </span>
+          <small>HRP 的伦理核心：无诊断、无监控、用户可修正、创伤知情、数据最小化、神经多样性肯定。<br>HRP’s ethical core: no diagnosis, no surveillance, user-correctable labels, trauma-informed design, data minimization, and neurodiversity affirmation.</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">09 // ETHICS FRAMEWORK</div>
+          <h2>Ethics Framework</h2>
+          <h2 class="cn">伦理框架</h2>
+          <p class="sub en">HRP’s ethical core: no diagnosis, no surveillance, user-correctable labels, trauma-informed design, data minimization, and neurodiversity affirmation.</p>
+          <p class="sub cn">HRP 的伦理核心：无诊断、无监控、用户可修正、创伤知情、数据最小化、神经多样性肯定。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">No Diagnosis / 无诊断</div>
             <p class="en">The system can classify functional rhythm states, but must not claim to diagnose ADHD, bipolar disorder, PTSD, or any clinical condition. State labels must be framed as possible rhythm states, not medical judgments.</p>
@@ -3185,27 +3403,40 @@
             <p class="cn">触觉和声音都可能安抚，也可能触发。系统必须有立即退出、强度调节、禁用某类反馈、危机转介等机制。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Full Ethics Framework / 挖完整伦理框架</div>
             <p class="cn">分析 BCI 伦理、AI 治疗伦理、数据伦理、无诊断承诺、本地处理、AI 微对话安全、创伤知情设计和用户可修正状态标签。</p>
             <p class="en">Analyze BCI ethics, AI therapy ethics, data ethics, no-diagnosis commitment, local processing, AI micro-dialogue safety, trauma-informed design, and user-correctable labels.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      <div class="claude-detail-panel" data-panel="s10">
-        <div class="eyebrow">10 // ACTION ROADMAP</div>
-        <h2>Action Roadmap</h2>
-        <h2 class="cn">下一步行动</h2>
-        <p class="sub en">Roadmap: now, three months, one year. Deliverables must be concrete, concepts explainable, and prototypes testable.</p>
-        <p class="sub cn">路线图：现在 4 周、三个月、一年。交付物必须具体，概念必须可解释，原型必须可测试。</p>
-        <div class="claude-theory-grid">
-          
+      <details class="claude-accordion-item">
+        <summary>
+          <span class="claude-acc-num">10</span>
+          <span class="claude-acc-title">
+            <strong>下一步行动</strong>
+            <em>Action Roadmap</em>
+          </span>
+          <small>路线图：现在 4 周、三个月、一年。交付物必须具体，概念必须可解释，原型必须可测试。<br>Roadmap: now, three months, one year. Deliverables must be concrete, concepts explainable, and prototypes testable.</small>
+        </summary>
+
+        <div class="claude-accordion-body">
+          <div class="eyebrow">10 // ACTION ROADMAP</div>
+          <h2>Action Roadmap</h2>
+          <h2 class="cn">下一步行动</h2>
+          <p class="sub en">Roadmap: now, three months, one year. Deliverables must be concrete, concepts explainable, and prototypes testable.</p>
+          <p class="sub cn">路线图：现在 4 周、三个月、一年。交付物必须具体，概念必须可解释，原型必须可测试。</p>
+
+          <div class="claude-theory-grid">
+            
           <article class="claude-theory-card">
             <div class="source-id">Now / 4 Weeks / Now / 4 周</div>
             <p class="en">Stabilize the website; define four core terms: rhythm sovereignty, qualia sampling, de-binding the sentence, and minimum real action; build clickable app flow and 44271 Neural Cuff demo.</p>
@@ -3226,10 +3457,11 @@
             <p class="cn">将项目发展为 capstone、论文、作品集案例、可演示 prototype ecosystem，并决定下一步是研究、产品还是 studio infrastructure。</p>
           </article>
         
-        </div>
-        <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
-        <div class="claude-prompt-grid">
-          
+          </div>
+
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="claude-prompt-grid">
+            
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Generate Action Roadmap / 生成行动路线图</div>
             <p class="cn">制定 NOW / SOON / LATER 三阶段路线图：核心行动、交付物、成功标准、MVP、论文选题、网站下一版。</p>
@@ -3243,10 +3475,10 @@
             <p class="en">Judge what fields HRP could change if successful, and what the real reason would be if it fails.</p>
           </article>
         
+          </div>
         </div>
-      </div>
+      </details>
     
-      </div>
     </div>
   </div>
 </section>
