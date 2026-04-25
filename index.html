@@ -1427,6 +1427,48 @@
       }
     }
 
+  
+    /* FIX v8: Claude clickable titles + readable scale */
+    #claude-layer h2 {
+      font-size: clamp(30px, 4.4vw, 58px);
+      line-height: 1.02;
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+
+    #claude-layer .claude-detail-panel h2.cn {
+      font-size: clamp(28px, 4vw, 52px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+    }
+
+    #claude-layer .sub {
+      max-width: 100%;
+    }
+
+    .claude-title-card {
+      pointer-events: auto !important;
+      position: relative;
+      z-index: 5;
+    }
+
+    .claude-detail-panel {
+      position: relative;
+      z-index: 3;
+    }
+
+    .claude-click-map {
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 1024px) {
+      #claude-layer h2,
+      #claude-layer .claude-detail-panel h2.cn {
+        font-size: clamp(26px, 9vw, 44px);
+      }
+    }
+
   </style>
 </head>
 
@@ -3456,6 +3498,53 @@
         });
       });
     });
+
+  
+    /* FIX v8: robust Claude click delegation */
+    function initClaudeClickDeepV8() {
+      const map = document.querySelector(".claude-click-map");
+      const cards = document.querySelectorAll(".claude-title-card");
+      const panels = document.querySelectorAll(".claude-detail-panel");
+
+      function openClaudePanel(target) {
+        if (!target) return;
+
+        cards.forEach((card) => {
+          card.classList.toggle("active", card.dataset.claudeTarget === target);
+        });
+
+        panels.forEach((panel) => {
+          panel.classList.toggle("active", panel.id === "claude-detail-" + target);
+        });
+
+        const activePanel = document.getElementById("claude-detail-" + target);
+        if (activePanel) {
+          activePanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      if (map) {
+        map.addEventListener("click", (event) => {
+          const card = event.target.closest(".claude-title-card");
+          if (!card) return;
+          event.preventDefault();
+          openClaudePanel(card.dataset.claudeTarget);
+        });
+      }
+
+      cards.forEach((card) => {
+        card.onclick = (event) => {
+          event.preventDefault();
+          openClaudePanel(card.dataset.claudeTarget);
+        };
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initClaudeClickDeepV8);
+    } else {
+      initClaudeClickDeepV8();
+    }
 
   </script>
 </body>
