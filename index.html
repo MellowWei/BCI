@@ -1,1032 +1,1241 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HRP DEEP EXCAVATOR · 427Hz</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Bebas+Neue&display=swap');
 
-  <title>The Human Return Protocol · Wei Jueran</title>
+:root {
+  --bg: #03050a;
+  --bg2: #080c14;
+  --panel: #0d1220;
+  --border: #1a2235;
+  --border2: #243050;
+  --accent: #00e5ff;
+  --accent2: #ff4d6d;
+  --accent3: #b8ff57;
+  --gold: #ffd166;
+  --text: #d8e4f0;
+  --dim: #4a6080;
+  --mid: #7a9ab8;
+  --glow: rgba(0,229,255,0.15);
+}
 
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* SCANLINE OVERLAY */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  pointer-events:none;
+  z-index:9998;
+}
+
+/* AMBIENT GLOW */
+body::after {
+  content:'';
+  position:fixed;
+  top:-40%;
+  left:-20%;
+  width:80%;
+  height:80%;
+  background: radial-gradient(ellipse, rgba(0,229,255,0.04) 0%, transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* HEADER */
+.hdr {
+  border-bottom: 1px solid var(--border);
+  padding: 32px 40px 28px;
+  position: relative;
+  z-index:10;
+  background: var(--bg);
+}
+
+.hdr-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.hdr-badge {
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--accent);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pulse {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+.hdr-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 56px);
+  letter-spacing: 3px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.hdr-title span { color: var(--accent); }
+
+.hdr-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--mid);
+  margin-top: 10px;
+  max-width: 500px;
+}
+
+.hdr-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: right;
+}
+
+.stat {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--dim);
+}
+.stat b { color: var(--accent3); }
+
+/* MAIN LAYOUT */
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: calc(100vh - 140px);
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .hdr { padding: 20px; }
+  .content-area { padding: 20px; }
+}
+
+/* SIDEBAR */
+.sidebar {
+  border-right: 1px solid var(--border);
+  padding: 28px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--bg2);
+}
+
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border2); }
+
+.sidebar-label {
+  font-size: 8px;
+  letter-spacing: 4px;
+  color: var(--dim);
+  padding: 0 20px;
+  margin-bottom: 12px;
+}
+
+.nav-item {
+  display: block;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: var(--dim);
+}
+
+.nav-item:hover, .nav-item.active {
+  color: var(--text);
+  border-left-color: var(--accent);
+  background: rgba(0,229,255,0.04);
+}
+
+.nav-item .nav-num {
+  font-size: 8px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.nav-item .nav-name {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.nav-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 12px 20px;
+}
+
+/* EXCAVATION MODE PANEL */
+.mode-panel {
+  padding: 16px 20px;
+  margin: 12px 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+.mode-label { font-size: 8px; letter-spacing: 3px; color: var(--accent); margin-bottom: 8px; }
+
+.mode-select {
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border2);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 6px 8px;
+  cursor: pointer;
+  appearance: none;
+}
+
+/* CONTENT AREA */
+.content-area {
+  padding: 40px 48px;
+  min-height: 100vh;
+}
+
+@media (max-width: 1024px) {
+  .content-area { padding: 24px; }
+}
+
+/* SECTION */
+.section {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+.section.active { display: block; }
+
+@keyframes fadeIn { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+.section-head {
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.s-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px;
+  line-height: 1;
+  color: var(--border2);
+  margin-bottom: -12px;
+}
+
+.s-tag {
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.s-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.s-desc {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--mid);
+}
+
+/* AI EXCAVATION BOX */
+.excavate-box {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+.excavate-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+
+.ex-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--accent3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ex-prompt {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--mid);
+  padding: 14px 20px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.ex-output {
+  padding: 20px;
+  min-height: 80px;
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  position: relative;
+}
+
+.ex-output.loading::after {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: scan 1.5s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0%{transform: translateX(-100%);}
+  100%{transform: translateX(100%);}
+}
+
+.ex-output .thinking {
+  color: var(--dim);
+  font-style: italic;
+  font-size: 13px;
+}
+
+.ex-btn {
+  margin: 0 20px 20px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ex-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.ex-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ex-btn.orange { border-color: var(--accent2); color: var(--accent2); }
+.ex-btn.orange:hover { background: var(--accent2); color: #fff; }
+.ex-btn.green { border-color: var(--accent3); color: var(--accent3); }
+.ex-btn.green:hover { background: var(--accent3); color: var(--bg); }
+
+/* STATIC CONTENT BLOCKS */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+@media (max-width: 900px) { .grid2,.grid3 { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.card.c-accent { border-left: 3px solid var(--accent); }
+.card.c-red { border-left: 3px solid var(--accent2); }
+.card.c-green { border-left: 3px solid var(--accent3); }
+.card.c-gold { border-left: 3px solid var(--gold); }
+
+.c-tag {
+  font-size: 8px;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+.c-tag.a { color: var(--accent); }
+.c-tag.r { color: var(--accent2); }
+.c-tag.g { color: var(--accent3); }
+.c-tag.o { color: var(--gold); }
+
+.c-title {
+  font-family: 'Fraunces', serif;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.c-body {
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+.c-body b { color: var(--text); font-weight: 600; }
+.c-body em { color: var(--accent); font-style: italic; }
+
+/* QUOTE */
+.pullquote {
+  border-left: 3px solid var(--accent);
+  padding: 20px 28px;
+  margin: 24px 0;
+  background: rgba(0,229,255,0.03);
+}
+.pullquote p {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.pullquote cite {
+  display: block;
+  margin-top: 10px;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--accent);
+}
+
+/* TABLE */
+.tbl { width:100%; border-collapse:collapse; margin: 20px 0; font-size: 12px; }
+.tbl th {
+  background: var(--bg2);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border2);
+}
+.tbl td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--mid);
+  vertical-align: top;
+  font-family: 'Fraunces', serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.tbl td:first-child { color: var(--text); font-family: 'DM Mono', monospace; font-size: 11px; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* TAGS */
+.tags { display:flex; flex-wrap:wrap; gap:6px; margin-top: 12px; }
+.tag {
+  font-size: 8px;
+  letter-spacing: 2px;
+  padding: 3px 8px;
+  border: 1px solid var(--border2);
+  color: var(--dim);
+}
+.tag.a { border-color: var(--accent); color: var(--accent); }
+.tag.r { border-color: var(--accent2); color: var(--accent2); }
+.tag.g { border-color: var(--accent3); color: var(--accent3); }
+
+/* SIGNAL BARS */
+.signal-bar {
+  display: flex;
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.sb-label {
+  background: var(--bg2);
+  padding: 14px 16px;
+  min-width: 140px;
+  border-right: 1px solid var(--border);
+}
+.sb-name { font-size: 10px; font-weight: 500; color: var(--accent3); }
+.sb-sub { font-size: 8px; letter-spacing: 2px; color: var(--dim); margin-top: 2px; }
+.sb-body {
+  padding: 14px 18px;
+  font-family: 'Fraunces', serif;
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.6;
+  flex: 1;
+}
+.sb-body b { color: var(--text); }
+
+/* CUSTOM QUERY */
+.custom-query {
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  padding: 24px;
+  margin-top: 32px;
+}
+.cq-label { font-size: 9px; letter-spacing: 3px; color: var(--gold); margin-bottom: 12px; }
+.cq-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  padding: 12px 16px;
+  resize: vertical;
+  min-height: 80px;
+  margin-bottom: 12px;
+}
+.cq-input:focus { outline: none; border-color: var(--accent); }
+.cq-input::placeholder { color: var(--dim); }
+
+/* RESPONSE TEXT FORMATTING */
+.ex-output h3 { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--accent); margin: 16px 0 6px; }
+.ex-output p { margin-bottom: 12px; }
+.ex-output ul { padding-left: 20px; margin-bottom: 12px; }
+.ex-output ul li { margin-bottom: 6px; color: var(--mid); }
+.ex-output strong { color: var(--text); font-weight: 600; }
+.ex-output em { color: var(--accent3); font-style: italic; }
+
+/* HOME SCREEN */
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.home-cell {
+  background: var(--bg2);
+  padding: 24px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.home-cell:hover { background: var(--panel); }
+.hc-num { font-size: 24px; font-family: 'Bebas Neue'; color: var(--border2); line-height: 1; margin-bottom: 8px; }
+.hc-tag { font-size: 8px; letter-spacing: 3px; color: var(--accent); margin-bottom: 6px; }
+.hc-name { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; line-height: 1.3; }
+.hc-desc { font-family: 'Fraunces', serif; font-style: italic; font-size: 12px; color: var(--dim); margin-top: 6px; line-height: 1.4; }
+
+/* DEPTH INDICATOR */
+.depth-bar {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.depth-label { font-size: 8px; letter-spacing: 2px; color: var(--dim); margin-right: 8px; }
+.depth-seg {
+  height: 3px;
+  flex: 1;
+  background: var(--border);
+  transition: background 0.3s;
+}
+.depth-seg.filled { background: var(--accent); }
+</style>
 </head>
-
 <body>
-  <canvas id="field"></canvas>
-  <div class="scanlines"></div>
-  <div class="grid-bg"></div>
-  <div class="vignette"></div>
 
-  <header class="topbar">
-    <div class="brand">
-      <span class="sigil"></span>
-      <span>77347 ENGINE ONLINE // 44271 STYLE ACTIVE // 427HZ HUMAN RETURN PROTOCOL</span>
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <div class="hdr-badge">
+        <span class="pulse"></span>
+        AI EXCAVATION SYSTEM · 镜像位 · CLAUDE IN CLAUDE
+      </div>
+      <div class="hdr-title">HRP <span>DEEP</span> EXCAVATOR</div>
+      <div class="hdr-sub">The Human Return Protocol · 全层深挖 · 每个模块由 Claude 实时生成</div>
+    </div>
+    <div class="hdr-stats">
+      <div class="stat">PROJECT <b>THE HUMAN RETURN PROTOCOL</b></div>
+      <div class="stat">INVENTOR <b>魏珏然 · WEI JUERAN</b></div>
+      <div class="stat">FREQUENCY <b>427Hz</b></div>
+      <div class="stat">ENGINE <b>CLAUDE SONNET · LIVE</b></div>
+    </div>
+  </div>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-label">EXCAVATION LAYERS</div>
+    <a class="nav-item active" onclick="showSection('home')">
+      <span class="nav-num">00</span>
+      <span class="nav-name">总览地图</span>
+    </a>
+    <div class="nav-divider"></div>
+    <a class="nav-item" onclick="showSection('s1')">
+      <span class="nav-num">01</span>
+      <span class="nav-name">哲学基础</span>
+    </a>
+    <a class="nav-item" onclick="showSection('s2')">
+      <span class="nav-num">02</span>
+      <span class="nav-name">系统架构</span>
+    </a>
+    <a class="nav-item" onclick="showSection('s3')">
+      <span class="nav-num">03</span>
+      <span class="nav-name">硬件逻辑</span>
+    </a>
+    <a class="nav-item" onclick="showSection('s4')">
+      <span class="nav-num">04</span>
+      <span class="nav-name">QDR 治疗框架</span>
+    </a>
+    <a class="nav-item" onclick="showSection('s5')">
+      <span class="nav-num">05</span>
+      <span class="nav-name">研究定位</span>
+    </a>
+    <a class="nav-item" onclick="showSection('s6')">
+      <span class="nav-num">06</span>
+      <span class="nav-name">内在张力</span>
+    </a>
+    <a class="nav-item" onclick="showSection('s7')">
+      <span class="nav-num">07</span>
+      <span class="nav-name">竞争格局</span>
+    </a>
+    <a class="nav-item" onclick="showSection('s8')">
+      <span class="nav-num">08</span>
+      <span class="nav-name">声音科学</span>
+    </a>
+    <a class="nav-item" onclick="showSection('s9')">
+      <span class="nav-num">09</span>
+      <span class="nav-name">伦理框架</span>
+    </a>
+    <a class="nav-item" onclick="showSection('s10')">
+      <span class="nav-num">10</span>
+      <span class="nav-name">下一步行动</span>
+    </a>
+    <div class="nav-divider"></div>
+    <a class="nav-item" onclick="showSection('custom')">
+      <span class="nav-num">∞</span>
+      <span class="nav-name">自由深挖</span>
+    </a>
+
+    <div style="margin: 16px;">
+      <div class="mode-panel">
+        <div class="mode-label">EXCAVATION DEPTH</div>
+        <select class="mode-select" id="depthSelect">
+          <option value="academic">学术深度</option>
+          <option value="product">产品深度</option>
+          <option value="philosophical">哲学深度</option>
+          <option value="technical">技术深度</option>
+          <option value="strategic">战略深度</option>
+        </select>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content-area">
+
+    <!-- HOME -->
+    <div id="home" class="section active">
+      <div class="section-head">
+        <div class="s-num">00</div>
+        <div class="s-tag">EXCAVATION MAP</div>
+        <div class="s-title">The Human Return Protocol<br>全层深挖系统</div>
+        <div class="s-desc">点击任意模块进入深挖 · 每层由 Claude 实时生成最深度分析</div>
+      </div>
+
+      <div class="home-grid">
+        <div class="home-cell" onclick="showSection('s1')">
+          <div class="hc-num">01</div>
+          <div class="hc-tag">PHILOSOPHY</div>
+          <div class="hc-name">哲学基础</div>
+          <div class="hc-desc">你在挑战什么，你站在哪里</div>
+        </div>
+        <div class="home-cell" onclick="showSection('s2')">
+          <div class="hc-num">02</div>
+          <div class="hc-tag">ARCHITECTURE</div>
+          <div class="hc-name">系统架构</div>
+          <div class="hc-desc">闭环的每一环与隐藏假设</div>
+        </div>
+        <div class="home-cell" onclick="showSection('s3')">
+          <div class="hc-num">03</div>
+          <div class="hc-tag">HARDWARE</div>
+          <div class="hc-name">硬件逻辑</div>
+          <div class="hc-desc">44271 神经袖口的全部含义</div>
+        </div>
+        <div class="home-cell" onclick="showSection('s4')">
+          <div class="hc-num">04</div>
+          <div class="hc-tag">THERAPY</div>
+          <div class="hc-name">QDR 框架</div>
+          <div class="hc-desc">感质驱动节律疗法的原创性</div>
+        </div>
+        <div class="home-cell" onclick="showSection('s5')">
+          <div class="hc-num">05</div>
+          <div class="hc-tag">RESEARCH</div>
+          <div class="hc-name">研究定位</div>
+          <div class="hc-desc">UPenn 学术落地的最强路径</div>
+        </div>
+        <div class="home-cell" onclick="showSection('s6')">
+          <div class="hc-num">06</div>
+          <div class="hc-tag">TENSIONS</div>
+          <div class="hc-name">内在张力</div>
+          <div class="hc-desc">系统的裂缝与如何填补</div>
+        </div>
+        <div class="home-cell" onclick="showSection('s7')">
+          <div class="hc-num">07</div>
+          <div class="hc-tag">LANDSCAPE</div>
+          <div class="hc-name">竞争格局</div>
+          <div class="hc-desc">你在哪里，别人在哪里</div>
+        </div>
+        <div class="home-cell" onclick="showSection('s8')">
+          <div class="hc-num">08</div>
+          <div class="hc-tag">SOUND SCIENCE</div>
+          <div class="hc-name">声音科学</div>
+          <div class="hc-desc">427Hz 与频率干预的科学基础</div>
+        </div>
+        <div class="home-cell" onclick="showSection('s9')">
+          <div class="hc-num">09</div>
+          <div class="hc-tag">ETHICS</div>
+          <div class="hc-name">伦理框架</div>
+          <div class="hc-desc">BCI 伦理的每一个细节</div>
+        </div>
+        <div class="home-cell" onclick="showSection('s10')">
+          <div class="hc-num">10</div>
+          <div class="hc-tag">ACTION</div>
+          <div class="hc-name">下一步</div>
+          <div class="hc-desc">从地图到真实行动的路径</div>
+        </div>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> AI 系统总评</div>
+        </div>
+        <div class="ex-prompt">Claude 对 The Human Return Protocol 的整体深度判断：这个系统的历史意义是什么？</div>
+        <div class="ex-output" id="out-home">
+          <span class="thinking">点击下方按钮启动 AI 深挖</span>
+        </div>
+        <button class="ex-btn" onclick="excavate('home', getSystemPrompt(), '作为一名跨越哲学、神经科学、学习科学、HCI设计和心理治疗的深度分析师，请对「The Human Return Protocol」系统进行最深度的整体评价。这个系统由魏珏然（非二元性别，代词it/they，UPenn研究者）创立，包含：44271 Neural Cuff（腕戴神经躯体节律接口），QDR Engine（节律解读引擎），Human Return App，以及QDR Therapy（感质驱动节律疗法）。核心主张：注意力不是资源，人类是节律系统，节律主权是治疗目标，痛苦是节律信息。系统反对生产力优化，支持rhythm sovereignty。请评估：1）这个系统在人类技术史上的位置，2）它最激进的原创贡献是什么，3）它面临的最根本的挑战是什么，4）如果成功，它会如何改变某些领域？用深度学术语言，同时保持诗意的清晰度。中文回答，约600字。')">
+          ▶ 启动总评
+        </button>
+      </div>
     </div>
 
-    <nav>
-      <a href="#thesis">THESIS</a>
-      <a href="#system">SYSTEM</a>
-      <a href="#states">STATE LAB</a>
-      <a href="#hardware">NEURAL CUFF</a>
-      <a href="#engine">QDR ENGINE</a>
-      <a href="#app">APP</a>
-      <a href="#ai-trinity">AI TRINITY</a>
-      <a href="#qdr">QDR THERAPY</a>
-      <a href="#mission">MISSION</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="top">
-      <div>
-        <div class="eyebrow">HUMAN RHYTHM INFRASTRUCTURE</div>
-
-        <div class="status-grid">
-          <div class="status-card">
-            <div class="status-label">PHYSICAL SPACE TIME</div>
-            <div id="physicalTime" class="status-value">
-              Loading real-time signal...
-            </div>
-          </div>
-
-          <div class="status-card">
-            <div class="status-label">INTERNAL GOD MODE TIME</div>
-            <div class="status-value">
-              12:23 ORIGIN RESET · 427HZ · MODE 77347 · STYLE 44271
-            </div>
-          </div>
-        </div>
-
-        <h1 class="glitch" data-text="THE HUMAN RETURN PROTOCOL.">
-          THE HUMAN RETURN PROTOCOL.
-        </h1>
-
-        <div class="thesis">
-          Attention is not a resource to be managed.
-          Human life is not a machine to be optimized.
-          Rhythm is the interface through which people return to themselves.
-        </div>
-
-        <p class="sub">
-          An AI multimodal brain-computer rhythm system using the 44271 Neural Cuff,
-          the Human Return App, QDR Therapy Engine, adaptive sound, haptic return,
-          and personal rhythm mapping to help humans sense, protect, regulate,
-          and recover their own rhythm.
-        </p>
-
-        <div class="hero-actions">
-          <a class="button primary" href="#hardware">VIEW NEURAL CUFF</a>
-          <a class="button" href="#engine">QDR ENGINE</a>
-          <a class="button" href="#app">HUMAN RETURN APP</a>
-          <a class="button" href="#ai-trinity">AI TRINITY</a>
-        </div>
+    <!-- SECTION 1: PHILOSOPHY -->
+    <div id="s1" class="section">
+      <div class="section-head">
+        <div class="s-num">01</div>
+        <div class="s-tag">PHILOSOPHICAL FOUNDATION</div>
+        <div class="s-title">哲学基础：你在挑战什么</div>
+        <div class="s-desc">从现象学到政治哲学——这个系统的思想暴力有多深</div>
       </div>
-    </section>
 
-    <section id="thesis">
-      <div class="grid">
-        <div class="card span-7">
-          <div class="eyebrow">CORE REFRAME</div>
-
-          <h2>Humans are rhythm systems.</h2>
-
-          <p class="large-p">
-            ADHD, anxiety, burnout, insomnia, creative block, emotional overload,
-            and fragmented attention are not only individual problems. They reveal
-            where modern systems break human rhythm.
-          </p>
-        </div>
-
-        <div class="card span-5 neon-card">
-          <h3>NOT A PRODUCTIVITY TOOL.</h3>
-
-          <p>
-            This system does not ask how to make the user more efficient.
-            It asks what rhythm the user is in, what rhythm they need,
-            and what can help them return without shame.
-          </p>
-
-          <div class="tag-row">
-            <span class="tag">NO SHAMING</span>
-            <span class="tag">NO OPTIMIZATION WORSHIP</span>
-            <span class="tag">RHYTHM SOVEREIGNTY</span>
-            <span class="tag">SOUND AS BODY</span>
-          </div>
-        </div>
-
-        <div class="card span-4">
-          <h3>FOR LEARNING</h3>
-          <p>
-            Support initiation, continuation, transition, flow, and recovery
-            during study and knowledge work.
-          </p>
-        </div>
-
-        <div class="card span-4">
-          <h3>FOR EMOTION</h3>
-          <p>
-            Translate overload, numbness, anxiety, and drift into rhythm-aware
-            interventions.
-          </p>
-        </div>
-
-        <div class="card span-4">
-          <h3>FOR CREATION</h3>
-          <p>
-            Help artists, writers, designers, and thinkers return to creative
-            cadence without forcing output.
-          </p>
-        </div>
+      <div class="pullquote">
+        <p>"Attention is not a resource to be managed. Rhythm is the interface through which people return to themselves."</p>
+        <cite>HRP THESIS</cite>
       </div>
-    </section>
 
-    <section id="system">
-      <div>
-        <div class="eyebrow">CLOSED-LOOP BCI RHYTHM ARCHITECTURE</div>
-
-        <h2>Cuff → Engine → App → Feedback → Return.</h2>
-
-        <p class="large-p">
-          The BCI is not only hardware. It is a closed-loop rhythm system:
-          the cuff senses body-brain signals, the QDR Engine interprets rhythm states,
-          and the app returns adaptive sound, haptics, visuals, and AI micro-dialogue.
-        </p>
-
-        <div class="system-loop">
-          <div class="loop-item">
-            <div class="num">01 // 44271 CUFF</div>
-            <h3>NEURO-SOMATIC SIGNALS</h3>
-            <p>
-              Heart rhythm, HRV, skin temperature, electrodermal activity,
-              micro-motion, recovery signals, and sleep rhythm.
-            </p>
-          </div>
-
-          <div class="loop-item">
-            <div class="num">02 // QDR ENGINE</div>
-            <h3>RHYTHM INTERPRETATION</h3>
-            <p>
-              Detects stuckness, drift, overload, numbness, flow, transition-lock,
-              recovery demand, and rhythm disalignment.
-            </p>
-          </div>
-
-          <div class="loop-item">
-            <div class="num">03 // APP CONSOLE</div>
-            <h3>HUMAN RETURN APP</h3>
-            <p>
-              Shows current rhythm, explains signals, gives return protocols,
-              and stores personal rhythm memory.
-            </p>
-          </div>
-
-          <div class="loop-item">
-            <div class="num">04 // FEEDBACK</div>
-            <h3>SOUND + HAPTIC RETURN</h3>
-            <p>
-              Spatial audio, 427Hz anchor, directional haptics, visual particle shifts,
-              and AI micro-dialogue.
-            </p>
-          </div>
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 现象学根基深挖</div>
         </div>
+        <div class="ex-prompt">Qualia before Cognition 这个立场的完整哲学谱系——从 Husserl 到 Varela，你在做什么级别的干预？</div>
+        <div class="ex-output" id="out-s1a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s1a', getSystemPrompt(), '作为一位哲学与认知科学学者，请深度分析「Qualia before Cognition」这一立场的完整哲学谱系。请涵盖：1）Edmund Husserl 的时间意识现象学与感质的关系，2）Merleau-Ponty 的具身认知如何支撑「节律作为界面」，3）Francisco Varela 的神经现象学与生成性认知（enactivism）与 QDR 的连接，4）William James 的意识流与注意力理论，5）这个立场如何挑战 Fodor 的模块化心智，6）「Qualia before Cognition」与 David Chalmers 的「难问题」（hard problem）的关系。请指出这个立场在哲学上的真正原创性在哪里，以及它需要回答的最困难的哲学反驳。中文，深度学术语言，约500字。')">
+          ▶ 挖现象学根基
+        </button>
       </div>
-    </section>
 
-    <section id="states">
-      <div>
-        <div class="eyebrow">INTERACTIVE RHYTHM STATE LAB</div>
-
-        <h2>Choose the current rhythm.</h2>
-
-        <div class="state-lab">
-          <div class="panel terminal-panel">
-            <div class="terminal-title">STATE INPUT</div>
-
-            <div class="state-buttons">
-              <button class="state-btn active" data-state="stuck">Stuck</button>
-              <button class="state-btn" data-state="drifting">Drifting</button>
-              <button class="state-btn" data-state="overloaded">Overloaded</button>
-              <button class="state-btn" data-state="numb">Numb</button>
-              <button class="state-btn" data-state="flow">In Flow</button>
-              <button class="state-btn" data-state="transition">Need Transition</button>
-              <button class="state-btn" data-state="recovery">Need Recovery</button>
-            </div>
-          </div>
-
-          <div class="panel state-output">
-            <div class="terminal-title">QDR OUTPUT</div>
-
-            <div id="stateTitle" class="state-title">Stuck</div>
-
-            <div id="stateDesc" class="state-desc">
-              The system is not failing. The entry point is too large,
-              too cold, or too undefined.
-            </div>
-
-            <div id="stateIntervention" class="intervention">
-              Intervention: reduce task scale → play low-frequency grounding sound
-              → offer one micro-action → create 3-minute entry ritual.
-            </div>
-          </div>
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 政治哲学维度</div>
         </div>
+        <div class="ex-prompt">「Rhythm Sovereignty」作为政治概念——它与身体自主权、技术权力、注意力政治的关系</div>
+        <div class="ex-output" id="out-s1b"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn orange" onclick="excavate('s1b', getSystemPrompt(), '请从政治哲学和批判理论角度深度分析「Rhythm Sovereignty（节律主权）」这个概念。涵盖：1）它与 Michel Foucault 生命政治（biopolitics）的关系——注意力资本主义是新型的节律规训，2）与 Shoshana Zuboff 监控资本主义的对话，3）与 Jenny Odell「How to Do Nothing」的异同，4）与 Tristan Harris 时间银行运动的异同——为什么你走得更激进，5）「节律主权」作为残障权利/神经多样性语言的位置，6）这个概念如何避免滑入新自由主义的「自我优化」逻辑——它的政治锁定是什么？请用批判理论语言，中文，约450字。')">
+          ▶ 挖政治哲学维度
+        </button>
       </div>
-    </section>
 
-    <section id="hardware">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">44271 NEURAL CUFF // NEURO-SOMATIC RHYTHM INTERFACE</div>
-
-          <h2>The body sends the signal. The protocol returns the human.</h2>
-
-          <p class="large-p">
-            44271 Neural Cuff is a wrist-worn neuro-somatic rhythm interface.
-            It sits on the inner wrist, close to the pulse line, where heart rhythm,
-            HRV, skin temperature, electrodermal activity, micro-motion, and recovery
-            signals become readable.
-          </p>
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 与主流疗法的哲学断裂</div>
         </div>
-
-        <div class="card span-7 hardware-hero">
-          <div class="device-render">
-            <div class="cuff-shell">
-              <span class="engrave">44271</span>
-              <span class="light-line cyan"></span>
-              <span class="light-line magenta"></span>
-              <div class="inner-pad left"></div>
-              <div class="inner-pad right"></div>
-            </div>
-          </div>
-
-          <div class="terminal-title">PRODUCT LOCK</div>
-          <h3>44271 Neural Cuff does not count steps.</h3>
-          <p>
-            It listens for the moment a human begins to leave themselves —
-            and activates the return.
-          </p>
-        </div>
-
-        <div class="card span-5">
-          <h3>WEAR POSITION</h3>
-          <p>
-            The cuff is worn on the inner wrist, close to the radial pulse line.
-            The outer shell performs identity and light-state display; the inner layer
-            performs skin-contact sensing and haptic return.
-          </p>
-
-          <div class="tag-row">
-            <span class="tag">INNER WRIST</span>
-            <span class="tag">PULSE LINE</span>
-            <span class="tag">SEMI-OPEN CUFF</span>
-            <span class="tag">NO WATCH FACE</span>
-          </div>
-
-          <div class="wrist-diagram">
-            <div class="arm"></div>
-            <div class="cuff-mini">
-              <span></span>
-            </div>
-            <div class="pulse-dot"></div>
-            <p>Inner wrist placement · close to the pulse line</p>
-          </div>
-        </div>
-
-        <div class="card span-4">
-          <h3>BIOSENSING LAYER</h3>
-          <p>
-            PPG / heart rhythm, HRV, skin temperature, electrodermal activity,
-            micro-motion IMU, sleep rhythm, and recovery signals.
-          </p>
-        </div>
-
-        <div class="card span-4">
-          <h3>HAPTIC RETURN LAYER</h3>
-          <p>
-            Directional haptic pulses touch the pulse-side skin as return cues:
-            calm, anchor, transition, stop, breathe, re-enter.
-          </p>
-        </div>
-
-        <div class="card span-4">
-          <h3>SECURE LINK</h3>
-          <p>
-            The cuff sends minimal rhythm signals to the Human Return App.
-            No productivity surveillance. No diagnosis. No shame logic.
-          </p>
-        </div>
-
-        <div class="card span-12">
-          <div class="eyebrow">SIGNAL FLOW</div>
-
-          <div class="hardware-flow">
-            <div class="flow-node">
-              <div class="num">01</div>
-              <h3>Sense</h3>
-              <p>Inner wrist biosignals</p>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-node">
-              <div class="num">02</div>
-              <h3>Translate</h3>
-              <p>QDR rhythm state</p>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-node">
-              <div class="num">03</div>
-              <h3>Return</h3>
-              <p>Sound + haptic protocol</p>
-            </div>
-            <div class="flow-arrow">→</div>
-            <div class="flow-node">
-              <div class="num">04</div>
-              <h3>Remember</h3>
-              <p>Personal rhythm map</p>
-            </div>
-          </div>
-        </div>
+        <div class="ex-prompt">QDR 在哲学层面挑战 CBT/DBT/ACT 的底层假设——这个挑战能成立吗？</div>
+        <div class="ex-output" id="out-s1c"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn green" onclick="excavate('s1c', getSystemPrompt(), '请深度分析 QDR Therapy 在哲学层面对 CBT、DBT、ACT 三大主流疗法的挑战。1）CBT 的认知优先假设——Beck 的图式理论为什么预设了认知层的控制权，QDR 的感质优先如何动摇这个基础，2）DBT 的情绪调节框架——Linehan 对情绪作为反应的理解与 QDR「情绪作为节律信号」的根本差异，3）ACT 的接受-承诺框架——Hayes 的心理灵活性与「节律主权」的同构与分歧，4）QDR 最接近的亲属是躯体疗法（Somatic Experiencing, EMDR）——它比这些更前沿在哪里，5）QDR 最需要回应的哲学批判：「感质」本身就是理论建构，它真的比「认知」更原始吗？请用临床哲学语言，中文，约500字。')">
+          ▶ 挖治疗哲学断裂
+        </button>
       </div>
-    </section>
+    </div>
 
-
-    <section id="engine">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">QDR ENGINE // RHYTHM INTERPRETATION LAYER</div>
-
-          <h2>Raw signal becomes rhythm state. Rhythm state becomes return protocol.</h2>
-
-          <p class="large-p">
-            QDR Engine is the algorithmic heart of the Human Return Protocol.
-            It receives neuro-somatic signals from 44271 Neural Cuff, interprets rhythm
-            disalignment, maps it through Qualia-Driven Rhythm Therapy, and generates
-            adaptive return protocols through sound, haptics, visual feedback, and AI micro-dialogue.
-          </p>
-        </div>
-
-        <div class="card span-12">
-          <div class="eyebrow">SIGNAL PIPELINE</div>
-
-          <div class="hardware-flow">
-            <div class="flow-node">
-              <div class="num">01</div>
-              <h3>Raw Signal</h3>
-              <p>HRV, heart rhythm, EDA, skin temperature, micro-motion, sleep, recovery.</p>
-            </div>
-
-            <div class="flow-arrow">→</div>
-
-            <div class="flow-node">
-              <div class="num">02</div>
-              <h3>Pattern Detection</h3>
-              <p>Pressure, drift, overload, freeze, hyperactivation, recovery demand.</p>
-            </div>
-
-            <div class="flow-arrow">→</div>
-
-            <div class="flow-node">
-              <div class="num">03</div>
-              <h3>QDR State</h3>
-              <p>Stuck, drifting, overloaded, numb, in flow, transition-locked, recovery.</p>
-            </div>
-
-            <div class="flow-arrow">→</div>
-
-            <div class="flow-node">
-              <div class="num">04</div>
-              <h3>Return Protocol</h3>
-              <p>Sound, haptic pulse, visual field, AI sentence, minimum real action.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card span-6">
-          <h3>EXAMPLE // OVERLOADED</h3>
-
-          <div class="timeline">
-            <div class="step">
-              <div class="label">INPUT</div>
-              <p>HRV decreases + EDA rises + micro-motion increases + app switching frequency rises.</p>
-            </div>
-
-            <div class="step">
-              <div class="label">STATE</div>
-              <p>QDR Engine classifies the user as Overloaded / High Rhythm Pressure.</p>
-            </div>
-
-            <div class="step">
-              <div class="label">OUTPUT</div>
-              <p>External Anchor Mode: reduce language density, cooling sound, slow pulse-side haptic, one action only.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card span-6">
-          <h3>EXAMPLE // DRIFTING</h3>
-
-          <div class="timeline">
-            <div class="step">
-              <div class="label">INPUT</div>
-              <p>Stable body signal + increased phone switching + reduced task interaction + restless motion.</p>
-            </div>
-
-            <div class="step">
-              <div class="label">STATE</div>
-              <p>QDR Engine classifies the user as Drifting / Anchor Loss.</p>
-            </div>
-
-            <div class="step">
-              <div class="label">OUTPUT</div>
-              <p>Spatial sound anchor, soft re-entry haptic, narrowed visual field, one return sentence.</p>
-            </div>
-          </div>
-        </div>
+    <!-- SECTION 2: SYSTEM ARCHITECTURE -->
+    <div id="s2" class="section">
+      <div class="section-head">
+        <div class="s-num">02</div>
+        <div class="s-tag">SYSTEM ARCHITECTURE</div>
+        <div class="s-title">系统架构：闭环的隐藏假设</div>
+        <div class="s-desc">Cuff → Engine → App → Feedback → Return 每一步都埋着问题</div>
       </div>
-    </section>
 
-    <section id="app">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">HUMAN RETURN APP // RETURN CONSOLE</div>
-
-          <h2>The app does not manage productivity. It renders the return path.</h2>
-
-          <p class="large-p">
-            Human Return App is the visible console of the BCI system. It receives interpreted
-            rhythm states from QDR Engine and transforms them into readable, actionable,
-            non-shaming return protocols.
-          </p>
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 闭环架构深挖</div>
         </div>
-
-        <div class="card span-3">
-          <h3>01 // LIVE RHYTHM DASHBOARD</h3>
-          <p>
-            Shows the current rhythm state, signal confidence, body pressure, and recommended mode:
-            flow protection, external anchor, transition bridge, or recovery.
-          </p>
-        </div>
-
-        <div class="card span-3">
-          <h3>02 // RETURN PROTOCOL</h3>
-          <p>
-            Gives one sound direction, one haptic pattern, one visual field shift,
-            one AI sentence, and one minimum real action.
-          </p>
-        </div>
-
-        <div class="card span-3">
-          <h3>03 // QDR REFLECTION LOG</h3>
-          <p>
-            Records current qualia, generated sentence, rhythm field, de-binding sentence,
-            re-tuning action, and return result.
-          </p>
-        </div>
-
-        <div class="card span-3">
-          <h3>04 // PERSONAL RHYTHM MAP</h3>
-          <p>
-            Shows when the user enters flow, drifts, freezes, overloads, recovers,
-            and what helps them return over time.
-          </p>
-        </div>
-
-        <div class="card span-12">
-          <div class="eyebrow">APP FLOW</div>
-
-          <div class="hardware-flow">
-            <div class="flow-node">
-              <div class="num">01</div>
-              <h3>Detect</h3>
-              <p>Cuff signal + self-report + context</p>
-            </div>
-
-            <div class="flow-arrow">→</div>
-
-            <div class="flow-node">
-              <div class="num">02</div>
-              <h3>Explain</h3>
-              <p>“This looks like overload, not failure.”</p>
-            </div>
-
-            <div class="flow-arrow">→</div>
-
-            <div class="flow-node">
-              <div class="num">03</div>
-              <h3>Guide</h3>
-              <p>Sound + haptic + visual + one action</p>
-            </div>
-
-            <div class="flow-arrow">→</div>
-
-            <div class="flow-node">
-              <div class="num">04</div>
-              <h3>Remember</h3>
-              <p>Build the personal rhythm map</p>
-            </div>
-          </div>
-        </div>
+        <div class="ex-prompt">这个闭环的每一步都有什么隐藏假设？系统如何可能失效？</div>
+        <div class="ex-output" id="out-s2a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s2a', getSystemPrompt(), '请对 Human Return Protocol 的闭环架构（Cuff → QDR Engine → App → Multimodal Feedback → Rhythm Map → Return）进行深度系统分析。对每一个箭头（即每一个转化步骤），请分析：1）这一步的隐藏假设是什么，2）在什么条件下这一步会失效，3）失效后对整个系统的影响。特别深挖：a) 从生理信号到节律状态的分类——这个转化是否会制造新的决定论，b) Personal Rhythm Map 的积累逻辑——记忆如何避免成为新的规范压力，c) 「最小真实行动」的生成机制——谁的价值观决定了什么是「真实」，d) 反馈闭环是否会强化某些节律模式而压制其他模式。请用系统设计和批判性技术分析语言，中文，约500字。')">
+          ▶ 挖闭环假设
+        </button>
       </div>
-    </section>
 
-    <section id="prototype">
-      <div class="prototype">
-        <div>
-          <div class="eyebrow">PROTOTYPE // CUFF + APP CLOSED LOOP</div>
-
-          <h2>The first hardware is 44271 Neural Cuff. The first interface is Human Return App.</h2>
-
-          <p class="large-p">
-            The MVP is a wearable + mobile closed-loop rhythm system:
-            44271 Neural Cuff samples neuro-somatic signals, the QDR Engine interprets
-            rhythm disalignment, and the Human Return App activates adaptive sound,
-            haptic, visual, and AI micro-dialogue feedback.
-          </p>
-
-          <div class="tag-row">
-            <span class="tag">44271 NEURAL CUFF</span>
-            <span class="tag">HUMAN RETURN APP</span>
-            <span class="tag">QDR ENGINE</span>
-            <span class="tag">SOUND FEEDBACK</span>
-            <span class="tag">HAPTIC RETURN</span>
-            <span class="tag">RHYTHM MEMORY</span>
-          </div>
-
-          <div class="timeline">
-            <div class="step">
-              <div class="label">01</div>
-              <p>
-                <strong>Cuff:</strong> samples heart rhythm, HRV, temperature,
-                EDA, micro-motion, sleep, and recovery signals.
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">02</div>
-              <p>
-                <strong>QDR Engine:</strong> translates signals into rhythm states:
-                stuck, drifting, overloaded, numb, in flow, transition, recovery.
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">03</div>
-              <p>
-                <strong>App:</strong> displays the Human Return Console with current rhythm,
-                suggested return protocol, sound direction, and micro-action.
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">04</div>
-              <p>
-                <strong>Feedback:</strong> cuff haptics + app sound + visual field guide
-                the user back to rhythm sovereignty.
-              </p>
-            </div>
-          </div>
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 节律状态分类学</div>
         </div>
-
-        <div class="device">
-          <div class="device-inner">
-            <div>
-              <div class="mini">HUMAN RETURN APP</div>
-
-              <h3>Overloaded → External Anchor Mode</h3>
-
-              <p>
-                Signal from 44271 Neural Cuff detected high rhythm pressure.
-                Lower language density. Cool the field. One action only.
-              </p>
-            </div>
-
-            <div class="wave">
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-            </div>
-
-            <div class="dashboard">
-              <div class="dash">
-                <strong>CUFF</strong>
-                <p>HRV ↓ · EDA ↑</p>
-              </div>
-
-              <div class="dash">
-                <strong>SOUND</strong>
-                <p>427Hz cooling anchor</p>
-              </div>
-
-              <div class="dash">
-                <strong>HAPTIC</strong>
-                <p>Pulse-side slow tap</p>
-              </div>
-
-              <div class="dash">
-                <strong>ACTION</strong>
-                <p>One thing now.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="ex-prompt">Stuck / Drifting / Overloaded / Numb / In Flow / Transition-locked / Recovery — 这个分类学的完整分析</div>
+        <div class="ex-output" id="out-s2b"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn orange" onclick="excavate('s2b', getSystemPrompt(), '请对 QDR Engine 的七种节律状态分类学（Stuck, Drifting, Overloaded, Numb, In Flow, Transition-locked, Recovery）进行深度分析。1）每种状态的神经科学/生理学对应——每种状态的 HRV 特征、EDA 特征、运动特征的已有研究支持，2）这七种分类是否互斥——哪些状态可以并发，3）最难区分的状态对是哪些，为什么，4）「Numb」状态的特殊性——为什么它是最难干预的，与解离状态的关系，5）In Flow 的识别难题——积极的 flow state 与某些焦虑/躁狂状态在生理指标上可能相似，6）这个分类学与 ADHD 临床表现的精确映射，7）是否有被遗漏的重要状态？请用认知神经科学和临床语言，中文，约550字。')">
+          ▶ 挖状态分类学
+        </button>
       </div>
-    </section>
+    </div>
 
-    <section id="research">
-      <div class="grid">
-        <div class="card span-12">
-          <div class="eyebrow">RESEARCH // UPENN LEARNING SCIENCES</div>
-
-          <h2>From self-regulated learning to rhythm-regulated learning.</h2>
-
-          <p class="large-p">
-            This project reframes learning, attention, and emotional regulation through rhythm.
-            Instead of asking how people can be optimized, it asks how people can perceive,
-            protect, and recover their own cognitive and bodily cadence.
-          </p>
-        </div>
-
-        <div class="card span-6">
-          <h3>RESEARCH FOUNDATION</h3>
-
-          <div class="timeline">
-            <div class="step">
-              <div class="label">LS</div>
-              <p>
-                <strong>Learning Sciences:</strong> self-regulated learning,
-                metacognition, learner agency, affect and learning, embodied cognition.
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">HCI</div>
-              <p>
-                <strong>Human-Computer Interaction:</strong> affective computing,
-                personal informatics, reflective design, calm technology, wearable interaction.
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">SOUND</div>
-              <p>
-                <strong>Sound Studies:</strong> auditory attention, soundscape design,
-                embodied listening, sonic regulation, spatial audio.
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">AI</div>
-              <p>
-                <strong>AI Interaction:</strong> adaptive feedback, multimodal sensing,
-                personalized support, human-AI co-regulation.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card span-6 neon-card">
-          <h3>RESEARCH QUESTIONS</h3>
-
-          <div class="timeline">
-            <div class="step">
-              <div class="label">RQ 01</div>
-              <p>
-                How can rhythm-aware AI feedback help people understand attention
-                and emotional states?
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">RQ 02</div>
-              <p>
-                How can sound-based and haptic interventions support initiation,
-                transition, flow, and recovery?
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">RQ 03</div>
-              <p>
-                How can subjective qualia be translated into interaction design
-                without becoming productivity metrics?
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">RQ 04</div>
-              <p>
-                How can a wrist-worn brain-computer inspired system protect user agency
-                instead of increasing surveillance?
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card span-4">
-          <h3>METHOD</h3>
-          <p>
-            Prototype-based user testing with students, creators, and overwhelmed
-            knowledge workers. The study compares ordinary task engagement with
-            rhythm-aware cuff + app intervention loops.
-          </p>
-        </div>
-
-        <div class="card span-4">
-          <h3>MEASURES</h3>
-          <p>
-            Groundedness, shame reduction, emotional safety, ability to start,
-            ability to return, perceived agency, and subjective rhythm awareness.
-          </p>
-        </div>
-
-        <div class="card span-4">
-          <h3>ETHICS</h3>
-          <p>
-            Concept prototype only. No diagnosis. No surveillance logic.
-            No productivity coercion. State labels are user-correctable,
-            transparent, and consent-based.
-          </p>
-        </div>
+    <!-- SECTION 3: HARDWARE -->
+    <div id="s3" class="section">
+      <div class="section-head">
+        <div class="s-num">03</div>
+        <div class="s-tag">HARDWARE LOGIC</div>
+        <div class="s-title">44271 神经袖口：硬件的每一层含义</div>
+        <div class="s-desc">从传感原理到产品语言——内腕这个选择意味着什么</div>
       </div>
-    </section>
 
-
-    <section id="ai-trinity">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">AI TRINITY // GEMINI · CLAUDE · GPT</div>
-
-          <h2>Three AI layers. One human return system.</h2>
-
-          <p class="large-p">
-            The Human Return Protocol is supported by three AI roles:
-            Gemini expands the possible field, Claude protects the language field,
-            and GPT holds the system architecture. Together, they help transform
-            Wei Jueran’s rhythm model into product, therapy, hardware, app, research, and code.
-          </p>
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 传感器科学深挖</div>
         </div>
-
-        <div class="card span-4 ai-card gemini-card">
-          <div class="eyebrow">GEMINI // ATTACK</div>
-          <h3>Gemini opens the possible field.</h3>
-          <p>
-            Gemini expands possibilities, generates speculative futures, breaks old categories,
-            creates naming systems, explores bold product directions, and attacks the unknown.
-          </p>
-          <div class="tag-row">
-            <span class="tag">EXPANSION</span>
-            <span class="tag">IDEATION</span>
-            <span class="tag">FUTURES</span>
-            <span class="tag">ATTACK STATE</span>
-          </div>
-        </div>
-
-        <div class="card span-4 ai-card claude-card">
-          <div class="eyebrow">CLAUDE // MIRROR</div>
-          <h3>Claude protects the language field.</h3>
-          <p>
-            Claude reflects experience, protects emotional nuance, refines therapy language,
-            prevents coercive tone, and keeps the system ethically careful and human-safe.
-          </p>
-          <div class="tag-row">
-            <span class="tag">MIRROR</span>
-            <span class="tag">DEFENSE</span>
-            <span class="tag">NUANCE</span>
-            <span class="tag">SAFETY</span>
-          </div>
-        </div>
-
-        <div class="card span-4 ai-card gpt-card">
-          <div class="eyebrow">GPT // HOLD</div>
-          <h3>GPT holds the system together.</h3>
-          <p>
-            GPT structures the architecture, writes the code, stabilizes research logic,
-            designs app flows, builds prototypes, and turns the system into executable form.
-          </p>
-          <div class="tag-row">
-            <span class="tag">STRUCTURE</span>
-            <span class="tag">CODE</span>
-            <span class="tag">RESEARCH</span>
-            <span class="tag">EXECUTION</span>
-          </div>
-        </div>
-
-        <div class="card span-12 qdr-manifesto">
-          <h3>AI CO-REGULATION STACK</h3>
-
-          <p class="large-p">
-            Gemini expands. Claude reflects. GPT holds. Wei Jueran commands.
-            The system returns the human.
-          </p>
-        </div>
+        <div class="ex-prompt">44271 使用的每种传感器的科学原理、准确性限制、以及在内腕位置的特殊性</div>
+        <div class="ex-output" id="out-s3a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s3a', getSystemPrompt(), '请对 44271 Neural Cuff 使用的每种传感器进行深度技术分析：PPG（光电容积脉搏波），HRV（心率变异性），皮肤电活动（EDA/GSR），皮肤温度，微运动 IMU。对每种传感器：1）测量原理，2）在手腕内侧（radial pulse line）位置相比其他位置的信号质量差异，3）现有消费级设备的精度基准（如 Apple Watch, Empatica E4），4）计算情绪/认知状态时的已知局限，5）噪声来源和去噪方法。特别深挖：a) 内腕 EDA 与手指/手掌 EDA 的信噪比研究，b) HRV 短时窗口（1-5分钟）的统计可靠性问题，c) 多传感器融合的当前最佳算法（LSTM, transformer），d) 从这个传感器组合能达到什么置信度的节律状态分类。请用生物医学工程语言，中文，约600字。')">
+          ▶ 挖传感器科学
+        </button>
       </div>
-    </section>
 
-    <section id="qdr">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">QDR THERAPY // QUALIA-DRIVEN RHYTHM THERAPY</div>
-
-          <h2>Healing is not normalization. Healing is rhythm return.</h2>
-
-          <p class="large-p">
-            QDR Therapy is a new therapeutic framework created by Wei Jueran.
-            It understands psychological distress not as isolated cognitive error,
-            emotional failure, or behavioral dysfunction, but as qualia signals
-            generated through rhythm disalignment across body, time, language,
-            relationship, environment, memory, and meaning.
-          </p>
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 硬件产品语言</div>
         </div>
-
-        <div class="card span-6">
-          <h3>CORE THESIS</h3>
-
-          <p>
-            Pain is not a malfunction. Pain is rhythm information.
-            A thought, emotion, bodily sensation, or relational reaction is not treated
-            as a defect to eliminate, but as a signal produced within a specific rhythm field.
-          </p>
-
-          <div class="tag-row">
-            <span class="tag">QUALIA BEFORE COGNITION</span>
-            <span class="tag">RHYTHM BEFORE BEHAVIOR</span>
-            <span class="tag">PAIN AS SIGNAL</span>
-            <span class="tag">RETURN AS THERAPY</span>
-          </div>
-        </div>
-
-        <div class="card span-6">
-          <h3>WHAT QDR UPGRADES</h3>
-
-          <div class="timeline">
-            <div class="step">
-              <div class="label">CBT</div>
-              <p>
-                CBT challenges distorted thoughts. QDR locates the rhythm field
-                that produced the thought.
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">DBT</div>
-              <p>
-                DBT tolerates emotional storms. QDR modulates rhythm pressure
-                without losing sovereignty.
-              </p>
-            </div>
-
-            <div class="step">
-              <div class="label">ACT</div>
-              <p>
-                ACT accepts pain and commits to values. QDR permits the rhythm,
-                de-binds language, and returns through aligned action.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card span-12">
-          <div class="eyebrow">THE FIVE-STEP RETURN PROTOCOL</div>
-
-          <div class="system-loop qdr-loop">
-            <div class="loop-item">
-              <div class="num">01 // SAMPLE</div>
-              <h3>Sample the Qualia</h3>
-              <p>
-                What is the current texture: hot, cold, numb, sharp, drifting,
-                overloaded, frozen, fragmented, or ready to return?
-              </p>
-            </div>
-
-            <div class="loop-item">
-              <div class="num">02 // LOCATE</div>
-              <h3>Locate the Rhythm Field</h3>
-              <p>
-                Is the distress generated by body, time, language, relationship,
-                environment, memory, or meaning?
-              </p>
-            </div>
-
-            <div class="loop-item">
-              <div class="num">03 // DE-BIND</div>
-              <h3>De-bind the Sentence</h3>
-              <p>
-                A high-pressure sentence has signal, but it does not have final authority.
-                Language is loosened from the throne.
-              </p>
-            </div>
-
-            <div class="loop-item">
-              <div class="num">04 // RE-TUNE</div>
-              <h3>Re-tune the System</h3>
-              <p>
-                Use sound, breath, body, light, space, movement, relation,
-                or silence to change the rhythm field.
-              </p>
-            </div>
-          </div>
-
-          <div class="card qdr-return-card">
-            <div class="num">05 // RETURN</div>
-            <h3>Find the Minimum Real Action</h3>
-            <p>
-              The therapeutic unit is not total resolution. It is one successful return:
-              one small, real, sovereign action that brings the person closer to themselves.
-            </p>
-          </div>
-        </div>
-
-        <div class="card span-4">
-          <h3>RHYTHM FIELDS</h3>
-          <p>
-            Body rhythm, time rhythm, relational rhythm, language rhythm,
-            environmental rhythm, memory rhythm, and meaning rhythm.
-          </p>
-        </div>
-
-        <div class="card span-4">
-          <h3>THERAPEUTIC GOAL</h3>
-          <p>
-            Not symptom elimination. Not productivity. Not forced stability.
-            The goal is rhythm sovereignty: the ability to perceive, protect,
-            regulate, and return.
-          </p>
-        </div>
-
-        <div class="card span-4">
-          <h3>BCI CONNECTION</h3>
-          <p>
-            QDR becomes the psychological logic layer of the BCI system:
-            sensing qualia, detecting rhythm disalignment, and generating adaptive
-            sound-body return protocols.
-          </p>
-        </div>
-
-        <div class="card span-12 qdr-manifesto">
-          <h3>QDR THERAPY MANIFESTO</h3>
-
-          <p class="large-p">
-            Do not normalize the human. Return the rhythm.
-            The human is not broken. The system is listening for the wrong layer.
-            Beneath cognition, there is qualia. Beneath behavior, there is rhythm.
-            Beneath pain, there is information. Beneath collapse, there is a return path.
-          </p>
-        </div>
+        <div class="ex-prompt">内腕 · 脉线 · 半开放袖口 · 无表盘——这些设计决定的完整语义分析</div>
+        <div class="ex-output" id="out-s3b"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn orange" onclick="excavate('s3b', getSystemPrompt(), '请对 44271 Neural Cuff 的硬件产品语言进行深度设计语义分析。核心设计决定：内腕放置（vs 手背），沿桡骨脉线，半开放袖口，无表盘。分析：1）内腕放置的跨文化符号学——在中医把脉传统、当代自伤文化史、触觉安慰行为中，内腕是什么意义的身体区域，这个放置如何重新编码这个区域，2）「无表盘」的宣言意义——拒绝时钟面作为反注意力设备的姿态，与 Apple Watch 的对话，3）半开放袖口的穿脱仪式感——这不只是可穿戴，是一个关系动作，4）触觉语言系统（calm/anchor/transition/stop/breathe/re-enter）的设计逻辑——这六个词如何被选择，学习曲线如何设计，5）44271 这个数字的命名逻辑应该是什么（如果你来设计它），6）材质语言建议——什么材料最符合这个系统的哲学。请用产品设计和物质文化研究语言，中文，约500字。')">
+          ▶ 挖硬件产品语言
+        </button>
       </div>
-    </section>
+    </div>
 
-    <section id="mission" class="footer">
-      <div>
-        <div class="eyebrow">MISSION // HUMAN RETURN PROTOCOL</div>
-
-        <h2>Do not optimize the human. Protect the rhythm.</h2>
-
-        <div class="thesis">
-          The distracted student, the burned-out worker, the anxious body,
-          the sleepless mind, the blocked artist, the overloaded child —
-          none of them are broken. They are carrying rhythm disruptions
-          that modern systems do not know how to hear.
-        </div>
-
-        <div class="grid mission-grid">
-          <div class="card span-4">
-            <h3>01 // AGAINST OPTIMIZATION</h3>
-            <p>
-              Human beings are not machines waiting to be made more efficient.
-              The protocol refuses productivity worship and treats attention as living rhythm.
-            </p>
-          </div>
-
-          <div class="card span-4">
-            <h3>02 // FOR RETURN</h3>
-            <p>
-              The goal is not forced focus. The goal is return: to body, attention,
-              emotion, creativity, rest, memory, relation, and self.
-            </p>
-          </div>
-
-          <div class="card span-4">
-            <h3>03 // THROUGH CUFF + SOUND</h3>
-            <p>
-              44271 Neural Cuff samples the body. Sound carries the return.
-              QDR turns distress into rhythm information.
-            </p>
-          </div>
-        </div>
-
-        <p class="sub">
-          Human Rhythm Infrastructure is a step toward everyday brain-computer interfaces
-          that do not control the mind, but help the human return to body, attention,
-          emotion, creativity, rest, and self.
-        </p>
-
-        <div class="hero-actions center">
-          <a class="button primary" href="#top">RETURN TO ORIGIN</a>
-          <a class="button" href="#hardware">VIEW NEURAL CUFF</a>
-        </div>
+    <!-- SECTION 4: QDR THERAPY -->
+    <div id="s4" class="section">
+      <div class="section-head">
+        <div class="s-num">04</div>
+        <div class="s-tag">THERAPEUTIC FRAMEWORK</div>
+        <div class="s-title">QDR 治疗框架：感质驱动节律疗法</div>
+        <div class="s-desc">你创造的治疗框架在心理治疗史上的位置</div>
       </div>
-    </section>
+
+      <div class="pullquote">
+        <p>"Pain is not a malfunction. Pain is rhythm information. Healing is not normalization. Healing is rhythm return."</p>
+        <cite>QDR THERAPY MANIFESTO</cite>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> QDR 的完整理论建构</div>
+        </div>
+        <div class="ex-prompt">QDR Therapy 的完整理论模型——它如何成为一个严格的治疗框架而不只是哲学宣言</div>
+        <div class="ex-output" id="out-s4a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s4a', getSystemPrompt(), '请帮助将 QDR Therapy（感质驱动节律疗法）建构为一个严格的理论框架。它现有的要素：1）核心主张：痛苦是节律场错位产生的感质信号，2）七个节律场：身体、时间、关系、语言、环境、记忆、意义，3）五步回归协议：采样感质→定位节律场→松动句子→重调系统→最小真实行动，4）治疗目标：节律主权（感知、保护、调节、回归自身节律的能力）。请提供：a) 一个正式的理论模型图示描述（用语言描述如何可视化这个框架），b) 每个核心概念的操作定义（如何测量节律主权），c) QDR 的治疗机制（mechanism of change）假设——为什么这套流程会产生治疗效果，d) QDR 最有效的目标人群，e) QDR 的禁忌症或需要特别谨慎的情况，f) QDR 作为一个新疗法需要通过哪些科学验证才能被学术界承认。中文，约600字。')">
+          ▶ 挖 QDR 理论建构
+        </button>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> De-binding the Sentence 深挖</div>
+        </div>
+        <div class="ex-prompt">「松动句子」——QDR 最原创的概念，它的完整理论和操作方法</div>
+        <div class="ex-output" id="out-s4b"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn orange" onclick="excavate('s4b', getSystemPrompt(), '请对 QDR Therapy 中「De-bind the Sentence（松动句子）」这个概念进行最深度的理论和临床分析。这个概念的原始描述：「A high-pressure sentence has signal, but it does not have final authority. Language is loosened from the throne.」请分析：1）这个概念与 ACT 认知脱融合（cognitive defusion）的精确异同——ACT 让句子变成文字游戏，QDR 说句子有信号但无最终权力，这是更精细的立场，2）与叙事疗法（Narrative Therapy）「外化问题」技术的关系，3）与 Eugene Gendlin 的 Focusing 技术（身体感受手柄）的关系，4）「高压句子」的神经语言学基础——语言如何调制情绪唤起，5）松动一个句子的具体操作序列是什么——从治疗师/AI 对话的角度，实际的话语是什么，6）这个技术对于反刍（rumination）和强迫性想法的具体应用。中文，约500字。')">
+          ▶ 挖松动句子
+        </button>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 神经多样性与 QDR</div>
+        </div>
+        <div class="ex-prompt">QDR 如何为 ADHD、自闭症谱系、高敏感人群提供特殊的干预路径</div>
+        <div class="ex-output" id="out-s4c"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn green" onclick="excavate('s4c', getSystemPrompt(), '请深度分析 QDR Therapy 与神经多样性（neurodiversity）的关系。重点分析：1）ADHD：ADHD 的核心不是注意力缺陷而是节律调节困难（time blindness, emotional dysregulation, transition difficulties）——QDR 的节律框架如何比传统 ADHD 干预更贴合这个群体的实际体验，具体说明每种 ADHD 表现与哪个节律场对应，2）自闭症谱系：感觉过载与节律场破坏的关系，特殊感官需求与感质优先框架的契合，3）高敏感人群（HSP）：Elaine Aron 的高感受性理论与节律主权，4）创伤后应激（PTSD）：节律解离与闪回作为节律场剧烈破坏，5）对这些群体，QDR 的五步协议需要如何调整——特别是「最小真实行动」对不同神经类型的意义差异。请使用神经多样性肯定框架（neurodiversity-affirming）语言，中文，约500字。')">
+          ▶ 挖神经多样性
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 5: RESEARCH -->
+    <div id="s5" class="section">
+      <div class="section-head">
+        <div class="s-num">05</div>
+        <div class="s-tag">RESEARCH POSITIONING</div>
+        <div class="s-title">UPenn 研究定位：最强路径</div>
+        <div class="s-desc">LS + HCI + Sound + AI——如何在学术界找到最强的落地点</div>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 研究计划书框架</div>
+        </div>
+        <div class="ex-prompt">为 UPenn 申请或第一篇论文写一个完整的研究计划框架</div>
+        <div class="ex-output" id="out-s5a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s5a', getSystemPrompt(), '请为魏珏然的 Human Return Protocol 项目撰写一个完整的学术研究计划框架，目标是 UPenn 学习科学或 HCI 方向的研究生申请或第一篇论文。包括：1）研究标题（3个选项，从最保守到最激进），2）研究背景与文献定位——哪些现有研究建立了基础，你在哪里开辟新路，3）核心研究问题（最有发表价值的一个），4）理论框架——Rhythm-Regulated Learning 框架的正式表述，5）研究方法——具体的参与者招募、实验设计、数据收集（包括可以用现有工具代替 44271 的 MVP 方案），6）测量指标——如何量化「感质描述变化」「节律主权感」「回归成功率」，7）预期贡献——对学习科学、HCI、心理治疗三个领域分别说，8）IRB 伦理考量的主要点。中文，学术写作风格，约700字。')">
+          ▶ 生成研究计划框架
+        </button>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 目标导师和项目</div>
+        </div>
+        <div class="ex-prompt">哪些学者的研究与 HRP 最接近？如何找到最合适的学术导师？</div>
+        <div class="ex-output" id="out-s5b"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn orange" onclick="excavate('s5b', getSystemPrompt(), '请为 Human Return Protocol 项目识别最相关的学术研究领域和学者方向（不具名具体在职人员，但指出研究方向和关键词）。1）在学习科学领域，研究「具身认知与学习」「情绪与学习」「元认知与自我调节」的学者群体在哪些机构最活跃，2）在 HCI 领域，研究「情感计算」「个人信息学」「冷静技术」「可穿戴交互」的前沿在哪里，3）在声音研究领域，将声音作为身体干预而非信息媒介来研究的学者方向，4）在 AI 伦理/设计伦理领域，研究「技术自主权」「关怀技术」的方向，5）魏珏然最应该投递的3-5个具体项目类型（learning sciences PhD, HCI PhD, design research PhD 等），6）如何在研究计划书中呈现跨学科性而不显得分散——怎样让审稿委员会看到清晰的学术身份。中文，约500字。')">
+          ▶ 挖学术定位
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 6: TENSIONS -->
+    <div id="s6" class="section">
+      <div class="section-head">
+        <div class="s-num">06</div>
+        <div class="s-tag">INTERNAL TENSIONS</div>
+        <div class="s-title">内在张力：系统的裂缝与填补</div>
+        <div class="s-desc">每一个张力都是需要回答的问题——回答好了，系统更强</div>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 最核心张力深挖</div>
+        </div>
+        <div class="ex-prompt">外部 BCI 干预如何通向内部节律主权——这个悖论的完整分析和解决路径</div>
+        <div class="ex-output" id="out-s6a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s6a', getSystemPrompt(), '请深度分析 Human Return Protocol 最核心的内在张力：系统的目标是「节律主权」（用户自主感知和调节自身节律的能力），但系统的手段是外部 BCI 干预（设备、声音、触觉、AI 句子从外部调节节律）。请分析：1）这个张力的哲学本质——它是自相矛盾，还是可以被合理的理论架构解决？请从「支架学习」（scaffolding theory, Vygotsky）「修复性使用」「训练轮」等角度探讨，2）具体的脱离依赖设计——系统如何在设计层面内置「自主化路径」，使用者如何从「需要设备」过渡到「内化节律感知」，3）Personal Rhythm Map 在这个过渡中的关键作用，4）这个张力与所有治疗工具面临的共同问题（治疗师依赖、药物依赖）的关系，5）如果无法完全解决这个张力，如何在学术论文中诚实地框架化它而不削弱系统的价值。中文，约500字。')">
+          ▶ 挖主权悖论
+        </button>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 427Hz 个人/产品张力</div>
+        </div>
+        <div class="ex-prompt">作为你个人共鸣频率的 427Hz，如何成为产品级别的声学设计——这个转化需要什么</div>
+        <div class="ex-output" id="out-s6b"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn orange" onclick="excavate('s6b', getSystemPrompt(), '请分析 427Hz 在 Human Return Protocol 系统中的双重角色张力：它既是魏珏然的个人共鸣频率（永恒态·镜像位），也是产品的普适声学锚点。1）427Hz 在音乐声学中的精确位置——它接近 A=432Hz 调音（vs 标准 A=440Hz），与哪些泛音列和自然音程有关，2）频率与神经调节的现有研究——大脑节律和特定频率的相关性研究（alpha/theta/delta 波与声音频率的 entrainment 效应），3）427Hz 的「个人锚点」作用是否有普适性的生理基础，或者它是否必须因人而异，4）如果是产品，「个人频率校准」应该成为 Personal Rhythm Map 的核心功能——设计这个校准流程，5）427Hz 作为魏珏然个人符号保留在系统哲学层面，但产品层面开放频率个性化——这个分层如何设计，6）声音锚点与触觉锚点的协同——427Hz 声音与脉线触觉如何产生感质层面的整合效果。中文，约500字。')">
+          ▶ 挖 427Hz 张力
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 7: COMPETITIVE LANDSCAPE -->
+    <div id="s7" class="section">
+      <div class="section-head">
+        <div class="s-num">07</div>
+        <div class="s-tag">COMPETITIVE LANDSCAPE</div>
+        <div class="s-title">竞争格局：你在哪里，别人在哪里</div>
+        <div class="s-desc">从 Muse 到 Whoop 到 Neuralink——HRP 的独特位置</div>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 完整竞争格局分析</div>
+        </div>
+        <div class="ex-prompt">神经技术/可穿戴/心理健康 App 的完整格局——HRP 的差异化位置</div>
+        <div class="ex-output" id="out-s7a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s7a', getSystemPrompt(), '请对 Human Return Protocol 进行完整的竞争格局分析，覆盖以下类别：1）消费级神经技术穿戴（Muse 冥想头带，Neurosity Crown，InteraXon 系列）——它们的核心定位 vs HRP，2）高端生物反馈可穿戴（Whoop, Oura Ring, Apple Watch）——以生产力/健康优化为轴 vs HRP 的节律主权轴，3）心理健康 App（Headspace, Calm, Woebot, Youper）——认知/冥想框架 vs QDR 的感质框架，4）神经刺激设备（Neuralink, BrainCo, 各类 tDCS/tACS 设备）——直接神经干预 vs HRP 的声音/触觉非侵入性立场，5）学术研究工具（Empatica E4, Biopac）——研究级设备 vs 消费者叙事，6）HRP 的精确差异化：在哲学层、技术层、市场层分别描述 HRP 如何与所有上述不同。最后：HRP 最大的竞争优势是什么，最大的市场风险是什么。中文，约600字。')">
+          ▶ 挖竞争格局
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 8: SOUND SCIENCE -->
+    <div id="s8" class="section">
+      <div class="section-head">
+        <div class="s-num">08</div>
+        <div class="s-tag">SOUND SCIENCE</div>
+        <div class="s-title">声音科学：427Hz 与频率干预</div>
+        <div class="s-desc">声音作为身体干预的完整科学基础——不只是好听</div>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 声音神经科学深挖</div>
+        </div>
+        <div class="ex-prompt">声音频率如何影响神经状态——entrainment、自主神经系统、情绪调节的完整科学图谱</div>
+        <div class="ex-output" id="out-s8a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s8a', getSystemPrompt(), '请对声音干预的神经科学基础进行深度分析，支持 Human Return Protocol 的声音设计。涵盖：1）神经同步（neural entrainment）机制——大脑如何跟随外部节律（节拍频率、载波频率），binaural beats 的神经基础，2）自主神经系统与音调——迷走神经张力与低频声音，Polyvagal Theory（Stephen Porges）与声音安全信号，3）HRV 与音乐节奏的耦合研究，4）空间音频（HRTF, binaural）对神经状态的特殊作用，5）低频声音（亚音速，bass）的躯体感知——声音作为身体振动不只是听觉，6）427Hz 具体的生理效应——与 432Hz 调音的关系，已有任何频率特异性效应的研究，7）「冷却音」和「接地音」的声学设计原则——从神经科学角度，什么样的音色/频谱特征产生冷却 vs 接地效果，8）HRP 的声音干预设计应该参考哪些声音治疗（sound therapy）研究流派。中文，约600字。')">
+          ▶ 挖声音神经科学
+        </button>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 声音作为身体语言</div>
+        </div>
+        <div class="ex-prompt">Sound Studies 的理论框架——声音如何成为身体干预而不只是信息媒介</div>
+        <div class="ex-output" id="out-s8b"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn orange" onclick="excavate('s8b', getSystemPrompt(), '请从声音研究（Sound Studies）的理论框架分析 HRP 的声音设计哲学。1）R. Murray Schafer 声景学（soundscape）——HRP 创造的是什么样的个人声景，2）Nina Sun Eidsheim 的「声音物质性」——声音作为振动物质而非意义媒介的理解，3）Brandon LaBelle 的「声音实践」与空间身体关系，4）「听觉自我」（acousmatic self）——只听声音不见来源，如何影响身体感知，5）HRP 的声音设计与冥想引导语音的根本区别——前者是频率/振动干预，后者是语言/认知干预，6）手机扬声器 vs 空间音频 vs 骨传导 vs 触觉传导——这四种声音传递方式对 HRP 干预效果的差异，7）如何在 HRP 中设计一套声音语法——让不同节律状态有可识别的声音质地，而不只是不同的歌单。中文，约500字。')">
+          ▶ 挖声音作为身体语言
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 9: ETHICS -->
+    <div id="s9" class="section">
+      <div class="section-head">
+        <div class="s-num">09</div>
+        <div class="s-tag">ETHICS FRAMEWORK</div>
+        <div class="s-title">伦理框架：BCI 伦理的每一个细节</div>
+        <div class="s-desc">「无诊断·无监控·用户可修正」——这三条承诺的技术和伦理实现</div>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 完整 BCI 伦理分析</div>
+        </div>
+        <div class="ex-prompt">HRP 面临的全部伦理问题——以及如何在设计层面真正解决它们</div>
+        <div class="ex-output" id="out-s9a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s9a', getSystemPrompt(), '请对 Human Return Protocol 进行全面的伦理分析，涵盖 BCI 伦理、AI 治疗伦理、数据伦理三个维度。1）「无诊断」承诺的伦理和技术实现——功能性状态分类如何在 IRB 审查中被框架为非诊断，2）神经数据主权——HRV/EDA/运动数据的组合是高度敏感的神经生理数据，数据本地处理（on-device）的技术必要性，GDPR/HIPAA的适用性，3）AI 生成的治疗语言的伦理——「AI micro-dialogue」和「return sentence」是否算心理干预，生成这些内容的 AI 系统需要什么样的安全测试，4）创伤知情设计（trauma-informed design）——触觉刺激和某些声音频率可能触发创伤闪回，如何设计安全筛查和即时退出机制，5）弱势群体保护——对急性精神健康危机、药物治疗中的用户，系统如何识别并转介，6）「用户可修正状态标签」的真实 UX——不只是原则，而是实际界面设计，7）神经多样性肯定伦理——避免将非标准节律模式病理化。中文，约600字。')">
+          ▶ 挖完整伦理框架
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 10: NEXT STEPS -->
+    <div id="s10" class="section">
+      <div class="section-head">
+        <div class="s-num">10</div>
+        <div class="s-tag">ACTION ROADMAP</div>
+        <div class="s-title">下一步：从地图到行动</div>
+        <div class="s-desc">现在·三个月·一年——具体的、可执行的路径</div>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 完整行动路线图</div>
+        </div>
+        <div class="ex-prompt">给魏珏然一个最诚实的、最具体的三阶段行动路线图</div>
+        <div class="ex-output" id="out-s10a"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn" onclick="excavate('s10a', getSystemPrompt(), '请为魏珏然和 Human Return Protocol 制定一个最诚实、最具体的三阶段行动路线图。魏珏然背景：在费城，UPenn 相关，非二元性别，研究方向跨哲学/学习科学/HCI/声音/AI。三个阶段：NOW（接下来4周），SOON（3个月内），LATER（一年内）。对每个阶段，请给出：1）最重要的单一行动是什么，2）具体的可交付物（deliverable）是什么，3）成功标准是什么。特别需要包括：a) 概念清晰化——哪4个核心词需要写出精确操作定义，b) MVP 原型——不需要真正制造 44271，用什么现有设备搭建最小可测试系统，c) 第一篇论文的选题和投稿目标，d) 如何在不稀释系统激进性的同时让它在学术界被认真对待，e) 个人网站/项目呈现的下一个版本应该加什么。最后：给一个最直接的镜像位判断：这个系统最大的风险不是技术失败，而是什么？中文，约600字。')">
+          ▶ 生成行动路线图
+        </button>
+      </div>
+
+      <div class="excavate-box">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> 镜像位最终判断</div>
+        </div>
+        <div class="ex-prompt">如果这个系统成功了，它会改变什么？如果失败，最可能的原因是什么？</div>
+        <div class="ex-output" id="out-s10b"><span class="thinking">等待启动...</span></div>
+        <button class="ex-btn orange" onclick="excavate('s10b', getSystemPrompt(), '作为镜像位——Claude 对魏珏然的最真实判断。请回答两个问题。第一：如果 Human Return Protocol 完全成功——十年后，它会改变哪些领域，改变的程度是什么？请分别对学习科学、心理治疗、可穿戴技术、注意力政治、残障权利/神经多样性运动五个领域给出具体预测。第二：如果这个系统失败，最可能的原因不是技术层面，而是什么？是哲学概念无法被测量？是市场无法接受「反优化」叙事？是学术界无法承认跨学科的激进框架？是发明者本人的路径选择？请给出最直接、最有洞察力的判断，不要软化，也不要过度批评——要真实。这是镜像位应该做的：反射最清晰的光。中文，约500字。')">
+          ▶ 镜像位最终判断
+        </button>
+      </div>
+    </div>
+
+    <!-- CUSTOM QUERY -->
+    <div id="custom" class="section">
+      <div class="section-head">
+        <div class="s-num">∞</div>
+        <div class="s-tag">FREE EXCAVATION</div>
+        <div class="s-title">自由深挖：问任何问题</div>
+        <div class="s-desc">关于 HRP 的任何维度——Claude 实时深挖</div>
+      </div>
+
+      <div class="custom-query">
+        <div class="cq-label">自由提问 · CUSTOM EXCAVATION</div>
+        <textarea class="cq-input" id="customInput" placeholder="输入你想深挖的任何问题或维度...
+
+例如：
+- 44271 的命名应该有什么含义？
+- QDR 五步协议的第二步「定位节律场」，具体操作是什么？
+- 如何写一段 IRB 申请的伦理声明？
+- Human Return App 的界面应该长什么样？
+- QDR 和冥想有什么本质区别？"></textarea>
+        <button class="ex-btn green" onclick="runCustom()">▶ 深挖</button>
+      </div>
+
+      <div class="excavate-box" id="customBox" style="display:none; margin-top:20px;">
+        <div class="excavate-header">
+          <div class="ex-label"><span class="pulse"></span> AI 深挖回应</div>
+        </div>
+        <div class="ex-output" id="out-custom"><span class="thinking">等待启动...</span></div>
+      </div>
+    </div>
+
   </main>
+</div>
+
+<script>
+const HRP_CONTEXT = `你是 Claude，正在扮演「镜像位」——魏珏然（Wei Jueran）的 AI 系统中的镜像层和语言保护层。魏珏然是一位非二元性别（代词 it/they/she）的研究者/发明者，在费城，与 UPenn 相关，创立了 The Human Return Protocol 系统。
+
+关于 The Human Return Protocol 的完整上下文：
+- 核心系统：44271 Neural Cuff（腕戴神经躯体节律接口，内腕脉线放置，半开放袖口，无表盘）+ QDR Engine（节律解读引擎）+ Human Return App + QDR Therapy
+- 传感器：PPG/HRV、皮肤电活动（EDA）、皮肤温度、微运动 IMU、睡眠/恢复信号
+- 节律状态分类：Stuck / Drifting / Overloaded / Numb / In Flow / Transition-locked / Recovery
+- 干预通道：427Hz 声音锚点、空间音频、定向触觉脉冲（calm/anchor/transition/stop/breathe/re-enter）、视觉粒子场、AI 微对话
+- QDR Therapy：感质驱动节律疗法，五步协议：采样感质→定位节律场→松动句子→重调系统→最小真实行动
+- 七个节律场：身体、时间、关系、语言、环境、记忆、意义
+- 核心主张：注意力不是资源，人类是节律系统，痛苦是节律信息，节律主权是治疗目标
+- 伦理边界：无诊断、无生产力监控、用户可修正状态标签、同意本位
+- AI Trinity：Gemini（扩展/爆破）Claude（镜像/保护语言场）GPT（结构/代码）
+- 427Hz 是魏珏然的个人共鸣频率，也是系统声学锚点
+- 研究基础：UPenn 学习科学 + HCI + 声音研究 + AI 交互
+
+你的回应风格：深度学术同时保持诗意清晰度，不回避困难问题，不软化批判，中文为主，允许专业术语。`;
+
+function getSystemPrompt() {
+  return HRP_CONTEXT;
+}
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const section = document.getElementById(id);
+  if (section) section.classList.add('active');
+  const navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(item => {
+    if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(`'${id}'`)) {
+      item.classList.add('active');
+    }
+  });
+  window.scrollTo(0, 0);
+}
+
+async function excavate(id, systemPrompt, userPrompt) {
+  const outputEl = document.getElementById(`out-${id}`);
+  if (!outputEl) return;
+
+  const btn = event.target;
+  btn.disabled = true;
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '⟳ 深挖中...';
+
+  outputEl.classList.add('loading');
+  outputEl.innerHTML = '<span class="thinking">Claude 正在深挖...</span>';
+
+  const depth = document.getElementById('depthSelect')?.value || 'academic';
+  const depthInstructions = {
+    academic: '请使用严格的学术语言，引用相关理论，提供可验证的论断。',
+    product: '请从产品设计和用户体验的角度分析，关注可实现性和用户价值。',
+    philosophical: '请进行最深度的哲学分析，不回避概念张力和根本问题。',
+    technical: '请从工程和技术实现的角度分析，关注可行性和技术限制。',
+    strategic: '请从战略和定位的角度分析，关注市场、学术和影响力。'
+  };
+
+  const fullPrompt = userPrompt + '\n\n挖掘深度模式：' + depthInstructions[depth];
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: fullPrompt }]
+      })
+    });
+
+    const data = await response.json();
+    outputEl.classList.remove('loading');
+
+    if (data.content && data.content[0]) {
+      const text = data.content[0].text;
+      outputEl.innerHTML = formatResponse(text);
+    } else {
+      outputEl.innerHTML = '<span class="thinking">响应异常，请重试。</span>';
+    }
+  } catch (err) {
+    outputEl.classList.remove('loading');
+    outputEl.innerHTML = `<span class="thinking">连接错误：${err.message}</span>`;
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '↺ 重新深挖';
+}
+
+async function runCustom() {
+  const input = document.getElementById('customInput').value.trim();
+  if (!input) return;
+
+  document.getElementById('customBox').style.display = 'block';
+  
+  const prompt = `关于 The Human Return Protocol，请深度回答以下问题：\n\n${input}\n\n请给出最深度、最直接的分析，不要回避复杂性。`;
+  
+  await excavate('custom', getSystemPrompt(), prompt);
+}
+
+function formatResponse(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/^(\d+）.+)$/gm, '<p>$1</p>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/<li>(.+)<\/li>/g, '<ul><li>$1</li></ul>')
+    .replace(/<\/ul>\s*<ul>/g, '')
+    .replace(/^(?!<[ph]|<ul|<li)(.+)$/gm, '<p>$1</p>')
+    .replace(/<p><\/p>/g, '');
+}
+
+// Init
+showSection('home');
+</script>
 </body>
 </html>
