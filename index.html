@@ -1862,6 +1862,34 @@
           <div class="status-card">
             <div class="status-label">PHYSICAL SPACE TIME</div>
             <div id="physicalTime" class="status-value">Loading real-time signal...</div>
+            <script>
+              (function () {
+                function setHRPPhysicalTime() {
+                  var el = document.getElementById("physicalTime");
+                  if (!el) return;
+                  try {
+                    var now = new Date();
+                    var text = new Intl.DateTimeFormat("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                      hour: "numeric",
+                      minute: "2-digit",
+                      second: "2-digit",
+                      hour12: true,
+                      timeZone: "America/New_York",
+                      timeZoneName: "short"
+                    }).format(now);
+                    el.textContent = text + " // UPENN / PHILADELPHIA CONTEXT // PHYSICAL SIGNAL ONLINE";
+                  } catch (e) {
+                    el.textContent = new Date().toLocaleString() + " // PHYSICAL SIGNAL ONLINE";
+                  }
+                }
+                setHRPPhysicalTime();
+                window.__hrpPhysicalClock = setInterval(setHRPPhysicalTime, 1000);
+              })();
+            </script>
           </div>
 
           <div class="status-card">
@@ -3964,5 +3992,78 @@
     });
 
   </script>
+
+  <script>
+    (function () {
+      var stateData = {
+        stuck: {
+          title: "Stuck / 卡死",
+          desc: "The system is not failing. The entry point is too large, too cold, or too undefined. // 系统没有失败，只是入口太大、太冷或太不明确。",
+          intervention: "Intervention: 44271 Neural Cuff sends a slow pulse-side tap → reduce task scale → play low-frequency grounding sound → offer one micro-action. // 干预：袖环发送慢速脉侧触觉 → 缩小任务 → 播放低频接地声音 → 给出一个微行动。"
+        },
+        drifting: {
+          title: "Drifting / 漂移",
+          desc: "Attention has not disappeared. It has lost its anchor and is searching for another rhythm. // 注意力没有消失，只是失去锚点，正在寻找另一个节律。",
+          intervention: "Intervention: spatial sound anchor → soft haptic re-entry pattern → visual field narrows → one return sentence. // 干预：空间声音锚点 → 柔和触觉返回模式 → 视觉场收窄 → 一句返回句。"
+        },
+        overloaded: {
+          title: "Overloaded / 过载",
+          desc: "Too much signal is entering at once. The field needs cooling, not more demand. // 太多信号同时进入。场需要冷却，而不是更多要求。",
+          intervention: "Intervention: External Anchor Mode → reduce language density → cooling audio → pulse-side slow haptic → one concrete action only. // 干预：外部锚定模式 → 降低语言密度 → 冷却声音 → 脉侧慢触觉 → 只做一个具体动作。"
+        },
+        numb: {
+          title: "Numb / 麻木",
+          desc: "The rhythm is not absent. It is protected under low-signal cover. // 节律不是不存在，而是被低信号保护起来。",
+          intervention: "Intervention: warm textured sound → no-pressure naming → gentle cuff pulse → soft reflective micro-prompt. // 干预：温暖质地声音 → 无压力命名 → 柔和袖环脉冲 → 轻反思提示。"
+        },
+        flow: {
+          title: "In Flow / 入流",
+          desc: "The rhythm is coherent. The system should protect the state and avoid interruption. // 节律已经连贯，系统应保护状态，避免打断。",
+          intervention: "Intervention: maintain ambient support → suppress prompts → minimize haptics → record flow conditions. // 干预：保持环境支撑 → 抑制提示 → 最小化触觉 → 记录入流条件。"
+        },
+        transition: {
+          title: "Need Transition / 需要转换",
+          desc: "One rhythm is ending and another has not yet opened. The bridge is the interface. // 一个节律正在结束，另一个尚未打开。桥就是界面。",
+          intervention: "Intervention: closure cue → bridge sound → cuff transition pattern → next-state ritual. // 干预：结束提示 → 过渡声音 → 袖环转换模式 → 下一个状态仪式。"
+        },
+        recovery: {
+          title: "Need Recovery / 需要恢复",
+          desc: "Recovery is not laziness. Recovery is the body rebuilding rhythm integrity. // 恢复不是懒惰，而是身体正在重建节律完整性。",
+          intervention: "Intervention: protect rest → remove output demand → restoration sound → low-frequency haptic breathing cue. // 干预：保护休息 → 移除输出要求 → 恢复声音 → 低频触觉呼吸提示。"
+        }
+      };
+
+      function bindStateButtons() {
+        var buttons = document.querySelectorAll(".state-btn");
+        var title = document.getElementById("stateTitle");
+        var desc = document.getElementById("stateDesc");
+        var intervention = document.getElementById("stateIntervention");
+
+        if (!buttons.length || !title || !desc || !intervention) return;
+
+        buttons.forEach(function (button) {
+          button.onclick = function () {
+            var key = button.getAttribute("data-state");
+            var data = stateData[key];
+            if (!data) return;
+
+            buttons.forEach(function (b) { b.classList.remove("active"); });
+            button.classList.add("active");
+
+            title.textContent = data.title;
+            desc.textContent = data.desc;
+            intervention.textContent = data.intervention;
+          };
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindStateButtons);
+      } else {
+        bindStateButtons();
+      }
+    })();
+  </script>
+
 </body>
 </html>
