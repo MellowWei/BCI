@@ -1278,3 +1278,37 @@ p {
     transition-duration: 0.001ms !important;
   }
 }
+
+
+.span-3 { grid-column: span 3; }
+
+.ai-card {
+  min-height: 360px;
+}
+
+.gemini-card {
+  border-color: rgba(255, 43, 214, 0.34);
+  background:
+    linear-gradient(135deg, rgba(255, 43, 214, 0.1), rgba(141, 92, 255, 0.06)),
+    rgba(8, 10, 28, 0.66);
+}
+
+.claude-card {
+  border-color: rgba(141, 92, 255, 0.34);
+  background:
+    linear-gradient(135deg, rgba(141, 92, 255, 0.1), rgba(0, 245, 255, 0.05)),
+    rgba(8, 10, 28, 0.66);
+}
+
+.gpt-card {
+  border-color: rgba(53, 255, 159, 0.34);
+  background:
+    linear-gradient(135deg, rgba(53, 255, 159, 0.09), rgba(0, 245, 255, 0.06)),
+    rgba(8, 10, 28, 0.66);
+}
+
+@media (max-width: 900px) {
+  .span-3 {
+    grid-column: span 12;
+  }
+}
