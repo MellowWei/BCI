@@ -1183,6 +1183,111 @@
       }
     }
 
+  
+    .sound-controls {
+      display: grid;
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .sound-btn {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(0,245,255,.18);
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      text-align: left;
+      font-size: 14px;
+      letter-spacing: .04em;
+      cursor: pointer;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .sound-btn:hover,
+    .sound-btn.active {
+      color: var(--text);
+      transform: translateX(3px);
+      border-color: rgba(53,255,159,.42);
+      background: linear-gradient(90deg, rgba(53,255,159,.09), rgba(0,245,255,.06));
+    }
+
+    .transport {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .sound-note {
+      border-top: 1px solid rgba(0,245,255,.14);
+      padding-top: 16px;
+      margin-top: 16px;
+    }
+
+    .sound-visual {
+      position: relative;
+      height: 360px;
+      border: 1px solid rgba(0,245,255,.18);
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(0,245,255,.12), transparent 34%),
+        radial-gradient(circle at 80% 20%, rgba(255,43,214,.12), transparent 30%),
+        rgba(255,255,255,.03);
+      margin-bottom: 16px;
+    }
+
+    #soundCanvas {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+    }
+
+    .sound-orb {
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 168px;
+      height: 168px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      display:grid;
+      place-items:center;
+      border: 1px solid rgba(0,245,255,.34);
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.25), transparent 18%),
+        radial-gradient(circle, rgba(0,245,255,.20), rgba(255,43,214,.08) 58%, transparent 70%);
+      box-shadow:
+        0 0 35px rgba(0,245,255,.28),
+        0 0 78px rgba(255,43,214,.16),
+        inset 0 0 34px rgba(255,255,255,.06);
+      animation: orbBreathe 3.2s ease-in-out infinite;
+    }
+
+    .sound-orb span {
+      font-family: var(--mono);
+      letter-spacing: .18em;
+      color: var(--text);
+      text-shadow: 0 0 16px rgba(0,245,255,.82);
+    }
+
+    @keyframes orbBreathe {
+      0%,100% { transform: translate(-50%, -50%) scale(.92); opacity:.78; }
+      50% { transform: translate(-50%, -50%) scale(1.06); opacity:1; }
+    }
+
+    .sound-example-card {
+      cursor:pointer;
+      transition: transform .22s ease, border-color .22s ease;
+    }
+
+    .sound-example-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(53,255,159,.38);
+    }
+
   </style>
 </head>
 
@@ -1203,6 +1308,7 @@
       <a href="#neural-cuff">NEURAL CUFF</a>
       <a href="#prototype">PROTOTYPE</a>
       <a href="#qdr-therapy">QDR</a>
+      <a href="#sound-lab">SOUND LAB</a>
       <a href="#gemini-layer">GEMINI</a>
       <a href="#claude-layer">CLAUDE</a>
       <a href="#final-synthesis">SYNTHESIS</a>
@@ -1660,6 +1766,182 @@
         </div>
       </div>
     </section>
+
+
+    <section id="sound-lab">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">SOUND RETURN LAB // MUSIC · PINK NOISE · WHITE NOISE · PLANT MUSIC // 声音返回实验室</div>
+          <h2>Sound is not decoration. Sound is the body’s return channel.</h2>
+          <h2 class="cn">声音不是装饰。声音是身体返回的通道。</h2>
+          <p class="sub en">
+            This Sound Return Lab gives concrete sonic examples for HRP: music, pink noise,
+            white noise, and plant-based generative music. Each sound type maps to a different rhythm state
+            and a different kind of return.
+          </p>
+          <p class="sub cn">
+            这个声音返回实验室为 HRP 提供具体声音实例：音乐、粉噪音、白噪音与植物系生成音乐。
+            每一种声音都对应不同节律状态，以及不同的返回方式。
+          </p>
+        </div>
+
+        <div class="card span-5">
+          <div class="eyebrow">LIVE SOUND CONSOLE // 实时声音控制台</div>
+          <h3 id="soundTitle">427Hz Music Anchor</h3>
+          <h3 class="cn" id="soundTitleCN">427Hz 音乐锚点</h3>
+          <p id="soundDesc" class="en">
+            A soft tonal anchor for re-centering. It is not a productivity beat; it is a return signal.
+          </p>
+          <p id="soundDescCN" class="cn">
+            柔和的音高锚点，用于重新居中。它不是生产力节拍，而是返回信号。
+          </p>
+
+          <div class="sound-controls">
+            <button class="sound-btn active" data-sound="music">Music / 音乐</button>
+            <button class="sound-btn" data-sound="pink">Pink Noise / 粉噪音</button>
+            <button class="sound-btn" data-sound="white">White Noise / 白噪音</button>
+            <button class="sound-btn" data-sound="plant">Plant Music / 植物系音乐</button>
+          </div>
+
+          <div class="transport">
+            <button class="button primary" id="playSound">PLAY SOUND / 播放</button>
+            <button class="button" id="stopSound">STOP / 停止</button>
+          </div>
+
+          <div class="sound-note">
+            <p class="en">
+              Browser audio starts only after you click play. This demo generates sound locally using Web Audio:
+              oscillators for music, procedural white noise, filtered pink noise, and plant-style generative tones.
+            </p>
+            <p class="cn">
+              浏览器声音必须点击播放后才会启动。这个 demo 使用 Web Audio 本地生成声音：
+              音乐用振荡器，白噪音用程序噪声，粉噪音用滤波噪声，植物系音乐用生成式音高。
+            </p>
+          </div>
+        </div>
+
+        <div class="card span-7">
+          <div class="eyebrow">RHYTHM-TO-SOUND MAP // 节律到声音映射</div>
+          <div class="sound-visual">
+            <canvas id="soundCanvas"></canvas>
+            <div class="sound-orb" id="soundOrb">
+              <span>427Hz</span>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric">
+              <strong>SOUND TYPE</strong>
+              <p id="metricType">Music Anchor / 音乐锚点</p>
+              <div class="bar-meter"><span></span></div>
+            </div>
+            <div class="metric">
+              <strong>RHYTHM STATE</strong>
+              <p id="metricState">Drifting · Transition / 漂移 · 转换</p>
+              <div class="bar-meter"><span></span></div>
+            </div>
+            <div class="metric">
+              <strong>RETURN FUNCTION</strong>
+              <p id="metricFunction">Re-center / 重新居中</p>
+              <div class="bar-meter"><span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-3 sound-example-card" data-sound-card="music">
+          <div class="num">01 // MUSIC</div>
+          <h3>427Hz Music Anchor</h3>
+          <h3 class="cn">427Hz 音乐锚点</h3>
+          <p class="en">
+            Used when the person is drifting, scattered, or entering transition.
+            A stable tonal center gives the body a return coordinate.
+          </p>
+          <p class="cn">
+            用于漂移、分散或进入转换期。稳定音高中心给身体一个返回坐标。
+          </p>
+        </div>
+
+        <div class="card span-3 sound-example-card" data-sound-card="pink">
+          <div class="num">02 // PINK NOISE</div>
+          <h3>Warm Pressure Field</h3>
+          <h3 class="cn">温暖压强场</h3>
+          <p class="en">
+            Used for overload and sensory sharpness. Pink noise is softer than white noise
+            and can feel like a warmer field around the body.
+          </p>
+          <p class="cn">
+            用于过载与感官尖锐。粉噪音比白噪音更柔和，像包围身体的温暖场。
+          </p>
+        </div>
+
+        <div class="card span-3 sound-example-card" data-sound-card="white">
+          <div class="num">03 // WHITE NOISE</div>
+          <h3>Boundary Mask</h3>
+          <h3 class="cn">边界遮罩</h3>
+          <p class="en">
+            Used when the environment is too fragmented. White noise masks chaotic external signals
+            and creates a clean acoustic boundary.
+          </p>
+          <p class="cn">
+            用于环境过于碎片化时。白噪音遮蔽混乱外部信号，形成干净的声音边界。
+          </p>
+        </div>
+
+        <div class="card span-3 sound-example-card" data-sound-card="plant">
+          <div class="num">04 // PLANT MUSIC</div>
+          <h3>Organic Re-entry</h3>
+          <h3 class="cn">有机返回</h3>
+          <p class="en">
+            Used for numbness, recovery, and gentle reconnection.
+            Plant-style generative music gives an organic, non-commanding rhythm.
+          </p>
+          <p class="cn">
+            用于麻木、恢复与柔和重连。植物系生成音乐提供一种有机、非命令式的节律。
+          </p>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">QDR SOUND PROTOCOL // QDR 声音协议</div>
+          <table class="therapy-table">
+            <thead>
+              <tr>
+                <th>Sound / 声音</th>
+                <th>Best Rhythm State / 适合节律状态</th>
+                <th>QDR Function / QDR 功能</th>
+                <th>Design Notes / 设计说明</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Music Anchor / 音乐锚点</td>
+                <td>Drifting, transition, re-entry / 漂移、转换、重新进入</td>
+                <td>Creates a tonal coordinate for the body / 给身体一个音高坐标</td>
+                <td>Use sparse melody, stable root tone, low stimulation / 使用稀疏旋律、稳定根音、低刺激</td>
+              </tr>
+              <tr>
+                <td>Pink Noise / 粉噪音</td>
+                <td>Overloaded, sharp, anxious field / 过载、尖锐、焦虑场</td>
+                <td>Softens pressure without flattening the person / 软化压强但不压扁主体</td>
+                <td>Warmer than white noise; suitable for cooling mode / 比白噪音更暖，适合冷却模式</td>
+              </tr>
+              <tr>
+                <td>White Noise / 白噪音</td>
+                <td>Fragmented environment, distraction / 碎片化环境、分心</td>
+                <td>Builds a sound boundary around attention / 为注意力建立声音边界</td>
+                <td>Use carefully; can feel too harsh for sensitive users / 谨慎使用，高敏感用户可能觉得刺耳</td>
+              </tr>
+              <tr>
+                <td>Plant Music / 植物系音乐</td>
+                <td>Numb, recovery, grief, low-signal state / 麻木、恢复、悲伤、低信号状态</td>
+                <td>Reintroduces organic motion without command / 重新引入有机运动，但不下命令</td>
+                <td>Use random gentle notes, soft attack, long release / 使用随机柔和音符、软起音、长释放</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
 
     <section id="gemini-layer">
       <div class="grid">
@@ -3154,6 +3436,277 @@ function show(id) {
         intervention.textContent = data.intervention;
       }});
     }});
+
+    const soundMeta = {
+      music: {
+        title: "427Hz Music Anchor",
+        titleCN: "427Hz 音乐锚点",
+        desc: "A soft tonal anchor for re-centering. It is not a productivity beat; it is a return signal.",
+        descCN: "柔和的音高锚点，用于重新居中。它不是生产力节拍，而是返回信号。",
+        type: "Music Anchor / 音乐锚点",
+        state: "Drifting · Transition / 漂移 · 转换",
+        fn: "Re-center / 重新居中",
+        orb: "427Hz"
+      },
+      pink: {
+        title: "Pink Noise Field",
+        titleCN: "粉噪音场",
+        desc: "A warm noise field for overload. It softens sharp signal pressure without turning the person into silence.",
+        descCN: "用于过载的温暖噪音场。它软化尖锐信号压强，但不把人压成沉默。",
+        type: "Pink Noise / 粉噪音",
+        state: "Overloaded · Sharp / 过载 · 尖锐",
+        fn: "Soften pressure / 软化压强",
+        orb: "PINK"
+      },
+      white: {
+        title: "White Noise Boundary",
+        titleCN: "白噪音边界",
+        desc: "A clean acoustic wall for fragmented environments. It masks chaos and creates a temporary boundary.",
+        descCN: "用于碎片化环境的干净声音墙。它遮蔽混乱，并创造临时边界。",
+        type: "White Noise / 白噪音",
+        state: "Fragmented · Distracted / 碎片 · 分心",
+        fn: "Mask noise / 遮蔽噪音",
+        orb: "WHITE"
+      },
+      plant: {
+        title: "Plant-Style Generative Music",
+        titleCN: "植物系生成音乐",
+        desc: "Soft organic notes for numbness and recovery. It gives motion without command and rhythm without force.",
+        descCN: "用于麻木与恢复的柔和有机音符。它给出运动但不命令，给出节律但不强迫。",
+        type: "Plant Music / 植物系音乐",
+        state: "Numb · Recovery / 麻木 · 恢复",
+        fn: "Organic re-entry / 有机返回",
+        orb: "PLANT"
+      }
+    };
+
+    let audioCtx = null;
+    let currentSound = "music";
+    let activeNodes = [];
+    let plantTimer = null;
+    let visualMode = "music";
+
+    function getAudioCtx() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function stopSound() {
+      activeNodes.forEach((node) => {
+        try {
+          if (node.stop) node.stop();
+          if (node.disconnect) node.disconnect();
+        } catch (e) {}
+      });
+      activeNodes = [];
+      if (plantTimer) {
+        clearInterval(plantTimer);
+        plantTimer = null;
+      }
+    }
+
+    function makeGain(ctx, level = 0.08) {
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(level, ctx.currentTime + 0.18);
+      gain.connect(ctx.destination);
+      activeNodes.push(gain);
+      return gain;
+    }
+
+    function playMusic() {
+      const ctx = getAudioCtx();
+      const master = makeGain(ctx, 0.065);
+
+      [427, 640.5, 854].forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = i === 0 ? "sine" : "triangle";
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        g.gain.setValueAtTime(i === 0 ? 0.68 : 0.18, ctx.currentTime);
+        osc.connect(g);
+        g.connect(master);
+        osc.start();
+        activeNodes.push(osc, g);
+      });
+    }
+
+    function playWhiteNoise() {
+      const ctx = getAudioCtx();
+      const bufferSize = ctx.sampleRate * 2;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const output = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) output[i] = Math.random() * 2 - 1;
+
+      const src = ctx.createBufferSource();
+      src.buffer = buffer;
+      src.loop = true;
+
+      const filter = ctx.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.value = 9000;
+
+      const gain = makeGain(ctx, 0.045);
+      src.connect(filter);
+      filter.connect(gain);
+      src.start();
+      activeNodes.push(src, filter);
+    }
+
+    function playPinkNoise() {
+      const ctx = getAudioCtx();
+      const bufferSize = ctx.sampleRate * 2;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const output = buffer.getChannelData(0);
+
+      let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        b0 = 0.99886 * b0 + white * 0.0555179;
+        b1 = 0.99332 * b1 + white * 0.0750759;
+        b2 = 0.96900 * b2 + white * 0.1538520;
+        b3 = 0.86650 * b3 + white * 0.3104856;
+        b4 = 0.55000 * b4 + white * 0.5329522;
+        b5 = -0.7616 * b5 - white * 0.0168980;
+        output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
+        b6 = white * 0.115926;
+      }
+
+      const src = ctx.createBufferSource();
+      src.buffer = buffer;
+      src.loop = true;
+
+      const filter = ctx.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.value = 2800;
+
+      const gain = makeGain(ctx, 0.07);
+      src.connect(filter);
+      filter.connect(gain);
+      src.start();
+      activeNodes.push(src, filter);
+    }
+
+    function playPlantMusic() {
+      const ctx = getAudioCtx();
+      const master = makeGain(ctx, 0.08);
+      const scale = [427, 480, 540, 640.5, 720, 854];
+
+      function note() {
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        const freq = scale[Math.floor(Math.random() * scale.length)] * (Math.random() > 0.78 ? 2 : 1);
+        osc.type = Math.random() > 0.5 ? "sine" : "triangle";
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        g.gain.setValueAtTime(0.0001, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.11, ctx.currentTime + 0.12);
+        g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.8 + Math.random() * 1.1);
+        osc.connect(g);
+        g.connect(master);
+        osc.start();
+        osc.stop(ctx.currentTime + 3.2);
+        activeNodes.push(osc, g);
+      }
+
+      note();
+      plantTimer = setInterval(note, 650 + Math.random() * 900);
+    }
+
+    function playCurrentSound() {
+      stopSound();
+      const ctx = getAudioCtx();
+      if (ctx.state === "suspended") ctx.resume();
+
+      if (currentSound === "music") playMusic();
+      if (currentSound === "pink") playPinkNoise();
+      if (currentSound === "white") playWhiteNoise();
+      if (currentSound === "plant") playPlantMusic();
+    }
+
+    function setSoundMode(mode) {
+      currentSound = mode;
+      visualMode = mode;
+
+      const data = soundMeta[mode];
+      if (!data) return;
+
+      document.getElementById("soundTitle").textContent = data.title;
+      document.getElementById("soundTitleCN").textContent = data.titleCN;
+      document.getElementById("soundDesc").textContent = data.desc;
+      document.getElementById("soundDescCN").textContent = data.descCN;
+      document.getElementById("metricType").textContent = data.type;
+      document.getElementById("metricState").textContent = data.state;
+      document.getElementById("metricFunction").textContent = data.fn;
+      document.getElementById("soundOrb").querySelector("span").textContent = data.orb;
+
+      document.querySelectorAll(".sound-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.sound === mode);
+      });
+    }
+
+    document.querySelectorAll(".sound-btn, .sound-example-card").forEach((el) => {
+      el.addEventListener("click", () => {
+        const mode = el.dataset.sound || el.dataset.soundCard;
+        setSoundMode(mode);
+      });
+    });
+
+    const playBtn = document.getElementById("playSound");
+    const stopBtn = document.getElementById("stopSound");
+    if (playBtn) playBtn.addEventListener("click", playCurrentSound);
+    if (stopBtn) stopBtn.addEventListener("click", stopSound);
+
+    const soundCanvas = document.getElementById("soundCanvas");
+    const soundCtx = soundCanvas ? soundCanvas.getContext("2d") : null;
+
+    function drawSoundVisual() {
+      if (!soundCanvas || !soundCtx) return;
+
+      const rect = soundCanvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      soundCanvas.width = rect.width * dpr;
+      soundCanvas.height = rect.height * dpr;
+
+      const width = soundCanvas.width;
+      const height = soundCanvas.height;
+      soundCtx.clearRect(0, 0, width, height);
+
+      const t = performance.now() / 1000;
+      const colors = {
+        music: ["rgba(0,245,255,.9)", "rgba(53,255,159,.55)"],
+        pink: ["rgba(255,43,214,.9)", "rgba(141,92,255,.55)"],
+        white: ["rgba(244,247,255,.88)", "rgba(0,245,255,.45)"],
+        plant: ["rgba(53,255,159,.9)", "rgba(255,230,109,.45)"]
+      }[visualMode] || ["rgba(0,245,255,.9)", "rgba(53,255,159,.55)"];
+
+      for (let layer = 0; layer < 3; layer++) {
+        soundCtx.beginPath();
+        for (let x = 0; x < width; x += 8 * dpr) {
+          const nx = x / width;
+          const amp =
+            visualMode === "white" ? (Math.random() - 0.5) * height * 0.28 :
+            visualMode === "pink" ? Math.sin(nx * 18 + t * 1.2) * height * 0.10 + Math.sin(nx * 49 + t) * height * 0.035 :
+            visualMode === "plant" ? Math.sin(nx * 13 + t * 0.8 + layer) * height * 0.11 + Math.sin(nx * 5 + t * 1.7) * height * 0.06 :
+            Math.sin(nx * 26 + t * 1.8 + layer) * height * 0.08 + Math.sin(nx * 7 + t * 0.7) * height * 0.04;
+
+          const y = height * (0.5 + (layer - 1) * 0.13) + amp;
+          if (x === 0) soundCtx.moveTo(x, y);
+          else soundCtx.lineTo(x, y);
+        }
+        soundCtx.strokeStyle = layer === 1 ? colors[0] : colors[1];
+        soundCtx.lineWidth = (layer === 1 ? 2.8 : 1.4) * dpr;
+        soundCtx.shadowBlur = 18 * dpr;
+        soundCtx.shadowColor = colors[0];
+        soundCtx.stroke();
+      }
+
+      requestAnimationFrame(drawSoundVisual);
+    }
+
+    drawSoundVisual();
+
   </script>
 </body>
 </html>
