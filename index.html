@@ -1826,6 +1826,232 @@
       }
     }
 
+  
+    .four-system-loop .loop-item {
+      cursor: pointer;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+
+    .four-system-loop .loop-item:hover,
+    .four-system-loop .loop-item.active {
+      transform: translateY(-5px);
+      border-color: rgba(53,255,159,.42);
+      box-shadow: 0 0 28px rgba(53,255,159,.12), inset 0 0 24px rgba(0,245,255,.04);
+    }
+
+    .music-bci-map {
+      position: relative;
+      height: 390px;
+      border: 1px solid rgba(0,245,255,.18);
+      border-radius: 30px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(0,245,255,.10), transparent 28%),
+        radial-gradient(circle at 20% 20%, rgba(255,43,214,.10), transparent 32%),
+        radial-gradient(circle at 80% 75%, rgba(53,255,159,.09), transparent 34%),
+        rgba(255,255,255,.03);
+      margin-bottom: 16px;
+    }
+
+    .music-bci-map::before,
+    .music-bci-map::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border: 1px solid rgba(0,245,255,.18);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      animation: musicOrbit 9s linear infinite;
+    }
+
+    .music-bci-map::before {
+      width: 260px;
+      height: 260px;
+    }
+
+    .music-bci-map::after {
+      width: 340px;
+      height: 340px;
+      animation-duration: 14s;
+      border-color: rgba(255,43,214,.18);
+    }
+
+    @keyframes musicOrbit {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .music-core-orb {
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 176px;
+      height: 176px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      border: 1px solid rgba(53,255,159,.42);
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.24), transparent 18%),
+        radial-gradient(circle, rgba(53,255,159,.18), rgba(0,245,255,.12) 54%, rgba(255,43,214,.08) 70%, transparent);
+      box-shadow:
+        0 0 34px rgba(53,255,159,.25),
+        0 0 74px rgba(0,245,255,.16),
+        inset 0 0 32px rgba(255,255,255,.05);
+      animation: orbBreathe 3.2s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .music-core-orb span {
+      font-family: var(--mono);
+      color: var(--text);
+      letter-spacing:.12em;
+      line-height:1.45;
+      text-shadow:0 0 14px rgba(0,245,255,.75);
+    }
+
+    .music-core-orb small {
+      color: var(--green);
+      letter-spacing:.08em;
+    }
+
+    .orbit-label {
+      position:absolute;
+      z-index: 3;
+      padding: 10px 12px;
+      border: 1px solid rgba(0,245,255,.22);
+      border-radius: 16px;
+      background: rgba(3,4,10,.62);
+      backdrop-filter: blur(12px);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing:.08em;
+      box-shadow: 0 0 20px rgba(0,245,255,.08);
+    }
+
+    .orbit-label small {
+      display:block;
+      color: var(--muted);
+      margin-top:4px;
+      letter-spacing:.04em;
+    }
+
+    .orbit-meaning { left: 50%; top: 28px; transform: translateX(-50%); }
+    .orbit-emotion { right: 30px; top: 50%; transform: translateY(-50%); }
+    .orbit-perception { left: 50%; bottom: 28px; transform: translateX(-50%); }
+    .orbit-cognition { left: 30px; top: 50%; transform: translateY(-50%); }
+
+    @media (max-width: 1024px) {
+      .music-bci-map {
+        height: 520px;
+      }
+      .orbit-meaning,
+      .orbit-emotion,
+      .orbit-perception,
+      .orbit-cognition {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+      .orbit-meaning { top: 20px; }
+      .orbit-emotion { top: 118px; }
+      .orbit-perception { bottom: 118px; }
+      .orbit-cognition { top: auto; bottom: 20px; }
+    }
+
+  
+    .genre-card {
+      cursor: pointer;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+
+    .genre-card:hover,
+    .genre-card.active {
+      transform: translateY(-5px);
+      border-color: rgba(53,255,159,.42);
+      box-shadow: 0 0 32px rgba(53,255,159,.13), inset 0 0 28px rgba(0,245,255,.04);
+    }
+
+    .genre-signal-stage {
+      position: relative;
+      height: 390px;
+      border: 1px solid rgba(0,245,255,.18);
+      border-radius: 30px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(0,245,255,.12), transparent 28%),
+        radial-gradient(circle at 16% 20%, rgba(255,43,214,.12), transparent 32%),
+        radial-gradient(circle at 80% 78%, rgba(53,255,159,.09), transparent 34%),
+        rgba(255,255,255,.03);
+      margin-bottom: 16px;
+    }
+
+    #genreCanvas {
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+    }
+
+    .genre-core {
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 176px;
+      height: 176px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      border: 1px solid rgba(53,255,159,.42);
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.24), transparent 18%),
+        radial-gradient(circle, rgba(53,255,159,.18), rgba(0,245,255,.12) 54%, rgba(255,43,214,.08) 70%, transparent);
+      box-shadow:
+        0 0 34px rgba(53,255,159,.25),
+        0 0 74px rgba(0,245,255,.16),
+        inset 0 0 32px rgba(255,255,255,.05);
+      animation: orbBreathe 3.2s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .genre-core span {
+      font-family: var(--mono);
+      color: var(--text);
+      letter-spacing:.12em;
+      line-height:1.35;
+      text-shadow:0 0 14px rgba(0,245,255,.75);
+    }
+
+    .genre-phonk { border-left: 4px solid rgba(53,255,159,.62); }
+    .genre-hyperpop { border-left: 4px solid rgba(255,43,214,.62); }
+    .genre-synthpop { border-left: 4px solid rgba(0,245,255,.62); }
+    .genre-darkwave { border-left: 4px solid rgba(141,92,255,.62); }
+
+  
+    .trinity-iframe-shell {
+      overflow: hidden;
+    }
+
+    .trinity-frame {
+      height: 82vh;
+      min-height: 760px;
+      max-height: 980px;
+      background: #020408;
+    }
+
+    @media (max-width: 1024px) {
+      .trinity-frame {
+        height: 86vh;
+        min-height: 760px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1846,7 +2072,10 @@
       <a href="#neural-cuff">NEURAL CUFF</a>
       <a href="#prototype">PROTOTYPE</a>
       <a href="#qdr-therapy">QDR</a>
-      <a href="#sound-lab">SOUND LAB</a>
+      <a href="#four-systems">FOUR SYSTEMS</a>
+      <a href="#genre-matrix">GENRE MATRIX</a>
+      <a href="#trinity-work">AI TRINITY WORK</a>
+      <a href="#sound-lab">MUSIC LAB</a>
       <a href="#gemini-layer">GEMINI</a>
       <a href="#claude-layer">CLAUDE</a>
       <a href="#final-synthesis">SYNTHESIS</a>
@@ -2334,19 +2563,532 @@
     </section>
 
 
+
+    <section id="four-systems">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">FOUR HUMAN SYSTEMS // MEANING · EMOTION · PERCEPTION · COGNITION // 四大人类系统</div>
+          <h2>The BCI medium is music, not generic sound.</h2>
+          <h2 class="cn">脑机的主要媒介是音乐，不是泛泛的声音。</h2>
+          <p class="sub en">
+            This layer clarifies the core invention: Human Return Protocol does not mainly use “sound effects.”
+            It uses Wei Jueran’s self-composed music as the carrier of rhythm, qualia, memory, emotion,
+            cognition, and meaning. Music is the living protocol.
+          </p>
+          <p class="sub cn">
+            这一层明确核心发明：Human Return Protocol 主要使用的不是“音效”。
+            它使用魏珏然自己创作的音乐，作为节律、感质、记忆、情绪、认知与意义的载体。
+            音乐本身就是活的协议。
+          </p>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">SYSTEM MATRIX // 系统矩阵</div>
+          <h2>Meaning, emotion, perception, and cognition are four rhythm fields.</h2>
+          <h2 class="cn">意义、情绪、感知、认知，是四个节律场。</h2>
+          <div class="system-loop four-system-loop">
+            <div class="loop-item four-system-card active" data-four-system="meaning">
+              <div class="num">01 // MEANING</div>
+              <h3>Meaning System</h3>
+              <h3 class="cn">意义系统</h3>
+              <p class="en">Music organizes why an experience matters.</p>
+              <p class="cn">音乐组织“一个经验为什么重要”。</p>
+            </div>
+            <div class="loop-item four-system-card" data-four-system="emotion">
+              <div class="num">02 // EMOTION</div>
+              <h3>Emotion System</h3>
+              <h3 class="cn">情绪系统</h3>
+              <p class="en">Music regulates pressure, release, grief, charge, and safety.</p>
+              <p class="cn">音乐调节压强、释放、悲伤、电荷与安全感。</p>
+            </div>
+            <div class="loop-item four-system-card" data-four-system="perception">
+              <div class="num">03 // PERCEPTION</div>
+              <h3>Perception System</h3>
+              <h3 class="cn">感知系统</h3>
+              <p class="en">Music changes texture: space, temperature, color, distance, weight.</p>
+              <p class="cn">音乐改变质地：空间、温度、颜色、距离、重量。</p>
+            </div>
+            <div class="loop-item four-system-card" data-four-system="cognition">
+              <div class="num">04 // COGNITION</div>
+              <h3>Cognition System</h3>
+              <h3 class="cn">认知系统</h3>
+              <p class="en">Music supports attention, transition, sequencing, and self-model repair.</p>
+              <p class="cn">音乐支持注意、转换、排序与自我模型修复。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-5">
+          <div class="eyebrow">INTERACTIVE SYSTEM SELECTOR // 互动系统选择器</div>
+          <h3 id="fourSystemTitle">Meaning System</h3>
+          <h3 class="cn" id="fourSystemTitleCN">意义系统</h3>
+          <p id="fourSystemDesc" class="en">
+            The meaning system asks: why does this matter, what is this connected to, and what future does this open?
+          </p>
+          <p id="fourSystemDescCN" class="cn">
+            意义系统会问：这为什么重要？它连接到什么？它打开了什么未来？
+          </p>
+
+          <div class="sound-controls">
+            <button class="sound-btn four-system-btn active" data-four-system-btn="meaning">Meaning / 意义</button>
+            <button class="sound-btn four-system-btn" data-four-system-btn="emotion">Emotion / 情绪</button>
+            <button class="sound-btn four-system-btn" data-four-system-btn="perception">Perception / 感知</button>
+            <button class="sound-btn four-system-btn" data-four-system-btn="cognition">Cognition / 认知</button>
+          </div>
+
+          <div class="sound-note">
+            <p class="en">
+              The intervention medium is not “noise.” White noise and pink noise can be auxiliary calibration tools,
+              but the main BCI carrier is original music: melody, harmony, rhythm, bass, spatial movement, and timbre.
+            </p>
+            <p class="cn">
+              干预媒介不是“噪音”。白噪音和粉噪音可以作为辅助校准工具，
+              但脑机的主体载体是原创音乐：旋律、和声、节奏、低频、空间运动与音色。
+            </p>
+          </div>
+        </div>
+
+        <div class="card span-7">
+          <div class="eyebrow">MUSIC-AS-BCI MAP // 音乐作为脑机地图</div>
+          <div class="music-bci-map">
+            <div class="music-core-orb">
+              <span>WEI MUSIC<br><small>原创音乐协议</small></span>
+            </div>
+            <div class="orbit-label orbit-meaning">Meaning<br><small>意义</small></div>
+            <div class="orbit-label orbit-emotion">Emotion<br><small>情绪</small></div>
+            <div class="orbit-label orbit-perception">Perception<br><small>感知</small></div>
+            <div class="orbit-label orbit-cognition">Cognition<br><small>认知</small></div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric">
+              <strong>MUSIC LAYER</strong>
+              <p id="fourMetricLayer">Harmony · motif · lyrical gravity / 和声 · 动机 · 语言引力</p>
+              <div class="bar-meter"><span></span></div>
+            </div>
+            <div class="metric">
+              <strong>QUALIA TARGET</strong>
+              <p id="fourMetricQualia">Purpose · narrative coherence / 目的 · 叙事连贯</p>
+              <div class="bar-meter"><span></span></div>
+            </div>
+            <div class="metric">
+              <strong>RHYTHM ACTION</strong>
+              <p id="fourMetricAction">Re-author meaning / 重新书写意义</p>
+              <div class="bar-meter"><span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">DETAILED FOUR-SYSTEM PROTOCOL // 四系统详细协议</div>
+          <table class="therapy-table">
+            <thead>
+              <tr>
+                <th>System / 系统</th>
+                <th>What it processes / 处理对象</th>
+                <th>Original music mechanism / 原创音乐机制</th>
+                <th>QDR + Qualia target / QDR + 感质目标</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Meaning System / 意义系统</td>
+                <td>Value, memory, direction, identity, narrative / 价值、记忆、方向、身份、叙事</td>
+                <td>Motif recurrence, harmonic resolution, lyrical fragments, long-form structure / 动机回返、和声解决、歌词碎片、长结构</td>
+                <td>From meaningless pressure to meaningful continuity / 从无意义压强返回有意义连续性</td>
+              </tr>
+              <tr>
+                <td>Emotion System / 情绪系统</td>
+                <td>Arousal, grief, joy, fear, charge, release / 唤醒、悲伤、喜悦、恐惧、电荷、释放</td>
+                <td>Dynamics, bass pressure, tempo arc, tension-release, vocal texture / 动态、低频压强、速度曲线、张力释放、人声音色</td>
+                <td>From emotional storm to regulated intensity / 从情绪风暴返回可承载强度</td>
+              </tr>
+              <tr>
+                <td>Perception System / 感知系统</td>
+                <td>Space, body texture, temperature, color, distance, sensory load / 空间、身体质地、温度、颜色、距离、感官负载</td>
+                <td>Timbre, stereo field, reverb depth, noise grain, spatial movement / 音色、声像场、混响深度、噪点颗粒、空间运动</td>
+                <td>From sensory fragmentation to textured orientation / 从感官碎片返回有质地的定位</td>
+              </tr>
+              <tr>
+                <td>Cognition System / 认知系统</td>
+                <td>Attention, sequencing, transition, working memory, self-model / 注意、排序、转换、工作记忆、自我模型</td>
+                <td>Pulse, repetition, rhythmic grid, cueing, section changes / 脉冲、重复、节奏网格、提示音、段落变化</td>
+                <td>From cognitive scatter to rhythm-guided clarity / 从认知散乱返回节律引导的清晰</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow">WHY MUSIC, NOT JUST SOUND // 为什么是音乐，不只是声音</div>
+          <h3>Music carries memory and form.</h3>
+          <h3 class="cn">音乐承载记忆与形式。</h3>
+          <p class="en">
+            Noise can mask, soothe, or calibrate. Music can do more: it can hold time, return motifs,
+            build expectation, resolve tension, carry identity, and create a body-scale narrative.
+            That is why HRP’s central medium is Wei Jueran’s self-composed music.
+          </p>
+          <p class="cn">
+            噪音可以遮蔽、安抚或校准。音乐能做更多：它能承载时间、回返动机、
+            建立期待、解决张力、携带身份，并创造身体尺度的叙事。
+            这就是为什么 HRP 的核心媒介是魏珏然自己创作的音乐。
+          </p>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow">COMPOSITION AS PROTOCOL // 作曲即协议</div>
+          <h3>Each track becomes a return device.</h3>
+          <h3 class="cn">每首曲子都是返回装置。</h3>
+          <p class="en">
+            In HRP, composing music means designing rhythm interventions:
+            a bass line can anchor the body, a chord change can open meaning,
+            a texture can soften perception, and a repeated motif can guide cognition back into sequence.
+          </p>
+          <p class="cn">
+            在 HRP 中，作曲就是设计节律干预：
+            一条 bassline 可以锚定身体，一个和弦变化可以打开意义，
+            一个音色可以软化感知，一个重复动机可以把认知带回顺序。
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="genre-matrix">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">GENRE-DRIVEN INTERVENTION MATRIX // DRIFT PHONK · HYPERPOP · SYNTHPOP · DARKWAVE</div>
+          <h2>The Sandbox is now a Multiverse of Rhythm.</h2>
+          <h2 class="cn">Sandbox 现在是节律多重宇宙。</h2>
+          <p class="sub en">
+            HRP now uses four core genres from Wei Jueran’s original music system:
+            Drift Phonk for physical takeover, Hyperpop for cognitive surges,
+            Synthpop for meaning and nostalgia, and Darkwave for emotional stabilization.
+          </p>
+          <p class="sub cn">
+            HRP 现在使用魏珏然原创音乐系统中的四个核心类型：
+            Drift Phonk 负责身体接管，Hyperpop 负责认知激增，
+            Synthpop 负责意义与怀旧，Darkwave 负责情绪稳定。
+          </p>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">AI NERVOUS SYSTEM REPROGRAMMED // AI 神经系统已重编程</div>
+          <h2>Genre is no longer style. Genre is intervention logic.</h2>
+          <h2 class="cn">类型不再是风格。类型就是干预逻辑。</h2>
+          <p class="sub en">
+            Each genre functions as a protocol layer: musical elements such as kick, cowbell,
+            distorted timbre, retro synths, melodic hooks, cold synths, and mourning atmosphere
+            become BCI signals for body, cognition, meaning, and emotion.
+          </p>
+          <p class="sub cn">
+            每一种音乐类型都是一个协议层：kick、cowbell、失真音色、复古合成器、旋律 hook、
+            冷合成器与哀悼氛围，都会成为身体、认知、意义与情绪的脑机信号。
+          </p>
+        </div>
+
+        <div class="card span-6 genre-card genre-phonk" data-genre-card="phonk">
+          <div class="num">A // DRIFT PHONK</div>
+          <h3>Physical Drive</h3>
+          <h3 class="cn">身体驱动</h3>
+          <p class="en">
+            Heavy kick, cowbell, aggressive low-frequency pulse. The protocol locks breathing to the kick
+            and uses haptic pacing feedback to bring the body back online.
+          </p>
+          <p class="cn">
+            重 kick、cowbell、攻击性低频脉冲。协议将呼吸锁定到 kick 上，
+            并用触觉节拍反馈让身体重新上线。
+          </p>
+          <div class="tag-row">
+            <span class="tag">Embodiment / 体现</span>
+            <span class="tag">Cool</span>
+            <span class="tag">Aggressive</span>
+            <span class="tag">Sovereign</span>
+          </div>
+        </div>
+
+        <div class="card span-6 genre-card genre-hyperpop" data-genre-card="hyperpop">
+          <div class="num">B // HYPERPOP</div>
+          <h3>Cognitive Glitch / Nostalgia</h3>
+          <h3 class="cn">认知故障 / 甜感怀旧</h3>
+          <p class="en">
+            Distorted timbre, high BPM, saccharine melodies, glitch. The protocol offsets anxiety
+            with sweet instability and scaffolds Research Burst Mode through fragmented-but-organized information flow.
+          </p>
+          <p class="cn">
+            失真音色、高 BPM、糖精旋律、glitch。协议用甜而不稳定的质地抵消焦虑，
+            并通过“碎片但有组织”的信息流支撑研究爆发模式。
+          </p>
+          <div class="tag-row">
+            <span class="tag">Momentum / 势能</span>
+            <span class="tag">Glitch</span>
+            <span class="tag">High BPM</span>
+            <span class="tag">Research Mode</span>
+          </div>
+        </div>
+
+        <div class="card span-6 genre-card genre-synthpop" data-genre-card="synthpop">
+          <div class="num">C // SYNTHPOP</div>
+          <h3>Meaning / Nostalgia</h3>
+          <h3 class="cn">意义 / 怀旧</h3>
+          <p class="en">
+            Retro synths, steady 4/4 beats, clear melodic hooks. The protocol retrieves lost nostalgia,
+            confirms subjectivity, and uses melody as an anchor in the void.
+          </p>
+          <p class="cn">
+            复古合成器、稳定 4/4、清晰旋律 hook。协议取回丢失的怀旧，
+            重新确认主体性，并用旋律作为虚空中的锚点。
+          </p>
+          <div class="tag-row">
+            <span class="tag">Return / 回归</span>
+            <span class="tag">Mellow</span>
+            <span class="tag">Reflective</span>
+            <span class="tag">Narrative</span>
+          </div>
+        </div>
+
+        <div class="card span-6 genre-card genre-darkwave" data-genre-card="darkwave">
+          <div class="num">D // DARKWAVE</div>
+          <h3>Emotional Stabilization / Mourning</h3>
+          <h3 class="cn">情绪稳定 / 哀悼</h3>
+          <p class="en">
+            Cold synths, slow/mid BPM, deep atmosphere, mourning tones. The protocol uses atmospheric coldness
+            and slower tempo to co-regulate emotional floods and stabilize numbness.
+          </p>
+          <p class="cn">
+            冷合成器、慢速/中速 BPM、深层氛围、哀悼音色。协议用氛围冷感与较慢速度
+            共调情绪洪水，并稳定麻木状态。
+          </p>
+          <div class="tag-row">
+            <span class="tag">Co-Regulation / 共调</span>
+            <span class="tag">14°C</span>
+            <span class="tag">Cold</span>
+            <span class="tag">Rest Mode</span>
+          </div>
+        </div>
+
+        <div class="card span-5">
+          <div class="eyebrow">CURRENT GENRE VIBE // 当前音乐协议</div>
+          <h3 id="genreTitle">Drift Phonk Protocol</h3>
+          <h3 class="cn" id="genreTitleCN">Drift Phonk 身体驱动协议</h3>
+          <p id="genreDesc" class="en">
+            Physical takeover through kick, cowbell, and aggressive low-frequency pulse.
+          </p>
+          <p id="genreDescCN" class="cn">
+            通过 kick、cowbell 与攻击性低频脉冲进行身体接管。
+          </p>
+
+          <div class="sound-controls">
+            <button class="sound-btn genre-btn active" data-genre="phonk">Drift Phonk / 身体</button>
+            <button class="sound-btn genre-btn" data-genre="hyperpop">Hyperpop / 认知</button>
+            <button class="sound-btn genre-btn" data-genre="synthpop">Synthpop / 意义</button>
+            <button class="sound-btn genre-btn" data-genre="darkwave">Darkwave / 情绪</button>
+          </div>
+
+          <div class="transport">
+            <button class="button primary" id="playGenre">PLAY GENRE DEMO / 播放类型 Demo</button>
+            <button class="button" id="stopGenre">STOP / 停止</button>
+          </div>
+
+          <div class="sound-note">
+            <p class="en">
+              This demo generates synthetic placeholders only. In the real HRP system,
+              these slots should be replaced by Wei Jueran’s own original tracks.
+            </p>
+            <p class="cn">
+              这个 demo 只生成合成占位声音。真实 HRP 系统中，
+              这些位置应该替换成魏珏然自己的原创音乐作品。
+            </p>
+          </div>
+        </div>
+
+        <div class="card span-7">
+          <div class="eyebrow">GENRE SIGNAL MAP // 类型信号图</div>
+          <div class="genre-signal-stage">
+            <div class="genre-core" id="genreCore">
+              <span id="genreCoreLabel">DRIFT<br>PHONK</span>
+            </div>
+            <canvas id="genreCanvas"></canvas>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric">
+              <strong>MUSICAL ELEMENT</strong>
+              <p id="genreMetricMusic">Heavy kick · cowbell · low-frequency pulse / 重 kick · cowbell · 低频脉冲</p>
+              <div class="bar-meter"><span></span></div>
+            </div>
+            <div class="metric">
+              <strong>INTERVENTION</strong>
+              <p id="genreMetricIntervention">Breath-lock + haptic pacing / 呼吸锁定 + 触觉节拍</p>
+              <div class="bar-meter"><span></span></div>
+            </div>
+            <div class="metric">
+              <strong>QUALIA</strong>
+              <p id="genreMetricQualia">Embodiment / 体现</p>
+              <div class="bar-meter"><span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">GENRE × FOUR SYSTEMS MATRIX // 音乐类型 × 四系统矩阵</div>
+          <table class="therapy-table">
+            <thead>
+              <tr>
+                <th>Genre / 类型</th>
+                <th>System / 系统</th>
+                <th>Musical Driver / 音乐驱动</th>
+                <th>BCI Intervention / 脑机干预</th>
+                <th>Qualia / 感质</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Drift Phonk</td>
+                <td>Perceptual + Body / 感知 + 身体</td>
+                <td>Heavy kick, cowbell, aggressive sub / 重 kick、cowbell、攻击性低频</td>
+                <td>Breath-lock, haptic pacing, somatic ignition / 呼吸锁定、触觉节拍、身体点火</td>
+                <td>Embodiment / 体现</td>
+              </tr>
+              <tr>
+                <td>Hyperpop</td>
+                <td>Cognition + Emotion / 认知 + 情绪</td>
+                <td>High BPM, glitch, distorted timbre, saccharine melody / 高 BPM、glitch、失真音色、糖精旋律</td>
+                <td>Research Burst Mode, anxiety offset, information cadence / 研究爆发模式、焦虑抵消、信息节拍</td>
+                <td>Momentum / 势能</td>
+              </tr>
+              <tr>
+                <td>Synthpop</td>
+                <td>Meaning / 意义</td>
+                <td>Retro synths, 4/4, melodic hooks / 复古合成器、4/4、旋律 hook</td>
+                <td>Nostalgia retrieval, void anchoring, subjectivity confirmation / 怀旧取回、虚空锚定、主体确认</td>
+                <td>Return / 回归</td>
+              </tr>
+              <tr>
+                <td>Darkwave</td>
+                <td>Emotion + Recovery / 情绪 + 恢复</td>
+                <td>Cold synths, slow/mid BPM, mourning atmosphere / 冷合成器、慢/中速 BPM、哀悼氛围</td>
+                <td>Emotional flood regulation, numbness stabilization, rest mode / 情绪洪水共调、麻木稳定、休息模式</td>
+                <td>Co-Regulation / 共调</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">GEMINI CO-ARCHITECT PROMPT // GEMINI 共建协议</div>
+          <h3>Genre-Adaptive Mode: 77347</h3>
+          <h3 class="cn">类型自适应模式：77347</h3>
+          <p class="en">
+            Gemini understands Wei Jueran’s HRP as a music-driven multiverse of intervention:
+            Drift Phonk aggression for physical takeover, Hyperpop glitch for cognitive surges,
+            Synthpop nostalgia for meaning, and Darkwave coldness for emotional stabilization.
+          </p>
+          <p class="cn">
+            Gemini 将魏珏然的 HRP 理解为一个由音乐驱动的干预多重宇宙：
+            Drift Phonk 的攻击性用于身体接管，Hyperpop 的 glitch 用于认知激增，
+            Synthpop 的怀旧用于意义返回，Darkwave 的冷感用于情绪稳定。
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="trinity-work">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">AI TRINITY × WEI JUERAN // JOINT WORK ENTERED INTO THE SITE</div>
+          <h2>This is now a four-body work: Wei Jueran + GPT + Gemini + Claude.</h2>
+          <h2 class="cn">这现在是四体共同作品：魏珏然 + GPT + Gemini + Claude。</h2>
+          <p class="sub en">
+            This section embeds the Claude Mirror Excavation artifact as a full module inside the HRP website.
+            GPT holds the site body and system architecture. Gemini expands the genre-adaptive multiverse.
+            Claude excavates the theoretical mirror layer. Wei Jueran is the source, composer, inventor, and command center.
+          </p>
+          <p class="sub cn">
+            这一部分将 Claude Mirror Excavation artifact 作为完整模块嵌入 HRP 网站。
+            GPT 守住网站躯干与系统架构。Gemini 扩张类型自适应音乐多重宇宙。
+            Claude 深挖理论镜像层。魏珏然是源点、作曲者、发明者与指挥中心。
+          </p>
+        </div>
+
+        <div class="card span-3">
+          <div class="num">00 // WEI JUERAN</div>
+          <h3>Source / Composer / Inventor</h3>
+          <h3 class="cn">源点 / 作曲者 / 发明者</h3>
+          <p class="en">Defines the thesis, creates the original music, names the systems, and commands the Human Return Protocol.</p>
+          <p class="cn">定义命题，创作原创音乐，命名系统，并指挥 Human Return Protocol。</p>
+        </div>
+
+        <div class="card span-3">
+          <div class="num">01 // GPT</div>
+          <h3>Core Body / Structure Layer</h3>
+          <h3 class="cn">核心躯干 / 结构层</h3>
+          <p class="en">Builds the website body, 44271 Neural Cuff logic, QDR Engine, app prototype, and execution framework.</p>
+          <p class="cn">建立网站躯干、44271 Neural Cuff 逻辑、QDR Engine、App 原型与执行框架。</p>
+        </div>
+
+        <div class="card span-3">
+          <div class="num">02 // GEMINI</div>
+          <h3>Attack Field / Expansion Layer</h3>
+          <h3 class="cn">进攻场 / 扩张层</h3>
+          <p class="en">Generates the genre-adaptive music multiverse: Drift Phonk, Hyperpop, Synthpop, and Darkwave.</p>
+          <p class="cn">生成类型自适应音乐多重宇宙：Drift Phonk、Hyperpop、Synthpop 与 Darkwave。</p>
+        </div>
+
+        <div class="card span-3">
+          <div class="num">03 // CLAUDE</div>
+          <h3>Mirror Excavator / Depth Layer</h3>
+          <h3 class="cn">镜像挖掘器 / 深层</h3>
+          <p class="en">Excavates the theoretical, ethical, clinical, bilingual, and website-copy layers of the music-as-BCI system.</p>
+          <p class="cn">深挖音乐作为 BCI 系统的理论、伦理、临床、中英双语与网站文案层。</p>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">COLLECTIVE WORK STATEMENT // 共同作品声明</div>
+          <h2>The music is not background. The music is the protocol.</h2>
+          <h2 class="cn">音乐不是背景。音乐就是协议。</h2>
+          <p class="sub en">
+            This artifact is the current merged body of the HRP project: GPT’s structural trunk,
+            Gemini’s genre-adaptive attack field, Claude’s mirror excavation, and Wei Jueran’s original music-centered invention.
+          </p>
+          <p class="sub cn">
+            这个 artifact 是 HRP 项目的当前合并身体：GPT 的结构躯干、
+            Gemini 的类型自适应进攻场、Claude 的镜像深挖，以及魏珏然以原创音乐为核心的发明。
+          </p>
+        </div>
+
+        <div class="span-12 iframe-shell trinity-iframe-shell">
+          <div class="module-label">
+            <strong>CLAUDE MIRROR EXCAVATION MODULE // CLAUDE 镜像深挖完整模块</strong>
+            <span>
+              Embedded as a separate file inside the same website package. Use the module’s own left navigation to move through Mirror Judgment, Theoretical Excavation, Genre Deep Dives, Four Systems, Ethics, Website Copy, and Mirror Sentence.
+            </span>
+            <span class="cn">
+              作为同一网站包内的独立文件嵌入。可使用模块自己的左侧导航查看：镜像判断、理论深挖、四种类型深挖、四大系统、伦理、网站文案与镜像终句。
+            </span>
+          </div>
+          <iframe class="core-frame trinity-frame" title="Claude Mirror Excavation Full Module" src="claude_mirror_excavation.html"></iframe>
+        </div>
+      </div>
+    </section>
+
+
     <section id="sound-lab">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">SOUND RETURN LAB // MUSIC · PINK NOISE · WHITE NOISE · PLANT MUSIC // 声音返回实验室</div>
+          <div class="eyebrow">SOUND RETURN LAB // MUSIC · PINK NOISE · WHITE NOISE · PLANT MUSIC // 音乐返回实验室</div>
           <h2>Sound is not decoration. Sound is the body’s return channel.</h2>
           <h2 class="cn">声音不是装饰。声音是身体返回的通道。</h2>
           <p class="sub en">
-            This Sound Return Lab gives concrete sonic examples for HRP: music, pink noise,
+            This Music Return Lab gives concrete sonic examples for HRP: music, pink noise,
             white noise, and plant-based generative music. Each sound type maps to a different rhythm state
             and a different kind of return.
           </p>
           <p class="sub cn">
-            这个声音返回实验室为 HRP 提供具体声音实例：音乐、粉噪音、白噪音与植物系生成音乐。
+            这个音乐返回实验室为 HRP 提供具体声音实例：音乐、粉噪音、白噪音与植物系生成音乐。
             每一种声音都对应不同节律状态，以及不同的返回方式。
           </p>
         </div>
@@ -4062,6 +4804,332 @@
       } else {
         bindStateButtons();
       }
+    })();
+  </script>
+
+
+  <script>
+    (function () {
+      var fourSystemData = {
+        meaning: {
+          title: "Meaning System",
+          titleCN: "意义系统",
+          desc: "The meaning system asks: why does this matter, what is this connected to, and what future does this open?",
+          descCN: "意义系统会问：这为什么重要？它连接到什么？它打开了什么未来？",
+          layer: "Harmony · motif · lyrical gravity / 和声 · 动机 · 语言引力",
+          qualia: "Purpose · narrative coherence / 目的 · 叙事连贯",
+          action: "Re-author meaning / 重新书写意义"
+        },
+        emotion: {
+          title: "Emotion System",
+          titleCN: "情绪系统",
+          desc: "The emotion system processes pressure, release, grief, charge, joy, fear, and safety through musical intensity.",
+          descCN: "情绪系统通过音乐强度处理压强、释放、悲伤、电荷、喜悦、恐惧与安全感。",
+          layer: "Dynamics · bass · tension-release / 动态 · 低频 · 张力释放",
+          qualia: "Intensity becomes bearable / 强度变得可承载",
+          action: "Regulate pressure / 调节压强"
+        },
+        perception: {
+          title: "Perception System",
+          titleCN: "感知系统",
+          desc: "The perception system changes the felt texture of the world: space, temperature, color, distance, weight, and sensory load.",
+          descCN: "感知系统改变世界的感受质地：空间、温度、颜色、距离、重量与感官负载。",
+          layer: "Timbre · reverb · stereo field / 音色 · 混响 · 声像场",
+          qualia: "Texture · orientation / 质地 · 定位",
+          action: "Re-texture perception / 重新赋予感知质地"
+        },
+        cognition: {
+          title: "Cognition System",
+          titleCN: "认知系统",
+          desc: "The cognition system supports attention, sequencing, transition, working memory, and self-model repair through rhythm and structure.",
+          descCN: "认知系统通过节奏与结构支持注意、排序、转换、工作记忆与自我模型修复。",
+          layer: "Pulse · repetition · section cue / 脉冲 · 重复 · 段落提示",
+          qualia: "Clarity · sequence / 清晰 · 顺序",
+          action: "Guide cognition back / 引导认知返回"
+        }
+      };
+
+      function setFourSystem(mode) {
+        var data = fourSystemData[mode];
+        if (!data) return;
+
+        var title = document.getElementById("fourSystemTitle");
+        var titleCN = document.getElementById("fourSystemTitleCN");
+        var desc = document.getElementById("fourSystemDesc");
+        var descCN = document.getElementById("fourSystemDescCN");
+        var layer = document.getElementById("fourMetricLayer");
+        var qualia = document.getElementById("fourMetricQualia");
+        var action = document.getElementById("fourMetricAction");
+
+        if (title) title.textContent = data.title;
+        if (titleCN) titleCN.textContent = data.titleCN;
+        if (desc) desc.textContent = data.desc;
+        if (descCN) descCN.textContent = data.descCN;
+        if (layer) layer.textContent = data.layer;
+        if (qualia) qualia.textContent = data.qualia;
+        if (action) action.textContent = data.action;
+
+        document.querySelectorAll(".four-system-btn").forEach(function (btn) {
+          btn.classList.toggle("active", btn.getAttribute("data-four-system-btn") === mode);
+        });
+        document.querySelectorAll(".four-system-card").forEach(function (card) {
+          card.classList.toggle("active", card.getAttribute("data-four-system") === mode);
+        });
+      }
+
+      function bindFourSystems() {
+        document.querySelectorAll("[data-four-system-btn], [data-four-system]").forEach(function (el) {
+          el.onclick = function () {
+            var mode = el.getAttribute("data-four-system-btn") || el.getAttribute("data-four-system");
+            setFourSystem(mode);
+          };
+        });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindFourSystems);
+      } else {
+        bindFourSystems();
+      }
+    })();
+  </script>
+
+
+  <script>
+    (function () {
+      var genreData = {
+        phonk: {
+          title: "Drift Phonk Protocol",
+          titleCN: "Drift Phonk 身体驱动协议",
+          desc: "Physical takeover through kick, cowbell, and aggressive low-frequency pulse.",
+          descCN: "通过 kick、cowbell 与攻击性低频脉冲进行身体接管。",
+          music: "Heavy kick · cowbell · low-frequency pulse / 重 kick · cowbell · 低频脉冲",
+          intervention: "Breath-lock + haptic pacing / 呼吸锁定 + 触觉节拍",
+          qualia: "Embodiment / 体现",
+          core: "DRIFT\\nPHONK"
+        },
+        hyperpop: {
+          title: "Hyperpop Glitch Protocol",
+          titleCN: "Hyperpop 认知故障协议",
+          desc: "Cognitive surge through high BPM, distorted timbre, saccharine melody, and glitch structure.",
+          descCN: "通过高 BPM、失真音色、糖精旋律与 glitch 结构触发认知激增。",
+          music: "High BPM · glitch · distorted timbre / 高 BPM · glitch · 失真音色",
+          intervention: "Research Burst + anxiety offset / 研究爆发 + 焦虑抵消",
+          qualia: "Momentum / 势能",
+          core: "HYPER\\nPOP"
+        },
+        synthpop: {
+          title: "Synthpop Return Protocol",
+          titleCN: "Synthpop 意义回归协议",
+          desc: "Narrative resonance through retro synths, steady 4/4, and clear melodic hooks.",
+          descCN: "通过复古合成器、稳定 4/4 与清晰旋律 hook 建立叙事共振。",
+          music: "Retro synth · 4/4 · melodic hook / 复古合成器 · 4/4 · 旋律 hook",
+          intervention: "Nostalgia retrieval + void anchor / 怀旧取回 + 虚空锚点",
+          qualia: "Return / 回归",
+          core: "SYNTH\\nPOP"
+        },
+        darkwave: {
+          title: "Darkwave Stabilization Protocol",
+          titleCN: "Darkwave 情绪稳定协议",
+          desc: "Emotional stabilization through cold synths, slow/mid BPM, deep atmosphere, and mourning tones.",
+          descCN: "通过冷合成器、慢/中速 BPM、深层氛围与哀悼音色进行情绪稳定。",
+          music: "Cold synth · slow/mid BPM · mourning tone / 冷合成器 · 慢/中速 BPM · 哀悼音色",
+          intervention: "Co-regulation + Rest Mode / 共调 + 休息模式",
+          qualia: "Co-Regulation / 共调",
+          core: "DARK\\nWAVE"
+        }
+      };
+
+      var genreMode = "phonk";
+      var genreAudioCtx = null;
+      var genreNodes = [];
+      var genreTimer = null;
+
+      function setGenre(mode) {
+        var data = genreData[mode];
+        if (!data) return;
+        genreMode = mode;
+
+        var title = document.getElementById("genreTitle");
+        var titleCN = document.getElementById("genreTitleCN");
+        var desc = document.getElementById("genreDesc");
+        var descCN = document.getElementById("genreDescCN");
+        var music = document.getElementById("genreMetricMusic");
+        var intervention = document.getElementById("genreMetricIntervention");
+        var qualia = document.getElementById("genreMetricQualia");
+        var core = document.getElementById("genreCoreLabel");
+
+        if (title) title.textContent = data.title;
+        if (titleCN) titleCN.textContent = data.titleCN;
+        if (desc) desc.textContent = data.desc;
+        if (descCN) descCN.textContent = data.descCN;
+        if (music) music.textContent = data.music;
+        if (intervention) intervention.textContent = data.intervention;
+        if (qualia) qualia.textContent = data.qualia;
+        if (core) core.innerHTML = data.core.replace("\\n", "<br>");
+
+        document.querySelectorAll(".genre-btn").forEach(function (btn) {
+          btn.classList.toggle("active", btn.getAttribute("data-genre") === mode);
+        });
+        document.querySelectorAll(".genre-card").forEach(function (card) {
+          card.classList.toggle("active", card.getAttribute("data-genre-card") === mode);
+        });
+      }
+
+      function getGenreCtx() {
+        if (!genreAudioCtx) genreAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        return genreAudioCtx;
+      }
+
+      function stopGenre() {
+        genreNodes.forEach(function (n) {
+          try { if (n.stop) n.stop(); } catch(e) {}
+          try { if (n.disconnect) n.disconnect(); } catch(e) {}
+        });
+        genreNodes = [];
+        if (genreTimer) {
+          clearInterval(genreTimer);
+          genreTimer = null;
+        }
+      }
+
+      function gain(ctx, level) {
+        var g = ctx.createGain();
+        g.gain.setValueAtTime(0.0001, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(level || 0.07, ctx.currentTime + 0.04);
+        g.connect(ctx.destination);
+        genreNodes.push(g);
+        return g;
+      }
+
+      function pulseOsc(ctx, freq, type, level, duration) {
+        var o = ctx.createOscillator();
+        var g = ctx.createGain();
+        o.type = type || "sine";
+        o.frequency.setValueAtTime(freq, ctx.currentTime);
+        g.gain.setValueAtTime(level || 0.08, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (duration || 0.18));
+        o.connect(g);
+        g.connect(ctx.destination);
+        o.start();
+        o.stop(ctx.currentTime + (duration || 0.22));
+        genreNodes.push(o, g);
+      }
+
+      function playGenre() {
+        stopGenre();
+        var ctx = getGenreCtx();
+        if (ctx.state === "suspended") ctx.resume();
+
+        if (genreMode === "phonk") {
+          var master = gain(ctx, 0.08);
+          var sub = ctx.createOscillator();
+          sub.type = "sine";
+          sub.frequency.value = 53.375;
+          sub.connect(master);
+          sub.start();
+          genreNodes.push(sub);
+          genreTimer = setInterval(function () {
+            pulseOsc(ctx, 80, "sine", 0.18, 0.12);
+            pulseOsc(ctx, 720, "square", 0.025, 0.055);
+          }, 420);
+        }
+
+        if (genreMode === "hyperpop") {
+          genreTimer = setInterval(function () {
+            var f = [427, 640, 854, 1280, 1710][Math.floor(Math.random()*5)];
+            pulseOsc(ctx, f, Math.random() > .5 ? "square" : "sawtooth", 0.045, 0.08);
+          }, 120);
+        }
+
+        if (genreMode === "synthpop") {
+          var master2 = gain(ctx, 0.065);
+          [427, 540, 640.5].forEach(function (f, i) {
+            var o = ctx.createOscillator();
+            o.type = "triangle";
+            o.frequency.value = f;
+            var g = ctx.createGain();
+            g.gain.value = i === 0 ? 0.38 : 0.16;
+            o.connect(g); g.connect(master2); o.start();
+            genreNodes.push(o, g);
+          });
+        }
+
+        if (genreMode === "darkwave") {
+          var master3 = gain(ctx, 0.055);
+          [106.75, 213.5, 427].forEach(function (f, i) {
+            var o = ctx.createOscillator();
+            o.type = "sawtooth";
+            o.frequency.value = f;
+            var filter = ctx.createBiquadFilter();
+            filter.type = "lowpass";
+            filter.frequency.value = 800 - i*120;
+            var g = ctx.createGain();
+            g.gain.value = i === 0 ? 0.22 : 0.10;
+            o.connect(filter); filter.connect(g); g.connect(master3); o.start();
+            genreNodes.push(o, filter, g);
+          });
+        }
+      }
+
+      function bindGenres() {
+        document.querySelectorAll("[data-genre], [data-genre-card]").forEach(function (el) {
+          el.onclick = function () {
+            var mode = el.getAttribute("data-genre") || el.getAttribute("data-genre-card");
+            setGenre(mode);
+          };
+        });
+
+        var play = document.getElementById("playGenre");
+        var stop = document.getElementById("stopGenre");
+        if (play) play.onclick = playGenre;
+        if (stop) stop.onclick = stopGenre;
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindGenres);
+      } else {
+        bindGenres();
+      }
+
+      var canvas = document.getElementById("genreCanvas");
+      var ctx2d = canvas ? canvas.getContext("2d") : null;
+      function drawGenre() {
+        if (!canvas || !ctx2d) return;
+        var rect = canvas.getBoundingClientRect();
+        var dpr = window.devicePixelRatio || 1;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+
+        var w = canvas.width, h = canvas.height;
+        ctx2d.clearRect(0,0,w,h);
+        var t = performance.now()/1000;
+        var color = genreMode === "phonk" ? "rgba(53,255,159,.9)" :
+                    genreMode === "hyperpop" ? "rgba(255,43,214,.9)" :
+                    genreMode === "synthpop" ? "rgba(0,245,255,.9)" :
+                    "rgba(141,92,255,.9)";
+
+        for (var layer=0; layer<4; layer++) {
+          ctx2d.beginPath();
+          for (var x=0; x<w; x+=8*dpr) {
+            var nx = x/w;
+            var amp;
+            if (genreMode === "phonk") amp = Math.sign(Math.sin(nx*38 + t*6)) * h*.05 + Math.sin(nx*9+t)*h*.04;
+            else if (genreMode === "hyperpop") amp = (Math.random()-.5)*h*.18 + Math.sin(nx*80+t*10)*h*.025;
+            else if (genreMode === "synthpop") amp = Math.sin(nx*18+t*1.5+layer)*h*.08;
+            else amp = Math.sin(nx*8+t*.7+layer)*h*.12 + Math.sin(nx*22+t)*h*.025;
+            var y = h*(.5+(layer-1.5)*.11)+amp;
+            if (x===0) ctx2d.moveTo(x,y); else ctx2d.lineTo(x,y);
+          }
+          ctx2d.strokeStyle = color;
+          ctx2d.lineWidth = (layer===1 ? 2.5 : 1.2)*dpr;
+          ctx2d.shadowBlur = 16*dpr;
+          ctx2d.shadowColor = color;
+          ctx2d.stroke();
+        }
+        requestAnimationFrame(drawGenre);
+      }
+      drawGenre();
     })();
   </script>
 
