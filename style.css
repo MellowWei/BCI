@@ -403,6 +403,44 @@ h1 {
     0 0 44px rgba(0, 245, 255, 0.12);
 }
 
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 980px;
+  margin: 0 0 26px;
+}
+
+.status-card {
+  border: 1px solid rgba(0, 245, 255, 0.22);
+  border-radius: 18px;
+  padding: 13px 15px;
+  background:
+    linear-gradient(90deg, rgba(0, 245, 255, 0.07), rgba(255, 43, 214, 0.045)),
+    rgba(8, 10, 28, 0.58);
+  box-shadow:
+    0 0 22px rgba(0, 245, 255, 0.08),
+    inset 0 0 18px rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(16px);
+}
+
+.status-label {
+  margin-bottom: 7px;
+  color: var(--green);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(53, 255, 159, 0.48);
+}
+
+.status-value {
+  color: rgba(244, 247, 255, 0.86);
+  font-size: 12px;
+  line-height: 1.45;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -628,10 +666,6 @@ p {
   box-shadow:
     var(--shadow-deep),
     0 0 34px rgba(0, 245, 255, 0.08);
-}
-
-.terminal-panel {
-  position: relative;
 }
 
 .terminal-title {
@@ -939,6 +973,25 @@ p {
   text-shadow: 0 0 12px rgba(255, 43, 214, 0.45);
 }
 
+.qdr-loop {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.qdr-return-card {
+  margin-top: 18px;
+  border-color: rgba(53, 255, 159, 0.32);
+  background:
+    linear-gradient(90deg, rgba(53, 255, 159, 0.08), rgba(0, 245, 255, 0.06)),
+    rgba(8, 10, 28, 0.66);
+}
+
+.qdr-manifesto {
+  border-color: rgba(255, 43, 214, 0.32);
+  background:
+    linear-gradient(135deg, rgba(255, 43, 214, 0.09), rgba(0, 245, 255, 0.06)),
+    rgba(8, 10, 28, 0.68);
+}
+
 .footer {
   min-height: 72vh;
 
@@ -954,6 +1007,12 @@ p {
 .footer .sub {
   margin-left: auto;
   margin-right: auto;
+}
+
+.mission-grid {
+  margin-top: 34px;
+  margin-bottom: 28px;
+  text-align: left;
 }
 
 @media (max-width: 900px) {
@@ -985,7 +1044,9 @@ p {
   .system-loop,
   .state-lab,
   .prototype,
-  .dashboard {
+  .dashboard,
+  .qdr-loop,
+  .status-grid {
     grid-template-columns: 1fr;
   }
 
