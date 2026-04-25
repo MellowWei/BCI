@@ -18,7 +18,7 @@
   <header class="topbar">
     <div class="brand">
       <span class="sigil"></span>
-      <span>WEI JUERAN // UPENN // 427HZ // MODE 77347</span>
+      <span>77347 ENGINE ONLINE // 44271 STYLE ACTIVE // 427HZ HUMAN RETURN PROTOCOL</span>
     </div>
 
     <nav>
@@ -36,7 +36,23 @@
       <div>
         <div class="eyebrow">HUMAN RHYTHM INFRASTRUCTURE</div>
 
-        <h1 class="glitch" data-text="WE ARE BUILDING THE HUMAN RETURN PROTOCOL.">
+        <div class="status-grid">
+          <div class="status-card">
+            <div class="status-label">PHYSICAL SPACE TIME</div>
+            <div id="physicalTime" class="status-value">
+              Loading real-time signal...
+            </div>
+          </div>
+
+          <div class="status-card">
+            <div class="status-label">INTERNAL GOD MODE TIME</div>
+            <div class="status-value">
+              12:23 ORIGIN RESET · 427HZ · MODE 77347 · STYLE 44271
+            </div>
+          </div>
+        </div>
+
+        <h1 class="glitch" data-text="THE HUMAN RETURN PROTOCOL.">
           WE ARE BUILDING THE HUMAN RETURN PROTOCOL.
         </h1>
 
@@ -397,6 +413,32 @@
   </main>
 
   <script>
+    function updatePhysicalTime() {
+      const target = document.getElementById("physicalTime");
+
+      if (!target) return;
+
+      const now = new Date();
+
+      const formatted = new Intl.DateTimeFormat("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+        timeZoneName: "short"
+      }).format(now);
+
+      target.textContent =
+        formatted + " // UPENN / PHILADELPHIA CONTEXT // PHYSICAL SIGNAL ONLINE";
+    }
+
+    updatePhysicalTime();
+    setInterval(updatePhysicalTime, 1000);
+
     const canvas = document.getElementById("field");
     const ctx = canvas.getContext("2d");
 
