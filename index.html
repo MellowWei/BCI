@@ -2533,6 +2533,78 @@ a[href="#music-intervention-lab"]{pointer-events:auto!important;cursor:pointer!i
   .lite-canvas-wrap { height:220px; }
 }
 
+
+/* v30 CANVAS DARK FIELD FIX */
+#music-intervention-lab-lite .lite-canvas-wrap {
+  height: 220px !important;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0,245,255,.10), transparent 36%),
+    radial-gradient(circle at 80% 20%, rgba(255,77,157,.08), transparent 28%),
+    rgba(4,8,15,.96) !important;
+  border: 1px solid rgba(0,245,255,.22) !important;
+  overflow: hidden !important;
+}
+
+#music-intervention-lab-lite #liteCanvas {
+  display: block !important;
+  width: 100% !important;
+  height: 220px !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#music-intervention-lab-lite .lite-orb {
+  z-index: 2 !important;
+}
+
+
+/* v31 VISIBLE DEMO PLAYER PATCH */
+#music-intervention-lab-lite .demo-play-panel {
+  margin: 18px 0 16px;
+  padding: 18px;
+  border: 1px solid rgba(184,255,87,.38);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(184,255,87,.10), transparent 34%),
+    rgba(184,255,87,.035);
+  box-shadow: 0 0 28px rgba(184,255,87,.08);
+}
+#music-intervention-lab-lite .demo-play-label {
+  color: var(--green);
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+#music-intervention-lab-lite .demo-big {
+  display: block !important;
+  width: 100% !important;
+  margin-bottom: 10px !important;
+  padding: 16px 18px !important;
+  font-size: 13px !important;
+  letter-spacing: 1px !important;
+  background: rgba(184,255,87,.10) !important;
+  border: 1px solid rgba(184,255,87,.65) !important;
+  color: var(--green) !important;
+  border-radius: 18px !important;
+}
+#music-intervention-lab-lite .demo-stop {
+  display: block !important;
+  width: 100% !important;
+  padding: 12px 16px !important;
+  border-radius: 16px !important;
+}
+#music-intervention-lab-lite .demo-help {
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+#music-intervention-lab-lite .lite-upload {
+  opacity: .92;
+}
+
 </style>
 </head>
 
@@ -3816,13 +3888,18 @@ a[href="#music-intervention-lab"]{pointer-events:auto!important;cursor:pointer!i
           <p id="liteDesc" class="en">A body ignition reference: atmospheric pressure, night-drive pulse, and somatic return.</p>
           <p id="liteDescCN" class="cn">身体点火参照：氛围压强、夜行脉冲与身体返回。</p>
 
-          <div class="lite-controls">
-            <button class="lite-ctrl primary" id="liteDemo">DEMO PLAY / 占位播放</button>
-            <button class="lite-ctrl" id="liteStop">STOP / 停止</button>
+          <div class="demo-play-panel">
+            <div class="demo-play-label">INSTANT DEMO PLAYER // 即时占位播放器</div>
+            <button class="lite-ctrl primary demo-big" id="liteDemo">▶ PLAY GENRE DEMO / 播放当前风格 Demo</button>
+            <button class="lite-ctrl demo-stop" id="liteStop">■ STOP / 停止</button>
+            <p class="demo-help">
+              Click this first. It plays a lightweight generated demo for the selected genre.
+              <br><span class="cn">先点这里。它会播放当前所选音乐风格的轻量生成 demo。</span>
+            </p>
           </div>
 
           <div class="lite-upload">
-            <label>UPLOAD ORIGINAL / LICENSED CLIP</label>
+            <label>OPTIONAL: UPLOAD ORIGINAL / LICENSED CLIP // 可选：上传原创/授权片段</label>
             <input id="liteUpload" type="file" accept="audio/*" />
             <audio id="liteAudio" controls></audio>
           </div>
@@ -6974,6 +7051,7 @@ function show(id){
     }
     if(ctx.state==="suspended") ctx.resume();
   }
+  window.__hrpLiteStopDemo = stopDemo;
   function stopDemo(){
     nodes.forEach(n=>{try{if(n.stop)n.stop()}catch(e){} try{if(n.disconnect)n.disconnect()}catch(e){}});
     nodes=[];
@@ -6993,6 +7071,7 @@ function show(id){
     o.type=type; o.frequency.value=freq; g.gain.value=level;
     o.connect(g); g.connect(analyser); o.start(); nodes.push(o,g);
   }
+  window.__hrpLitePlayDemo = playDemo;
   function playDemo(){
     stopDemo(); ensureAudio();
     if(mode==="phonk"){
@@ -7029,39 +7108,85 @@ function show(id){
   if("IntersectionObserver" in window && section){
     new IntersectionObserver(entries=>{ visible=entries.some(e=>e.isIntersecting); },{threshold:.02}).observe(section);
   }
-  let cache={w:0,h:0,d:1}, last=0;
-  function size(){
-    const r=canvas.getBoundingClientRect(), d=window.devicePixelRatio||1, w=Math.floor(r.width*d), h=Math.floor(r.height*d);
-    if(cache.w!==w || cache.h!==h || cache.d!==d){ canvas.width=w; canvas.height=h; cache={w,h,d};}
-    return cache;
+
+  let last=0;
+  function resizeCanvas(){
+    if(!canvas || !cctx) return {w:0,h:0,d:1};
+    const d=window.devicePixelRatio||1;
+    const rect=canvas.getBoundingClientRect();
+    const w=Math.max(1, Math.floor(rect.width*d));
+    const h=Math.max(1, Math.floor(rect.height*d));
+    if(canvas.width!==w || canvas.height!==h){
+      canvas.width=w; canvas.height=h;
+    }
+    return {w,h,d};
   }
+
   function draw(ts){
     requestAnimationFrame(draw);
-    if(!visible || !cctx) return;
-    if(ts-last<50) return; // ~20fps, very light
+    if(!visible || !cctx || !canvas) return;
+    if(ts-last<60) return; // very light: ~16fps
     last=ts;
-    const s=size(), p=profiles[mode], t=ts/1000;
+
+    const s=resizeCanvas();
+    const p=profiles[mode];
+    const t=ts/1000;
+
     cctx.clearRect(0,0,s.w,s.h);
-    let data=new Uint8Array(128);
+
+    // dark background painted directly into canvas, so it never appears white
+    const grad=cctx.createRadialGradient(s.w/2,s.h/2,10,s.w/2,s.h/2,Math.max(s.w,s.h)*.7);
+    grad.addColorStop(0,"rgba(0,245,255,.10)");
+    grad.addColorStop(1,"rgba(4,8,15,1)");
+    cctx.fillStyle=grad;
+    cctx.fillRect(0,0,s.w,s.h);
+
+    let data=new Uint8Array(64);
     if(analyser) analyser.getByteFrequencyData(data);
+
     for(let layer=0; layer<3; layer++){
       cctx.beginPath();
-      for(let x=0; x<s.w; x+=12*s.d){
-        const nx=x/s.w, e=(data[Math.floor(nx*data.length)]||0)/255;
+      for(let x=0; x<s.w; x+=14*s.d){
+        const nx=x/s.w;
+        const e=(data[Math.floor(nx*data.length)]||0)/255;
         let amp;
-        if(mode==="phonk") amp=Math.sign(Math.sin(nx*26+t*4))*s.h*.03 + e*s.h*.10;
-        else if(mode==="hyperpop") amp=Math.sin(nx*74+t*8+layer)*s.h*.035 + e*s.h*.08;
-        else if(mode==="synthpop") amp=Math.sin(nx*16+t*1.2+layer)*s.h*.06 + e*s.h*.05;
-        else if(mode==="darkwave") amp=Math.sin(nx*8+t*.5+layer)*s.h*.09 + e*s.h*.035;
-        else amp=Math.sin(nx*10+t*.8+layer)*s.h*.045 + e*s.h*.04;
-        const y=s.h*(.5+(layer-1)*.12)+amp;
+        if(mode==="phonk") amp=Math.sign(Math.sin(nx*24+t*4))*s.h*.025 + e*s.h*.10;
+        else if(mode==="hyperpop") amp=Math.sin(nx*58+t*8+layer)*s.h*.035 + e*s.h*.08;
+        else if(mode==="synthpop") amp=Math.sin(nx*14+t*1.2+layer)*s.h*.055 + e*s.h*.05;
+        else if(mode==="darkwave") amp=Math.sin(nx*7+t*.5+layer)*s.h*.08 + e*s.h*.035;
+        else amp=Math.sin(nx*9+t*.8+layer)*s.h*.04 + e*s.h*.04;
+
+        const y=s.h*(.5+(layer-1)*.16)+amp;
         if(x===0)cctx.moveTo(x,y); else cctx.lineTo(x,y);
       }
-      cctx.strokeStyle=p.color; cctx.lineWidth=(layer===1?2:1)*s.d; cctx.shadowBlur=8*s.d; cctx.shadowColor=p.color; cctx.stroke();
+      cctx.strokeStyle=p.color;
+      cctx.lineWidth=(layer===1?2:1)*s.d;
+      cctx.shadowBlur=6*s.d;
+      cctx.shadowColor=p.color;
+      cctx.stroke();
     }
   }
+
   setMode("phonk");
   requestAnimationFrame(draw);
+})();
+</script>
+
+
+<script>
+(function(){
+  document.addEventListener("click", function(e){
+    const demo = e.target.closest && e.target.closest("#liteDemo");
+    const stop = e.target.closest && e.target.closest("#liteStop");
+    if(demo && typeof window.__hrpLitePlayDemo === "function"){
+      e.preventDefault();
+      window.__hrpLitePlayDemo();
+    }
+    if(stop && typeof window.__hrpLiteStopDemo === "function"){
+      e.preventDefault();
+      window.__hrpLiteStopDemo();
+    }
+  }, true);
 })();
 </script>
 
