@@ -2007,6 +2007,236 @@
       box-shadow: 0 0 32px rgba(53,255,159,.13), inset 0 0 28px rgba(0,245,255,.04);
     }
 
+  
+
+    /* RESPONSIVE LOCK v16: keep the top header/nav identity unchanged on desktop; make layout adaptive on smaller screens */
+    *, *::before, *::after { box-sizing: border-box; }
+    img, video, canvas, iframe { max-width: 100%; }
+
+    .topbar {
+      min-width: 0;
+    }
+
+    .brand,
+    nav {
+      min-width: 0;
+    }
+
+    @media (max-width: 1240px) {
+      main {
+        width: min(100% - 28px, 1120px);
+      }
+      .grid {
+        gap: 14px;
+      }
+      .topbar {
+        gap: 14px;
+        padding: 12px 16px;
+      }
+      nav a {
+        font-size: 9px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      /* Do not stack/move the header sections; allow horizontal scroll instead. */
+      .topbar {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        gap: 18px;
+        padding: 12px 14px;
+        min-height: 72px;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .topbar::-webkit-scrollbar { height: 4px; }
+      .topbar::-webkit-scrollbar-thumb { background: rgba(0,245,255,.32); border-radius: 999px; }
+
+      .brand {
+        flex: 0 0 auto;
+        white-space: nowrap;
+      }
+
+      nav {
+        flex: 0 0 auto;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        white-space: nowrap;
+        gap: 12px;
+      }
+
+      nav a {
+        flex: 0 0 auto;
+      }
+
+      section {
+        padding-top: 130px !important;
+        min-height: auto;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 900px) {
+      main {
+        width: calc(100% - 20px);
+      }
+
+      .grid,
+      .system-loop,
+      .state-lab,
+      .status-grid,
+      .hardware-flow,
+      .prototype,
+      .cuff-stage,
+      .metric-grid,
+      .gemini-grid,
+      .claude-grid,
+      .claude-theory-grid,
+      .claude-prompt-grid,
+      .claude-click-map {
+        grid-template-columns: 1fr !important;
+      }
+
+      .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 {
+        grid-column: 1 / -1 !important;
+      }
+
+      .card,
+      .status-card,
+      .loop-item,
+      .metric,
+      .source-card,
+      .claude-accordion-item,
+      .claude-theory-card,
+      .claude-prompt-card {
+        border-radius: 20px;
+      }
+
+      .sound-visual,
+      .genre-signal-stage,
+      .breakbeat-stage,
+      .six-stage,
+      .music-bci-map {
+        height: 320px !important;
+      }
+
+      .therapy-table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .topbar {
+        min-height: 64px;
+        padding: 10px 12px;
+      }
+
+      .brand {
+        font-size: 10px;
+        letter-spacing: .08em;
+      }
+
+      nav a {
+        font-size: 9px;
+        letter-spacing: .06em;
+      }
+
+      main {
+        width: calc(100% - 16px);
+      }
+
+      section {
+        padding-top: 110px !important;
+      }
+
+      h1,
+      .glitch {
+        font-size: clamp(42px, 18vw, 82px) !important;
+        line-height: .9 !important;
+        overflow-wrap: anywhere;
+      }
+
+      h2 {
+        font-size: clamp(28px, 10vw, 48px) !important;
+        line-height: 1.02 !important;
+      }
+
+      h2.cn {
+        font-size: clamp(26px, 9vw, 44px) !important;
+      }
+
+      .card,
+      .status-card,
+      .loop-item,
+      .metric {
+        padding: 18px !important;
+      }
+
+      .status-value,
+      .sub,
+      p,
+      .cn,
+      .en {
+        overflow-wrap: anywhere;
+      }
+
+      .sound-controls,
+      .transport,
+      .tag-row {
+        gap: 8px;
+      }
+
+      .sound-btn,
+      .button {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .sound-visual,
+      .genre-signal-stage,
+      .breakbeat-stage,
+      .six-stage,
+      .music-bci-map {
+        height: 280px !important;
+      }
+
+      .orbit-label {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .brand {
+        font-size: 9px;
+      }
+      nav a {
+        font-size: 8px;
+      }
+      .sigil, .pulse {
+        width: 8px;
+        height: 8px;
+      }
+      .sound-visual,
+      .genre-signal-stage,
+      .breakbeat-stage,
+      .six-stage,
+      .music-bci-map {
+        height: 240px !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -2028,8 +2258,6 @@
       <a href="#prototype">PROTOTYPE</a>
       <a href="#qdr-therapy">QDR</a>
       <a href="#four-systems">FOUR SYSTEMS</a>
-      <a href="#breakbeats-protocol">BREAKBEATS</a>
-      <a href="#six-genre-therapy">6-GENRE THERAPY</a>
       <a href="#sound-lab">MUSIC LAB</a>
       <a href="#gemini-layer">GEMINI</a>
       <a href="#claude-layer">CLAUDE</a>
