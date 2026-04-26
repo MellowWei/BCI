@@ -2270,6 +2270,15 @@
       .mi-track-selector, .mi-metric-grid, .mi-curve-grid { grid-template-columns:1fr; }
     }
 
+  
+    nav a[href="#music-intervention-native"],
+    a[data-scroll-target="music-intervention-native"] {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+      position: relative;
+      z-index: 999;
+    }
+
   </style>
 </head>
 
@@ -2293,7 +2302,7 @@
       <a href="#four-systems">FOUR SYSTEMS</a>
       <a href="#genre-matrix">GENRE MATRIX</a>
       <a href="#telaviv-examples">TELAVIV EXAMPLES</a>
-      <a href="#music-intervention-native">MUSIC INTERVENTION LAB</a>
+      <a href="#music-intervention-native" data-scroll-target="music-intervention-native" onclick="window.hrpScrollToSection && window.hrpScrollToSection('music-intervention-native', event)">MUSIC INTERVENTION LAB</a>
       <a href="#five-genre-healing">FIVE-GENRE HEALING</a>
       <a href="#trinity-work">AI TRINITY WORK</a>
       <a href="#sound-lab">MUSIC LAB</a>
@@ -6747,6 +6756,30 @@ function show(id){
   }
   function loop(){ drawWave(); drawRadar(); drawCurve("miCurveCanvasA","A"); drawCurve("miCurveCanvasB","B"); requestAnimationFrame(loop); }
   setMode("phonk"); loop();
+})();
+</script>
+
+
+<script>
+(function(){
+  window.hrpScrollToSection = function(id, event){
+    if(event) event.preventDefault();
+    var el = document.getElementById(id);
+    if(!el) {
+      console.warn("HRP section not found:", id);
+      return false;
+    }
+    el.scrollIntoView({behavior:"smooth", block:"start"});
+    try { history.replaceState(null, "", "#" + id); } catch(e) {}
+    return false;
+  };
+
+  document.addEventListener("click", function(e){
+    var link = e.target.closest && e.target.closest('a[href="#music-intervention-native"], a[data-scroll-target="music-intervention-native"]');
+    if(!link) return;
+    e.preventDefault();
+    window.hrpScrollToSection("music-intervention-native", e);
+  }, true);
 })();
 </script>
 
