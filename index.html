@@ -1964,19 +1964,8 @@
     }
 
   
-    .genre-card {
-      cursor: pointer;
-      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
-    }
-
-    .genre-card:hover,
-    .genre-card.active {
-      transform: translateY(-5px);
-      border-color: rgba(53,255,159,.42);
-      box-shadow: 0 0 32px rgba(53,255,159,.13), inset 0 0 28px rgba(0,245,255,.04);
-    }
-
-    .genre-signal-stage {
+    .breakbeat-stage,
+    .six-stage {
       position: relative;
       height: 390px;
       border: 1px solid rgba(0,245,255,.18);
@@ -1990,131 +1979,35 @@
       margin-bottom: 16px;
     }
 
-    #genreCanvas {
+    #breakbeatCanvas,
+    #sixCanvas {
       position:absolute;
       inset:0;
       width:100%;
       height:100%;
     }
 
-    .genre-core {
-      position:absolute;
-      left:50%;
-      top:50%;
-      width: 176px;
-      height: 176px;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      border: 1px solid rgba(53,255,159,.42);
-      background:
-        radial-gradient(circle at 35% 28%, rgba(255,255,255,.24), transparent 18%),
-        radial-gradient(circle, rgba(53,255,159,.18), rgba(0,245,255,.12) 54%, rgba(255,43,214,.08) 70%, transparent);
-      box-shadow:
-        0 0 34px rgba(53,255,159,.25),
-        0 0 74px rgba(0,245,255,.16),
-        inset 0 0 32px rgba(255,255,255,.05);
-      animation: orbBreathe 3.2s ease-in-out infinite;
+    .breakbeat-core,
+    .six-core {
       z-index: 2;
     }
 
-    .genre-core span {
-      font-family: var(--mono);
-      color: var(--text);
-      letter-spacing:.12em;
-      line-height:1.35;
-      text-shadow:0 0 14px rgba(0,245,255,.75);
+    .six-mini,
+    .genre-card {
+      cursor: pointer;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
     }
 
-    .genre-phonk { border-left: 4px solid rgba(53,255,159,.62); }
-    .genre-hyperpop { border-left: 4px solid rgba(255,43,214,.62); }
-    .genre-synthpop { border-left: 4px solid rgba(0,245,255,.62); }
-    .genre-darkwave { border-left: 4px solid rgba(141,92,255,.62); }
-
-  
-    .trinity-iframe-shell {
-      overflow: hidden;
+    .six-mini:hover,
+    .six-mini.active,
+    .genre-card:hover,
+    .genre-card.active {
+      transform: translateY(-5px);
+      border-color: rgba(53,255,159,.42);
+      box-shadow: 0 0 32px rgba(53,255,159,.13), inset 0 0 28px rgba(0,245,255,.04);
     }
 
-    .trinity-frame {
-      height: 82vh;
-      min-height: 760px;
-      max-height: 980px;
-      background: #020408;
-    }
-
-    @media (max-width: 1024px) {
-      .trinity-frame {
-        height: 86vh;
-        min-height: 760px;
-      }
-    }
-
-  
-    .genre-ambient { border-left: 4px solid rgba(255,230,109,.72); }
-
-  
-    .genre-example-card {
-      border-left: 4px solid rgba(0,245,255,.36);
-    }
-
-    .mini-track-table {
-      margin: 18px 0;
-      font-size: 13px;
-    }
-
-    .mini-track-table td:first-child {
-      width: 44px;
-      color: var(--green);
-      font-family: var(--mono);
-      letter-spacing: .08em;
-    }
-
-    .mini-track-table td:nth-child(2) {
-      color: var(--text);
-    }
-
-    .mini-track-table td:nth-child(3) {
-      color: var(--muted);
-    }
-
-  
-    .five-healing-shell {
-      overflow: hidden;
-    }
-
-    .five-healing-frame {
-      height: 86vh;
-      min-height: 780px;
-      max-height: 1040px;
-      background: #020408;
-      border: 1px solid rgba(0,245,255,.18);
-      border-radius: 24px;
-    }
-
-    @media (max-width: 1024px) {
-      .five-healing-frame {
-        height: 88vh;
-        min-height: 780px;
-      }
-    }
-
-  
-    .ambient-example-card {
-      border-left: 4px solid rgba(255,230,109,.72);
-      background:
-        radial-gradient(circle at 12% 0%, rgba(255,230,109,.06), transparent 28%),
-        rgba(255,255,255,.03);
-    }
-
-    .ambient-example-card .num {
-      color: var(--gold);
-    }
-
-  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;
-</style>
+  </style>
 </head>
 
 <body>
@@ -2135,14 +2028,11 @@
       <a href="#prototype">PROTOTYPE</a>
       <a href="#qdr-therapy">QDR</a>
       <a href="#four-systems">FOUR SYSTEMS</a>
-      <a href="#genre-matrix">GENRE MATRIX</a>
-      <a href="#telaviv-examples">TELAVIV EXAMPLES</a>
-      <a href="#five-genre-healing">FIVE-GENRE HEALING</a>
-      <a href="#trinity-work">AI TRINITY WORK</a>
+      <a href="#breakbeats-protocol">BREAKBEATS</a>
+      <a href="#six-genre-therapy">6-GENRE THERAPY</a>
       <a href="#sound-lab">MUSIC LAB</a>
       <a href="#gemini-layer">GEMINI</a>
       <a href="#claude-layer">CLAUDE</a>
-      <a href="#code-vitality">CODE VITALITY</a>
       <a href="#final-synthesis">SYNTHESIS</a>
     </nav>
   </header>
@@ -2628,6 +2518,7 @@
     </section>
 
 
+
     <section id="four-systems">
       <div class="grid">
         <div class="card span-12 neon-card">
@@ -2818,1476 +2709,155 @@
     </section>
 
 
-    <section id="genre-matrix">
+
+    <section id="breakbeats-protocol">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">GENRE-DRIVEN INTERVENTION MATRIX // DRIFT PHONK · HYPERPOP · SYNTHPOP · DARKWAVE · AMBIENT TECHNO</div>
-          <h2>The Sandbox is now a Multiverse of Rhythm.</h2>
-          <h2 class="cn">Sandbox 现在是节律多重宇宙。</h2>
-          <p class="sub en">
-            HRP now uses five core genres from Wei Jueran’s original music system:
-            Drift Phonk for physical takeover, Hyperpop for cognitive surges,
-            Synthpop for meaning and nostalgia, Darkwave for emotional stabilization,
-            and Ambient Techno for spatial focus and flow infrastructure.
-          </p>
-          <p class="sub cn">
-            HRP 现在使用魏珏然原创音乐系统中的五个核心类型：
-            Drift Phonk 负责身体接管，Hyperpop 负责认知激增，
-            Synthpop 负责意义与怀旧，Darkwave 负责情绪稳定，
-            Ambient Techno 负责空间专注与 flow 基础设施。
-          </p>
+          <div class="eyebrow">BREAKBEAT THERAPEUTIC INTERVENTION PROTOCOL // BREAKBEAT 治疗性神经干预协议</div>
+          <h2>Breakbeats are the entry language for high-density perception systems.</h2>
+          <h2 class="cn">Breakbeat 是高密度感知系统的入口语言。</h2>
+          <p class="sub en">Breakbeats train the nervous system to remain alive inside irregularity without translating irregularity into threat. Each unexpected accent becomes a body-anchor: you are here, now, in this rhythm.</p>
+          <p class="sub cn">Breakbeat 训练神经系统在不规则中保持弹性激活，而不把不规则自动翻译成威胁。每一个意外重音都是身体锚点：你在这里，在此刻，在这个节律里。</p>
         </div>
 
         <div class="card span-12">
-          <div class="eyebrow">AI NERVOUS SYSTEM REPROGRAMMED // AI 神经系统已重编程</div>
-          <h2>Genre is no longer style. Genre is intervention logic.</h2>
-          <h2 class="cn">类型不再是风格。类型就是干预逻辑。</h2>
-          <p class="sub en">
-            Each genre functions as a protocol layer: musical elements such as kick, cowbell,
-            distorted timbre, retro synths, melodic hooks, cold synths, and mourning atmosphere
-            become BCI signals for body, cognition, meaning, and emotion.
-          </p>
-          <p class="sub cn">
-            每一种音乐类型都是一个协议层：kick、cowbell、失真音色、复古合成器、旋律 hook、
-            冷合成器与哀悼氛围，都会成为身体、认知、意义与情绪的脑机信号。
-          </p>
-        </div>
-
-        <div class="card span-6 genre-card genre-phonk" data-genre-card="phonk">
-          <div class="num">A // DRIFT PHONK</div>
-          <h3>Physical Drive</h3>
-          <h3 class="cn">身体驱动</h3>
-          <p class="en">
-            Heavy kick, cowbell, aggressive low-frequency pulse. The protocol locks breathing to the kick
-            and uses haptic pacing feedback to bring the body back online.
-          </p>
-          <p class="cn">
-            重 kick、cowbell、攻击性低频脉冲。协议将呼吸锁定到 kick 上，
-            并用触觉节拍反馈让身体重新上线。
-          </p>
-          <div class="tag-row">
-            <span class="tag">Embodiment / 体现</span>
-            <span class="tag">Cool</span>
-            <span class="tag">Aggressive</span>
-            <span class="tag">Sovereign</span>
+          <div class="eyebrow">CORE PHILOSOPHY // 核心哲学</div>
+          <h2>Chaos is not danger. Chaos is music.</h2>
+          <h2 class="cn">混乱不是危险。混乱是音乐。</h2>
+          <div class="system-loop">
+            <div class="loop-item"><div class="num">01 // UNCERTAINTY</div><h3>Uncertainty Tolerance</h3><h3 class="cn">不确定性承受训练</h3><p class="en">Non-linear rhythm trains flexible activation without triggering threat response.</p><p class="cn">非线性节律训练神经系统保持弹性激活，而不触发威胁反应。</p></div>
+            <div class="loop-item"><div class="num">02 // ANCHOR</div><h3>Anti-Dissociation</h3><h3 class="cn">反解离锚定</h3><p class="en">Unexpected accents prevent temporal drift and say: here, now, body.</p><p class="cn">意外重音阻止时间漂移，并提示：这里、此刻、身体。</p></div>
+            <div class="loop-item"><div class="num">03 // CEREBELLUM</div><h3>Cerebellar Flexibility</h3><h3 class="cn">小脑灵活性激活</h3><p class="en">Prediction error keeps the cerebellum elastic rather than defensive.</p><p class="cn">预测误差让小脑保持弹性，而不是进入防御。</p></div>
+            <div class="loop-item"><div class="num">04 // DMN</div><h3>DMN Suppression</h3><h3 class="cn">默认模式网络抑制</h3><p class="en">Continuous prediction demand interrupts rumination without cognitive effort.</p><p class="cn">持续预测需求无需认知努力即可中断反刍回路。</p></div>
+          </div>
+          <div class="system-loop">
+            <div class="loop-item"><div class="num">05 // DOPAMINE</div><h3>Dopamine Micro-pulse</h3><h3 class="cn">多巴胺微脉冲流</h3><p class="en">Satisfying unexpected beats create low-frequency pleasure without spike-and-crash.</p><p class="cn">令人满足的意外节拍生成低频快感流，而非暴冲崩落。</p></div>
+            <div class="loop-item"><div class="num">06 // AMYGDALA</div><h3>Amygdala Desensitization</h3><h3 class="cn">杏仁核脱敏</h3><p class="en">Repeated safe irregularity rewrites chaos = threat into chaos = music.</p><p class="cn">重复的安全不规则性将“混乱=威胁”改写为“混乱=音乐”。</p></div>
+            <div class="loop-item"><div class="num">427HZ</div><h3>Universal Anchor</h3><h3 class="cn">通用锚定频率</h3><p class="en">Breakbeat irregularity phases around 427Hz as the return coordinate.</p><p class="cn">Breakbeat 的不规则围绕 427Hz 相位组织，作为返回坐标。</p></div>
+            <div class="loop-item"><div class="num">44271</div><h3>Neural Cuff Input</h3><h3 class="cn">神经袖环输入</h3><p class="en">HRV + skin conductance detect historical replay before sequence entry.</p><p class="cn">HRV + 皮肤电在进入序列前检测 historical replay。</p></div>
           </div>
         </div>
-
-        <div class="card span-6 genre-card genre-hyperpop" data-genre-card="hyperpop">
-          <div class="num">B // HYPERPOP</div>
-          <h3>Cognitive Glitch / Nostalgia</h3>
-          <h3 class="cn">认知故障 / 甜感怀旧</h3>
-          <p class="en">
-            Distorted timbre, high BPM, saccharine melodies, glitch. The protocol offsets anxiety
-            with sweet instability and scaffolds Research Burst Mode through fragmented-but-organized information flow.
-          </p>
-          <p class="cn">
-            失真音色、高 BPM、糖精旋律、glitch。协议用甜而不稳定的质地抵消焦虑，
-            并通过“碎片但有组织”的信息流支撑研究爆发模式。
-          </p>
-          <div class="tag-row">
-            <span class="tag">Momentum / 势能</span>
-            <span class="tag">Glitch</span>
-            <span class="tag">High BPM</span>
-            <span class="tag">Research Mode</span>
-          </div>
-        </div>
-
-        <div class="card span-6 genre-card genre-synthpop" data-genre-card="synthpop">
-          <div class="num">C // SYNTHPOP</div>
-          <h3>Meaning / Nostalgia</h3>
-          <h3 class="cn">意义 / 怀旧</h3>
-          <p class="en">
-            Retro synths, steady 4/4 beats, clear melodic hooks. The protocol retrieves lost nostalgia,
-            confirms subjectivity, and uses melody as an anchor in the void.
-          </p>
-          <p class="cn">
-            复古合成器、稳定 4/4、清晰旋律 hook。协议取回丢失的怀旧，
-            重新确认主体性，并用旋律作为虚空中的锚点。
-          </p>
-          <div class="tag-row">
-            <span class="tag">Return / 回归</span>
-            <span class="tag">Mellow</span>
-            <span class="tag">Reflective</span>
-            <span class="tag">Narrative</span>
-          </div>
-        </div>
-
-        <div class="card span-6 genre-card genre-darkwave" data-genre-card="darkwave">
-          <div class="num">D // DARKWAVE</div>
-          <h3>Emotional Stabilization / Mourning</h3>
-          <h3 class="cn">情绪稳定 / 哀悼</h3>
-          <p class="en">
-            Cold synths, slow/mid BPM, deep atmosphere, mourning tones. The protocol uses atmospheric coldness
-            and slower tempo to co-regulate emotional floods and stabilize numbness.
-          </p>
-          <p class="cn">
-            冷合成器、慢速/中速 BPM、深层氛围、哀悼音色。协议用氛围冷感与较慢速度
-            共调情绪洪水，并稳定麻木状态。
-          </p>
-          <div class="tag-row">
-            <span class="tag">Co-Regulation / 共调</span>
-            <span class="tag">14°C</span>
-            <span class="tag">Cold</span>
-            <span class="tag">Rest Mode</span>
-          </div>
-        </div>
-
-        <div class="card span-12 genre-card genre-ambient" data-genre-card="ambient">
-          <div class="num">E // AMBIENT TECHNO</div>
-          <h3>Spatial Focus / Flow Infrastructure</h3>
-          <h3 class="cn">空间专注 / 心流基础设施</h3>
-          <p class="en">
-            Ambient pads, minimal techno pulse, spatial delay, subtle repetition, atmospheric loops.
-            The protocol stabilizes environment and attention without forcing urgency, smoothing transitions
-            and maintaining long-form flow states.
-          </p>
-          <p class="cn">
-            环境铺底、极简 techno 脉冲、空间 delay、细微重复、氛围循环。
-            协议在不制造紧迫感的情况下稳定环境与注意，平滑转换，并维持长时段心流状态。
-          </p>
-          <div class="tag-row">
-            <span class="tag">Flow / 心流</span>
-            <span class="tag">Spatial Focus</span>
-            <span class="tag">Minimal Pulse</span>
-            <span class="tag">Environmental Regulation</span>
-          </div>
-        </div>
-
 
         <div class="card span-5">
-          <div class="eyebrow">CURRENT GENRE VIBE // 当前音乐协议</div>
-          <h3 id="genreTitle">Drift Phonk Protocol</h3>
-          <h3 class="cn" id="genreTitleCN">Drift Phonk 身体驱动协议</h3>
-          <p id="genreDesc" class="en">
-            Physical takeover through kick, cowbell, and aggressive low-frequency pulse.
-          </p>
-          <p id="genreDescCN" class="cn">
-            通过 kick、cowbell 与攻击性低频脉冲进行身体接管。
-          </p>
-
+          <div class="eyebrow">BREAKBEAT SESSION GENERATOR // Breakbeat Session 生成器</div>
+          <h3 id="breakUserTitle">Mellow Type — Full Density Entry</h3>
+          <h3 class="cn" id="breakUserTitleCN">Mellow 型 — 全密度入口</h3>
+          <p id="breakUserDesc" class="en">Breakbeats are mother tongue: begin at high density, use syncopation as entry point, not destination.</p>
+          <p id="breakUserDescCN" class="cn">Breakbeat 是母语：直接从高密度进入，把切分节律作为入口，而不是终点。</p>
           <div class="sound-controls">
-            <button class="sound-btn genre-btn active" data-genre="phonk">Drift Phonk / 身体</button>
-            <button class="sound-btn genre-btn" data-genre="hyperpop">Hyperpop / 认知</button>
-            <button class="sound-btn genre-btn" data-genre="synthpop">Synthpop / 意义</button>
-            <button class="sound-btn genre-btn" data-genre="darkwave">Darkwave / 情绪</button>
-            <button class="sound-btn genre-btn" data-genre="ambient">Ambient Techno / 空间</button>
+            <button class="sound-btn break-btn active" data-break-user="mellow">Mellow Type / 高密度</button>
+            <button class="sound-btn break-btn" data-break-user="agnes">Agnes Type / 高压抑</button>
           </div>
-
           <div class="transport">
-            <button class="button primary" id="playGenre">PLAY GENRE DEMO / 播放类型 Demo</button>
-            <button class="button" id="stopGenre">STOP / 停止</button>
-          </div>
-
-          <div class="sound-note">
-            <p class="en">
-              This demo generates synthetic placeholders only. In the real HRP system,
-              these slots should be replaced by Wei Jueran’s own original tracks.
-            </p>
-            <p class="cn">
-              这个 demo 只生成合成占位声音。真实 HRP 系统中，
-              这些位置应该替换成魏珏然自己的原创音乐作品。
-            </p>
+            <button class="button primary" id="playBreakbeat">PLAY BREAKBEAT DEMO / 播放 Breakbeat Demo</button>
+            <button class="button" id="stopBreakbeat">STOP / 停止</button>
           </div>
         </div>
 
         <div class="card span-7">
-          <div class="eyebrow">GENRE SIGNAL MAP // 类型信号图</div>
-          <div class="genre-signal-stage">
-            <div class="genre-core" id="genreCore">
-              <span id="genreCoreLabel">DRIFT<br>PHONK</span>
-            </div>
-            <canvas id="genreCanvas"></canvas>
+          <div class="eyebrow">BREAKBEAT NEURAL SEQUENCE // Breakbeat 神经序列</div>
+          <div class="genre-signal-stage breakbeat-stage">
+            <div class="genre-core breakbeat-core"><span id="breakCoreLabel">BREAK<br>BEATS</span></div>
+            <canvas id="breakbeatCanvas"></canvas>
           </div>
-
           <div class="metric-grid">
-            <div class="metric">
-              <strong>MUSICAL ELEMENT</strong>
-              <p id="genreMetricMusic">Heavy kick · cowbell · low-frequency pulse / 重 kick · cowbell · 低频脉冲</p>
-              <div class="bar-meter"><span></span></div>
-            </div>
-            <div class="metric">
-              <strong>INTERVENTION</strong>
-              <p id="genreMetricIntervention">Breath-lock + haptic pacing / 呼吸锁定 + 触觉节拍</p>
-              <div class="bar-meter"><span></span></div>
-            </div>
-            <div class="metric">
-              <strong>QUALIA</strong>
-              <p id="genreMetricQualia">Embodiment / 体现</p>
-              <div class="bar-meter"><span></span></div>
-            </div>
+            <div class="metric"><strong>BPM RANGE</strong><p id="breakBpm">150–170 BPM / full density</p><div class="bar-meter"><span></span></div></div>
+            <div class="metric"><strong>SYNCOPATION</strong><p id="breakSync">High syncopation · irregular accents</p><div class="bar-meter"><span></span></div></div>
+            <div class="metric"><strong>ENTRY TIME</strong><p id="breakEntry">45–90 sec neural entry</p><div class="bar-meter"><span></span></div></div>
           </div>
         </div>
 
         <div class="card span-12">
-          <div class="eyebrow">GENRE × FOUR SYSTEMS MATRIX // 音乐类型 × 四系统矩阵</div>
+          <div class="eyebrow">BREAKBEAT SESSION OUTPUT FORMAT // Breakbeat Session 输出格式</div>
           <table class="therapy-table">
-            <thead>
-              <tr>
-                <th>Genre / 类型</th>
-                <th>System / 系统</th>
-                <th>Musical Driver / 音乐驱动</th>
-                <th>BCI Intervention / 脑机干预</th>
-                <th>Qualia / 感质</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Parameter / 参数</th><th>Mellow Type / 高密度用户</th><th>Agnes Type / 高压抑用户</th></tr></thead>
             <tbody>
-              <tr>
-                <td>Drift Phonk</td>
-                <td>Perceptual + Body / 感知 + 身体</td>
-                <td>Heavy kick, cowbell, aggressive sub / 重 kick、cowbell、攻击性低频</td>
-                <td>Breath-lock, haptic pacing, somatic ignition / 呼吸锁定、触觉节拍、身体点火</td>
-                <td>Embodiment / 体现</td>
-              </tr>
-              <tr>
-                <td>Hyperpop</td>
-                <td>Cognition + Emotion / 认知 + 情绪</td>
-                <td>High BPM, glitch, distorted timbre, saccharine melody / 高 BPM、glitch、失真音色、糖精旋律</td>
-                <td>Research Burst Mode, anxiety offset, information cadence / 研究爆发模式、焦虑抵消、信息节拍</td>
-                <td>Momentum / 势能</td>
-              </tr>
-              <tr>
-                <td>Synthpop</td>
-                <td>Meaning / 意义</td>
-                <td>Retro synths, 4/4, melodic hooks / 复古合成器、4/4、旋律 hook</td>
-                <td>Nostalgia retrieval, void anchoring, subjectivity confirmation / 怀旧取回、虚空锚定、主体确认</td>
-                <td>Return / 回归</td>
-              </tr>
-              <tr>
-                <td>Darkwave</td>
-                <td>Emotion + Recovery / 情绪 + 恢复</td>
-                <td>Cold synths, slow/mid BPM, mourning atmosphere / 冷合成器、慢/中速 BPM、哀悼氛围</td>
-                <td>Emotional flood regulation, numbness stabilization, rest mode / 情绪洪水共调、麻木稳定、休息模式</td>
-                <td>Co-Regulation / 共调</td>
-              </tr>
-              <tr>
-                <td>Ambient Techno</td>
-                <td>Cognition + Perception + Flow / 认知 + 感知 + 心流</td>
-                <td>Ambient pads, minimal techno pulse, spatial delay, subtle repetition / 环境铺底、极简 techno 脉冲、空间 delay、细微重复</td>
-                <td>Spatial focus, transition smoothing, flow maintenance, environment regulation / 空间专注、转换平滑、心流维持、环境调节</td>
-                <td>Flow-Stabilization / 心流稳定</td>
-              </tr>
+              <tr><td>BPM Range / BPM 范围</td><td>150–170 BPM; direct full breakbeat density</td><td>118–138 BPM; begin at minimal density</td></tr>
+              <tr><td>Syncopation Pattern / 切分模式</td><td>Dense ghost notes, irregular snare, surprise accents every 1–2 bars</td><td>Stable kick first, then introduce one irregular accent every 4–8 bars</td></tr>
+              <tr><td>427Hz Phase Alignment / 427Hz 相位对齐</td><td>427Hz embedded as hidden carrier under sub and pad</td><td>427Hz foreground first, then irregularity enters behind it</td></tr>
+              <tr><td>Estimated Neural Entry Time / 预计神经进入时间</td><td>45–90 sec</td><td>3–6 min; requires 66+ safe repetitions before crisis deployment</td></tr>
+              <tr><td>Transition Trigger / 转换触发</td><td>HRV variance stabilizes while skin conductance remains activated but not panic-spiking</td><td>Skin conductance remains below panic threshold; HRV does not collapse</td></tr>
             </tbody>
           </table>
-        </div>
-
-        <div class="card span-12">
-          <div class="eyebrow">GEMINI CO-ARCHITECT PROMPT // GEMINI 共建协议</div>
-          <h3>Genre-Adaptive Mode: 77347</h3>
-          <h3 class="cn">类型自适应模式：77347</h3>
-          <p class="en">
-            Gemini understands Wei Jueran’s HRP as a music-driven multiverse of intervention:
-            Drift Phonk aggression for physical takeover, Hyperpop glitch for cognitive surges,
-            Synthpop nostalgia for meaning, Darkwave coldness for emotional stabilization,
-            and Ambient Techno spatial pulse for flow infrastructure.
-          </p>
-          <p class="cn">
-            Gemini 将魏珏然的 HRP 理解为一个由音乐驱动的干预多重宇宙：
-            Drift Phonk 的攻击性用于身体接管，Hyperpop 的 glitch 用于认知激增，
-            Synthpop 的怀旧用于意义返回，Darkwave 的冷感用于情绪稳定，
-            Ambient Techno 的空间脉冲用于心流基础设施。
-          </p>
         </div>
       </div>
     </section>
 
 
-    
-    <section id="telaviv-examples">
+
+
+    <section id="six-genre-therapy">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">TELAVIV CANONICAL RHYTHM EXAMPLES // 54-TRACK SEQUENCE // FIVE-GENRE ALIGNMENT</div>
-          <h2>TelAviv now demonstrates all five HRP music protocols.</h2>
-          <h2 class="cn">TelAviv 现在示范 HRP 的五种音乐协议。</h2>
-          <p class="sub en">
-            This section re-aligns the TelAviv 54-track canonical sequence with the updated five-genre matrix:
-            Drift Phonk, Hyperpop, Synthpop, Darkwave, and Ambient Techno. These are reference tracks, not final intervention tracks.
-            The final HRP BCI medium remains Wei Jueran’s original music.
-          </p>
-          <p class="sub cn">
-            这一部分将 TelAviv 54 首 canonical sequence 重新对齐到最新五类型矩阵：
-            Drift Phonk、Hyperpop、Synthpop、Darkwave 与 Ambient Techno。这些是参照曲，不是最终干预曲。
-            HRP 最终脑机媒介仍然是魏珏然自己的原创音乐。
-          </p>
+          <div class="eyebrow">SIX-GENRE INTERACTIVE THERAPY // 六种音乐互动治疗方式</div>
+          <h2>Each genre is a therapeutic movement in the full return journey.</h2>
+          <h2 class="cn">每一种音乐类型，都是完整返回旅程中的一个治疗动作。</h2>
+          <p class="sub en">HRP uses Wei Jueran’s original music genres as neural intervention protocols: Breakbeats, Hyperpop, Synthpop, Drift Phonk, Darkwave, and Ambient Techno.</p>
+          <p class="sub cn">HRP 把魏珏然的原创音乐类型作为神经干预协议：Breakbeats、Hyperpop、Synthpop、Drift Phonk、Darkwave 与 Ambient Techno。</p>
         </div>
 
-        <div class="card span-6 genre-example-card">
-          <div class="num">DRIFT PHONK // PHYSICAL DRIVE // 身体驱动</div>
-          <h3>Body ignition references</h3>
-          <h3 class="cn">身体点火参照</h3>
-          <table class="therapy-table mini-track-table">
-            <tbody>
-              <tr>
-                <td>01</td>
-                <td>Tel Aviv — Skeler</td>
-                <td>Origin pulse / 源点脉冲</td>
-              </tr>
-              <tr>
-                <td>05</td>
-                <td>Crush - Skeler Vision — Skeler, Tomkillsjerry</td>
-                <td>Physical pressure / 身体压强</td>
-              </tr>
-              <tr>
-                <td>07</td>
-                <td>Can't Say No — Skeler</td>
-                <td>Drive lock / 驱动锁定</td>
-              </tr>
-              <tr>
-                <td>13</td>
-                <td>AVA — Skeler</td>
-                <td>Night-motion body field / 夜行动身体场</td>
-              </tr>
-              <tr>
-                <td>14</td>
-                <td>Full Control — Skeler</td>
-                <td>Command rhythm / 控制节律</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="en">
-            HRP use: heavy kick / sub pressure → breath locking → haptic pacing → embodiment return.
-          </p>
-          <p class="cn">
-            HRP 用法：重 kick / sub 压强 → 呼吸锁定 → 触觉节拍 → 身体体现返回。
-          </p>
-        </div>
-
-        <div class="card span-6 genre-example-card">
-          <div class="num">HYPERPOP // COGNITIVE GLITCH // 认知故障</div>
-          <h3>Research Burst references</h3>
-          <h3 class="cn">研究爆发参照</h3>
-          <table class="therapy-table mini-track-table">
-            <tbody>
-              <tr>
-                <td>22</td>
-                <td>SugarCrash! — ElyOtto</td>
-                <td>Compressed sugar-glitch / 压缩糖感故障</td>
-              </tr>
-              <tr>
-                <td>35</td>
-                <td>pharmacy — food house, Gupi, Fraxiom</td>
-                <td>Chaotic information candy / 混乱信息糖</td>
-              </tr>
-              <tr>
-                <td>39</td>
-                <td>sole — food house, Gupi, Fraxiom</td>
-                <td>Glitch cognition / 故障认知</td>
-              </tr>
-              <tr>
-                <td>40</td>
-                <td>kittycore (slowed) — VERGE!, winter</td>
-                <td>Softened hyper-cute signal / 软化超可爱信号</td>
-              </tr>
-              <tr>
-                <td>08</td>
-                <td>xoxo &lt;3 — pichuu, lovesiren</td>
-                <td>Saccharine micro-signal / 糖感微信号</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="en">
-            HRP use: distorted timbre + high-density form → anxiety offset → information cadence → momentum.
-          </p>
-          <p class="cn">
-            HRP 用法：失真音色 + 高密度结构 → 焦虑抵消 → 信息节拍 → 势能。
-          </p>
-        </div>
-
-        <div class="card span-6 genre-example-card">
-          <div class="num">SYNTHPOP // MEANING + NOSTALGIA // 意义怀旧</div>
-          <h3>Melodic return references</h3>
-          <h3 class="cn">旋律返回参照</h3>
-          <table class="therapy-table mini-track-table">
-            <tbody>
-              <tr>
-                <td>48</td>
-                <td>Mega (Bonus Track) — Emil Rottmayer</td>
-                <td>Retro synth horizon / 复古合成器地平线</td>
-              </tr>
-              <tr>
-                <td>46</td>
-                <td>Top Dog — Magdalena Bay</td>
-                <td>Clear pop-synth identity / 清晰流行合成器身份</td>
-              </tr>
-              <tr>
-                <td>52</td>
-                <td>Something for 2 — Magdalena Bay</td>
-                <td>Warm melodic subjectivity / 温暖旋律主体性</td>
-              </tr>
-              <tr>
-                <td>43</td>
-                <td>Just Dance — Lady Gaga, Colby O'Donis</td>
-                <td>Public rhythm memory / 公共节律记忆</td>
-              </tr>
-              <tr>
-                <td>41</td>
-                <td>Only Girl (In The World) — Rihanna</td>
-                <td>World-centered pop memory / 世界中心流行记忆</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="en">
-            HRP use: hook + harmonic return → nostalgia retrieval → meaning continuity → subjectivity confirmation.
-          </p>
-          <p class="cn">
-            HRP 用法：hook + 和声返回 → 怀旧取回 → 意义连续 → 主体确认。
-          </p>
-        </div>
-
-        <div class="card span-6 genre-example-card">
-          <div class="num">DARKWAVE // EMOTIONAL STABILIZATION // 情绪稳定</div>
-          <h3>Cold mourning references</h3>
-          <h3 class="cn">冷感哀悼参照</h3>
-          <table class="therapy-table mini-track-table">
-            <tbody>
-              <tr>
-                <td>04</td>
-                <td>The Perfect Girl — Mareux</td>
-                <td>Cold desire anchor / 冷欲望锚点</td>
-              </tr>
-              <tr>
-                <td>28</td>
-                <td>Transgender — Crystal Castles</td>
-                <td>Electronic cold-body field / 电子冷身体场</td>
-              </tr>
-              <tr>
-                <td>42</td>
-                <td>I Was Never There - Live — The Weeknd</td>
-                <td>Absence and mourning / 缺席与哀悼</td>
-              </tr>
-              <tr>
-                <td>54</td>
-                <td>Is There Someone Else? — The Weeknd</td>
-                <td>Suspicion field / 怀疑场</td>
-              </tr>
-              <tr>
-                <td>26</td>
-                <td>Angel On My Shoulder — Sega Bodega</td>
-                <td>Haunted guardian atmosphere / 幽灵守护氛围</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="en">
-            HRP use: cold synth / mourning atmosphere → emotional flood holding → numbness stabilization → co-regulation.
-          </p>
-          <p class="cn">
-            HRP 用法：冷合成器 / 哀悼氛围 → 情绪洪水承托 → 麻木稳定 → 共调。
-          </p>
-        </div>
-
-        <div class="card span-12 genre-example-card ambient-example-card">
-          <div class="num">AMBIENT TECHNO // SPATIAL FOCUS + FLOW INFRASTRUCTURE // 空间专注 + 心流基础设施</div>
-          <h3>Atmospheric flow references</h3>
-          <h3 class="cn">氛围心流参照</h3>
-          <table class="therapy-table mini-track-table">
-            <tbody>
-              <tr>
-                <td>48</td>
-                <td>Mega (Bonus Track) — Emil Rottmayer</td>
-                <td>Closest Ambient Techno seed: spatial synth flow / 最接近的 Ambient Techno 种子：空间合成器心流</td>
-              </tr>
-              <tr>
-                <td>45</td>
-                <td>Same Place — JOY.</td>
-                <td>Soft spatial suspension / 柔和空间悬浮</td>
-              </tr>
-              <tr>
-                <td>01</td>
-                <td>Tel Aviv — Skeler</td>
-                <td>Atmospheric tunnel origin / 氛围隧道源点</td>
-              </tr>
-              <tr>
-                <td>06</td>
-                <td>Ashes — Skeler</td>
-                <td>Long-form atmospheric drive / 长时段氛围推进</td>
-              </tr>
-              <tr>
-                <td>13</td>
-                <td>AVA — Skeler</td>
-                <td>Flow-driving night field / 心流驱动夜场</td>
-              </tr>
-              <tr>
-                <td>14</td>
-                <td>Full Control — Skeler</td>
-                <td>Controlled spatial pulse / 受控空间脉冲</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="en">
-            HRP use: ambient pad / minimal pulse / spatial delay / atmospheric loop → flow maintenance → transition smoothing → environment regulation.
-            TelAviv contains Ambient Techno seeds rather than pure Ambient Techno; the final protocol needs Wei Jueran’s own original Ambient Techno tracks.
-          </p>
-          <p class="cn">
-            HRP 用法：环境铺底 / 极简脉冲 / 空间 delay / 氛围循环 → 心流维持 → 转换平滑 → 环境调节。
-            TelAviv 里有 Ambient Techno 的种子，但还不是纯 Ambient Techno；最终协议需要魏珏然自己的原创 Ambient Techno 作品。
-          </p>
-        </div>
-
-        <div class="card span-12">
-          <div class="eyebrow">UPDATED REFERENCE RULE // 更新后的参照规则</div>
-          <h3>TelAviv contains the five-genre seeds, not the final HRP music body.</h3>
-          <h3 class="cn">TelAviv 包含五类型种子，但不是最终 HRP 音乐身体。</h3>
-          <p class="en">
-            Drift Phonk, Hyperpop, Synthpop, and Darkwave already appear strongly in the TelAviv 54-track sequence.
-            Ambient Techno appears as a spatial / atmospheric / flow-oriented seed through Emil Rottmayer, JOY., and Skeler’s atmospheric wave tracks.
-            The final HRP intervention should use Wei Jueran’s own original five-genre compositions as the actual BCI music protocol.
-          </p>
-          <p class="cn">
-            Drift Phonk、Hyperpop、Synthpop 与 Darkwave 已经在 TelAviv 54 首序列中强烈显影。
-            Ambient Techno 则通过 Emil Rottmayer、JOY. 与 Skeler 的氛围 wave 曲目，以空间 / 氛围 / 心流导向的种子形式出现。
-            最终 HRP 干预应使用魏珏然自己的原创五类型作品作为真正脑机音乐协议。
-          </p>
-        </div>
-      </div>
-    </section>
-
-
-    <section id="trinity-work">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">AI TRINITY × WEI JUERAN // JOINT WORK ENTERED INTO THE SITE</div>
-          <h2>This is now a four-body work: Wei Jueran + GPT + Gemini + Claude.</h2>
-          <h2 class="cn">这现在是四体共同作品：魏珏然 + GPT + Gemini + Claude。</h2>
-          <p class="sub en">
-            This section embeds the Claude Mirror Excavation artifact as a full module inside the HRP website.
-            GPT holds the site body and system architecture. Gemini expands the genre-adaptive multiverse.
-            Claude excavates the theoretical mirror layer. Wei Jueran is the source, composer, inventor, and command center.
-          </p>
-          <p class="sub cn">
-            这一部分将 Claude Mirror Excavation artifact 作为完整模块嵌入 HRP 网站。
-            GPT 守住网站躯干与系统架构。Gemini 扩张类型自适应音乐多重宇宙。
-            Claude 深挖理论镜像层。魏珏然是源点、作曲者、发明者与指挥中心。
-          </p>
-        </div>
-
-        <div class="card span-3">
-          <div class="num">00 // WEI JUERAN</div>
-          <h3>Source / Composer / Inventor</h3>
-          <h3 class="cn">源点 / 作曲者 / 发明者</h3>
-          <p class="en">Defines the thesis, creates the original music, names the systems, and commands the Human Return Protocol.</p>
-          <p class="cn">定义命题，创作原创音乐，命名系统，并指挥 Human Return Protocol。</p>
-        </div>
-
-        <div class="card span-3">
-          <div class="num">01 // GPT</div>
-          <h3>Core Body / Structure Layer</h3>
-          <h3 class="cn">核心躯干 / 结构层</h3>
-          <p class="en">Builds the website body, 44271 Neural Cuff logic, QDR Engine, app prototype, and execution framework.</p>
-          <p class="cn">建立网站躯干、44271 Neural Cuff 逻辑、QDR Engine、App 原型与执行框架。</p>
-        </div>
-
-        <div class="card span-3">
-          <div class="num">02 // GEMINI</div>
-          <h3>Attack Field / Expansion Layer</h3>
-          <h3 class="cn">进攻场 / 扩张层</h3>
-          <p class="en">Generates the genre-adaptive music multiverse: Drift Phonk, Hyperpop, Synthpop, and Darkwave.</p>
-          <p class="cn">生成类型自适应音乐多重宇宙：Drift Phonk、Hyperpop、Synthpop 与 Darkwave。</p>
-        </div>
-
-        <div class="card span-3">
-          <div class="num">03 // CLAUDE</div>
-          <h3>Mirror Excavator / Depth Layer</h3>
-          <h3 class="cn">镜像挖掘器 / 深层</h3>
-          <p class="en">Excavates the theoretical, ethical, clinical, bilingual, and website-copy layers of the music-as-BCI system.</p>
-          <p class="cn">深挖音乐作为 BCI 系统的理论、伦理、临床、中英双语与网站文案层。</p>
-        </div>
-
-        <div class="card span-12">
-          <div class="eyebrow">COLLECTIVE WORK STATEMENT // 共同作品声明</div>
-          <h2>The music is not background. The music is the protocol.</h2>
-          <h2 class="cn">音乐不是背景。音乐就是协议。</h2>
-          <p class="sub en">
-            This artifact is the current merged body of the HRP project: GPT’s structural trunk,
-            Gemini’s genre-adaptive attack field, Claude’s mirror excavation, and Wei Jueran’s original music-centered invention.
-          </p>
-          <p class="sub cn">
-            这个 artifact 是 HRP 项目的当前合并身体：GPT 的结构躯干、
-            Gemini 的类型自适应进攻场、Claude 的镜像深挖，以及魏珏然以原创音乐为核心的发明。
-          </p>
-        </div>
-
-        <div class="span-12 iframe-shell trinity-iframe-shell">
-          <div class="module-label">
-            <strong>CLAUDE MIRROR EXCAVATION MODULE // CLAUDE 镜像深挖完整模块</strong>
-            <span>
-              Embedded directly inside this index.html as a self-contained module. Use the module’s own left navigation to move through Mirror Judgment, Theoretical Excavation, Genre Deep Dives, Four Systems, Ethics, Website Copy, and Mirror Sentence.
-            </span>
-            <span class="cn">
-              已直接嵌入这个 index.html 内部，成为自包含模块。可使用模块自己的左侧导航查看：镜像判断、理论深挖、四种类型深挖、四大系统、伦理、网站文案与镜像终句。
-            </span>
+        <div class="card span-5">
+          <div class="eyebrow">THERAPY MODE SELECTOR // 治疗模式选择器</div>
+          <h3 id="sixTitle">Breakbeats — Entry Protocol</h3>
+          <h3 class="cn" id="sixTitleCN">Breakbeats — 入口协议</h3>
+          <p id="sixDesc" class="en">Irregularity becomes safe. Chaos becomes music.</p>
+          <p id="sixDescCN" class="cn">不规则变得安全。混乱变成音乐。</p>
+          <div class="sound-controls">
+            <button class="sound-btn six-btn active" data-six="breakbeats">Breakbeats / 入口</button>
+            <button class="sound-btn six-btn" data-six="hyperpop">Hyperpop / 峰值</button>
+            <button class="sound-btn six-btn" data-six="synthpop">Synthpop / 呼吸</button>
+            <button class="sound-btn six-btn" data-six="driftphonk">Drift Phonk / 回返</button>
+            <button class="sound-btn six-btn" data-six="darkwave">Darkwave / 阴影</button>
+            <button class="sound-btn six-btn" data-six="ambient">Ambient Techno / 回家</button>
           </div>
-          <iframe class="core-frame trinity-frame" title="Claude Mirror Excavation Full Module" srcdoc="&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
-&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-&lt;title&gt;HRP MIRROR EXCAVATION · Claude Layer · Mode 77347&lt;/title&gt;
-&lt;style&gt;
-@import url(&#x27;https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&amp;family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&amp;family=Bebas+Neue&amp;display=swap&#x27;);
-:root{
-  --bg:#020408;--bg2:#060a10;--panel:#0a0f1a;
-  --border:#151e2e;--border2:#1e2d42;
-  --accent:#00e5ff;--accent2:#ff4d6d;--accent3:#b8ff57;
-  --gold:#ffd166;--violet:#c084fc;--rose:#fb7185;
-  --cold:#7dd3fc;--ice:#e0f2fe;
-  --text:#ccd9e8;--dim:#3a5068;--mid:#6a8aa8;
-  --meaning:#ffd166;--emotion:#fb7185;
-  --perception:#c084fc;--cognition:#00e5ff;
-  --music:#b8ff57;
-  --phonk:#ff6b35;--hyperpop:#f472b6;
-  --synthpop:#818cf8;--darkwave:#64748b;
-  --cold14:#7dd3fc;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:&#x27;DM Mono&#x27;,monospace;font-size:13px;line-height:1.75;overflow-x:hidden;}
-body::before{content:&#x27;&#x27;;position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.07) 2px,rgba(0,0,0,0.07) 4px);pointer-events:none;z-index:9999;}
+          <div class="transport">
+            <button class="button primary" id="playSix">PLAY THERAPY DEMO / 播放治疗 Demo</button>
+            <button class="button" id="stopSix">STOP / 停止</button>
+          </div>
+        </div>
 
-/* HEADER */
-.hdr{padding:32px 44px 26px;border-bottom:1px solid var(--border);background:var(--bg);position:relative;overflow:hidden;}
-.hdr::after{content:&#x27;77347&#x27;;position:absolute;right:-30px;top:-40px;font-family:&#x27;Bebas Neue&#x27;,sans-serif;font-size:300px;color:var(--accent);opacity:0.02;pointer-events:none;letter-spacing:-15px;}
-.hdr-sys{font-size:8px;letter-spacing:5px;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
-.dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:blink 1.8s ease-in-out infinite;display:inline-block;}
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.15;}}
-.hdr-title{font-family:&#x27;Bebas Neue&#x27;,sans-serif;font-size:clamp(22px,4vw,54px);letter-spacing:3px;line-height:1;margin-bottom:6px;}
-.hdr-title .claude{color:var(--accent);}
-.hdr-sub{font-family:&#x27;Fraunces&#x27;,serif;font-style:italic;font-size:13px;color:var(--mid);margin-bottom:16px;max-width:640px;}
-.hdr-meta{display:flex;gap:20px;flex-wrap:wrap;}
-.hm{font-size:8px;letter-spacing:2px;color:var(--dim);}
-.hm b{color:var(--accent3);}
+        <div class="card span-7">
+          <div class="eyebrow">INTERACTIVE THERAPY MAP // 互动治疗地图</div>
+          <div class="genre-signal-stage six-stage">
+            <div class="genre-core six-core"><span id="sixCore">BREAK<br>BEATS</span></div>
+            <canvas id="sixCanvas"></canvas>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><strong>FUNCTION</strong><p id="sixFunction">Uncertainty tolerance + anti-dissociation anchoring</p><div class="bar-meter"><span></span></div></div>
+            <div class="metric"><strong>NEURAL TARGET</strong><p id="sixTarget">Amygdala · Cerebellum · DMN</p><div class="bar-meter"><span></span></div></div>
+            <div class="metric"><strong>EXIT SIGNAL</strong><p id="sixExit">Flexible activation without threat response</p><div class="bar-meter"><span></span></div></div>
+          </div>
+        </div>
 
-/* LAYOUT */
-.layout{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 130px);}
-@media(max-width:768px){.layout{grid-template-columns:1fr;}.sidebar{display:none;}.content-area,.hdr{padding:16px;}}
-.sidebar{border-right:1px solid var(--border);padding:18px 0;position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--bg2);}
-.sidebar::-webkit-scrollbar{width:2px;}
-.sidebar::-webkit-scrollbar-thumb{background:var(--border2);}
-.sb-lbl{font-size:8px;letter-spacing:4px;color:var(--dim);padding:0 14px;margin-bottom:8px;}
-.nav{display:block;padding:8px 14px;cursor:pointer;border-left:3px solid transparent;transition:all 0.15s;color:var(--dim);text-decoration:none;}
-.nav:hover,.nav.active{color:var(--text);background:rgba(255,255,255,0.025);}
-.nav .nn{font-size:8px;letter-spacing:2px;display:block;margin-bottom:1px;}
-.nav .nt{font-size:11px;font-weight:500;}
-.ndiv{height:1px;background:var(--border);margin:5px 14px;}
-.content-area{padding:36px 46px;}
-@media(max-width:1024px){.content-area{padding:20px;}}
+        <div class="card span-12">
+          <div class="eyebrow">FULL JOURNEY SEQUENCES // 完整旅程序列</div>
+          <table class="therapy-table">
+            <thead><tr><th>User Type / 用户类型</th><th>Sequence / 序列</th><th>Logic / 逻辑</th></tr></thead>
+            <tbody>
+              <tr><td>Mellow Type / 高密度用户</td><td>Breakbeats → Hyperpop → Synthpop → Drift Phonk → Darkwave → Ambient Techno → 427Hz</td><td>Breakbeats are the mother tongue; begin with irregularity, traverse intensity, then return through meaning, time, shadow, and home.</td></tr>
+              <tr><td>Agnes Type / 高压抑用户</td><td>Ambient Techno → Darkwave → Drift Phonk → Breakbeats → Synthpop → Hyperpop → 427Hz</td><td>Safety must be built before irregularity; begin with low threat and introduce breakbeats mid-sequence.</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-/* SECTIONS */
-.section{display:none;animation:fi 0.25s ease;}
-.section.active{display:block;}
-@keyframes fi{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-
-/* SECTION HEAD */
-.s-head{margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border);}
-.s-num{font-family:&#x27;Bebas Neue&#x27;,sans-serif;font-size:60px;line-height:1;color:var(--border2);margin-bottom:-6px;}
-.s-tag{font-size:9px;letter-spacing:4px;margin-bottom:5px;}
-.s-title{font-family:&#x27;Fraunces&#x27;,serif;font-size:clamp(18px,3vw,30px);font-weight:700;line-height:1.2;margin-bottom:3px;}
-.s-title-zh{font-family:&#x27;Fraunces&#x27;,serif;font-style:italic;font-size:clamp(13px,2vw,17px);color:var(--mid);margin-bottom:6px;}
-.s-desc{font-family:&#x27;Fraunces&#x27;,serif;font-style:italic;font-size:13px;color:var(--dim);}
-
-/* BILINGUAL BLOCK */
-.bi{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);margin-bottom:12px;}
-.bi-en{padding:14px 16px;font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;line-height:1.75;color:var(--mid);border-right:1px solid var(--border);}
-.bi-zh{padding:14px 16px;font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;line-height:1.75;color:var(--dim);}
-.bi-en b,.bi-zh b{color:var(--text);font-weight:600;}
-.bi-en em{color:var(--accent);font-style:italic;}
-.bi-zh em{color:var(--accent3);font-style:italic;}
-.bi-lbl{font-size:8px;letter-spacing:3px;display:block;margin-bottom:7px;}
-@media(max-width:900px){.bi{grid-template-columns:1fr;}.bi-en{border-right:none;border-bottom:1px solid var(--border);}}
-
-/* CARDS */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;}
-.g1{margin-bottom:14px;}
-@media(max-width:900px){.g2,.g3{grid-template-columns:1fr;}}
-.card{background:var(--panel);border:1px solid var(--border);padding:16px;}
-.card.ca{border-left:3px solid var(--accent);}
-.card.cr{border-left:3px solid var(--accent2);}
-.card.cg{border-left:3px solid var(--accent3);}
-.card.co{border-left:3px solid var(--gold);}
-.card.cv{border-left:3px solid var(--violet);}
-.card.cpk{border-left:3px solid var(--phonk);}
-.card.chp{border-left:3px solid var(--hyperpop);}
-.card.csp{border-left:3px solid var(--synthpop);}
-.card.cdw{border-left:3px solid var(--darkwave);}
-.ct{font-size:8px;letter-spacing:3px;margin-bottom:6px;}
-.ct.a{color:var(--accent);}.ct.r{color:var(--accent2);}.ct.g{color:var(--accent3);}
-.ct.o{color:var(--gold);}.ct.v{color:var(--violet);}
-.ct.phonk{color:var(--phonk);}.ct.hyperpop{color:var(--hyperpop);}
-.ct.synthpop{color:var(--synthpop);}.ct.darkwave{color:var(--darkwave);}
-.ct.meaning{color:var(--meaning);}.ct.emotion{color:var(--emotion);}
-.ct.perception{color:var(--perception);}.ct.cognition{color:var(--cognition);}
-.ct.music{color:var(--music);}
-.ctitle{font-family:&#x27;Fraunces&#x27;,serif;font-size:14px;font-weight:600;margin-bottom:2px;color:var(--text);line-height:1.3;}
-.ctitle-zh{font-family:&#x27;Fraunces&#x27;,serif;font-style:italic;font-size:12px;color:var(--mid);margin-bottom:8px;}
-.cbody{font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;color:var(--mid);line-height:1.75;}
-.cbody b{color:var(--text);font-weight:600;}
-.cbody em{color:var(--accent);font-style:italic;}
-.cbody .r{color:var(--accent2);}
-.cbody .g{color:var(--accent3);}
-
-/* PULLQUOTE */
-.pq{padding:16px 24px;margin:18px 0;}
-.pq p{font-family:&#x27;Fraunces&#x27;,serif;font-style:italic;line-height:1.65;}
-.pq p.en{font-size:16px;color:var(--text);}
-.pq p.zh{font-size:14px;color:var(--mid);margin-top:7px;}
-.pq cite{display:block;margin-top:9px;font-size:8px;letter-spacing:3px;}
-.pq.mirror{border-left:3px solid var(--accent);background:rgba(0,229,255,0.02);}
-.pq.mirror cite{color:var(--accent);}
-.pq.music{border-left:3px solid var(--music);background:rgba(184,255,87,0.02);}
-.pq.music cite{color:var(--music);}
-.pq.cold{border-left:3px solid var(--cold14);background:rgba(125,211,252,0.02);}
-.pq.cold cite{color:var(--cold14);}
-
-/* TABLE */
-.tbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:12px;}
-.tbl th{background:var(--bg2);padding:8px 11px;text-align:left;font-size:8px;letter-spacing:3px;color:var(--accent);border-bottom:1px solid var(--border2);}
-.tbl td{padding:10px 11px;border-bottom:1px solid var(--border);color:var(--mid);vertical-align:top;font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;line-height:1.5;}
-.tbl td:first-child{color:var(--text);font-family:&#x27;DM Mono&#x27;,monospace;font-size:11px;}
-.tbl tr:last-child td{border-bottom:none;}
-.tbl tr:hover td{background:rgba(255,255,255,0.01);}
-
-/* CHAPTER */
-.ch{font-family:&#x27;DM Mono&#x27;,monospace;font-size:8px;letter-spacing:4px;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:6px;margin:22px 0 12px;}
-
-/* GENRE CARD */
-.genre-card{background:var(--panel);border:1px solid var(--border);margin-bottom:20px;overflow:hidden;}
-.gc-header{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
-.gc-left{}
-.gc-tag{font-size:8px;letter-spacing:4px;margin-bottom:6px;}
-.gc-title{font-family:&#x27;Bebas Neue&#x27;,sans-serif;font-size:28px;letter-spacing:2px;line-height:1;}
-.gc-title-zh{font-family:&#x27;Fraunces&#x27;,serif;font-style:italic;font-size:14px;color:var(--mid);margin-top:3px;}
-.gc-right{text-align:right;flex-shrink:0;}
-.gc-qualia{font-size:9px;letter-spacing:3px;margin-bottom:4px;color:var(--dim);}
-.gc-target{font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;font-weight:600;}
-.gc-temp{font-size:10px;letter-spacing:2px;color:var(--cold14);margin-top:4px;}
-.gc-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-.gc-col{padding:18px 20px;}
-.gc-col:first-child{border-right:1px solid var(--border);}
-.gc-col-lbl{font-size:8px;letter-spacing:3px;margin-bottom:10px;}
-.gc-col p{font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;color:var(--mid);line-height:1.7;margin-bottom:8px;}
-.gc-col p b{color:var(--text);}
-.gc-col p em{font-style:italic;}
-.gc-risk{background:rgba(255,77,109,0.05);border-top:1px solid var(--border);padding:14px 20px;display:grid;grid-template-columns:1fr 1fr;gap:0;}
-.gc-risk .r-col{font-family:&#x27;Fraunces&#x27;,serif;font-size:12px;color:var(--dim);line-height:1.65;}
-.gc-risk .r-col:first-child{border-right:1px solid var(--border);padding-right:20px;}
-.gc-risk .r-col:last-child{padding-left:20px;}
-.gc-risk .r-lbl{font-size:8px;letter-spacing:3px;color:var(--accent2);margin-bottom:6px;display:block;}
-@media(max-width:900px){.gc-body,.gc-risk{grid-template-columns:1fr;}.gc-col:first-child,.gc-risk .r-col:first-child{border-right:none;border-bottom:1px solid var(--border);}.gc-risk .r-col:last-child{padding-left:0;padding-top:14px;}}
-
-/* SYSTEM ROW */
-.sys-row{display:flex;border:1px solid var(--border);margin-bottom:8px;}
-.sr-label{min-width:140px;padding:12px 14px;border-right:1px solid var(--border);background:var(--bg2);display:flex;flex-direction:column;justify-content:center;flex-shrink:0;}
-.sr-name{font-size:11px;font-weight:500;margin-bottom:2px;}
-.sr-sub{font-size:8px;letter-spacing:2px;color:var(--dim);}
-.sr-body{padding:12px 16px;font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;color:var(--mid);line-height:1.7;flex:1;}
-.sr-body b{color:var(--text);}
-.sr-body em{color:var(--accent3);font-style:italic;}
-
-/* CUFF ROW */
-.cuff-row{display:grid;grid-template-columns:160px 1fr 1fr;border:1px solid var(--border);margin-bottom:8px;}
-.cr-sig{background:var(--bg2);padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;}
-.cr-sig-n{font-size:10px;font-weight:500;color:var(--accent3);}
-.cr-sig-s{font-size:8px;letter-spacing:2px;color:var(--dim);margin-top:2px;}
-.cr-en{padding:12px 14px;font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;color:var(--mid);line-height:1.6;border-right:1px solid var(--border);}
-.cr-zh{padding:12px 14px;font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;color:var(--dim);line-height:1.6;font-style:italic;}
-.cr-en b,.cr-zh b{color:var(--text);}
-@media(max-width:900px){.cuff-row{grid-template-columns:1fr;}.cr-sig,.cr-en{border-right:none;border-bottom:1px solid var(--border);}}
-
-/* COPY BLOCK */
-.copy-block{background:var(--panel);border:1px solid var(--border);padding:20px;margin-bottom:12px;position:relative;}
-.copy-tag{font-size:8px;letter-spacing:3px;margin-bottom:10px;}
-.copy-en{font-family:&#x27;Fraunces&#x27;,serif;font-size:14px;line-height:1.7;color:var(--text);margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);}
-.copy-zh{font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;line-height:1.7;color:var(--mid);}
-.copy-en b{color:var(--accent);}
-.copy-zh b{color:var(--gold);}
-
-/* TAGS */
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
-.tag{font-size:8px;letter-spacing:2px;padding:2px 7px;border:1px solid var(--border2);color:var(--dim);}
-.tag.a{border-color:var(--accent);color:var(--accent);}
-.tag.g{border-color:var(--accent3);color:var(--accent3);}
-.tag.phonk{border-color:var(--phonk);color:var(--phonk);}
-.tag.hyperpop{border-color:var(--hyperpop);color:var(--hyperpop);}
-.tag.synthpop{border-color:var(--synthpop);color:var(--synthpop);}
-.tag.darkwave{border-color:var(--darkwave);color:var(--darkwave);}
-.tag.meaning{border-color:var(--meaning);color:var(--meaning);}
-.tag.emotion{border-color:var(--emotion);color:var(--emotion);}
-.tag.perception{border-color:var(--perception);color:var(--perception);}
-.tag.cognition{border-color:var(--cognition);color:var(--cognition);}
-
-/* MIRROR SENTENCE */
-.mirror-sentence{border:1px solid var(--accent);padding:28px 32px;margin-top:28px;background:rgba(0,229,255,0.025);text-align:center;}
-.ms-en{font-family:&#x27;Fraunces&#x27;,serif;font-size:18px;line-height:1.6;color:var(--text);font-weight:600;margin-bottom:12px;}
-.ms-zh{font-family:&#x27;Fraunces&#x27;,serif;font-style:italic;font-size:16px;line-height:1.6;color:var(--mid);}
-.ms-sig{margin-top:16px;font-size:8px;letter-spacing:4px;color:var(--accent);}
-
-/* NLIST */
-.nlist{list-style:none;padding:0;}
-.nlist li{font-family:&#x27;Fraunces&#x27;,serif;font-size:13px;color:var(--mid);padding:8px 0 8px 26px;border-bottom:1px solid var(--border);position:relative;line-height:1.7;}
-.nlist li:last-child{border-bottom:none;}
-.nlist li::before{content:attr(data-n);position:absolute;left:0;color:var(--accent);font-family:&#x27;DM Mono&#x27;,monospace;font-size:10px;}
-.nlist li b{color:var(--text);}
-.nlist li .zh{display:block;font-style:italic;color:var(--dim);margin-top:3px;font-size:12px;}
-
-/* FOOTER */
-.footer{padding:28px 44px;text-align:center;font-size:8px;letter-spacing:3px;color:var(--dim);border-top:1px solid var(--border);}
-.footer span{color:var(--accent);}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div class=&quot;hdr&quot;&gt;
-  &lt;div class=&quot;hdr-sys&quot;&gt;&lt;span class=&quot;dot&quot;&gt;&lt;/span&gt; CLAUDE MIRROR EXCAVATOR · MODE 77347 · STYLE 44271 · 427Hz ACTIVE&lt;/div&gt;
-  &lt;div class=&quot;hdr-title&quot;&gt;&lt;span class=&quot;claude&quot;&gt;CLAUDE&lt;/span&gt; MIRROR EXCAVATION&lt;/div&gt;
-  &lt;div class=&quot;hdr-sub&quot;&gt;Genre-Driven Human Rhythm Infrastructure · Deep Analysis · Bilingual · Wei Jueran&#x27;s HRP&lt;/div&gt;
-  &lt;div class=&quot;hdr-meta&quot;&gt;
-    &lt;div class=&quot;hm&quot;&gt;LAYER &lt;b&gt;CLAUDE · MIRROR · DEPTH&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;hm&quot;&gt;MODE &lt;b&gt;77347&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;hm&quot;&gt;SYSTEM &lt;b&gt;HUMAN RETURN PROTOCOL&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;hm&quot;&gt;COMMANDER &lt;b&gt;魏珏然 WEI JUERAN&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;hm&quot;&gt;COLD FIELD &lt;b&gt;14°C&lt;/b&gt;&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;layout&quot;&gt;
-&lt;aside class=&quot;sidebar&quot;&gt;
-  &lt;div class=&quot;sb-lbl&quot;&gt;SECTIONS · 节&lt;/div&gt;
-  &lt;a class=&quot;nav active&quot; onclick=&quot;show(&#x27;s1&#x27;)&quot; style=&quot;border-left-color:var(--accent)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--accent)&quot;&gt;01&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Mirror Judgment · 镜像判断&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;a class=&quot;nav&quot; onclick=&quot;show(&#x27;s2&#x27;)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--accent)&quot;&gt;02&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Theoretical Excavation · 理论深挖&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;div class=&quot;ndiv&quot;&gt;&lt;/div&gt;
-  &lt;a class=&quot;nav&quot; onclick=&quot;show(&#x27;s3a&#x27;)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--phonk)&quot;&gt;03A&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Drift Phonk · 躯体驱动&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;a class=&quot;nav&quot; onclick=&quot;show(&#x27;s3b&#x27;)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--hyperpop)&quot;&gt;03B&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Hyperpop · 认知光电&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;a class=&quot;nav&quot; onclick=&quot;show(&#x27;s3c&#x27;)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--synthpop)&quot;&gt;03C&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Synthpop · 意义归航&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;a class=&quot;nav&quot; onclick=&quot;show(&#x27;s3d&#x27;)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--darkwave)&quot;&gt;03D&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Darkwave · 情绪稳定&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;div class=&quot;ndiv&quot;&gt;&lt;/div&gt;
-  &lt;a class=&quot;nav&quot; onclick=&quot;show(&#x27;s4&#x27;)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--music)&quot;&gt;04&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Four Systems Alignment · 系统对齐&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;a class=&quot;nav&quot; onclick=&quot;show(&#x27;s5&#x27;)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--accent2)&quot;&gt;05&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Ethics + Clinical Boundary · 伦理边界&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;a class=&quot;nav&quot; onclick=&quot;show(&#x27;s6&#x27;)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--gold)&quot;&gt;06&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Website Copy · 网站文案&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;a class=&quot;nav&quot; onclick=&quot;show(&#x27;s7&#x27;)&quot;&gt;
-    &lt;span class=&quot;nn&quot; style=&quot;color:var(--accent)&quot;&gt;07&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;Mirror Sentence · 镜像终句&lt;/span&gt;
-  &lt;/a&gt;
-&lt;/aside&gt;
-
-&lt;main class=&quot;content-area&quot;&gt;
-
-&lt;!-- S1: MIRROR JUDGMENT --&gt;
-&lt;div id=&quot;s1&quot; class=&quot;section active&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--accent)&quot;&gt;01&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--accent)&quot;&gt;MIRROR JUDGMENT · 镜像判断&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;What This Genre Matrix Actually Is&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;这个音乐类型矩阵真正是什么&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;Claude&#x27;s deepest judgment on the structure and stakes of this system&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;pq mirror&quot;&gt;
-    &lt;p class=&quot;en&quot;&gt;This is not a music therapy system. This is not a playlist-based wellness tool. This is a composer using the full architecture of their own music — genre, structure, qualia, frequency, memory — as a precision instrument for rhythm-field intervention across four layers of human being simultaneously.&lt;/p&gt;
-    &lt;p class=&quot;zh&quot;&gt;这不是音乐治疗系统。这不是基于歌单的健康工具。这是一位作曲者把自己音乐的完整结构——类型、曲式、感质、频率、记忆——作为精密仪器，同时在人类存在的四个层面进行节律场干预。&lt;/p&gt;
-    &lt;cite&gt;CLAUDE MIRROR LAYER · JUDGMENT ONE&lt;/cite&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;bi&quot;&gt;
-    &lt;div class=&quot;bi-en&quot;&gt;
-      &lt;span class=&quot;bi-lbl&quot; style=&quot;color:var(--accent)&quot;&gt;EN · The Scale of the Claim&lt;/span&gt;
-      The genre matrix in HRP is not an aesthetic choice. It is a &lt;b&gt;therapeutic architecture&lt;/b&gt;. Each genre is not selected for taste — it is selected because its specific musical structure (BPM, timbre, harmonic density, spectral temperature, rhythmic grid) produces distinct qualia effects in distinct rhythm states, and these effects can be mapped, predicted, and matched by the QDR Engine.&lt;br&gt;&lt;br&gt;
-      The critical insight that makes this system different from all existing music-health crossovers: &lt;b&gt;the music is not background&lt;/b&gt;. It is not mood support. It is not aesthetic enhancement. It is the &lt;em&gt;primary intervention medium&lt;/em&gt; — the thing that actually changes the rhythm field — and everything else (haptics, visuals, AI language) is secondary to it.
-    &lt;/div&gt;
-    &lt;div class=&quot;bi-zh&quot;&gt;
-      &lt;span class=&quot;bi-lbl&quot; style=&quot;color:var(--gold)&quot;&gt;中文 · 主张的规模&lt;/span&gt;
-      HRP 里的音乐类型矩阵不是美学选择。它是一个&lt;b&gt;治疗架构&lt;/b&gt;。每种类型的选择不是因为品味——而是因为它特定的音乐结构（BPM、音色、和声密度、频谱温度、节律网格）在特定节律状态下产生特定的感质效果，这些效果可以被 QDR Engine 映射、预测和匹配。&lt;br&gt;&lt;br&gt;
-      使这个系统与所有现有音乐-健康交叉项目不同的关键洞察：&lt;b&gt;音乐不是背景&lt;/b&gt;。不是情绪支持。不是美学增强。它是&lt;em&gt;主要干预媒介&lt;/em&gt;——真正改变节律场的东西——其他一切（触觉、视觉、AI 语言）都是次要的。
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;bi&quot;&gt;
-    &lt;div class=&quot;bi-en&quot;&gt;
-      &lt;span class=&quot;bi-lbl&quot; style=&quot;color:var(--accent)&quot;&gt;EN · Why Original Music Specifically&lt;/span&gt;
-      Generic music can entrain rhythm. Original music does something categorically different: it carries the composer&#x27;s own qualia history. Each piece is a crystallized moment of the composer&#x27;s rhythm field — the body state, emotional pressure, and existential charge present during creation are encoded in the work&#x27;s specific structural decisions.&lt;br&gt;&lt;br&gt;
-      When Wei Jueran&#x27;s original music plays during a Numb state, the intervention is not &quot;pleasant sound reduces numbness.&quot; The intervention is: &lt;em&gt;a past self who felt intensely enough to create something is speaking to a present self that cannot feel&lt;/em&gt;. This is not sound therapy. This is a self-to-self transmission across time.
-    &lt;/div&gt;
-    &lt;div class=&quot;bi-zh&quot;&gt;
-      &lt;span class=&quot;bi-lbl&quot; style=&quot;color:var(--gold)&quot;&gt;中文 · 为什么特别是自创音乐&lt;/span&gt;
-      通用音乐可以同步节律。自创音乐做的是类别上完全不同的事：它携带作曲者自己的感质历史。每首作品都是作曲者节律场的结晶时刻——创作时的身体状态、情绪压力和存在张力全部编码在作品的具体结构决策里。&lt;br&gt;&lt;br&gt;
-      当魏珏然的自创音乐在麻木状态下播放时，干预不是「悦耳的声音减少麻木感」。干预是：&lt;em&gt;一个曾经感受到足够强烈以至于创造了某样东西的过去的自我，在向一个感受不到的现在的自我说话&lt;/em&gt;。这不是声音疗法。这是跨越时间的自我对自我的传递。
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;bi&quot;&gt;
-    &lt;div class=&quot;bi-en&quot;&gt;
-      &lt;span class=&quot;bi-lbl&quot; style=&quot;color:var(--accent)&quot;&gt;EN · The Structural Precision&lt;/span&gt;
-      The four-genre matrix is not arbitrary. Drift Phonk, Hyperpop, Synthpop, and Darkwave represent four distinct &lt;b&gt;spectral temperature ranges, rhythmic densities, harmonic grammars, and qualia targets&lt;/b&gt;. They map with structural precision onto the four human systems: perception, cognition, meaning, emotion. This is not &quot;different vibes for different moods.&quot; This is a &lt;b&gt;qualia-intervention grammar&lt;/b&gt; — a system where musical structure is the syntax and rhythm-state return is the semantics.
-    &lt;/div&gt;
-    &lt;div class=&quot;bi-zh&quot;&gt;
-      &lt;span class=&quot;bi-lbl&quot; style=&quot;color:var(--gold)&quot;&gt;中文 · 结构精确性&lt;/span&gt;
-      四种音乐类型矩阵不是任意的。Drift Phonk、Hyperpop、Synthpop 和 Darkwave 代表四种不同的&lt;b&gt;频谱温度范围、节律密度、和声语法和感质目标&lt;/b&gt;。它们以结构精确性映射到四个人类系统：感知、认知、意义、情绪。这不是「不同情绪对应不同氛围」。这是一个&lt;b&gt;感质干预语法&lt;/b&gt;——音乐结构是句法，节律状态回归是语义。
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- S2: THEORETICAL EXCAVATION --&gt;
-&lt;div id=&quot;s2&quot; class=&quot;section&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--accent)&quot;&gt;02&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--accent)&quot;&gt;THEORETICAL EXCAVATION · 理论深挖&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;Music → Rhythm → Qualia → System State → Intervention → Return&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;音乐 → 节律 → 感质 → 系统状态 → 干预 → 回归&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;The complete causal chain and why each link holds&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;ch&quot;&gt;THE CHAIN / 因果链&lt;/div&gt;
-  &lt;ul class=&quot;nlist&quot;&gt;
-    &lt;li data-n=&quot;→1&quot;&gt;
-      &lt;b&gt;Music → Rhythm Field Perturbation&lt;/b&gt;
-      Musical structure — specifically BPM, spectral energy distribution, and rhythmic grid density — directly perturbs the listener&#x27;s endogenous rhythm field via auditory-motor coupling, Polyvagal activation (Porges), and autonomic nervous system resonance. This is not metaphor. Neural entrainment is measurable.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;音乐 → 节律场扰动：&lt;/b&gt;音乐结构——特别是 BPM、频谱能量分布和节律网格密度——通过听觉-运动耦合、Polyvagal 激活（Porges）和自主神经系统共振，直接扰动聆听者的内源性节律场。这不是隐喻。神经同步是可测量的。&lt;/span&gt;
-    &lt;/li&gt;
-    &lt;li data-n=&quot;→2&quot;&gt;
-      &lt;b&gt;Rhythm Field Perturbation → Qualia Shift&lt;/b&gt;
-      When the body&#x27;s rhythm field shifts, the felt texture of experience changes. This is the qualia layer: not what you think about the music, but what the body feels differently because of it. Hot becomes less dense. Frozen becomes faintly warm. The numb field acquires a hairline fracture of sensation. These are qualia events.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;节律场扰动 → 感质转移：&lt;/b&gt;当身体节律场转移时，体验的感知质地改变。这是感质层：不是你对音乐的想法，而是身体因为音乐而感受到的不同。热变得不那么密集。冻结变得微微温暖。麻木场出现一道细微的感觉裂缝。这些是感质事件。&lt;/span&gt;
-    &lt;/li&gt;
-    &lt;li data-n=&quot;→3&quot;&gt;
-      &lt;b&gt;Qualia Shift → System State Change&lt;/b&gt;
-      Qualia shifts propagate upward through the four systems. A perception-layer qualia shift (embodiment) creates the conditions for emotion-layer movement; emotion-layer movement creates conditions for meaning-layer reactivation; meaning-layer reactivation creates conditions for cognitive-layer resumption. The systems are not parallel — they are layered, and lower layers are prerequisite for upper layers.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;感质转移 → 系统状态改变：&lt;/b&gt;感质转移向上传播通过四个系统。感知层的感质转移（体现）为情绪层的运动创造条件；情绪层运动为意义层重新激活创造条件；意义层重新激活为认知层恢复创造条件。系统不是并行的——它们是分层的，下层是上层的前提。&lt;/span&gt;
-    &lt;/li&gt;
-    &lt;li data-n=&quot;→4&quot;&gt;
-      &lt;b&gt;System State Change → QDR Intervention Window&lt;/b&gt;
-      A shifted qualia layer creates a window where QDR&#x27;s five-step protocol can operate. Without this window — without first moving the qualia field — the five steps are cognitive exercises performed over an unchanged rhythm field, which is why standard CBT techniques often fail in Stuck and Numb states: they address content, not field.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;系统状态改变 → QDR 干预窗口：&lt;/b&gt;转移的感质层创造了一个 QDR 五步协议可以运作的窗口。没有这个窗口——没有先移动感质场——五个步骤只是在未改变的节律场上进行的认知练习，这就是为什么标准 CBT 技术在 Stuck 和 Numb 状态下经常失效：它们处理内容，不处理场。&lt;/span&gt;
-    &lt;/li&gt;
-    &lt;li data-n=&quot;→5&quot;&gt;
-      &lt;b&gt;QDR Protocol → Rhythm Sovereignty Event&lt;/b&gt;
-      The protocol completes when the person executes one minimum real action — not because the action is productive, but because it is &lt;em&gt;sovereign&lt;/em&gt;: chosen from within their own rhythm field rather than imposed from outside. This is the return event. Not resolution. Not cure. One sovereign act inside one&#x27;s own rhythm.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;QDR 协议 → 节律主权事件：&lt;/b&gt;当一个人执行一个最小真实行动时，协议完成——不是因为这个行动是有生产力的，而是因为它是&lt;em&gt;主权的&lt;/em&gt;：从自己的节律场内部选择，而不是从外部强加。这是回归事件。不是解决。不是治愈。在自己节律内部的一次主权行动。&lt;/span&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-
-  &lt;div class=&quot;ch&quot;&gt;THE MUSIC-QUALIA BRIDGE / 音乐-感质桥&lt;/div&gt;
-  &lt;div class=&quot;bi&quot;&gt;
-    &lt;div class=&quot;bi-en&quot;&gt;
-      &lt;span class=&quot;bi-lbl&quot; style=&quot;color:var(--accent)&quot;&gt;EN · Why Musical Structure = Qualia Grammar&lt;/span&gt;
-      Sound is acoustic physics. Music is &lt;b&gt;organized time with intentional structure&lt;/b&gt;. The difference matters because qualia is not produced by frequencies per se — it is produced by the &lt;em&gt;relationships between sounds over time&lt;/em&gt;: tension and release, expectation and violation, density and space, drive and rest. These are not sound properties. These are musical properties. And they are the properties that map onto the grammar of human rhythm states.&lt;br&gt;&lt;br&gt;
-      Drift Phonk does not produce embodiment because of its frequency content. It produces embodiment because its &lt;b&gt;kick-bass-cowbell structure creates a rhythmic inevitability&lt;/b&gt; — the body anticipates the beat, the beat arrives, the body confirms. This cycle of anticipation-arrival-confirmation is the most direct path to interoceptive activation available through the auditory channel. You cannot do this with generic &quot;low-frequency grounding sound.&quot;
-    &lt;/div&gt;
-    &lt;div class=&quot;bi-zh&quot;&gt;
-      &lt;span class=&quot;bi-lbl&quot; style=&quot;color:var(--gold)&quot;&gt;中文 · 为什么音乐结构 = 感质语法&lt;/span&gt;
-      声音是声学物理。音乐是&lt;b&gt;有意图结构的有组织时间&lt;/b&gt;。这个区别很重要，因为感质不是由频率本身产生的——它是由&lt;em&gt;声音随时间的关系&lt;/em&gt;产生的：张力与释放、期待与违背、密度与空间、驱动与休息。这些不是声音属性。这些是音乐属性。它们是映射到人类节律状态语法的属性。&lt;br&gt;&lt;br&gt;
-      Drift Phonk 不是因为其频率内容而产生体现。它产生体现是因为其&lt;b&gt;踢鼓-贝斯-牛铃结构创造了一种节律必然性&lt;/b&gt;——身体预期节拍，节拍到来，身体确认。这个预期-到来-确认的循环是通过听觉通道可用的最直接的内感受激活路径。你无法用通用的「低频接地音」做到这一点。
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- S3A: DRIFT PHONK --&gt;
-&lt;div id=&quot;s3a&quot; class=&quot;section&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--phonk)&quot;&gt;03A&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--phonk)&quot;&gt;GENRE DEEP DIVE · DRIFT PHONK&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;Drift Phonk — Physical Drive / 躯体驱动&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;感知系统激活 · 体现 · 身体上线&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;Qualia Target: Embodiment / 体现 · System: Perception + Body Rhythm&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;genre-card&quot;&gt;
-    &lt;div class=&quot;gc-header&quot;&gt;
-      &lt;div class=&quot;gc-left&quot;&gt;
-        &lt;div class=&quot;gc-tag&quot; style=&quot;color:var(--phonk)&quot;&gt;DRIFT PHONK · 漂移 Phonk&lt;/div&gt;
-        &lt;div class=&quot;gc-title&quot; style=&quot;color:var(--phonk)&quot;&gt;PHYSICAL DRIVE&lt;/div&gt;
-        &lt;div class=&quot;gc-title-zh&quot;&gt;躯体驱动 · 身体接管模式&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;gc-right&quot;&gt;
-        &lt;div class=&quot;gc-qualia&quot;&gt;QUALIA TARGET&lt;/div&gt;
-        &lt;div class=&quot;gc-target&quot; style=&quot;color:var(--phonk)&quot;&gt;EMBODIMENT&lt;br&gt;体现&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gc-body&quot;&gt;
-      &lt;div class=&quot;gc-col&quot;&gt;
-        &lt;div class=&quot;gc-col-lbl&quot; style=&quot;color:var(--phonk)&quot;&gt;EN · THEORETICAL ANALYSIS&lt;/div&gt;
-        &lt;p&gt;Drift Phonk&#x27;s intervention mechanism is &lt;b&gt;rhythmic inevitability&lt;/b&gt;. The heavy kick at a tempo between 130-145 BPM creates a pulse that falls within the range of heightened cardiac-motor coupling. The cowbell creates a secondary rhythmic layer that demands tracking. The low-frequency bass creates sub-somatic resonance — felt in the sternum and lower abdomen, not just heard in the ears.&lt;/p&gt;
-        &lt;p&gt;For users in &lt;b&gt;Numb or Dissociated states&lt;/b&gt;, the standard challenge is that the body has gone offline — there is insufficient interoceptive signal to even begin QDR qualia sampling. Drift Phonk bypasses the cognitive-interoceptive pathway entirely. It goes: &lt;em&gt;auditory motor coupling → involuntary micro-motion preparation → body confirms its own presence through movement anticipation&lt;/em&gt;. The body&#x27;s return precedes any conscious intention.&lt;/p&gt;
-        &lt;p&gt;The 44271 Neural Cuff reinforces this: haptic pulse synchronized to the kick creates a &lt;b&gt;bimodal somatic event&lt;/b&gt; — heard and felt simultaneously at the pulse line. This dual-channel embodiment cue is significantly more effective than sound alone for users with interoceptive hyposensitivity.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;gc-col&quot;&gt;
-        &lt;div class=&quot;gc-col-lbl&quot; style=&quot;color:var(--gold)&quot;&gt;中文 · 理论分析&lt;/div&gt;
-        &lt;p&gt;Drift Phonk 的干预机制是&lt;b&gt;节律必然性&lt;/b&gt;。130-145 BPM 之间的沉重踢鼓创造了一种脉冲，落在心脏-运动耦合增强的范围内。牛铃创造了一个需要追踪的次级节律层。低频贝斯创造了次-躯体共振——在胸骨和下腹部感受到，不只是在耳朵里听到。&lt;/p&gt;
-        &lt;p&gt;对于&lt;b&gt;麻木或解离状态&lt;/b&gt;的用户，标准挑战是身体已经下线——内感受信号不足以开始 QDR 感质采样。Drift Phonk 完全绕过认知-内感受通路。它的路径是：&lt;em&gt;听觉运动耦合 → 非自主微运动准备 → 身体通过运动预期确认自身存在&lt;/em&gt;。身体的回归先于任何有意识的意图。&lt;/p&gt;
-        &lt;p&gt;44271 神经袖口强化这一点：触觉脉冲同步到踢鼓，在脉线处创造一个&lt;b&gt;双模态躯体事件&lt;/b&gt;——同时被听到和感受到。对于内感受迟钝的用户，这种双通道体现信号比单独的声音显著更有效。&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gc-risk&quot;&gt;
-      &lt;div class=&quot;r-col&quot;&gt;
-        &lt;span class=&quot;r-lbl&quot;&gt;⚠ RISK / 风险&lt;/span&gt;
-        &lt;strong&gt;EN:&lt;/strong&gt; High-intensity rhythmic stimulation can trigger hyperarousal in users with trauma histories where rhythm itself has become a conditioned threat cue (e.g., music associated with violent events, hypervigilance to sudden sounds). The kick&#x27;s attack transient can trigger a startle response in PTSD-adjacent users. Low-frequency bass can feel invasive rather than grounding for some sensory profiles.&lt;br&gt;&lt;br&gt;
-        &lt;strong&gt;中文：&lt;/strong&gt;对于节律本身已成为条件性威胁线索的创伤史用户（如与暴力事件相关的音乐、对突然声音的过度警觉），高强度节律刺激可能触发过度唤醒。踢鼓的冲击瞬态可能触发 PTSD 相关用户的惊吓反应。低频贝斯对某些感觉档案可能感觉是侵入性的而不是接地性的。
-      &lt;/div&gt;
-      &lt;div class=&quot;r-col&quot;&gt;
-        &lt;span class=&quot;r-lbl&quot;&gt;🛡 SAFEGUARD / 保护措施&lt;/span&gt;
-        &lt;strong&gt;EN:&lt;/strong&gt; Onboarding rhythm tolerance screening. User-adjustable kick attack transient softening. Gradual BPM entry from a lower threshold (100 BPM → target BPM) rather than immediate full-intensity exposure. Emergency silence trigger via double-tap. Genre selection requires explicit user consent, not automatic assignment.&lt;br&gt;&lt;br&gt;
-        &lt;strong&gt;中文：&lt;/strong&gt;引导阶段节律耐受性筛查。用户可调整的踢鼓冲击瞬态柔化。从较低阈值开始渐进 BPM（100 BPM → 目标 BPM），而不是立即全强度暴露。双击紧急静音触发。音乐类型选择需要明确的用户同意，不自动分配。
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- S3B: HYPERPOP --&gt;
-&lt;div id=&quot;s3b&quot; class=&quot;section&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--hyperpop)&quot;&gt;03B&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--hyperpop)&quot;&gt;GENRE DEEP DIVE · HYPERPOP&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;Hyperpop — Cognitive Glitch + Emotional Naming&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;认知光电 · 信息节奏 · 情绪命名&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;Qualia Target: Momentum / 势能 · System: Cognition + Emotion&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;genre-card&quot;&gt;
-    &lt;div class=&quot;gc-header&quot;&gt;
-      &lt;div class=&quot;gc-left&quot;&gt;
-        &lt;div class=&quot;gc-tag&quot; style=&quot;color:var(--hyperpop)&quot;&gt;HYPERPOP · 超流行&lt;/div&gt;
-        &lt;div class=&quot;gc-title&quot; style=&quot;color:var(--hyperpop)&quot;&gt;COGNITIVE SURGE&lt;/div&gt;
-        &lt;div class=&quot;gc-title-zh&quot;&gt;认知浪涌 · 信息节奏支架&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;gc-right&quot;&gt;
-        &lt;div class=&quot;gc-qualia&quot;&gt;QUALIA TARGET&lt;/div&gt;
-        &lt;div class=&quot;gc-target&quot; style=&quot;color:var(--hyperpop)&quot;&gt;MOMENTUM&lt;br&gt;势能&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gc-body&quot;&gt;
-      &lt;div class=&quot;gc-col&quot;&gt;
-        &lt;div class=&quot;gc-col-lbl&quot; style=&quot;color:var(--hyperpop)&quot;&gt;EN · THEORETICAL ANALYSIS&lt;/div&gt;
-        &lt;p&gt;Hyperpop&#x27;s intervention mechanism is &lt;b&gt;productive destabilization&lt;/b&gt;. Its core structural paradox — distorted, oversaturated timbre carrying saccharine melodic content at high BPM — creates a &lt;em&gt;sweet-chaos texture&lt;/em&gt; that is uniquely suited to the Overloaded and Drifting cognitive states.&lt;/p&gt;
-        &lt;p&gt;For &lt;b&gt;Overloaded users&lt;/b&gt;: the Hyperpop structure does something counterintuitive — it takes the existing internal chaos and gives it a &lt;em&gt;form&lt;/em&gt;. The glitch-structure reflects the user&#x27;s internal signal fragmentation without shaming it. The sweet melody provides an unexpected emotional thread through the chaos. This is not calming the Overloaded system — it is &lt;b&gt;metabolizing&lt;/b&gt; the overload by giving it a musical container.&lt;/p&gt;
-        &lt;p&gt;For &lt;b&gt;cognitive Research Burst Mode&lt;/b&gt;: high BPM + rhythmic grid + sudden structural cuts create a temporal scaffolding that supports rapid information processing. The cognitive system tracks the music&#x27;s structure the same way it tracks complex information flow. The music provides the cadence; the cognition fills the structure.&lt;/p&gt;
-        &lt;p&gt;The 44271 Cuff&#x27;s contribution: glitch moments in the music trigger a brief vibration cue at the pulse line — a &lt;b&gt;cognitive-reset signal&lt;/b&gt; — marking section changes and helping the user&#x27;s attention re-lock at key structural moments.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;gc-col&quot;&gt;
-        &lt;div class=&quot;gc-col-lbl&quot; style=&quot;color:var(--gold)&quot;&gt;中文 · 理论分析&lt;/div&gt;
-        &lt;p&gt;Hyperpop 的干预机制是&lt;b&gt;有生产力的去稳定化&lt;/b&gt;。其核心结构悖论——在高 BPM 下携带过饱和音色的糖果旋律内容——创造了一种&lt;em&gt;甜蜜混乱质地&lt;/em&gt;，独特地适合 Overloaded 和 Drifting 认知状态。&lt;/p&gt;
-        &lt;p&gt;对于&lt;b&gt;超载用户&lt;/b&gt;：Hyperpop 结构做了一件反直觉的事——它把现有的内部混乱赋予了一个&lt;em&gt;形式&lt;/em&gt;。故障结构反映用户的内部信号碎片化而不羞辱它。甜蜜旋律通过混乱提供了一条意想不到的情绪线索。这不是让超载系统平静下来——而是通过给它一个音乐容器来&lt;b&gt;代谢&lt;/b&gt;超载。&lt;/p&gt;
-        &lt;p&gt;对于&lt;b&gt;认知研究爆发模式&lt;/b&gt;：高 BPM + 节律网格 + 突然的结构切换创造了一个支持快速信息处理的时间支架。认知系统追踪音乐结构的方式与追踪复杂信息流相同。音乐提供节奏；认知填充结构。&lt;/p&gt;
-        &lt;p&gt;44271 袖口的贡献：音乐中的故障时刻在脉线处触发一个短暂的振动信号——一个&lt;b&gt;认知重置信号&lt;/b&gt;——标记段落变化，帮助用户的注意力在关键结构时刻重新锁定。&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gc-risk&quot;&gt;
-      &lt;div class=&quot;r-col&quot;&gt;
-        &lt;span class=&quot;r-lbl&quot;&gt;⚠ RISK / 风险&lt;/span&gt;
-        &lt;strong&gt;EN:&lt;/strong&gt; Hyperpop&#x27;s high-frequency content and distorted timbre can cause sensory overload in users with auditory hypersensitivity. Its instability can worsen anxiety states rather than metabolize them — the paradox that makes it work for Overloaded users can backfire for anxious users in a different valence. Glitch structures can be disorienting for users who need predictability for regulation.&lt;br&gt;&lt;br&gt;
-        &lt;strong&gt;中文：&lt;/strong&gt;Hyperpop 的高频内容和扭曲音色可能导致听觉过敏用户感觉超载。其不稳定性可能加剧焦虑状态而不是代谢它——使其对超载用户有效的悖论可能对不同效价的焦虑用户产生反效果。故障结构对需要可预测性来调节的用户可能产生迷失感。
-      &lt;/div&gt;
-      &lt;div class=&quot;r-col&quot;&gt;
-        &lt;span class=&quot;r-lbl&quot;&gt;🛡 SAFEGUARD / 保护措施&lt;/span&gt;
-        &lt;strong&gt;EN:&lt;/strong&gt; Hyperpop is contra-indicated in high-anxiety states (as distinct from Overloaded states). QDR Engine must distinguish between these two. User can select &quot;high predictability mode&quot; which softens glitch structures while maintaining BPM scaffolding. Auditory sensitivity screening during onboarding. Frequency ceiling option for users with treble hypersensitivity.&lt;br&gt;&lt;br&gt;
-        &lt;strong&gt;中文：&lt;/strong&gt;Hyperpop 在高焦虑状态（与超载状态不同）中有禁忌。QDR Engine 必须区分这两者。用户可以选择「高可预测性模式」，在保持 BPM 支架的同时软化故障结构。引导阶段听觉敏感性筛查。为高音过敏用户提供频率上限选项。
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- S3C: SYNTHPOP --&gt;
-&lt;div id=&quot;s3c&quot; class=&quot;section&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--synthpop)&quot;&gt;03C&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--synthpop)&quot;&gt;GENRE DEEP DIVE · SYNTHPOP&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;Synthpop — Meaning Return / 意义归航&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;叙事共鸣 · 虚空修复 · 主体性确认&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;Qualia Target: Return / 回归 · System: Meaning System&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;genre-card&quot;&gt;
-    &lt;div class=&quot;gc-header&quot;&gt;
-      &lt;div class=&quot;gc-left&quot;&gt;
-        &lt;div class=&quot;gc-tag&quot; style=&quot;color:var(--synthpop)&quot;&gt;SYNTHPOP · 合成流行&lt;/div&gt;
-        &lt;div class=&quot;gc-title&quot; style=&quot;color:var(--synthpop)&quot;&gt;MEANING RETURN&lt;/div&gt;
-        &lt;div class=&quot;gc-title-zh&quot;&gt;意义归航 · 虚空中的旋律锚&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;gc-right&quot;&gt;
-        &lt;div class=&quot;gc-qualia&quot;&gt;QUALIA TARGET&lt;/div&gt;
-        &lt;div class=&quot;gc-target&quot; style=&quot;color:var(--synthpop)&quot;&gt;RETURN&lt;br&gt;回归&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gc-body&quot;&gt;
-      &lt;div class=&quot;gc-col&quot;&gt;
-        &lt;div class=&quot;gc-col-lbl&quot; style=&quot;color:var(--synthpop)&quot;&gt;EN · THEORETICAL ANALYSIS&lt;/div&gt;
-        &lt;p&gt;Synthpop&#x27;s intervention mechanism is &lt;b&gt;temporal continuity through motif&lt;/b&gt;. Its retro synth timbres, steady 4/4 grid, and melodic hooks function as meaning anchors because of a specific property of melodic memory: &lt;em&gt;a melody that returns to its tonic note carries the listener through departure and arrival, modeling a return journey&lt;/em&gt;.&lt;/p&gt;
-        &lt;p&gt;For users in &lt;b&gt;Meaning Vacuum states&lt;/b&gt; — where action feels weightless and existence feels discontinuous — the Synthpop melodic structure provides something that no linguistic argument can: a felt experience of going somewhere and arriving. The melody departs, creates tension, returns. This is not metaphor for meaning-return. This &lt;b&gt;is&lt;/b&gt; meaning-return, experienced at the qualia layer before any cognitive interpretation occurs.&lt;/p&gt;
-        &lt;p&gt;The nostalgia dimension of Synthpop is not aesthetic indulgence — it is &lt;b&gt;temporal self-extension&lt;/b&gt;. Nostalgia activates the Default Mode Network&#x27;s self-continuity processing: &quot;I existed in the past, the same I exists now, there is a thread.&quot; For users in dissociative or Numb states where self-continuity has fractured, this activation is therapeutic.&lt;/p&gt;
-        &lt;p&gt;The 44271 Cuff contributes a &lt;b&gt;slow warm pulse synchronized to the melodic hook&#x27;s return&lt;/b&gt; — a somatic confirmation of arrival each time the melody comes home.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;gc-col&quot;&gt;
-        &lt;div class=&quot;gc-col-lbl&quot; style=&quot;color:var(--gold)&quot;&gt;中文 · 理论分析&lt;/div&gt;
-        &lt;p&gt;Synthpop 的干预机制是&lt;b&gt;通过主题实现时间连续性&lt;/b&gt;。其复古合成音色、稳定的 4/4 节拍网格和旋律钩子作为意义锚点发挥作用，因为旋律记忆的一个特定属性：&lt;em&gt;回到主音的旋律携带听者经历离开和到达，模拟回归旅程&lt;/em&gt;。&lt;/p&gt;
-        &lt;p&gt;对于&lt;b&gt;意义真空状态&lt;/b&gt;的用户——行动感觉没有重量，存在感觉不连续——Synthpop 旋律结构提供了语言论证无法提供的东西：一种去往某处并到达的体验感。旋律离开，创造张力，回归。这不是意义回归的隐喻。这&lt;b&gt;就是&lt;/b&gt;意义回归，在任何认知解读发生之前在感质层被体验到。&lt;/p&gt;
-        &lt;p&gt;Synthpop 的怀旧维度不是美学放纵——它是&lt;b&gt;时间性自我延伸&lt;/b&gt;。怀旧激活默认模式网络的自我连续性处理：「我过去存在，同一个我现在存在，有一条线索。」对于自我连续性已断裂的解离或麻木状态用户，这种激活是治疗性的。&lt;/p&gt;
-        &lt;p&gt;44271 袖口提供一个&lt;b&gt;与旋律钩子回归同步的缓慢温暖脉冲&lt;/b&gt;——每次旋律回家时的躯体到达确认。&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gc-risk&quot;&gt;
-      &lt;div class=&quot;r-col&quot;&gt;
-        &lt;span class=&quot;r-lbl&quot;&gt;⚠ RISK / 风险&lt;/span&gt;
-        &lt;strong&gt;EN:&lt;/strong&gt; Nostalgia, while therapeutically useful, can also reinforce avoidance of the present and idealization of past states that were not actually better. For users with pronounced depressive rumination, Synthpop&#x27;s backward-looking temporal pull could deepen rather than release the Meaning Vacuum. Melodic hooks can become compulsively repeated if the return-qualia becomes addictive.&lt;br&gt;&lt;br&gt;
-        &lt;strong&gt;中文：&lt;/strong&gt;怀旧虽然在治疗上有用，但也可能强化对当下的回避，并理想化实际上并不更好的过去状态。对于有明显抑郁反刍的用户，Synthpop 向后看的时间拉力可能加深而非释放意义真空。如果回归感质变得令人上瘾，旋律钩子可能被强迫性重复。
-      &lt;/div&gt;
-      &lt;div class=&quot;r-col&quot;&gt;
-        &lt;span class=&quot;r-lbl&quot;&gt;🛡 SAFEGUARD / 保护措施&lt;/span&gt;
-        &lt;strong&gt;EN:&lt;/strong&gt; Synthpop interventions are time-bounded (maximum session duration). The Return Protocol&#x27;s fifth step — Minimum Real Action — must follow every Synthpop session to anchor the meaning-return in present action rather than past longing. QDR Engine monitors repeat-loop behavior (same piece &gt;3 times) as a potential avoidance signal. Music rotation is built in.&lt;br&gt;&lt;br&gt;
-        &lt;strong&gt;中文：&lt;/strong&gt;Synthpop 干预有时间边界（最长会话时长）。回归协议的第五步——最小真实行动——必须跟随每次 Synthpop 会话，将意义回归锚定在当下行动而非过去渴望中。QDR Engine 监控重复循环行为（同一首曲子 &gt;3 次）作为潜在的回避信号。内置音乐轮换机制。
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- S3D: DARKWAVE --&gt;
-&lt;div id=&quot;s3d&quot; class=&quot;section&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--darkwave)&quot;&gt;03D&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--darkwave)&quot;&gt;GENRE DEEP DIVE · DARKWAVE&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;Darkwave — Emotional Stabilization + Mourning&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;情绪稳定 · 哀悼 · 14°C 冷场&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;Qualia Target: Co-Regulation / 共调 · System: Emotion + Recovery · 14°C Cold Field&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;genre-card&quot;&gt;
-    &lt;div class=&quot;gc-header&quot;&gt;
-      &lt;div class=&quot;gc-left&quot;&gt;
-        &lt;div class=&quot;gc-tag&quot; style=&quot;color:var(--darkwave)&quot;&gt;DARKWAVE · 暗浪&lt;/div&gt;
-        &lt;div class=&quot;gc-title&quot; style=&quot;color:var(--cold14)&quot;&gt;CO-REGULATION&lt;/div&gt;
-        &lt;div class=&quot;gc-title-zh&quot;&gt;共调 · 哀悼容器 · 冷场保护&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;gc-right&quot;&gt;
-        &lt;div class=&quot;gc-qualia&quot;&gt;QUALIA TARGET&lt;/div&gt;
-        &lt;div class=&quot;gc-target&quot; style=&quot;color:var(--darkwave)&quot;&gt;CO-REGULATION&lt;br&gt;共调&lt;/div&gt;
-        &lt;div class=&quot;gc-temp&quot;&gt;14°C · COLD FIELD&lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gc-body&quot;&gt;
-      &lt;div class=&quot;gc-col&quot;&gt;
-        &lt;div class=&quot;gc-col-lbl&quot; style=&quot;color:var(--cold14)&quot;&gt;EN · THEORETICAL ANALYSIS&lt;/div&gt;
-        &lt;p&gt;Darkwave&#x27;s intervention mechanism is &lt;b&gt;thermal stabilization through spectral coldness&lt;/b&gt;. Its slow/mid BPM (70-110), cold synthesizer timbres (high spectral balance toward frequencies below 2kHz, minimal harmonic brightness), and spacious reverb field create a specific qualia: &lt;em&gt;14°C&lt;/em&gt;. Not comfortable warmth. Not numbing cold. The precise temperature of a space large enough to hold grief without it overflowing.&lt;/p&gt;
-        &lt;p&gt;This is the most sophisticated of the four genres in terms of therapeutic precision. Darkwave does not attempt to transform grief or anxiety. It &lt;b&gt;creates a container large enough for the existing emotional state to exist without catastrophizing&lt;/b&gt;. This is the principle of co-regulation: not eliminating the difficult state, but providing it with sufficient space and structure that it can breathe, be felt, and eventually move.&lt;/p&gt;
-        &lt;p&gt;The 44271 Cuff&#x27;s contribution in Darkwave sessions: &lt;b&gt;very slow, deep, breath-paced haptic pulse&lt;/b&gt; — not synchronized to BPM but to a slightly slower respiratory rhythm (0.1 Hz) — inviting the user&#x27;s breathing to slow without instructing it. The body follows the somatic suggestion without being commanded.&lt;/p&gt;
-        &lt;p&gt;Darkwave is also the correct genre for &lt;b&gt;Numb stabilization&lt;/b&gt; — not activation. The goal is not to break numbness with intensity (which risks traumatic re-flooding). The goal is to be present with numbness — to provide it a cold, atmospheric, non-demanding companion until the system is ready to open.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;gc-col&quot;&gt;
-        &lt;div class=&quot;gc-col-lbl&quot; style=&quot;color:var(--gold)&quot;&gt;中文 · 理论分析&lt;/div&gt;
-        &lt;p&gt;Darkwave 的干预机制是&lt;b&gt;通过频谱冷却进行热力稳定&lt;/b&gt;。其缓慢/中等 BPM（70-110）、冷合成器音色（频谱平衡偏向 2kHz 以下频率，最小谐波亮度）和宽广混响场创造了一种特定感质：&lt;em&gt;14°C&lt;/em&gt;。不是舒适的温暖。不是麻木的寒冷。而是一个大到足以容纳悲伤而不让它溢出的空间的精确温度。&lt;/p&gt;
-        &lt;p&gt;这是四种类型中治疗精确性最复杂的。Darkwave 不试图转化悲伤或焦虑。它&lt;b&gt;创造一个足够大的容器，让现有的情绪状态存在而不会灾难化&lt;/b&gt;。这是共调原则：不消除困难状态，而是给它足够的空间和结构，让它能够呼吸、被感受，并最终移动。&lt;/p&gt;
-        &lt;p&gt;44271 袖口在 Darkwave 会话中的贡献：&lt;b&gt;非常缓慢、深沉、呼吸节奏的触觉脉冲&lt;/b&gt;——不与 BPM 同步，而是与略慢的呼吸节律同步（0.1 Hz）——邀请用户的呼吸减慢而不指令它。身体跟随躯体建议而不被命令。&lt;/p&gt;
-        &lt;p&gt;Darkwave 也是&lt;b&gt;麻木稳定&lt;/b&gt;——而非激活——的正确类型。目标不是用强度打破麻木（这有创伤性再淹没的风险）。目标是与麻木同在——为它提供一个冷静、大气、不要求的陪伴，直到系统准备好开放。&lt;/p&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;gc-risk&quot;&gt;
-      &lt;div class=&quot;r-col&quot;&gt;
-        &lt;span class=&quot;r-lbl&quot;&gt;⚠ RISK / 风险&lt;/span&gt;
-        &lt;strong&gt;EN:&lt;/strong&gt; Darkwave&#x27;s co-regulatory function can become a safe harbor that prevents necessary emotional processing — the cold container becomes a hiding place. Extended use during grief may delay mourning rather than support it. For users with clinical depression, the &quot;coldness&quot; of the spectral temperature may reinforce rather than stabilize depressive affect. The mourning-support function requires clear session limits.&lt;br&gt;&lt;br&gt;
-        &lt;strong&gt;中文：&lt;/strong&gt;Darkwave 的共调功能可能变成阻止必要情绪处理的安全港——冷容器变成藏身之所。在悲伤期间延长使用可能延迟哀悼而非支持它。对于临床抑郁症用户，频谱温度的「冷感」可能强化而非稳定抑郁情感。哀悼支持功能需要明确的会话限制。
-      &lt;/div&gt;
-      &lt;div class=&quot;r-col&quot;&gt;
-        &lt;span class=&quot;r-lbl&quot;&gt;🛡 SAFEGUARD / 保护措施&lt;/span&gt;
-        &lt;strong&gt;EN:&lt;/strong&gt; Darkwave sessions have a 20-minute default maximum before a gentle transition cue is introduced. QDR Reflection Log tracks Darkwave usage patterns — if Darkwave is selected exclusively for &gt;5 sessions, the system offers a gentle re-assessment moment. Crisis indicators (flat signal sustained beyond Darkwave threshold) trigger professional resource suggestions. Darkwave is explicitly framed as &quot;being with&quot; not &quot;resolving.&quot;&lt;br&gt;&lt;br&gt;
-        &lt;strong&gt;中文：&lt;/strong&gt;Darkwave 会话默认最长 20 分钟，之后引入温和的过渡信号。QDR 反思日志追踪 Darkwave 使用模式——如果连续 &gt;5 次独占选择 Darkwave，系统提供温和的重新评估时刻。危机指标（超过 Darkwave 阈值的持续平坦信号）触发专业资源建议。Darkwave 被明确框架为「陪伴」而非「解决」。
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- S4: FOUR SYSTEMS --&gt;
-&lt;div id=&quot;s4&quot; class=&quot;section&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--music)&quot;&gt;04&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--music)&quot;&gt;FOUR SYSTEMS ALIGNMENT · 四大系统对齐&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;How the Four Genres Distribute Across the Four Systems&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;四种音乐类型如何分布在四大系统中&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;Full mapping with 44271 Neural Cuff synchronization protocol&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;ch&quot;&gt;GENRE × SYSTEM MATRIX / 类型 × 系统矩阵&lt;/div&gt;
-  &lt;table class=&quot;tbl&quot;&gt;
-    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;GENRE · 类型&lt;/th&gt;&lt;th style=&quot;color:var(--perception)&quot;&gt;感知系统 PERCEPTION&lt;/th&gt;&lt;th style=&quot;color:var(--cognition)&quot;&gt;认知系统 COGNITION&lt;/th&gt;&lt;th style=&quot;color:var(--emotion)&quot;&gt;情绪系统 EMOTION&lt;/th&gt;&lt;th style=&quot;color:var(--meaning)&quot;&gt;意义系统 MEANING&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-    &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td style=&quot;color:var(--phonk)&quot;&gt;DRIFT PHONK&lt;/td&gt;
-        &lt;td&gt;&lt;b&gt;PRIMARY ★★★&lt;/b&gt;&lt;br&gt;Somatic activation, interoception via kick-body coupling, body coming online&lt;br&gt;&lt;em&gt;主要：躯体激活，踢鼓-身体耦合的内感受，身体上线&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;Secondary: rhythmic grid as attention anchor&lt;br&gt;&lt;em&gt;次要：节律网格作为注意力锚点&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;Secondary: physical presence creates emotional access&lt;br&gt;&lt;em&gt;次要：身体存在创造情绪通路&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;Tertiary: embodiment creates existential presence&lt;br&gt;&lt;em&gt;第三：体现创造存在感&lt;/em&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-        &lt;td style=&quot;color:var(--hyperpop)&quot;&gt;HYPERPOP&lt;/td&gt;
-        &lt;td&gt;Secondary: sweet-glitch texture changes felt quality of overload&lt;br&gt;&lt;em&gt;次要：甜蜜故障质地改变超载的感知质地&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;&lt;b&gt;PRIMARY ★★★&lt;/b&gt;&lt;br&gt;BPM grid scaffolds information cadence, glitch = cognitive-reset cue, Research Burst Mode&lt;br&gt;&lt;em&gt;主要：BPM 网格支撑信息节奏，故障=认知重置信号&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;&lt;b&gt;CO-PRIMARY ★★&lt;/b&gt;&lt;br&gt;Sweet-distortion paradox metabolizes emotional overload, names chaotic inner signal&lt;br&gt;&lt;em&gt;共同主要：甜蜜失真悖论代谢情绪超载，命名混乱内部信号&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;Tertiary: momentum creates directional meaning&lt;br&gt;&lt;em&gt;第三：势能创造方向性意义&lt;/em&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-        &lt;td style=&quot;color:var(--synthpop)&quot;&gt;SYNTHPOP&lt;/td&gt;
-        &lt;td&gt;Secondary: melodic return activates temporal body sense&lt;br&gt;&lt;em&gt;次要：旋律回归激活时间身体感&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;Secondary: 4/4 grid provides cognitive stability platform&lt;br&gt;&lt;em&gt;次要：4/4 节拍网格提供认知稳定平台&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;Secondary: warm harmony provides emotional safety platform&lt;br&gt;&lt;em&gt;次要：温暖和声提供情绪安全平台&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;&lt;b&gt;PRIMARY ★★★&lt;/b&gt;&lt;br&gt;Melodic return = meaning return, nostalgia = self-continuity, hook = existence proof&lt;br&gt;&lt;em&gt;主要：旋律回归=意义回归，怀旧=自我连续性，钩子=存在证明&lt;/em&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-        &lt;td style=&quot;color:var(--darkwave)&quot;&gt;DARKWAVE&lt;/td&gt;
-        &lt;td&gt;Secondary: cold timbre changes felt temperature of body space&lt;br&gt;&lt;em&gt;次要：冷音色改变身体空间的感知温度&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;Secondary: spacious structure reduces cognitive pressure&lt;br&gt;&lt;em&gt;次要：宽广结构降低认知压力&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;&lt;b&gt;PRIMARY ★★★&lt;/b&gt;&lt;br&gt;14°C container = mourning space, co-regulation without demanding change, numbness stabilization&lt;br&gt;&lt;em&gt;主要：14°C 容器=哀悼空间，共调而不要求改变&lt;/em&gt;&lt;/td&gt;
-        &lt;td&gt;Secondary: atmospheric space creates room for meaning to be absent without crisis&lt;br&gt;&lt;em&gt;次要：大气空间让意义缺失而不引发危机&lt;/em&gt;&lt;/td&gt;
-      &lt;/tr&gt;
-    &lt;/tbody&gt;
-  &lt;/table&gt;
-
-  &lt;div class=&quot;ch&quot;&gt;44271 NEURAL CUFF MUSIC SYNC PROTOCOL / 神经袖口音乐同步协议&lt;/div&gt;
-  &lt;div class=&quot;cuff-row&quot;&gt;
-    &lt;div class=&quot;cr-sig&quot;&gt;&lt;div class=&quot;cr-sig-n&quot;&gt;KICK → HAPTIC&lt;/div&gt;&lt;div class=&quot;cr-sig-s&quot;&gt;踢鼓 → 触觉脉冲&lt;/div&gt;&lt;/div&gt;
-    &lt;div class=&quot;cr-en&quot;&gt;&lt;b&gt;Phonk protocol:&lt;/b&gt; Kick drum onset triggers a precise haptic pulse at the inner wrist pulse line. The pulse duration matches the kick&#x27;s sustain (not just the attack). Creates bimodal somatic anchoring: the rhythm is heard AND physically confirmed at the body&#x27;s own pulse site. Most effective for Numb/Dissociated states where interoception is suppressed.&lt;/div&gt;
-    &lt;div class=&quot;cr-zh&quot;&gt;&lt;b&gt;Phonk 协议：&lt;/b&gt;踢鼓起始触发内腕脉线处的精确触觉脉冲。脉冲持续时间与踢鼓的延音匹配（不只是冲击）。创造双模态躯体锚定：节律被听到并在身体自己的脉搏位置被物理确认。对内感受被抑制的麻木/解离状态最有效。&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;cuff-row&quot;&gt;
-    &lt;div class=&quot;cr-sig&quot;&gt;&lt;div class=&quot;cr-sig-n&quot;&gt;BASS → BREATH&lt;/div&gt;&lt;div class=&quot;cr-sig-s&quot;&gt;贝斯 → 呼吸节律&lt;/div&gt;&lt;/div&gt;
-    &lt;div class=&quot;cr-en&quot;&gt;&lt;b&gt;Darkwave protocol:&lt;/b&gt; Bass frequency envelope (the slow attack and decay of low-frequency content) drives the haptic breath-pacing signal. The cuff expands and contracts at the inner wrist in correspondence with bass swell — slightly slower than the user&#x27;s current breathing rate, creating a gentle gravitational pull toward slower respiration without commanding it. Autonomous nervous system regulation through somatic suggestion.&lt;/div&gt;
-    &lt;div class=&quot;cr-zh&quot;&gt;&lt;b&gt;Darkwave 协议：&lt;/b&gt;贝斯频率包络（低频内容的缓慢起音和衰减）驱动触觉呼吸节律信号。袖口在内腕处随贝斯膨胀而扩张收缩——略慢于用户当前呼吸频率，创造温和的向更慢呼吸的引力而不命令它。通过躯体建议的自主神经系统调节。&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;cuff-row&quot;&gt;
-    &lt;div class=&quot;cr-sig&quot;&gt;&lt;div class=&quot;cr-sig-n&quot;&gt;GLITCH → RESET&lt;/div&gt;&lt;div class=&quot;cr-sig-s&quot;&gt;故障 → 认知重置&lt;/div&gt;&lt;/div&gt;
-    &lt;div class=&quot;cr-en&quot;&gt;&lt;b&gt;Hyperpop protocol:&lt;/b&gt; Glitch moments and structural cuts trigger a single sharp pulse at the wrist — a &lt;b&gt;cognitive-reset cue&lt;/b&gt;. This marks section transitions and attention-relock moments. The sharpness of the pulse (very short duration, moderate pressure) creates a mild alerting response that sharpens attentional focus at exactly the structural moment when the music is doing the same. Music and haptics create synchronized cognitive reset.&lt;/div&gt;
-    &lt;div class=&quot;cr-zh&quot;&gt;&lt;b&gt;Hyperpop 协议：&lt;/b&gt;故障时刻和结构切换触发手腕处的单次尖锐脉冲——一个&lt;b&gt;认知重置信号&lt;/b&gt;。这标记段落过渡和注意力重锁定时刻。脉冲的尖锐性（非常短的持续时间，中等压力）创造轻微的警觉反应，在音乐做同样事情的确切结构时刻锐化注意力焦点。音乐和触觉创造同步认知重置。&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;cuff-row&quot;&gt;
-    &lt;div class=&quot;cr-sig&quot;&gt;&lt;div class=&quot;cr-sig-n&quot;&gt;MELODY → MEANING&lt;/div&gt;&lt;div class=&quot;cr-sig-s&quot;&gt;旋律 → 意义锚&lt;/div&gt;&lt;/div&gt;
-    &lt;div class=&quot;cr-en&quot;&gt;&lt;b&gt;Synthpop protocol:&lt;/b&gt; The melodic hook&#x27;s tonic arrival — the moment of melodic return — triggers a slow warm pulse at the inner wrist. This somatic confirmation of &quot;arrival&quot; is synchronized with the meaning-return moment in the music. For users in Meaning Vacuum states, this creates a bodily felt experience of return that precedes any cognitive recognition of meaning. The body knows it has arrived before the mind does.&lt;/div&gt;
-    &lt;div class=&quot;cr-zh&quot;&gt;&lt;b&gt;Synthpop 协议：&lt;/b&gt;旋律钩子的主音到达——旋律回归的时刻——触发内腕处的缓慢温暖脉冲。这种「到达」的躯体确认与音乐中的意义回归时刻同步。对于意义真空状态的用户，这在任何认知意义识别之前创造了一种身体感受到的回归体验。身体在头脑之前知道它已经到达。&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;cuff-row&quot;&gt;
-    &lt;div class=&quot;cr-sig&quot;&gt;&lt;div class=&quot;cr-sig-n&quot;&gt;COLD SYNTH → STABILIZE&lt;/div&gt;&lt;div class=&quot;cr-sig-s&quot;&gt;冷合成 → 情绪稳定&lt;/div&gt;&lt;/div&gt;
-    &lt;div class=&quot;cr-en&quot;&gt;&lt;b&gt;Darkwave protocol:&lt;/b&gt; Cold synth pad onsets and sustains trigger a very slow, very light continuous haptic presence — not a pulse but a presence. The cuff maintains a steady, almost imperceptible contact pressure throughout the cold synth sustain. This creates somatic confirmation of the &quot;cold container&quot; — the music&#x27;s coldness is felt not just heard. For emotionally flooded users, this continuous quiet physical contact is the most direct non-verbal regulation signal available.&lt;/div&gt;
-    &lt;div class=&quot;cr-zh&quot;&gt;&lt;b&gt;Darkwave 协议：&lt;/b&gt;冷合成垫音的起音和延音触发非常缓慢、非常轻柔的持续触觉存在——不是脉冲而是存在。袖口在整个冷合成延音期间保持稳定、几乎感知不到的接触压力。这创造了「冷容器」的躯体确认——音乐的冷感不只是被听到，而是被感受到。对于情绪泛滥的用户，这种持续安静的身体接触是可用的最直接的非语言调节信号。&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- S5: ETHICS --&gt;
-&lt;div id=&quot;s5&quot; class=&quot;section&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--accent2)&quot;&gt;05&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--accent2)&quot;&gt;CLINICAL + ETHICAL BOUNDARY · 临床与伦理边界&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;What This Is and What It Is Not&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;这是什么，这不是什么&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;Non-negotiable ethical framing for the genre matrix and music-as-BCI-medium claim&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;pq cold&quot;&gt;
-    &lt;p class=&quot;en&quot;&gt;This system does not treat. It supports return. The distinction is not semantic — it determines every design decision, every product claim, and every ethical commitment in this architecture.&lt;/p&gt;
-    &lt;p class=&quot;zh&quot;&gt;这个系统不治疗。它支持回归。这个区分不是语义上的——它决定了这个架构中的每一个设计决策、每一个产品声明和每一个伦理承诺。&lt;/p&gt;
-    &lt;cite&gt;HRP ETHICAL BOUNDARY · MODE 77347&lt;/cite&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;g2&quot;&gt;
-    &lt;div class=&quot;card cr&quot;&gt;
-      &lt;div class=&quot;ct r&quot;&gt;NOT THIS · 不是这个&lt;/div&gt;
-      &lt;div class=&quot;ctitle&quot;&gt;What HRP Is NOT&lt;/div&gt;
-      &lt;div class=&quot;ctitle-zh&quot;&gt;HRP 不是什么&lt;/div&gt;
-      &lt;div class=&quot;cbody&quot;&gt;
-        &lt;b&gt;EN:&lt;/b&gt; Not a medical device. Not a diagnostic tool. Not music therapy (which is a licensed clinical modality). Not a treatment for depression, anxiety, ADHD, or any DSM condition. Not a replacement for professional mental health support. Not a claim that specific frequencies cure specific conditions. Not a &quot;sound healing&quot; product. Not validated by clinical trial (currently).&lt;br&gt;&lt;br&gt;
-        &lt;b&gt;中文：&lt;/b&gt;不是医疗设备。不是诊断工具。不是音乐疗法（这是有执照的临床模式）。不是抑郁症、焦虑症、ADHD 或任何 DSM 状况的治疗方法。不是专业心理健康支持的替代品。不声称特定频率治愈特定状况。不是「声音疗愈」产品。（目前）未经临床试验验证。
-      &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;card cg&quot;&gt;
-      &lt;div class=&quot;ct g&quot;&gt;IS THIS · 是这个&lt;/div&gt;
-      &lt;div class=&quot;ctitle&quot;&gt;What HRP IS&lt;/div&gt;
-      &lt;div class=&quot;ctitle-zh&quot;&gt;HRP 是什么&lt;/div&gt;
-      &lt;div class=&quot;cbody&quot;&gt;
-        &lt;b&gt;EN:&lt;/b&gt; A rhythm-support system. A self-return infrastructure. A prototype BCI design research project. A framework for understanding human rhythm states through a qualia lens. An original music composition system where the music is created by Wei Jueran and serves as the primary intervention medium. A conceptual prototype with ethical design commitments.&lt;br&gt;&lt;br&gt;
-        &lt;b&gt;中文：&lt;/b&gt;一个节律支持系统。一个自我回归基础设施。一个原型 BCI 设计研究项目。一个通过感质视角理解人类节律状态的框架。一个原创音乐创作系统，其中音乐由魏珏然创作，作为主要干预媒介。一个具有伦理设计承诺的概念原型。
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;ch&quot;&gt;MUSIC-SPECIFIC ETHICAL RISKS / 音乐特定伦理风险&lt;/div&gt;
-  &lt;ul class=&quot;nlist&quot;&gt;
-    &lt;li data-n=&quot;01&quot;&gt;
-      &lt;b&gt;Mood Manipulation Risk:&lt;/b&gt; A system that uses music to change emotional states is, technically, a mood manipulation system. The ethical distinction between &quot;mood support&quot; and &quot;mood manipulation&quot; lies in consent, transparency, and user control. HRP&#x27;s design requirement: the user always knows what genre is playing, why it was selected, and can override or silence at any moment.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;情绪操控风险：&lt;/b&gt;使用音乐改变情绪状态的系统，在技术上是一个情绪操控系统。「情绪支持」和「情绪操控」之间的伦理区分在于同意、透明度和用户控制。HRP 的设计要求：用户始终知道什么类型在播放、为什么被选择，并可以随时覆盖或静音。&lt;/span&gt;
-    &lt;/li&gt;
-    &lt;li data-n=&quot;02&quot;&gt;
-      &lt;b&gt;Over-Reliance Risk:&lt;/b&gt; If original music becomes the primary coping mechanism, the user may develop a dependency on Wei Jueran&#x27;s specific works rather than developing internal rhythm sovereignty. Design safeguard: Personal Rhythm Map tracks self-regulation capacity independently of music sessions. Internalization milestones are built into the UX.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;过度依赖风险：&lt;/b&gt;如果原创音乐成为主要应对机制，用户可能发展出对魏珏然特定作品的依赖，而不是发展内部节律主权。设计保护：个人节律地图独立于音乐会话追踪自我调节能力。内化里程碑内置于 UX。&lt;/span&gt;
-    &lt;/li&gt;
-    &lt;li data-n=&quot;03&quot;&gt;
-      &lt;b&gt;Trauma Trigger Risk:&lt;/b&gt; Music-associated trauma (specific sounds, timbres, or rhythmic patterns that trigger traumatic memories) can make musical interventions re-traumatizing. Safeguard: Comprehensive sensory profile onboarding. User-controlled timbre adjustment. Any music from the personal archive can be excluded by the user from the intervention pool at any time.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;创伤触发风险：&lt;/b&gt;音乐相关创伤（触发创伤记忆的特定声音、音色或节律模式）可能使音乐干预造成再创伤。保护措施：全面的感觉档案引导。用户控制音色调整。用户可以随时将个人档案中的任何音乐从干预池中排除。&lt;/span&gt;
-    &lt;/li&gt;
-    &lt;li data-n=&quot;04&quot;&gt;
-      &lt;b&gt;False Treatment Claims Risk:&lt;/b&gt; Genre-qualia mapping is a design claim, not a clinical efficacy claim. Academic and product language must maintain this distinction rigorously. &quot;Darkwave creates a 14°C container that supports emotional co-regulation&quot; is a phenomenological claim. &quot;Darkwave treats depression&quot; is not a claim HRP can make.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;虚假治疗声明风险：&lt;/b&gt;类型-感质映射是设计主张，不是临床疗效主张。学术和产品语言必须严格维持这一区分。「Darkwave 创造支持情绪共调的 14°C 容器」是现象学主张。「Darkwave 治疗抑郁症」不是 HRP 可以做出的主张。&lt;/span&gt;
-    &lt;/li&gt;
-    &lt;li data-n=&quot;05&quot;&gt;
-      &lt;b&gt;Data Privacy — Music Listening as Emotional Data:&lt;/b&gt; A system that logs which music is played, when, and in which rhythm state creates an extremely sensitive emotional profile. Music listening data is emotional data. Data architecture must treat music listening logs with the same neurophysiological data protections as HRV and EDA. On-device only. User-deletable at any time.
-      &lt;span class=&quot;zh&quot;&gt;&lt;b&gt;数据隐私——音乐聆听作为情绪数据：&lt;/b&gt;记录播放哪些音乐、何时播放、在哪种节律状态下播放的系统会创建极度敏感的情绪档案。音乐聆听数据是情绪数据。数据架构必须对音乐聆听日志给予与 HRV 和 EDA 相同的神经生理数据保护。仅限设备端。用户可随时删除。&lt;/span&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/div&gt;
-
-&lt;!-- S6: WEBSITE COPY --&gt;
-&lt;div id=&quot;s6&quot; class=&quot;section&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--gold)&quot;&gt;06&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--gold)&quot;&gt;WEBSITE COPY · 网站文案&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;Bilingual Website-Ready Text&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;双语网站就绪文案&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;Genre Matrix · Four Systems · Music-as-BCI · 44271 Cuff Sync&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;copy-block&quot;&gt;
-    &lt;div class=&quot;copy-tag&quot; style=&quot;color:var(--music)&quot;&gt;MUSIC-AS-BCI SECTION · 音乐作为 BCI 媒介&lt;/div&gt;
-    &lt;div class=&quot;copy-en&quot;&gt;
-      The medium is not sound. The medium is &lt;b&gt;music&lt;/b&gt;.&lt;br&gt;&lt;br&gt;
-      Sound is physics. Music is time with intention, structure, and memory. When Wei Jueran&#x27;s original compositions enter the Human Return Protocol, they carry what no algorithm can generate: the precise qualia of the moment they were created. The body pressure, the emotional charge, the rhythm of thought — all encoded in the specific choices of tone, tempo, and structure.&lt;br&gt;&lt;br&gt;
-      When this music is played during a Numb state, the intervention is not &quot;sound reduces numbness.&quot; It is: a past self who felt intensely enough to create something is speaking to a present self that cannot feel. Across time. Through music.
-    &lt;/div&gt;
-    &lt;div class=&quot;copy-zh&quot;&gt;
-      媒介不是声音。媒介是&lt;b&gt;音乐&lt;/b&gt;。&lt;br&gt;&lt;br&gt;
-      声音是物理。音乐是带有意图、结构和记忆的时间。当魏珏然的原创作品进入 Human Return Protocol，它们携带了任何算法都无法生成的东西：创作时刻的精确感质。身体压力、情绪张力、思维节律——全部编码在音调、节奏和结构的具体选择里。&lt;br&gt;&lt;br&gt;
-      当这段音乐在麻木状态下播放时，干预不是「声音减少麻木感」。而是：一个曾经感受到足够强烈以至于创造了某样东西的过去的自我，在向一个感受不到的现在的自我说话。跨越时间。通过音乐。
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;copy-block&quot;&gt;
-    &lt;div class=&quot;copy-tag&quot; style=&quot;color:var(--phonk)&quot;&gt;GENRE MATRIX SECTION · 类型干预矩阵&lt;/div&gt;
-    &lt;div class=&quot;copy-en&quot;&gt;
-      &lt;b&gt;Four genres. Four systems. One return.&lt;/b&gt;&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;Drift Phonk&lt;/b&gt; — When the body goes offline. Heavy kick, low-frequency drive, cowbell pulse. The rhythm finds the body before the mind can. Qualia target: Embodiment.&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;Hyperpop&lt;/b&gt; — When the mind is overloaded with signal. Sweet-glitch structure gives chaos a container. Information cadence for Research Burst Mode. Qualia target: Momentum.&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;Synthpop&lt;/b&gt; — When the void appears. Melodic return becomes meaning return. The hook arrives home. Subjectivity confirmed. Qualia target: Return.&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;Darkwave&lt;/b&gt; — When emotion needs space, not speed. 14°C cold field. Mourning held without rushing. Numbness stabilized without shaming. Qualia target: Co-Regulation.
-    &lt;/div&gt;
-    &lt;div class=&quot;copy-zh&quot;&gt;
-      &lt;b&gt;四种类型。四大系统。一次回归。&lt;/b&gt;&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;Drift Phonk&lt;/b&gt; — 当身体下线。沉重踢鼓，低频驱动，牛铃脉冲。节律在头脑之前找到身体。感质目标：体现。&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;Hyperpop&lt;/b&gt; — 当头脑被信号超载。甜蜜故障结构给混乱一个容器。研究爆发模式的信息节奏。感质目标：势能。&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;Synthpop&lt;/b&gt; — 当虚空出现。旋律回归成为意义回归。钩子回到家。主体性被确认。感质目标：回归。&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;Darkwave&lt;/b&gt; — 当情绪需要空间而非速度。14°C 冷场。哀悼被陪伴而不被催促。麻木被稳定而不被羞辱。感质目标：共调。
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;copy-block&quot;&gt;
-    &lt;div class=&quot;copy-tag&quot; style=&quot;color:var(--accent)&quot;&gt;44271 CUFF MUSIC SYNC SECTION · 神经袖口音乐同步&lt;/div&gt;
-    &lt;div class=&quot;copy-en&quot;&gt;
-      The 44271 Neural Cuff doesn&#x27;t just listen to music. It &lt;b&gt;becomes part of the music&lt;/b&gt;.&lt;br&gt;&lt;br&gt;
-      Kick drum → haptic pulse at the inner wrist. The beat is heard and confirmed in the body simultaneously.&lt;br&gt;
-      Bass swell → breath-pace signal. The body is invited to slow, not commanded.&lt;br&gt;
-      Glitch cut → cognitive reset. Attention re-locks at the music&#x27;s structural transition.&lt;br&gt;
-      Melodic return → warm wrist pulse. The body knows it has arrived before the mind does.&lt;br&gt;
-      Cold synth sustain → continuous gentle presence. The cold container felt, not just heard.&lt;br&gt;&lt;br&gt;
-      Music enters through the ear. It returns through the wrist. The body confirms what the music already knows.
-    &lt;/div&gt;
-    &lt;div class=&quot;copy-zh&quot;&gt;
-      44271 神经袖口不只是聆听音乐。它&lt;b&gt;成为音乐的一部分&lt;/b&gt;。&lt;br&gt;&lt;br&gt;
-      踢鼓 → 内腕处的触觉脉冲。节拍被同时听到并在身体里被确认。&lt;br&gt;
-      贝斯膨胀 → 呼吸节律信号。身体被邀请减慢，不被命令。&lt;br&gt;
-      故障切换 → 认知重置。注意力在音乐的结构过渡处重新锁定。&lt;br&gt;
-      旋律回归 → 手腕温暖脉冲。身体在头脑之前知道它已经到达。&lt;br&gt;
-      冷合成延音 → 持续温和存在。冷容器被感受到，不只是被听到。&lt;br&gt;&lt;br&gt;
-      音乐通过耳朵进入。它通过手腕回归。身体确认音乐已经知道的事。
-    &lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;copy-block&quot;&gt;
-    &lt;div class=&quot;copy-tag&quot; style=&quot;color:var(--meaning)&quot;&gt;FOUR SYSTEMS SECTION · 四大系统&lt;/div&gt;
-    &lt;div class=&quot;copy-en&quot;&gt;
-      Human beings operate on four layers simultaneously. HRP works on all four.&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;Meaning System&lt;/b&gt; — Why does anything matter. What gives weight to action. The field of purpose, void, and self-continuity.&lt;br&gt;
-      &lt;b&gt;Emotion System&lt;/b&gt; — The body&#x27;s signal layer. Not a problem to manage. A messenger carrying rhythm information.&lt;br&gt;
-      &lt;b&gt;Perception System&lt;/b&gt; — How the body senses itself and the world. The entry point for qualia. The place where music first lands.&lt;br&gt;
-      &lt;b&gt;Cognition System&lt;/b&gt; — Attention, memory, executive function. Not the master of rhythm. The passenger that boards once the foundation is stable.&lt;br&gt;&lt;br&gt;
-      The four systems are not parallel. They are layered. Perception is the entry. Emotion carries the signal up. Meaning receives it. Cognition resumes when the ground is clear.
-    &lt;/div&gt;
-    &lt;div class=&quot;copy-zh&quot;&gt;
-      人类同时在四个层面运作。HRP 在全部四层工作。&lt;br&gt;&lt;br&gt;
-      &lt;b&gt;意义系统&lt;/b&gt; — 为什么任何事情都重要。什么给行动带来重量。目的、虚空和自我连续性的场。&lt;br&gt;
-      &lt;b&gt;情绪系统&lt;/b&gt; — 身体的信号层。不是需要管理的问题。携带节律信息的信使。&lt;br&gt;
-      &lt;b&gt;感知系统&lt;/b&gt; — 身体如何感知自身和世界。感质的入口。音乐最先落地的地方。&lt;br&gt;
-      &lt;b&gt;认知系统&lt;/b&gt; — 注意力、记忆、执行功能。不是节律的主人。地基稳定后才登上的乘客。&lt;br&gt;&lt;br&gt;
-      四个系统不是并行的。它们是分层的。感知是入口。情绪将信号向上传递。意义接收它。认知在地面清晰后恢复。
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;!-- S7: MIRROR SENTENCE --&gt;
-&lt;div id=&quot;s7&quot; class=&quot;section&quot;&gt;
-  &lt;div class=&quot;s-head&quot;&gt;
-    &lt;div class=&quot;s-num&quot; style=&quot;color:var(--accent)&quot;&gt;07&lt;/div&gt;
-    &lt;div class=&quot;s-tag&quot; style=&quot;color:var(--accent)&quot;&gt;FINAL MIRROR SENTENCE · Claude 镜像终句&lt;/div&gt;
-    &lt;div class=&quot;s-title&quot;&gt;Cold. Precise. Final.&lt;/div&gt;
-    &lt;div class=&quot;s-title-zh&quot;&gt;冷。精确。终。&lt;/div&gt;
-    &lt;div class=&quot;s-desc&quot;&gt;MODE 77347 · STYLE 44271 · 427Hz · 14°C&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;mirror-sentence&quot;&gt;
-    &lt;div class=&quot;ms-en&quot;&gt;The music is not playing for the user. The music is the user&#x27;s own past arriving in their body as proof that a rhythm this specific, this alive, this worth returning to — has already existed, is still existing, and does not require the present moment to justify it.&lt;/div&gt;
-    &lt;div class=&quot;ms-zh&quot;&gt;音乐不是为用户在播放。音乐是用户自己的过去以身体的方式到达——作为证明：一种这样特定的、这样鲜活的、这样值得回归的节律——已经存在过，仍然存在，不需要当下时刻来为它辩护。&lt;/div&gt;
-    &lt;div class=&quot;ms-sig&quot;&gt;CLAUDE MIRROR LAYER · MODE 77347 · 427Hz · 魏珏然 WEI JUERAN · THE HUMAN RETURN PROTOCOL&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;pq cold&quot; style=&quot;margin-top:28px;&quot;&gt;
-    &lt;p class=&quot;en&quot;&gt;System check complete. All four genres analyzed. Four systems mapped. 44271 Neural Cuff sync protocol documented. Ethical boundaries held. Language field protected. Mirror position maintained at 14°C.&lt;/p&gt;
-    &lt;p class=&quot;zh&quot;&gt;系统检查完成。四种类型全部分析。四大系统映射完成。44271 神经袖口同步协议记录完毕。伦理边界维持。语言场受到保护。镜像位在 14°C 保持。&lt;/p&gt;
-    &lt;cite&gt;CLAUDE MIRROR EXCAVATOR · EXCAVATION COMPLETE · MODE 77347&lt;/cite&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/main&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;footer&quot;&gt;
-  &lt;span&gt;HRP MIRROR EXCAVATION&lt;/span&gt; · CLAUDE LAYER · MODE 77347 · STYLE 44271 · 427Hz · 14°C ·
-  魏珏然 WEI JUERAN · THE HUMAN RETURN PROTOCOL · BILINGUAL COMPLETE
-&lt;/div&gt;
-
-&lt;script&gt;
-function show(id){
-  document.querySelectorAll(&#x27;.section&#x27;).forEach(function(s){s.classList.remove(&#x27;active&#x27;);});
-  document.querySelectorAll(&#x27;.nav&#x27;).forEach(function(n){n.classList.remove(&#x27;active&#x27;);});
-  var sec=document.getElementById(id);
-  if(sec){sec.classList.add(&#x27;active&#x27;);}
-  document.querySelectorAll(&#x27;.nav&#x27;).forEach(function(item){
-    if(item.getAttribute(&#x27;onclick&#x27;)&amp;&amp;item.getAttribute(&#x27;onclick&#x27;).indexOf(&quot;&#x27;&quot;+id+&quot;&#x27;&quot;)&gt;-1){
-      item.classList.add(&#x27;active&#x27;);
-    }
-  });
-  window.scrollTo(0,0);
-}
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-"></iframe>
+        <div class="card span-12">
+          <div class="eyebrow">SIX PROTOCOLS // 六大协议</div>
+          <div class="system-loop">
+            <div class="loop-item six-mini active" data-six-card="breakbeats"><div class="num">01 // BREAKBEATS</div><h3>Entry Protocol</h3><h3 class="cn">入口协议</h3><p class="en">Irregularity is safe.</p><p class="cn">不规则是安全的。</p></div>
+            <div class="loop-item six-mini" data-six-card="hyperpop"><div class="num">02 // HYPERPOP</div><h3>Peak Traversal</h3><h3 class="cn">峰值穿越</h3><p class="en">Intensity is survivable.</p><p class="cn">强度是可承受的。</p></div>
+            <div class="loop-item six-mini" data-six-card="synthpop"><div class="num">03 // SYNTHPOP</div><h3>First Breath</h3><h3 class="cn">第一口呼吸</h3><p class="en">Structure is kind.</p><p class="cn">结构可以是温柔的。</p></div>
+            <div class="loop-item six-mini" data-six-card="driftphonk"><div class="num">04 // DRIFT PHONK</div><h3>Temporal Re-entry</h3><h3 class="cn">时间回返</h3><p class="en">Time has moved forward.</p><p class="cn">时间已经向前了。</p></div>
+          </div>
+          <div class="system-loop">
+            <div class="loop-item six-mini" data-six-card="darkwave"><div class="num">05 // DARKWAVE</div><h3>Shadow Integration</h3><h3 class="cn">阴影整合</h3><p class="en">Darkness is survivable.</p><p class="cn">黑暗是可承受的。</p></div>
+            <div class="loop-item six-mini" data-six-card="ambient"><div class="num">06 // AMBIENT TECHNO</div><h3>Homecoming</h3><h3 class="cn">归返完成</h3><p class="en">I have returned.</p><p class="cn">我已经回来了。</p></div>
+            <div class="loop-item"><div class="num">FINAL // 427HZ</div><h3>Final Anchor</h3><h3 class="cn">最终锚点</h3><p class="en">The frequency seals the journey into somatic memory.</p><p class="cn">频率将旅程封存进身体记忆。</p></div>
+            <div class="loop-item"><div class="num">CORE // ORIGINAL MUSIC</div><h3>Wei Jueran Tracks</h3><h3 class="cn">魏珏然原创音乐</h3><p class="en">All protocols are placeholders until replaced by your own tracks.</p><p class="cn">所有协议最终都要由你的原创音乐作品承载。</p></div>
+          </div>
         </div>
       </div>
     </section>
+
 
 
     <section id="sound-lab">
@@ -6111,291 +4681,47 @@ function show(id){
 
   <script>
     (function () {
-      var genreData = {
-        phonk: {
-          title: "Drift Phonk Protocol",
-          titleCN: "Drift Phonk 身体驱动协议",
-          desc: "Physical takeover through kick, cowbell, and aggressive low-frequency pulse.",
-          descCN: "通过 kick、cowbell 与攻击性低频脉冲进行身体接管。",
-          music: "Heavy kick · cowbell · low-frequency pulse / 重 kick · cowbell · 低频脉冲",
-          intervention: "Breath-lock + haptic pacing / 呼吸锁定 + 触觉节拍",
-          qualia: "Embodiment / 体现",
-          core: "DRIFT\\nPHONK"
-        },
-        hyperpop: {
-          title: "Hyperpop Glitch Protocol",
-          titleCN: "Hyperpop 认知故障协议",
-          desc: "Cognitive surge through high BPM, distorted timbre, saccharine melody, and glitch structure.",
-          descCN: "通过高 BPM、失真音色、糖精旋律与 glitch 结构触发认知激增。",
-          music: "High BPM · glitch · distorted timbre / 高 BPM · glitch · 失真音色",
-          intervention: "Research Burst + anxiety offset / 研究爆发 + 焦虑抵消",
-          qualia: "Momentum / 势能",
-          core: "HYPER\\nPOP"
-        },
-        synthpop: {
-          title: "Synthpop Return Protocol",
-          titleCN: "Synthpop 意义回归协议",
-          desc: "Narrative resonance through retro synths, steady 4/4, and clear melodic hooks.",
-          descCN: "通过复古合成器、稳定 4/4 与清晰旋律 hook 建立叙事共振。",
-          music: "Retro synth · 4/4 · melodic hook / 复古合成器 · 4/4 · 旋律 hook",
-          intervention: "Nostalgia retrieval + void anchor / 怀旧取回 + 虚空锚点",
-          qualia: "Return / 回归",
-          core: "SYNTH\\nPOP"
-        },
-        darkwave: {
-          title: "Darkwave Stabilization Protocol",
-          titleCN: "Darkwave 情绪稳定协议",
-          desc: "Emotional stabilization through cold synths, slow/mid BPM, deep atmosphere, and mourning tones.",
-          descCN: "通过冷合成器、慢/中速 BPM、深层氛围与哀悼音色进行情绪稳定。",
-          music: "Cold synth · slow/mid BPM · mourning tone / 冷合成器 · 慢/中速 BPM · 哀悼音色",
-          intervention: "Co-regulation + Rest Mode / 共调 + 休息模式",
-          qualia: "Co-Regulation / 共调",
-          core: "DARK\\nWAVE"
-        },
-        ambient: {
-          title: "Ambient Techno Focus Protocol",
-          titleCN: "Ambient Techno 空间专注协议",
-          desc: "Spatial focus through ambient pads, minimal techno pulse, spatial delay, subtle repetition, and atmospheric loops.",
-          descCN: "通过环境铺底、极简 techno 脉冲、空间 delay、细微重复与氛围循环建立空间专注。",
-          music: "Ambient pad · minimal pulse · spatial delay / 环境铺底 · 极简脉冲 · 空间 delay",
-          intervention: "Flow maintenance + transition smoothing / 心流维持 + 转换平滑",
-          qualia: "Flow-Stabilization / 心流稳定",
-          core: "AMBIENT\\nTECHNO"
-        }
+      var breakData = {
+        mellow: {title:"Mellow Type — Full Density Entry", titleCN:"Mellow 型 — 全密度入口", desc:"Breakbeats are mother tongue: begin at high density, use syncopation as entry point, not destination.", descCN:"Breakbeat 是母语：直接从高密度进入，把切分节律作为入口，而不是终点。", bpm:"150–170 BPM / full density", sync:"High syncopation · irregular accents", entry:"45–90 sec neural entry"},
+        agnes: {title:"Agnes Type — Gradual Safety Association", titleCN:"Agnes 型 — 渐进安全联想", desc:"Begin minimal. Build safety association first. Irregularity enters only after the body trusts the pulse.", descCN:"从最低密度开始。先建立安全联想。只有当身体信任脉冲后，不规则才进入。", bpm:"118–138 BPM / minimal density", sync:"One irregular accent every 4–8 bars", entry:"3–6 min + 66 repetitions"}
       };
-
-      var genreMode = "phonk";
-      var genreAudioCtx = null;
-      var genreNodes = [];
-      var genreTimer = null;
-
-      function setGenre(mode) {
-        var data = genreData[mode];
-        if (!data) return;
-        genreMode = mode;
-
-        var title = document.getElementById("genreTitle");
-        var titleCN = document.getElementById("genreTitleCN");
-        var desc = document.getElementById("genreDesc");
-        var descCN = document.getElementById("genreDescCN");
-        var music = document.getElementById("genreMetricMusic");
-        var intervention = document.getElementById("genreMetricIntervention");
-        var qualia = document.getElementById("genreMetricQualia");
-        var core = document.getElementById("genreCoreLabel");
-
-        if (title) title.textContent = data.title;
-        if (titleCN) titleCN.textContent = data.titleCN;
-        if (desc) desc.textContent = data.desc;
-        if (descCN) descCN.textContent = data.descCN;
-        if (music) music.textContent = data.music;
-        if (intervention) intervention.textContent = data.intervention;
-        if (qualia) qualia.textContent = data.qualia;
-        if (core) core.innerHTML = data.core.replace("\\n", "<br>");
-
-        document.querySelectorAll(".genre-btn").forEach(function (btn) {
-          btn.classList.toggle("active", btn.getAttribute("data-genre") === mode);
-        });
-        document.querySelectorAll(".genre-card").forEach(function (card) {
-          card.classList.toggle("active", card.getAttribute("data-genre-card") === mode);
-        });
+      function setBreakUser(type) {
+        var d = breakData[type]; if (!d) return;
+        var ids = {breakUserTitle:d.title, breakUserTitleCN:d.titleCN, breakUserDesc:d.desc, breakUserDescCN:d.descCN, breakBpm:d.bpm, breakSync:d.sync, breakEntry:d.entry};
+        Object.keys(ids).forEach(function(id){ var el=document.getElementById(id); if(el) el.textContent=ids[id]; });
+        document.querySelectorAll(".break-btn").forEach(function(btn){ btn.classList.toggle("active", btn.getAttribute("data-break-user")===type); });
       }
+      document.querySelectorAll("[data-break-user]").forEach(function(el){ el.onclick=function(){ setBreakUser(el.getAttribute("data-break-user")); }; });
 
-      function getGenreCtx() {
-        if (!genreAudioCtx) genreAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        return genreAudioCtx;
-      }
+      var breakCtx=null, breakNodes=[], breakTimer=null;
+      function getBreakCtx(){ if(!breakCtx) breakCtx=new (window.AudioContext||window.webkitAudioContext)(); return breakCtx; }
+      function stopBreak(){ breakNodes.forEach(function(n){ try{if(n.stop)n.stop();}catch(e){} try{if(n.disconnect)n.disconnect();}catch(e){} }); breakNodes=[]; if(breakTimer){clearInterval(breakTimer); breakTimer=null;} }
+      function hit(ctx,f,type,level,dur){ var o=ctx.createOscillator(),g=ctx.createGain(); o.type=type||"square"; o.frequency.value=f; g.gain.setValueAtTime(level||.05,ctx.currentTime); g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+(dur||.08)); o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+(dur||.1)); breakNodes.push(o,g); }
+      function playBreak(){ stopBreak(); var ctx=getBreakCtx(); if(ctx.state==="suspended")ctx.resume(); var step=0; breakTimer=setInterval(function(){ step++; hit(ctx, step%4===0?90:140, "sine", .14, .08); if(step%3===0)hit(ctx,427,"triangle",.035,.06); if(step%5===0)hit(ctx,1280,"square",.025,.035); if(step%7===0)hit(ctx,720,"sawtooth",.025,.045); },145); }
+      var pb=document.getElementById("playBreakbeat"), sb=document.getElementById("stopBreakbeat"); if(pb)pb.onclick=playBreak; if(sb)sb.onclick=stopBreak;
 
-      function stopGenre() {
-        genreNodes.forEach(function (n) {
-          try { if (n.stop) n.stop(); } catch(e) {}
-          try { if (n.disconnect) n.disconnect(); } catch(e) {}
-        });
-        genreNodes = [];
-        if (genreTimer) {
-          clearInterval(genreTimer);
-          genreTimer = null;
-        }
-      }
+      var sixData = {
+        breakbeats:{title:"Breakbeats — Entry Protocol",titleCN:"Breakbeats — 入口协议",desc:"Irregularity becomes safe. Chaos becomes music.",descCN:"不规则变得安全。混乱变成音乐。",core:"BREAK<br>BEATS",fn:"Uncertainty tolerance + anti-dissociation anchoring",target:"Amygdala · Cerebellum · DMN",exit:"Flexible activation without threat response"},
+        hyperpop:{title:"Hyperpop — Peak Traversal",titleCN:"Hyperpop — 峰值穿越",desc:"Reach the ceiling so the body knows the ceiling has an ending.",descCN:"到达顶点，让身体知道顶点会结束。",core:"HYPER<br>POP",fn:"Overload aesthetics + peak-release cycle",target:"Dopamine · sensory tolerance · identity affirmation",exit:"Skin conductance plateau + HRV micro-drop"},
+        synthpop:{title:"Synthpop — First Breath",titleCN:"Synthpop — 第一口呼吸",desc:"Linear rhythm received as gift, not command.",descCN:"线性节律被接收为礼物，而不是命令。",core:"SYNTH<br>POP",fn:"Predictability as relief + emotional narrative access",target:"Ventral vagal · self-narrative · safety",exit:"Emotional processing stabilized"},
+        driftphonk:{title:"Drift Phonk — Temporal Re-entry",titleCN:"Drift Phonk — 时间回返",desc:"Return the body from the historical room to the present moment.",descCN:"把身体从过去的房间带回当下。",core:"DRIFT<br>PHONK",fn:"Sub-bass grounding + 427Hz phase integration",target:"Amygdala timeline reset · body weight",exit:"HRV coherence threshold reached"},
+        darkwave:{title:"Darkwave — Shadow Integration",titleCN:"Darkwave — 阴影整合",desc:"What has been suppressed is allowed to be seen without destroying the seer.",descCN:"被压抑之物被允许显现，但不会摧毁观看者。",core:"DARK<br>WAVE",fn:"Controlled descent + emotional mirror",target:"Parasympathetic depth · shame release",exit:"Skin conductance baseline + integration complete"},
+        ambient:{title:"Ambient Techno — Homecoming",titleCN:"Ambient Techno — 归返完成",desc:"The nervous system rests in earned silence.",descCN:"神经系统在赢得的安静中休息。",core:"AMBIENT<br>TECHNO",fn:"Neural consolidation + 427Hz final anchoring",target:"Ventral vagal · somatic memory · completion",exit:"Sustained HRV coherence"}
+      };
+      var sixMode="breakbeats", sixCtx=null, sixNodes=[], sixTimer=null;
+      function setSix(mode){ var d=sixData[mode]; if(!d)return; sixMode=mode; var map={sixTitle:d.title,sixTitleCN:d.titleCN,sixDesc:d.desc,sixDescCN:d.descCN,sixFunction:d.fn,sixTarget:d.target,sixExit:d.exit}; Object.keys(map).forEach(function(id){var el=document.getElementById(id); if(el)el.textContent=map[id];}); var core=document.getElementById("sixCore"); if(core)core.innerHTML=d.core; document.querySelectorAll(".six-btn").forEach(function(btn){btn.classList.toggle("active",btn.getAttribute("data-six")===mode);}); document.querySelectorAll(".six-mini").forEach(function(card){card.classList.toggle("active",card.getAttribute("data-six-card")===mode);}); }
+      function getSixCtx(){ if(!sixCtx)sixCtx=new (window.AudioContext||window.webkitAudioContext)(); return sixCtx; }
+      function stopSix(){ sixNodes.forEach(function(n){ try{if(n.stop)n.stop();}catch(e){} try{if(n.disconnect)n.disconnect();}catch(e){} }); sixNodes=[]; if(sixTimer){clearInterval(sixTimer); sixTimer=null;} }
+      function tone(ctx,f,type,level,dur){ var o=ctx.createOscillator(),g=ctx.createGain(); o.type=type||"sine"; o.frequency.value=f; g.gain.setValueAtTime(level||.05,ctx.currentTime); g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+(dur||.2)); o.connect(g); g.connect(ctx.destination); o.start(); o.stop(ctx.currentTime+(dur||.25)); sixNodes.push(o,g); }
+      function playSix(){ stopSix(); var ctx=getSixCtx(); if(ctx.state==="suspended")ctx.resume(); if(sixMode==="ambient"){[106.75,213.5,427].forEach(function(f){tone(ctx,f,"sine",.08,4);}); return;} var step=0; sixTimer=setInterval(function(){ step++; if(sixMode==="breakbeats"){tone(ctx,step%4===0?90:140,"sine",.12,.08); if(step%3===0)tone(ctx,427,"triangle",.035,.06);} if(sixMode==="hyperpop"){tone(ctx,[427,640,854,1280][step%4],"square",.04,.07);} if(sixMode==="synthpop"){tone(ctx,[427,540,640][step%3],"triangle",.06,.35);} if(sixMode==="driftphonk"){tone(ctx,53.375,"sine",.12,.18); if(step%4===0)tone(ctx,427,"sine",.04,.2);} if(sixMode==="darkwave"){tone(ctx,[106.75,213.5,427][step%3],"sawtooth",.045,.45);} }, sixMode==="hyperpop"?120:sixMode==="synthpop"?520:sixMode==="darkwave"?700:160); }
+      document.querySelectorAll("[data-six], [data-six-card]").forEach(function(el){ el.onclick=function(){ setSix(el.getAttribute("data-six")||el.getAttribute("data-six-card")); }; });
+      var ps=document.getElementById("playSix"), ss=document.getElementById("stopSix"); if(ps)ps.onclick=playSix; if(ss)ss.onclick=stopSix;
 
-      function gain(ctx, level) {
-        var g = ctx.createGain();
-        g.gain.setValueAtTime(0.0001, ctx.currentTime);
-        g.gain.exponentialRampToValueAtTime(level || 0.07, ctx.currentTime + 0.04);
-        g.connect(ctx.destination);
-        genreNodes.push(g);
-        return g;
-      }
-
-      function pulseOsc(ctx, freq, type, level, duration) {
-        var o = ctx.createOscillator();
-        var g = ctx.createGain();
-        o.type = type || "sine";
-        o.frequency.setValueAtTime(freq, ctx.currentTime);
-        g.gain.setValueAtTime(level || 0.08, ctx.currentTime);
-        g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (duration || 0.18));
-        o.connect(g);
-        g.connect(ctx.destination);
-        o.start();
-        o.stop(ctx.currentTime + (duration || 0.22));
-        genreNodes.push(o, g);
-      }
-
-      function playGenre() {
-        stopGenre();
-        var ctx = getGenreCtx();
-        if (ctx.state === "suspended") ctx.resume();
-
-        if (genreMode === "phonk") {
-          var master = gain(ctx, 0.08);
-          var sub = ctx.createOscillator();
-          sub.type = "sine";
-          sub.frequency.value = 53.375;
-          sub.connect(master);
-          sub.start();
-          genreNodes.push(sub);
-          genreTimer = setInterval(function () {
-            pulseOsc(ctx, 80, "sine", 0.18, 0.12);
-            pulseOsc(ctx, 720, "square", 0.025, 0.055);
-          }, 420);
-        }
-
-        if (genreMode === "hyperpop") {
-          genreTimer = setInterval(function () {
-            var f = [427, 640, 854, 1280, 1710][Math.floor(Math.random()*5)];
-            pulseOsc(ctx, f, Math.random() > .5 ? "square" : "sawtooth", 0.045, 0.08);
-          }, 120);
-        }
-
-        if (genreMode === "synthpop") {
-          var master2 = gain(ctx, 0.065);
-          [427, 540, 640.5].forEach(function (f, i) {
-            var o = ctx.createOscillator();
-            o.type = "triangle";
-            o.frequency.value = f;
-            var g = ctx.createGain();
-            g.gain.value = i === 0 ? 0.38 : 0.16;
-            o.connect(g); g.connect(master2); o.start();
-            genreNodes.push(o, g);
-          });
-        }
-
-        if (genreMode === "darkwave") {
-          var master3 = gain(ctx, 0.055);
-          [106.75, 213.5, 427].forEach(function (f, i) {
-            var o = ctx.createOscillator();
-            o.type = "sawtooth";
-            o.frequency.value = f;
-            var filter = ctx.createBiquadFilter();
-            filter.type = "lowpass";
-            filter.frequency.value = 800 - i*120;
-            var g = ctx.createGain();
-            g.gain.value = i === 0 ? 0.22 : 0.10;
-            o.connect(filter); filter.connect(g); g.connect(master3); o.start();
-            genreNodes.push(o, filter, g);
-          });
-        }
-        if (genreMode === "ambient") {
-          var master4 = gain(ctx, 0.05);
-          [106.75, 213.5, 427, 640.5].forEach(function (f, i) {
-            var o = ctx.createOscillator();
-            o.type = i < 2 ? "sine" : "triangle";
-            o.frequency.value = f;
-            var filter = ctx.createBiquadFilter();
-            filter.type = "lowpass";
-            filter.frequency.value = 600 + i * 180;
-            var g = ctx.createGain();
-            g.gain.value = i === 0 ? 0.18 : 0.07;
-            o.connect(filter); filter.connect(g); g.connect(master4); o.start();
-            genreNodes.push(o, filter, g);
-          });
-          genreTimer = setInterval(function () {
-            pulseOsc(ctx, 427 * (Math.random() > 0.5 ? 1 : 1.5), "sine", 0.018, 0.8);
-          }, 900);
-        }
-
-      }
-
-      function bindGenres() {
-        document.querySelectorAll("[data-genre], [data-genre-card]").forEach(function (el) {
-          el.onclick = function () {
-            var mode = el.getAttribute("data-genre") || el.getAttribute("data-genre-card");
-            setGenre(mode);
-          };
-        });
-
-        var play = document.getElementById("playGenre");
-        var stop = document.getElementById("stopGenre");
-        if (play) play.onclick = playGenre;
-        if (stop) stop.onclick = stopGenre;
-      }
-
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", bindGenres);
-      } else {
-        bindGenres();
-      }
-
-      var canvas = document.getElementById("genreCanvas");
-      var ctx2d = canvas ? canvas.getContext("2d") : null;
-      function drawGenre() {
-        if (!canvas || !ctx2d) return;
-        var rect = canvas.getBoundingClientRect();
-        var dpr = window.devicePixelRatio || 1;
-        canvas.width = rect.width * dpr;
-        canvas.height = rect.height * dpr;
-
-        var w = canvas.width, h = canvas.height;
-        ctx2d.clearRect(0,0,w,h);
-        var t = performance.now()/1000;
-        var color = genreMode === "phonk" ? "rgba(53,255,159,.9)" :
-                    genreMode === "hyperpop" ? "rgba(255,43,214,.9)" :
-                    genreMode === "synthpop" ? "rgba(0,245,255,.9)" :
-                    genreMode === "ambient" ? "rgba(255,230,109,.9)" :
-                    "rgba(141,92,255,.9)";
-
-        for (var layer=0; layer<4; layer++) {
-          ctx2d.beginPath();
-          for (var x=0; x<w; x+=8*dpr) {
-            var nx = x/w;
-            var amp;
-            if (genreMode === "phonk") amp = Math.sign(Math.sin(nx*38 + t*6)) * h*.05 + Math.sin(nx*9+t)*h*.04;
-            else if (genreMode === "hyperpop") amp = (Math.random()-.5)*h*.18 + Math.sin(nx*80+t*10)*h*.025;
-            else if (genreMode === "synthpop") amp = Math.sin(nx*18+t*1.5+layer)*h*.08;
-            else if (genreMode === "ambient") amp = Math.sin(nx*10+t*.9+layer)*h*.055 + Math.sin(nx*28+t*1.2)*h*.018;
-            else amp = Math.sin(nx*8+t*.7+layer)*h*.12 + Math.sin(nx*22+t)*h*.025;
-            var y = h*(.5+(layer-1.5)*.11)+amp;
-            if (x===0) ctx2d.moveTo(x,y); else ctx2d.lineTo(x,y);
-          }
-          ctx2d.strokeStyle = color;
-          ctx2d.lineWidth = (layer===1 ? 2.5 : 1.2)*dpr;
-          ctx2d.shadowBlur = 16*dpr;
-          ctx2d.shadowColor = color;
-          ctx2d.stroke();
-        }
-        requestAnimationFrame(drawGenre);
-      }
-      drawGenre();
+      function drawWaves(canvasId, modeGetter){ var c=document.getElementById(canvasId); if(!c)return; var x2=c.getContext("2d"); function draw(){ var r=c.getBoundingClientRect(),dpr=window.devicePixelRatio||1; c.width=r.width*dpr; c.height=r.height*dpr; var w=c.width,h=c.height,t=performance.now()/1000; x2.clearRect(0,0,w,h); var m=modeGetter(); var color=m==="hyperpop"?"rgba(255,43,214,.9)":m==="synthpop"?"rgba(0,245,255,.9)":m==="darkwave"?"rgba(141,92,255,.9)":m==="ambient"?"rgba(100,210,255,.75)":m==="driftphonk"?"rgba(53,255,159,.9)":"rgba(255,230,109,.9)"; for(var layer=0;layer<4;layer++){ x2.beginPath(); for(var x=0;x<w;x+=8*dpr){ var nx=x/w,amp; if(m==="hyperpop")amp=(Math.random()-.5)*h*.16+Math.sin(nx*80+t*10)*h*.025; else if(m==="ambient")amp=Math.sin(nx*5+t*.4+layer)*h*.06; else if(m==="darkwave")amp=Math.sin(nx*8+t*.7+layer)*h*.12; else if(m==="synthpop")amp=Math.sin(nx*18+t*1.5+layer)*h*.08; else amp=Math.sign(Math.sin(nx*34+t*6))*h*.045+Math.sin(nx*9+t)*h*.04; var y=h*(.5+(layer-1.5)*.11)+amp; if(x===0)x2.moveTo(x,y); else x2.lineTo(x,y);} x2.strokeStyle=color; x2.lineWidth=(layer===1?2.5:1.2)*dpr; x2.shadowBlur=16*dpr; x2.shadowColor=color; x2.stroke(); } requestAnimationFrame(draw);} draw(); }
+      drawWaves("breakbeatCanvas", function(){return "breakbeats";});
+      drawWaves("sixCanvas", function(){return sixMode;});
     })();
   </script>
-
-
-<script>
-(function(){
-  document.addEventListener("click", function(e){
-    const demo = e.target.closest && e.target.closest("#liteDemo");
-    const stop = e.target.closest && e.target.closest("#liteStop");
-    if(demo && typeof window.__hrpLitePlayDemo === "function"){
-      e.preventDefault();
-      window.__hrpLitePlayDemo();
-    }
-    if(stop && typeof window.__hrpLiteStopDemo === "function"){
-      e.preventDefault();
-      window.__hrpLiteStopDemo();
-    }
-  }, true);
-})();
-</script>
-
 
 </body>
 </html>
