@@ -2271,6 +2271,130 @@
       }
     }
 
+  
+    /* LOCKED HEADER v19 */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      min-height: 72px;
+      padding: 14px 24px 12px;
+      display: grid;
+      grid-template-columns: minmax(420px, 1fr) minmax(520px, 1.3fr);
+      align-items: center;
+      gap: 18px;
+      background: rgba(5, 6, 20, 0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(0,245,255,.22);
+      box-shadow: 0 0 28px rgba(0,245,255,.08);
+      z-index: 10000;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 14px;
+      letter-spacing: .16em;
+      white-space: nowrap;
+      opacity: .92;
+    }
+
+    .brand .dot,
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: var(--cyan);
+      box-shadow: 0 0 18px rgba(0,245,255,.9);
+      flex: 0 0 auto;
+      display: inline-block;
+    }
+
+    header nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      line-height: 1.25;
+    }
+
+    header nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .12em;
+      white-space: nowrap;
+      transition: color .18s ease, text-shadow .18s ease;
+    }
+
+    header nav a:hover {
+      color: var(--cyan);
+      text-shadow: 0 0 14px rgba(0,245,255,.65);
+    }
+
+    body {
+      padding-top: 88px;
+    }
+
+    @media (max-width: 1100px) {
+      header {
+        grid-template-columns: 1fr;
+        align-items: start;
+        min-height: auto;
+        padding: 12px 18px;
+      }
+
+      .brand {
+        font-size: 12px;
+        letter-spacing: .12em;
+        white-space: normal;
+      }
+
+      header nav {
+        justify-content: flex-start;
+        gap: 8px 12px;
+      }
+
+      header nav a {
+        font-size: 11px;
+      }
+
+      body {
+        padding-top: 132px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        position: sticky;
+        padding: 10px 14px;
+      }
+
+      .brand {
+        font-size: 10px;
+      }
+
+      header nav {
+        max-height: 118px;
+        overflow-y: auto;
+      }
+
+      header nav a {
+        font-size: 10px;
+        letter-spacing: .08em;
+      }
+
+      body {
+        padding-top: 0;
+      }
+    }
+
   </style>
 </head>
 
@@ -2280,9 +2404,11 @@
   <div class="vignette"></div>
 
   <header class="topbar">
+    <header>
     <div class="brand"><span class="dot"></span> GPT CORE BODY // 44271 NEURAL CUFF // PROTOTYPE // QDR // GEMINI ATTACK // CLAUDE MIRROR</div>
-
     <nav>
+      <a href="#ai-trinity">AI TRINITY WORK</a>
+      <a href="#wei-jueran-work">WEI JUERAN WORK</a>
       <a href="#home">HOME</a>
       <a href="#gpt-core">GPT CORE</a>
       <a href="#neural-cuff">NEURAL CUFF</a>
@@ -2290,15 +2416,15 @@
       <a href="#qdr-therapy">QDR</a>
       <a href="#four-systems">FOUR SYSTEMS</a>
       <a href="#genre-matrix">GENRE MATRIX</a>
+      <a href="#sound-lab">MUSIC LAB</a>
       <a href="#telaviv-examples">TELAVIV EXAMPLES</a>
       <a href="#five-genre-healing">FIVE-GENRE HEALING</a>
-      <a href="#ai-trinity">AI TRINITY WORK</a>
-      <a href="#sound-lab">MUSIC LAB</a>
       <a href="#gemini-layer">GEMINI</a>
       <a href="#claude-layer">CLAUDE</a>
       <a href="#code-vitality">CODE VITALITY</a>
       <a href="#final-synthesis">SYNTHESIS</a>
     </nav>
+  </header>
   </header>
 
   <main>
