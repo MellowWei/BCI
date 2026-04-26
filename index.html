@@ -2134,6 +2134,142 @@
       }
     }
 
+  
+    .mi-track-selector {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .mi-track-btn {
+      min-height: 148px;
+      padding: 16px 14px;
+      border: 1px solid rgba(0,245,255,.18);
+      border-radius: 18px;
+      background: rgba(255,255,255,.035);
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      transition: .22s ease;
+    }
+    .mi-track-btn:hover, .mi-track-btn.active {
+      transform: translateY(-4px);
+      border-color: rgba(184,255,87,.48);
+      box-shadow: 0 0 28px rgba(184,255,87,.12);
+    }
+    .mi-track-btn strong { display:block; font-size:14px; margin-bottom:5px; }
+    .mi-track-btn em { display:block; color:var(--cyan); font-style:normal; font-size:11px; letter-spacing:1px; margin-bottom:10px; }
+    .mi-track-btn small { display:block; color:var(--muted); line-height:1.45; }
+
+    .mi-audio-box { display:grid; gap:14px; margin-top:16px; }
+    .mi-upload-label { color:var(--cyan); font-size:10px; letter-spacing:2px; }
+    #miUpload { color:var(--muted); font-family:var(--mono); }
+    #miAudio { width:100%; display:none; }
+    .mi-controls { display:flex; flex-wrap:wrap; gap:10px; }
+    .mi-ctrl {
+      border:1px solid rgba(0,245,255,.32);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      padding:11px 15px;
+      font-family:var(--mono);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .mi-ctrl:hover { border-color:var(--cyan); background:rgba(0,245,255,.12); }
+    .mi-ctrl.primary { color:var(--green); border-color:rgba(184,255,87,.42); }
+    .mi-note {
+      color:var(--muted);
+      font-family:var(--serif);
+      font-size:13px;
+      line-height:1.7;
+      border-top:1px solid var(--border);
+      padding-top:12px;
+    }
+    .mi-ref-list {
+      display:grid;
+      gap:8px;
+      padding:12px;
+      border:1px solid rgba(0,245,255,.15);
+      border-radius:18px;
+      background:rgba(0,245,255,.025);
+    }
+    .mi-ref-item {
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      color:var(--muted);
+      font-family:var(--serif);
+      font-size:13px;
+      border-bottom:1px solid rgba(255,255,255,.05);
+      padding-bottom:7px;
+    }
+    .mi-ref-item:last-child { border-bottom:none; padding-bottom:0; }
+    .mi-ref-item b { color:var(--text); font-family:var(--mono); }
+
+    .mi-wave-stage {
+      position:relative;
+      height:320px;
+      border:1px solid rgba(0,245,255,.2);
+      border-radius:28px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(0,245,255,.12), transparent 34%),
+        radial-gradient(circle at 85% 12%, rgba(255,77,157,.12), transparent 32%),
+        rgba(255,255,255,.025);
+    }
+    #miWaveCanvas, #miRadarCanvas, #miCurveCanvasA, #miCurveCanvasB { width:100%; height:100%; display:block; }
+    .mi-orb {
+      position:absolute; left:50%; top:50%; width:154px; height:154px;
+      transform:translate(-50%,-50%);
+      border-radius:50%;
+      border:1px solid rgba(184,255,87,.35);
+      display:grid; place-items:center; text-align:center;
+      background:radial-gradient(circle,rgba(184,255,87,.16),rgba(0,229,255,.10) 54%,rgba(255,77,157,.08) 70%,transparent);
+      box-shadow:0 0 42px rgba(0,229,255,.22),inset 0 0 30px rgba(255,255,255,.05);
+      animation: orbBreathe 3.2s ease-in-out infinite;
+    }
+    .mi-orb span { font-size:12px; letter-spacing:2px; color:var(--text); text-shadow:0 0 16px rgba(0,229,255,.8); }
+
+    .mi-metric-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .mi-metric {
+      padding:16px;
+      border:1px solid var(--border);
+      border-radius:20px;
+      background:rgba(255,255,255,.028);
+    }
+    .mi-metric strong { display:block; font-size:9px; letter-spacing:2px; color:var(--cyan); margin-bottom:8px; }
+    .mi-metric p { color:var(--muted); font-size:12px; }
+    .mi-meter { height:7px; background:rgba(255,255,255,.06); border-radius:999px; overflow:hidden; margin-top:12px; }
+    .mi-meter span { display:block; height:100%; width:40%; background:linear-gradient(90deg,var(--cyan),var(--green)); border-radius:999px; transition:width .45s ease; }
+
+    .mi-radar-wrap {
+      height:360px;
+      border:1px solid rgba(0,245,255,.18);
+      border-radius:28px;
+      overflow:hidden;
+      background:radial-gradient(circle at center,rgba(0,245,255,.08),transparent 45%),rgba(255,255,255,.025);
+    }
+    .mi-curve-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .mi-curve {
+      height:260px;
+      border:1px solid rgba(0,245,255,.18);
+      border-radius:24px;
+      overflow:hidden;
+      background:rgba(255,255,255,.025);
+    }
+    .mi-copybox {
+      border-left:3px solid var(--green);
+      padding:18px 22px;
+      background:rgba(184,255,87,.035);
+      border-radius:0 22px 22px 0;
+    }
+    .mi-copybox p { color:var(--text); font-family:var(--serif); font-size:15px; line-height:1.8; }
+    .mi-copybox .cn { margin-top:10px; color:var(--muted); }
+
+    @media(max-width:1000px){
+      .mi-track-selector, .mi-metric-grid, .mi-curve-grid { grid-template-columns:1fr; }
+    }
+
   </style>
 </head>
 
@@ -2157,7 +2293,7 @@
       <a href="#four-systems">FOUR SYSTEMS</a>
       <a href="#genre-matrix">GENRE MATRIX</a>
       <a href="#telaviv-examples">TELAVIV EXAMPLES</a>
-      <a href="#music-intervention-lab-embedded">MUSIC INTERVENTION LAB</a>
+      <a href="#music-intervention-native">MUSIC INTERVENTION LAB</a>
       <a href="#five-genre-healing">FIVE-GENRE HEALING</a>
       <a href="#trinity-work">AI TRINITY WORK</a>
       <a href="#sound-lab">MUSIC LAB</a>
@@ -6405,6 +6541,214 @@ function show(id){
       drawGenre();
     })();
   </script>
+
+
+<script>
+(function(){
+  const miProfiles = {
+    phonk:{
+      title:"Drift Phonk", titleCN:"身体驱动协议",
+      desc:"TelAviv reference: Skeler’s atmospheric wave / drift pressure demonstrates how kick-sub motion can bring the body back online.",
+      descCN:"TelAviv 参照：Skeler 的氛围 wave / drift 压强示范 kick-sub 运动如何让身体重新上线。",
+      refs:["01 Tel Aviv — Skeler","05 Crush - Skeler Vision — Skeler, Tomkillsjerry","07 Can't Say No — Skeler","13 AVA — Skeler","14 Full Control — Skeler"],
+      visual:"Kick–Breath Sync", visualCN:"Kick–呼吸同步", orb:"BODY<br>ONLINE", color:"#ff6b35",
+      vals:{meaning:32,emotion:58,body:92,cognition:46},
+      labels:{meaning:"Existence confirmation / 存在确认", emotion:"Charge release / 电荷释放", body:"Somatic return / 身体返回", cognition:"Rhythm anchor / 节律锚点"},
+      curveA:"Embodiment Curve", curveACN:"体现曲线", curveB:"Breath-Lock Load", curveBCN:"呼吸锁定负载",
+      rows:[["Kick/Sub","Heavy kick and low-frequency pressure","Breath-lock and bodily ignition","Strong pulse synchronized to kick"],["Cowbell","Secondary rhythmic tracking layer","Micro-attention tracking","Light off-beat tap"],["Bass pressure","Sub-somatic resonance","Body returns before cognition","Inner-wrist pressure swell"]],
+      copyEN:"Drift Phonk demonstrates body ignition: kick/sub pressure becomes breath-lock, haptic pacing, and embodied return.",
+      copyCN:"Drift Phonk 示范身体点火：kick/sub 压强变成呼吸锁定、触觉节拍与身体体现返回。"
+    },
+    hyperpop:{
+      title:"Hyperpop", titleCN:"认知故障协议",
+      desc:"TelAviv reference: sugar-glitch and high-density texture demonstrate how overload becomes momentum.",
+      descCN:"TelAviv 参照：糖感 glitch 与高密度质地示范超载如何变成势能。",
+      refs:["22 SugarCrash! — ElyOtto","35 pharmacy — food house, Gupi, Fraxiom","39 sole — food house, Gupi, Fraxiom","40 kittycore (slowed) — VERGE!, winter","08 xoxo <3 — pichuu, lovesiren"],
+      visual:"Glitch–Information Cadence", visualCN:"Glitch–信息节拍", orb:"RESEARCH<br>BURST", color:"#f472b6",
+      vals:{meaning:46,emotion:74,body:38,cognition:94},
+      labels:{meaning:"Directional spark / 方向火花", emotion:"Anxiety offset / 焦虑偏移", body:"Micro-activation / 微激活", cognition:"Research burst / 研究爆发"},
+      curveA:"Information Density", curveACN:"信息密度", curveB:"Glitch Reset Curve", curveBCN:"故障重置曲线",
+      rows:[["High BPM","Fast rhythmic grid","Information cadence under speed","Short cognitive cue pulse"],["Glitch cuts","Sudden structural interruptions","Attention reset points","Brief reset tap"],["Saccharine melody","Sweet surface over overload","Anxiety offset by bright texture","Soft stabilizing pulse"]],
+      copyEN:"Hyperpop demonstrates cognitive surge: glitch and sweetness turn overload into information cadence and momentum.",
+      copyCN:"Hyperpop 示范认知激增：glitch 与甜感把超载转化为信息节拍与势能。"
+    },
+    synthpop:{
+      title:"Synthpop", titleCN:"意义回归协议",
+      desc:"TelAviv reference: melodic hooks and retro synth memory demonstrate how void becomes narrative continuity.",
+      descCN:"TelAviv 参照：旋律 hook 与复古合成器记忆示范虚空如何变成叙事连续。",
+      refs:["48 Mega (Bonus Track) — Emil Rottmayer","46 Top Dog — Magdalena Bay","52 Something for 2 — Magdalena Bay","43 Just Dance — Lady Gaga, Colby O'Donis","41 Only Girl (In The World) — Rihanna"],
+      visual:"Melody–Meaning Return", visualCN:"旋律–意义回归", orb:"MEANING<br>RETURN", color:"#818cf8",
+      vals:{meaning:94,emotion:62,body:40,cognition:58},
+      labels:{meaning:"Narrative continuity / 叙事连续", emotion:"Warm safety / 温暖安全", body:"Temporal body / 时间身体", cognition:"Stable structure / 稳定结构"},
+      curveA:"Narrative Arc", curveACN:"叙事弧线", curveB:"Melody Anchor Index", curveBCN:"旋律锚点指数",
+      rows:[["Melodic hook","Recurring motif returns","Subjectivity anchor in the void","Warm pulse at hook return"],["Harmony","Resolution and expectation","Meaning tension and release","Slow arrival pulse"],["4/4 grid","Stable pop-time field","Continuity across time","Low-pressure regular cue"]],
+      copyEN:"Synthpop demonstrates meaning return: melody and harmony retrieve nostalgia and rebuild subjectivity.",
+      copyCN:"Synthpop 示范意义回归：旋律与和声取回怀旧，并重建主体性。"
+    },
+    darkwave:{
+      title:"Darkwave", titleCN:"情绪稳定协议",
+      desc:"TelAviv reference: cold desire, absence, and electronic mourning demonstrate emotional stabilization.",
+      descCN:"TelAviv 参照：冷欲望、缺席与电子哀悼示范情绪稳定。",
+      refs:["04 The Perfect Girl — Mareux","28 Transgender — Crystal Castles","42 I Was Never There - Live — The Weeknd","54 Is There Someone Else? — The Weeknd","26 Angel On My Shoulder — Sega Bodega"],
+      visual:"Cold Field Co-Regulation", visualCN:"冷场共调", orb:"14°C<br>FIELD", color:"#64748b",
+      vals:{meaning:52,emotion:92,body:46,cognition:36},
+      labels:{meaning:"Absence held / 缺席被承托", emotion:"Flood regulation / 洪水调节", body:"Slow breath / 慢呼吸", cognition:"Pressure reduction / 压强降低"},
+      curveA:"Arousal Cooling", curveACN:"唤醒冷却", curveB:"Mourning Container", curveBCN:"哀悼容器",
+      rows:[["Cold synth","Spectral coldness","Emotional temperature dropping","Very slow 0.1Hz pulse"],["Mourning tone","Deep atmospheric grief field","Grief held without collapse","Soft long-interval cue"],["Slow BPM","Reduced temporal pressure","Nervous system deceleration","Breath-paced haptic cue"]],
+      copyEN:"Darkwave demonstrates emotional co-regulation: cold atmosphere holds grief without forcing it to disappear.",
+      copyCN:"Darkwave 示范情绪共调：冷感氛围承托悲伤，而不是强迫悲伤消失。"
+    },
+    ambient:{
+      title:"Ambient Techno", titleCN:"空间专注协议",
+      desc:"TelAviv reference: spatial synth flow and atmospheric wave seeds demonstrate flow infrastructure.",
+      descCN:"TelAviv 参照：空间合成器心流与氛围 wave 种子示范心流基础设施。",
+      refs:["48 Mega (Bonus Track) — Emil Rottmayer","45 Same Place — JOY.","01 Tel Aviv — Skeler","06 Ashes — Skeler","13 AVA — Skeler","14 Full Control — Skeler"],
+      visual:"Spatial Focus Infrastructure", visualCN:"空间专注基础设施", orb:"FLOW<br>FIELD", color:"#34d399",
+      vals:{meaning:42,emotion:46,body:64,cognition:88},
+      labels:{meaning:"Work carries meaning / 工作承载意义", emotion:"Neutral stability / 中性稳定", body:"Spatial presence / 空间存在", cognition:"Sustained flow / 持续心流"},
+      curveA:"Flow Maintenance", curveACN:"心流维持", curveB:"Transition Smoothing", curveBCN:"转换平滑",
+      rows:[["Ambient pad","Environmental texture","Space becomes stable","Near-imperceptible warmth"],["Minimal pulse","Low-pressure temporal grid","Focus without urgency","25-minute check-in cue"],["Spatial delay","Dimensional thought field","Cognitive space expanding","Transition bridge pulse"]],
+      copyEN:"Ambient Techno demonstrates flow infrastructure: spatial texture and minimal pulse maintain attention without urgency.",
+      copyCN:"Ambient Techno 示范心流基础设施：空间质地与极简脉冲在不制造紧迫感的情况下维持注意。"
+    }
+  };
+
+  let mode = "phonk";
+  let ctx = null, analyser = null, sourceNode = null, demoNodes = [];
+  let audio = document.getElementById("miAudio");
+  let objectUrl = null;
+
+  function $(id){ return document.getElementById(id); }
+  function set(id, html){ const el=$(id); if(el) el.innerHTML = html; }
+  function ensureAudio(){
+    if(!ctx){
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = ctx.createAnalyser();
+      analyser.fftSize = 1024;
+      analyser.smoothingTimeConstant = .78;
+      analyser.connect(ctx.destination);
+    }
+    if(ctx.state === "suspended") ctx.resume();
+  }
+  function connectAudioEl(){
+    ensureAudio();
+    if(!sourceNode){
+      sourceNode = ctx.createMediaElementSource(audio);
+      sourceNode.connect(analyser);
+    }
+  }
+
+  function setMode(m){
+    mode = m;
+    const p = miProfiles[m];
+    document.querySelectorAll(".mi-track-btn").forEach(b => b.classList.toggle("active", b.dataset.miTrack === m));
+    set("miTitle", p.title); set("miTitleCN", p.titleCN);
+    set("miDesc", p.desc); set("miDescCN", p.descCN);
+    set("miVisualTitle", p.visual); set("miVisualTitleCN", p.visualCN);
+    set("miOrb", p.orb);
+    set("miRefList", p.refs.map((r,i)=>`<div class="mi-ref-item"><b>${String(i+1).padStart(2,"0")}</b><span>${r}</span></div>`).join(""));
+    set("miMeaningText", p.labels.meaning); set("miEmotionText", p.labels.emotion); set("miBodyText", p.labels.body); set("miCognitionText", p.labels.cognition);
+    $("miMeaningMeter").style.width = p.vals.meaning + "%"; $("miEmotionMeter").style.width = p.vals.emotion + "%"; $("miBodyMeter").style.width = p.vals.body + "%"; $("miCognitionMeter").style.width = p.vals.cognition + "%";
+    set("miCurveATitle", p.curveA); set("miCurveATitleCN", p.curveACN); set("miCurveBTitle", p.curveB); set("miCurveBTitleCN", p.curveBCN);
+    set("miProtocolRows", p.rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join(""));
+    set("miCopyEN", p.copyEN); set("miCopyCN", p.copyCN);
+  }
+
+  document.querySelectorAll(".mi-track-btn").forEach(b => b.onclick = () => setMode(b.dataset.miTrack));
+  $("miUpload").onchange = e => {
+    const file = e.target.files[0]; if(!file) return;
+    if(objectUrl) URL.revokeObjectURL(objectUrl);
+    objectUrl = URL.createObjectURL(file);
+    audio.src = objectUrl; audio.style.display = "block";
+  };
+  $("miPlay").onclick = () => { if(audio.src){ connectAudioEl(); audio.play(); } else playDemo(); };
+  $("miPause").onclick = () => audio.pause();
+  $("miStop").onclick = () => { audio.pause(); audio.currentTime = 0; stopDemo(); };
+  $("miDemo").onclick = playDemo;
+
+  function stopDemo(){
+    demoNodes.forEach(n => { try{ if(n.stop) n.stop(); }catch(e){} try{ if(n.disconnect) n.disconnect(); }catch(e){} });
+    demoNodes = [];
+  }
+  function osc(freq,type="sine",level=.04){
+    ensureAudio();
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type=type; o.frequency.value=freq; g.gain.value=level;
+    o.connect(g); g.connect(analyser); o.start(); demoNodes.push(o,g);
+  }
+  function tick(freq=90,type="sine",level=.12,dur=.1){
+    ensureAudio();
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type=type; o.frequency.value=freq; g.gain.setValueAtTime(level,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+dur);
+    o.connect(g); g.connect(analyser); o.start(); o.stop(ctx.currentTime+dur+.02); demoNodes.push(o,g);
+  }
+  function playDemo(){
+    stopDemo(); ensureAudio();
+    if(mode==="phonk"){
+      osc(53.375,"sine",.12);
+      const int=setInterval(()=>{ tick(82,"sine",.18,.10); tick(720,"square",.025,.05); },420);
+      demoNodes.push({stop(){clearInterval(int)},disconnect(){clearInterval(int)}});
+    }
+    if(mode==="hyperpop"){
+      const int=setInterval(()=>{ const f=[427,640,854,1280,1710][Math.floor(Math.random()*5)]; tick(f,Math.random()>.5?"square":"sawtooth",.05,.06); },110);
+      demoNodes.push({stop(){clearInterval(int)},disconnect(){clearInterval(int)}});
+    }
+    if(mode==="synthpop") [427,540,640.5,854].forEach((f,i)=>osc(f,"triangle",i===0?.08:.025));
+    if(mode==="darkwave") [106.75,213.5,427].forEach((f,i)=>osc(f,"sawtooth",i===0?.06:.03));
+    if(mode==="ambient"){
+      [106.75,213.5,427,640.5].forEach((f,i)=>osc(f,i<2?"sine":"triangle",i===0?.045:.018));
+      const int=setInterval(()=>tick(427*(Math.random()>.5?1:1.5),"sine",.018,.8),900);
+      demoNodes.push({stop(){clearInterval(int)},disconnect(){clearInterval(int)}});
+    }
+  }
+
+  function size(c){ const r=c.getBoundingClientRect(), d=window.devicePixelRatio||1; c.width=r.width*d; c.height=r.height*d; return {w:c.width,h:c.height,d}; }
+  function drawWave(){
+    const c=$("miWaveCanvas"); if(!c) return; const g=c.getContext("2d"), s=size(c), p=miProfiles[mode], t=performance.now()/1000;
+    g.clearRect(0,0,s.w,s.h);
+    let data = new Uint8Array(512); if(analyser) analyser.getByteFrequencyData(data);
+    for(let layer=0; layer<4; layer++){
+      g.beginPath();
+      for(let x=0; x<s.w; x+=8*s.d){
+        const nx=x/s.w, energy=(data[Math.floor(nx*data.length)]/255)||0;
+        let amp;
+        if(mode==="phonk") amp=Math.sign(Math.sin(nx*40+t*7))*s.h*.035 + Math.sin(nx*8+t)*s.h*.035 + energy*s.h*.12;
+        else if(mode==="hyperpop") amp=(Math.random()-.5)*s.h*.11 + Math.sin(nx*90+t*10)*s.h*.025 + energy*s.h*.09;
+        else if(mode==="synthpop") amp=Math.sin(nx*18+t*1.4+layer)*s.h*.07 + energy*s.h*.06;
+        else if(mode==="darkwave") amp=Math.sin(nx*8+t*.6+layer)*s.h*.11 + Math.sin(nx*22+t)*s.h*.02 + energy*s.h*.04;
+        else amp=Math.sin(nx*10+t*.9+layer)*s.h*.05 + Math.sin(nx*28+t*1.2)*s.h*.016 + energy*s.h*.045;
+        const y=s.h*(.5+(layer-1.5)*.10)+amp;
+        if(x===0) g.moveTo(x,y); else g.lineTo(x,y);
+      }
+      g.strokeStyle=p.color; g.lineWidth=(layer===1?2.8:1.2)*s.d; g.shadowBlur=16*s.d; g.shadowColor=p.color; g.stroke();
+    }
+  }
+  function drawRadar(){
+    const c=$("miRadarCanvas"); if(!c) return; const g=c.getContext("2d"), s=size(c), p=miProfiles[mode], vals=[p.vals.meaning,p.vals.emotion,p.vals.body,p.vals.cognition], labs=["Meaning","Emotion","Body","Cognition"];
+    const cx=s.w/2, cy=s.h/2, r=Math.min(s.w,s.h)*.32; g.clearRect(0,0,s.w,s.h);
+    g.strokeStyle="rgba(0,229,255,.18)"; g.lineWidth=s.d;
+    for(let k=1;k<=4;k++){ g.beginPath(); for(let i=0;i<4;i++){ const a=-Math.PI/2+i*Math.PI*2/4, rr=r*k/4, x=cx+Math.cos(a)*rr, y=cy+Math.sin(a)*rr; if(i===0)g.moveTo(x,y); else g.lineTo(x,y);} g.closePath(); g.stroke(); }
+    for(let i=0;i<4;i++){ const a=-Math.PI/2+i*Math.PI*2/4; g.beginPath(); g.moveTo(cx,cy); g.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r); g.stroke(); g.fillStyle="rgba(216,228,240,.72)"; g.font=`${12*s.d}px monospace`; g.textAlign="center"; g.fillText(labs[i],cx+Math.cos(a)*(r+34*s.d),cy+Math.sin(a)*(r+34*s.d)); }
+    g.beginPath(); vals.forEach((v,i)=>{ const a=-Math.PI/2+i*Math.PI*2/4, rr=r*v/100, x=cx+Math.cos(a)*rr, y=cy+Math.sin(a)*rr; if(i===0)g.moveTo(x,y); else g.lineTo(x,y); }); g.closePath(); g.fillStyle=p.color+"44"; g.strokeStyle=p.color; g.lineWidth=2*s.d; g.fill(); g.stroke();
+  }
+  function drawCurve(id, kind){
+    const c=$(id); if(!c) return; const g=c.getContext("2d"), s=size(c), p=miProfiles[mode], t=performance.now()/1000;
+    g.clearRect(0,0,s.w,s.h); g.strokeStyle="rgba(255,255,255,.08)"; g.lineWidth=s.d;
+    for(let i=1;i<5;i++){ g.beginPath(); g.moveTo(0,s.h*i/5); g.lineTo(s.w,s.h*i/5); g.stroke(); }
+    g.beginPath();
+    for(let x=0; x<s.w; x+=6*s.d){
+      const nx=x/s.w; let y;
+      if(kind==="A"){ const target=mode==="phonk"?.82:mode==="hyperpop"?.72:mode==="synthpop"?.78:mode==="darkwave"?.45:.68; y=s.h*(1-(.18+target*(1-Math.exp(-nx*3))+Math.sin(nx*12+t)*.025)); }
+      else { const load=mode==="ambient"?.25:mode==="darkwave"?.38:mode==="phonk"?.72:mode==="hyperpop"?.88:.48; y=s.h*(.5+Math.sin(nx*18+t*1.2)*.08-load*.25+nx*.08); }
+      if(x===0) g.moveTo(x,y); else g.lineTo(x,y);
+    }
+    g.strokeStyle=p.color; g.lineWidth=3*s.d; g.shadowBlur=14*s.d; g.shadowColor=p.color; g.stroke();
+  }
+  function loop(){ drawWave(); drawRadar(); drawCurve("miCurveCanvasA","A"); drawCurve("miCurveCanvasB","B"); requestAnimationFrame(loop); }
+  setMode("phonk"); loop();
+})();
+</script>
 
 </body>
 </html>
