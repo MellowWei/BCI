@@ -2237,6 +2237,40 @@
       }
     }
 
+  
+    .anchor-tone-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 10px;
+    }
+
+    .anchor-tone-controls .button {
+      flex: 1 1 160px;
+      min-width: 150px;
+    }
+
+    .stallion-anchor {
+      border-color: rgba(255,43,214,.62) !important;
+      color: var(--pink) !important;
+      box-shadow: 0 0 22px rgba(255,43,214,.14);
+    }
+
+    .anchor-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 6px 0;
+    }
+
+    @media (max-width: 768px) {
+      .anchor-tone-controls {
+        flex-direction: column;
+      }
+      .anchor-tone-controls .button {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 
@@ -2974,7 +3008,7 @@
           <p id="breakUserDescCN" class="cn">Breakbeat 是母语：直接从高密度进入，把切分节律作为入口，而不是终点。</p>
           <div class="sound-controls">
             <button class="sound-btn break-btn active" data-break-user="mellow">Mellow Type / 高密度</button>
-            <button class="sound-btn break-btn" data-break-user="agnes">Agnes Type / 高压抑</button>
+            <button class="sound-btn break-btn" data-break-user="agnes">Stallion Type / Stallion 型</button>
           </div>
           <div class="transport">
             <button class="button primary" id="playBreakbeat">PLAY BREAKBEAT DEMO / 播放 Breakbeat Demo</button>
@@ -2998,7 +3032,7 @@
         <div class="card span-12">
           <div class="eyebrow">BREAKBEAT SESSION OUTPUT FORMAT // Breakbeat Session 输出格式</div>
           <table class="therapy-table">
-            <thead><tr><th>Parameter / 参数</th><th>Mellow Type / 高密度用户</th><th>Agnes Type / 高压抑用户</th></tr></thead>
+            <thead><tr><th>Parameter / 参数</th><th>Mellow Type / 高密度用户</th><th>Stallion Type / Stallion 型用户</th></tr></thead>
             <tbody>
               <tr><td>BPM Range / BPM 范围</td><td>150–170 BPM; direct full breakbeat density</td><td>118–138 BPM; begin at minimal density</td></tr>
               <tr><td>Syncopation Pattern / 切分模式</td><td>Dense ghost notes, irregular snare, surprise accents every 1–2 bars</td><td>Stable kick first, then introduce one irregular accent every 4–8 bars</td></tr>
@@ -3012,6 +3046,42 @@
     </section>
 
 
+
+
+
+    <section id="protocol-anchors">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">DUAL ANCHOR FREQUENCY SYSTEM // 双锚点频率系统</div>
+          <h2>Mellow returns through 427Hz. Stallion stabilizes through 724Hz.</h2>
+          <h2 class="cn">Mellow 通过 427Hz 返回。Stallion 通过 724Hz 稳定。</h2>
+          <p class="sub en">
+            The two routes are not weak/strong versions of each other. They are different nervous-system pathways.
+            Mellow enters through density and returns through 427Hz. Stallion enters through safety and seals through 724Hz.
+          </p>
+          <p class="sub cn">
+            两条路径不是强弱版本，而是不同神经系统路径。
+            Mellow 从密度进入，并通过 427Hz 返回。Stallion 从安全进入，并通过 724Hz 封存稳定。
+          </p>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow">MELLOW PROTOCOL // 427Hz</div>
+          <h3>High-density route</h3>
+          <h3 class="cn">高密度路径</h3>
+          <p class="en">Breakbeats → Hyperpop → Synthpop → Drift Phonk → Darkwave → Ambient Techno → 427Hz</p>
+          <p class="cn">Breakbeats → Hyperpop → Synthpop → Drift Phonk → Darkwave → Ambient Techno → 427Hz</p>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow">STALLION PROTOCOL // 724Hz</div>
+          <h3>Safety-first route</h3>
+          <h3 class="cn">安全优先路径</h3>
+          <p class="en">Ambient Techno → Darkwave → Drift Phonk → Breakbeats → Synthpop → Hyperpop → 724Hz</p>
+          <p class="cn">Ambient Techno → Darkwave → Drift Phonk → Breakbeats → Synthpop → Hyperpop → 724Hz</p>
+        </div>
+      </div>
+    </section>
 
 
     <section id="six-genre-therapy">
@@ -3063,7 +3133,7 @@
             <thead><tr><th>User Type / 用户类型</th><th>Sequence / 序列</th><th>Logic / 逻辑</th></tr></thead>
             <tbody>
               <tr><td>Mellow Type / 高密度用户</td><td>Breakbeats → Hyperpop → Synthpop → Drift Phonk → Darkwave → Ambient Techno → 427Hz</td><td>Breakbeats are the mother tongue; begin with irregularity, traverse intensity, then return through meaning, time, shadow, and home.</td></tr>
-              <tr><td>Agnes Type / 高压抑用户</td><td>Ambient Techno → Darkwave → Drift Phonk → Breakbeats → Synthpop → Hyperpop → 427Hz</td><td>Safety must be built before irregularity; begin with low threat and introduce breakbeats mid-sequence.</td></tr>
+              <tr><td>Stallion Type / Stallion 型用户</td><td>Ambient Techno → Darkwave → Drift Phonk → Breakbeats → Synthpop → Hyperpop → 724Hz</td><td>Safety must be built before irregularity; begin with low threat, introduce breakbeats mid-sequence, and seal the route with the 724Hz Stallion anchor.</td></tr>
             </tbody>
           </table>
         </div>
@@ -3107,13 +3177,13 @@
 
         <div class="card span-5">
           <div class="eyebrow">LIVE SOUND CONSOLE // 实时声音控制台</div>
-          <h3 id="soundTitle">427Hz Music Anchor</h3>
-          <h3 class="cn" id="soundTitleCN">427Hz 音乐锚点</h3>
+          <h3 id="soundTitle">427Hz / 724Hz Music Anchor</h3>
+          <h3 class="cn" id="soundTitleCN">427Hz / 724Hz 音乐锚点</h3>
           <p id="soundDesc" class="en">
-            A soft tonal anchor for re-centering. It is not a productivity beat; it is a return signal.
+            A soft tonal anchor for re-centering. Mellow returns through 427Hz; Stallion stabilizes through 724Hz. It is not a productivity beat; it is a return signal.
           </p>
           <p id="soundDescCN" class="cn">
-            柔和的音高锚点，用于重新居中。它不是生产力节拍，而是返回信号。
+            柔和的音高锚点，用于重新居中。Mellow 通过 427Hz 返回；Stallion 通过 724Hz 稳定。它不是生产力节拍，而是返回信号。
           </p>
 
           <div class="sound-controls">
@@ -3122,6 +3192,15 @@
             <button class="sound-btn" data-sound="white">White Noise / 白噪音</button>
             <button class="sound-btn" data-sound="plant">Plant Music / 植物系音乐</button>
           </div>
+
+
+          <div class="anchor-tone-controls">
+            <button class="button primary" id="play427Anchor">PLAY 427Hz / 播放 427Hz</button>
+            <button class="button primary stallion-anchor" id="play724Anchor">PLAY 724Hz / 播放 724Hz</button>
+            <button class="button" id="stopAnchorTone">STOP ANCHOR / 停止锚点</button>
+          </div>
+          <p class="anchor-note en">427Hz = Mellow return coordinate. 724Hz = Stallion stabilization coordinate.</p>
+          <p class="anchor-note cn">427Hz = Mellow 返回坐标。724Hz = Stallion 稳定坐标。</p>
 
           <div class="transport">
             <button class="button primary" id="playSound">PLAY SOUND / 播放</button>
@@ -3170,8 +3249,8 @@
 
         <div class="card span-3 sound-example-card" data-sound-card="music">
           <div class="num">01 // MUSIC</div>
-          <h3>427Hz Music Anchor</h3>
-          <h3 class="cn">427Hz 音乐锚点</h3>
+          <h3>427Hz / 724Hz Music Anchor</h3>
+          <h3 class="cn">427Hz / 724Hz 音乐锚点</h3>
           <p class="en">
             Used when the person is drifting, scattered, or entering transition.
             A stable tonal center gives the body a return coordinate.
@@ -4475,10 +4554,10 @@
 
     const soundMeta = {
       music: {
-        title: "427Hz Music Anchor",
-        titleCN: "427Hz 音乐锚点",
-        desc: "A soft tonal anchor for re-centering. It is not a productivity beat; it is a return signal.",
-        descCN: "柔和的音高锚点，用于重新居中。它不是生产力节拍，而是返回信号。",
+        title: "427Hz / 724Hz Music Anchor",
+        titleCN: "427Hz / 724Hz 音乐锚点",
+        desc: "A soft tonal anchor for re-centering. Mellow returns through 427Hz; Stallion stabilizes through 724Hz. It is not a productivity beat; it is a return signal.",
+        descCN: "柔和的音高锚点，用于重新居中。Mellow 通过 427Hz 返回；Stallion 通过 724Hz 稳定。它不是生产力节拍，而是返回信号。",
         type: "Music Anchor / 音乐锚点",
         state: "Drifting · Transition / 漂移 · 转换",
         fn: "Re-center / 重新居中",
@@ -4911,7 +4990,7 @@
     (function () {
       var breakData = {
         mellow: {title:"Mellow Type — Full Density Entry", titleCN:"Mellow 型 — 全密度入口", desc:"Breakbeats are mother tongue: begin at high density, use syncopation as entry point, not destination.", descCN:"Breakbeat 是母语：直接从高密度进入，把切分节律作为入口，而不是终点。", bpm:"150–170 BPM / full density", sync:"High syncopation · irregular accents", entry:"45–90 sec neural entry"},
-        agnes: {title:"Agnes Type — Gradual Safety Association", titleCN:"Agnes 型 — 渐进安全联想", desc:"Begin minimal. Build safety association first. Irregularity enters only after the body trusts the pulse.", descCN:"从最低密度开始。先建立安全联想。只有当身体信任脉冲后，不规则才进入。", bpm:"118–138 BPM / minimal density", sync:"One irregular accent every 4–8 bars", entry:"3–6 min + 66 repetitions"}
+        agnes: {title:"Stallion Type — Gradual Safety Association", titleCN:"Stallion 型 — 渐进安全联想", desc:"Begin minimal. Build safety association first. Irregularity enters only after the body trusts the pulse.", descCN:"从最低密度开始。先建立安全联想。只有当身体信任脉冲后，不规则才进入。", bpm:"118–138 BPM / minimal density", sync:"One irregular accent every 4–8 bars", entry:"3–6 min + 66 repetitions"}
       };
       function setBreakUser(type) {
         var d = breakData[type]; if (!d) return;
@@ -4948,6 +5027,80 @@
       function drawWaves(canvasId, modeGetter){ var c=document.getElementById(canvasId); if(!c)return; var x2=c.getContext("2d"); function draw(){ var r=c.getBoundingClientRect(),dpr=window.devicePixelRatio||1; c.width=r.width*dpr; c.height=r.height*dpr; var w=c.width,h=c.height,t=performance.now()/1000; x2.clearRect(0,0,w,h); var m=modeGetter(); var color=m==="hyperpop"?"rgba(255,43,214,.9)":m==="synthpop"?"rgba(0,245,255,.9)":m==="darkwave"?"rgba(141,92,255,.9)":m==="ambient"?"rgba(100,210,255,.75)":m==="driftphonk"?"rgba(53,255,159,.9)":"rgba(255,230,109,.9)"; for(var layer=0;layer<4;layer++){ x2.beginPath(); for(var x=0;x<w;x+=8*dpr){ var nx=x/w,amp; if(m==="hyperpop")amp=(Math.random()-.5)*h*.16+Math.sin(nx*80+t*10)*h*.025; else if(m==="ambient")amp=Math.sin(nx*5+t*.4+layer)*h*.06; else if(m==="darkwave")amp=Math.sin(nx*8+t*.7+layer)*h*.12; else if(m==="synthpop")amp=Math.sin(nx*18+t*1.5+layer)*h*.08; else amp=Math.sign(Math.sin(nx*34+t*6))*h*.045+Math.sin(nx*9+t)*h*.04; var y=h*(.5+(layer-1.5)*.11)+amp; if(x===0)x2.moveTo(x,y); else x2.lineTo(x,y);} x2.strokeStyle=color; x2.lineWidth=(layer===1?2.5:1.2)*dpr; x2.shadowBlur=16*dpr; x2.shadowColor=color; x2.stroke(); } requestAnimationFrame(draw);} draw(); }
       drawWaves("breakbeatCanvas", function(){return "breakbeats";});
       drawWaves("sixCanvas", function(){return sixMode;});
+    })();
+  </script>
+
+
+  <script>
+    (function () {
+      var anchorCtx = null;
+      var anchorNodes = [];
+
+      function getAnchorCtx() {
+        if (!anchorCtx) anchorCtx = new (window.AudioContext || window.webkitAudioContext)();
+        return anchorCtx;
+      }
+
+      function stopAnchorTone() {
+        anchorNodes.forEach(function (n) {
+          try { if (n.stop) n.stop(); } catch (e) {}
+          try { if (n.disconnect) n.disconnect(); } catch (e) {}
+        });
+        anchorNodes = [];
+      }
+
+      function playAnchorTone(freq, label) {
+        stopAnchorTone();
+        var ctx = getAnchorCtx();
+        if (ctx.state === "suspended") ctx.resume();
+
+        var master = ctx.createGain();
+        master.gain.setValueAtTime(0.0001, ctx.currentTime);
+        master.gain.exponentialRampToValueAtTime(0.075, ctx.currentTime + 0.2);
+        master.connect(ctx.destination);
+        anchorNodes.push(master);
+
+        [freq, freq / 2, freq * 1.5].forEach(function (f, i) {
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = i === 0 ? "sine" : "triangle";
+          osc.frequency.setValueAtTime(f, ctx.currentTime);
+          gain.gain.setValueAtTime(i === 0 ? 0.55 : 0.16, ctx.currentTime);
+          osc.connect(gain);
+          gain.connect(master);
+          osc.start();
+          anchorNodes.push(osc, gain);
+        });
+
+        var orb = document.getElementById("soundOrb");
+        if (orb) {
+          var span = orb.querySelector("span");
+          if (span) span.textContent = label;
+        }
+
+        var metricType = document.getElementById("metricType");
+        var metricState = document.getElementById("metricState");
+        var metricFunction = document.getElementById("metricFunction");
+        if (metricType) metricType.textContent = label + " Anchor / 音乐锚点";
+        if (metricState) metricState.textContent = label === "724Hz" ? "Stallion · Stabilization / Stallion · 稳定" : "Mellow · Return / Mellow · 返回";
+        if (metricFunction) metricFunction.textContent = label === "724Hz" ? "Stabilize and seal / 稳定并封存" : "Re-center and return / 重新居中并返回";
+      }
+
+      function bindAnchorButtons() {
+        var b427 = document.getElementById("play427Anchor");
+        var b724 = document.getElementById("play724Anchor");
+        var stop = document.getElementById("stopAnchorTone");
+
+        if (b427) b427.onclick = function () { playAnchorTone(427, "427Hz"); };
+        if (b724) b724.onclick = function () { playAnchorTone(724, "724Hz"); };
+        if (stop) stop.onclick = stopAnchorTone;
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindAnchorButtons);
+      } else {
+        bindAnchorButtons();
+      }
     })();
   </script>
 
