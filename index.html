@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HRP SYSTEM</title>
 
 <style>
@@ -21,14 +21,14 @@ body{
   font-family:var(--mono);
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header{
   position:fixed;
   top:0;
   left:0;
   right:0;
   background:#06081f;
-  padding:14px 24px;
+  padding:14px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -52,7 +52,7 @@ header{
 
 nav{
   display:flex;
-  gap:18px;
+  gap:16px;
   flex-wrap:wrap;
 }
 
@@ -66,27 +66,30 @@ nav a:hover{
   color:var(--cyan);
 }
 
-/* ===== SECTIONS ===== */
+/* SECTION */
 section{
-  padding:120px 24px 60px;
+  padding:110px 24px 60px;
   border-bottom:1px solid rgba(255,255,255,.05);
 }
 
 h1{
-  font-size:28px;
+  font-size:26px;
   margin-bottom:10px;
 }
 
-h2{
-  font-size:18px;
-  color:var(--cyan);
-}
-
 .cn{
-  opacity:.7;
+  opacity:.6;
   margin-bottom:20px;
 }
 
+@media (max-width:768px){
+  nav{
+    gap:10px;
+  }
+  nav a{
+    font-size:10px;
+  }
+}
 </style>
 </head>
 
@@ -106,7 +109,6 @@ h2{
     <a href="#qdr">QDR</a>
     <a href="#four">FOUR SYSTEMS</a>
     <a href="#music">MUSIC LAB</a>
-    <a href="#telaviv">TELAVIV EXAMPLES</a>
     <a href="#five">FIVE-GENRE HEALING</a>
     <a href="#gemini">GEMINI</a>
     <a href="#claude">CLAUDE</a>
@@ -122,7 +124,7 @@ h2{
 
 <!-- GPT -->
 <section id="gpt">
-<h1>GPT CORE</h1>
+<h1>GPT Core Body</h1>
 <div class="cn">系统躯干</div>
 </section>
 
@@ -147,41 +149,24 @@ h2{
 <!-- FOUR SYSTEM -->
 <section id="four">
 <h1>Four Systems</h1>
-<div class="cn">四大系统</div>
+<div class="cn">意义 / 情绪 / 感知 / 认知</div>
 </section>
 
 <!-- MUSIC -->
 <section id="music">
 <h1>Music Lab</h1>
-<div class="cn">音乐实验室</div>
+<div class="cn">音乐驱动系统</div>
 </section>
 
-<!-- ✅ TEL AVIV 修复 -->
-<section id="telaviv">
-<h1>TelAviv Examples</h1>
-<div class="cn">节律示例序列</div>
-
-<h2>Function</h2>
-<p>Real-world rhythm sequence demonstrating full QDR pipeline</p>
-
-<h2 class="cn">作用</h2>
-<p class="cn">展示完整节律疗愈路径</p>
-</section>
-
-<!-- ✅ FIVE GENRE 修复 -->
+<!-- FIVE GENRE -->
 <section id="five">
-<h1>Five Genre Healing</h1>
-<div class="cn">五大音乐疗愈系统</div>
+<h1>Five-Genre Healing</h1>
+<div class="cn">六段节律疗愈路径</div>
 
-<h2>Sequence</h2>
 <p>
 Breakbeats → Hyperpop → Synthpop → Drift Phonk → Darkwave → Ambient Techno → 427Hz
 </p>
 
-<h2 class="cn">顺序</h2>
-<p class="cn">
-Breakbeats → Hyperpop → Synthpop → 漂移 Phonk → 暗波 → 环境 Techno → 427Hz
-</p>
 </section>
 
 <!-- GEMINI -->
@@ -198,8 +183,8 @@ Breakbeats → Hyperpop → Synthpop → 漂移 Phonk → 暗波 → 环境 Tech
 
 <!-- SYNTHESIS -->
 <section id="synthesis">
-<h1>Final Synthesis</h1>
-<div class="cn">最终整合</div>
+<h1>Synthesis</h1>
+<div class="cn">系统整合</div>
 </section>
 
 </body>
