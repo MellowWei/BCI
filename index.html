@@ -2548,6 +2548,7 @@
     <div class="brand"><span class="dot"></span> GPT CORE BODY // 44271 NEURAL CUFF // PROTOTYPE // QDR // GEMINI ATTACK // CLAUDE MIRROR</div>
     <nav class="locked-clean-nav">
       <a href="#top">HOME</a>
+      <a href="#overview-map">OVERVIEW MAP</a>
       <a href="#gpt-core">GPT CORE</a>
       <a href="#neural-cuff">NEURAL CUFF</a>
       <a href="#prototype">PROTOTYPE</a>
@@ -2874,6 +2875,25 @@
         </div>
       </div>
     </section>
+
+    <section id="overview-map">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">OVERVIEW MAP // 总览地图</div>
+          <h2>Human Return Protocol System Map</h2>
+          <h2 class="cn">Human Return Protocol 总览地图</h2>
+          <p class="sub en">
+            The system body is organized as: GPT Core Body, 44271 Neural Cuff, Prototype, QDR,
+            Four Systems, Breakbeats, Dual Anchors, Six-Genre Therapy, Music Lab, Gemini, Claude, and Synthesis.
+          </p>
+          <p class="sub cn">
+            系统躯干由以下部分构成：GPT Core Body、44271 Neural Cuff、Prototype、QDR、
+            Four Systems、Breakbeats、Dual Anchors、Six-Genre Therapy、Music Lab、Gemini、Claude 与 Synthesis。
+          </p>
+        </div>
+      </div>
+    </section>
+
 
     <section id="prototype">
       <div class="prototype">
@@ -5365,6 +5385,283 @@
         document.addEventListener("DOMContentLoaded", bindAnchorButtons);
       } else {
         bindAnchorButtons();
+      }
+    })();
+  </script>
+
+
+  <script>
+    (function () {
+      var HRP_SOUND = {
+        ctx: null,
+        nodes: [],
+        timers: [],
+        mode: "music"
+      };
+
+      function ctx() {
+        if (!HRP_SOUND.ctx) HRP_SOUND.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (HRP_SOUND.ctx.state === "suspended") HRP_SOUND.ctx.resume();
+        return HRP_SOUND.ctx;
+      }
+
+      function stopAllHRPSound() {
+        HRP_SOUND.timers.forEach(function (t) { clearInterval(t); });
+        HRP_SOUND.timers = [];
+        HRP_SOUND.nodes.forEach(function (n) {
+          try { if (n.stop) n.stop(); } catch (e) {}
+          try { if (n.disconnect) n.disconnect(); } catch (e) {}
+        });
+        HRP_SOUND.nodes = [];
+      }
+
+      function addNode(n) { HRP_SOUND.nodes.push(n); return n; }
+
+      function masterGain(level) {
+        var c = ctx();
+        var g = c.createGain();
+        g.gain.setValueAtTime(0.0001, c.currentTime);
+        g.gain.exponentialRampToValueAtTime(level || 0.08, c.currentTime + 0.16);
+        g.connect(c.destination);
+        addNode(g);
+        return g;
+      }
+
+      function setOrb(label) {
+        var orb = document.getElementById("soundOrb");
+        if (orb) {
+          var span = orb.querySelector("span");
+          if (span) span.textContent = label;
+        }
+      }
+
+      function setMetrics(type, state, fn) {
+        var a = document.getElementById("metricType");
+        var b = document.getElementById("metricState");
+        var c = document.getElementById("metricFunction");
+        if (a) a.textContent = type;
+        if (b) b.textContent = state;
+        if (c) c.textContent = fn;
+      }
+
+      function playAnchor(freq, kind) {
+        stopAllHRPSound();
+        var c = ctx();
+
+        if (kind === "427") {
+          var out = masterGain(0.09);
+          [427, 213.5, 106.75].forEach(function (f, i) {
+            var o = c.createOscillator();
+            var g = c.createGain();
+            o.type = "sine";
+            o.frequency.value = f;
+            g.gain.value = i === 0 ? 0.62 : 0.22;
+            o.connect(g); g.connect(out); o.start();
+            addNode(o); addNode(g);
+          });
+
+          // slow low breathing tremolo for Mellow
+          var lfo = c.createOscillator();
+          var lfoGain = c.createGain();
+          lfo.frequency.value = 0.18;
+          lfoGain.gain.value = 0.018;
+          lfo.connect(lfoGain);
+          lfoGain.connect(out.gain);
+          lfo.start();
+          addNode(lfo); addNode(lfoGain);
+
+          setOrb("427Hz");
+          setMetrics("427Hz Mellow Anchor / 427Hz Mellow 锚点", "Mellow · Return / Mellow · 返回", "Warm low return coordinate / 温暖低频返回坐标");
+          return;
+        }
+
+        if (kind === "724") {
+          var out2 = masterGain(0.075);
+          var delay = c.createDelay();
+          delay.delayTime.value = 0.19;
+          var feedback = c.createGain();
+          feedback.gain.value = 0.22;
+          delay.connect(feedback);
+          feedback.connect(delay);
+          delay.connect(out2);
+          addNode(delay); addNode(feedback);
+
+          // brighter, higher, sharper Stallion sound with harmonic shimmer
+          [724, 1448, 181, 1086].forEach(function (f, i) {
+            var o = c.createOscillator();
+            var g = c.createGain();
+            var filter = c.createBiquadFilter();
+            o.type = i === 1 ? "triangle" : "sine";
+            o.frequency.value = f;
+            filter.type = "bandpass";
+            filter.frequency.value = i === 2 ? 240 : f;
+            filter.Q.value = i === 1 ? 7 : 3;
+            g.gain.value = i === 0 ? 0.38 : (i === 1 ? 0.13 : 0.10);
+            o.connect(filter); filter.connect(g); g.connect(out2); g.connect(delay); o.start();
+            addNode(o); addNode(g); addNode(filter);
+          });
+
+          // fast shimmer pulse for Stallion, clearly different from 427
+          var trem = c.createOscillator();
+          var tremGain = c.createGain();
+          trem.frequency.value = 7.24;
+          tremGain.gain.value = 0.012;
+          trem.connect(tremGain);
+          tremGain.connect(out2.gain);
+          trem.start();
+          addNode(trem); addNode(tremGain);
+
+          setOrb("724Hz");
+          setMetrics("724Hz Stallion Anchor / 724Hz Stallion 锚点", "Stallion · Stabilization / Stallion · 稳定", "Bright sealing coordinate / 明亮封存稳定坐标");
+        }
+      }
+
+      function playWhiteNoise() {
+        stopAllHRPSound();
+        var c = ctx();
+        var length = c.sampleRate * 2;
+        var buffer = c.createBuffer(1, length, c.sampleRate);
+        var data = buffer.getChannelData(0);
+        for (var i = 0; i < length; i++) data[i] = Math.random() * 2 - 1;
+
+        var src = c.createBufferSource();
+        var filter = c.createBiquadFilter();
+        var g = masterGain(0.055);
+        src.buffer = buffer;
+        src.loop = true;
+        filter.type = "highpass";
+        filter.frequency.value = 180;
+        src.connect(filter); filter.connect(g); src.start();
+        addNode(src); addNode(filter);
+        setOrb("WHITE");
+        setMetrics("White Noise / 白噪音", "Boundary Mask / 边界遮罩", "Mask environmental fragmentation / 遮蔽环境碎片");
+      }
+
+      function playPinkNoise() {
+        stopAllHRPSound();
+        var c = ctx();
+        var length = c.sampleRate * 2;
+        var buffer = c.createBuffer(1, length, c.sampleRate);
+        var out = buffer.getChannelData(0);
+        var b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+        for (var i = 0; i < length; i++) {
+          var white = Math.random() * 2 - 1;
+          b0 = 0.99886 * b0 + white * 0.0555179;
+          b1 = 0.99332 * b1 + white * 0.0750759;
+          b2 = 0.96900 * b2 + white * 0.1538520;
+          b3 = 0.86650 * b3 + white * 0.3104856;
+          b4 = 0.55000 * b4 + white * 0.5329522;
+          b5 = -0.7616 * b5 - white * 0.0168980;
+          out[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.12;
+          b6 = white * 0.115926;
+        }
+
+        var src = c.createBufferSource();
+        var filter = c.createBiquadFilter();
+        var g = masterGain(0.08);
+        src.buffer = buffer;
+        src.loop = true;
+        filter.type = "lowpass";
+        filter.frequency.value = 2600;
+        src.connect(filter); filter.connect(g); src.start();
+        addNode(src); addNode(filter);
+        setOrb("PINK");
+        setMetrics("Pink Noise / 粉噪音", "Warm Pressure Field / 温暖压强场", "Soften overload / 软化过载");
+      }
+
+      function tone(f, type, level, dur) {
+        var c = ctx();
+        var o = c.createOscillator();
+        var g = c.createGain();
+        o.type = type || "sine";
+        o.frequency.value = f;
+        g.gain.setValueAtTime(0.0001, c.currentTime);
+        g.gain.exponentialRampToValueAtTime(level || 0.06, c.currentTime + 0.08);
+        g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + (dur || 1.8));
+        o.connect(g); g.connect(c.destination);
+        o.start(); o.stop(c.currentTime + (dur || 2));
+        addNode(o); addNode(g);
+      }
+
+      function playPlantMusic() {
+        stopAllHRPSound();
+        var c = ctx();
+        var padOut = masterGain(0.035);
+        [213.5, 427].forEach(function (f) {
+          var o = c.createOscillator();
+          var g = c.createGain();
+          o.type = "sine";
+          o.frequency.value = f;
+          g.gain.value = 0.16;
+          o.connect(g); g.connect(padOut); o.start();
+          addNode(o); addNode(g);
+        });
+
+        var scale = [427, 480, 540, 640.5, 724, 854];
+        function plantNote() {
+          var f = scale[Math.floor(Math.random() * scale.length)] * (Math.random() > 0.82 ? 2 : 1);
+          tone(f, Math.random() > 0.55 ? "sine" : "triangle", 0.045, 2.4 + Math.random() * 1.2);
+        }
+        plantNote();
+        HRP_SOUND.timers.push(setInterval(plantNote, 720 + Math.random() * 620));
+        setOrb("PLANT");
+        setMetrics("Plant Music / 植物系音乐", "Organic Re-entry / 有机返回", "Gentle reconnection / 柔和重连");
+      }
+
+      function playMusicAnchor() {
+        // The basic Music button now plays a layered musical anchor, not generic sine only.
+        stopAllHRPSound();
+        var c = ctx();
+        var out = masterGain(0.065);
+        [427, 540, 640.5, 724].forEach(function (f, i) {
+          var o = c.createOscillator();
+          var g = c.createGain();
+          o.type = i % 2 ? "triangle" : "sine";
+          o.frequency.value = f;
+          g.gain.value = i === 0 ? 0.32 : 0.11;
+          o.connect(g); g.connect(out); o.start();
+          addNode(o); addNode(g);
+        });
+        setOrb("MUSIC");
+        setMetrics("Music Anchor / 音乐锚点", "Mellow + Stallion / Mellow + Stallion", "Musical return field / 音乐返回场");
+      }
+
+      function setMode(mode) {
+        HRP_SOUND.mode = mode;
+        document.querySelectorAll(".sound-btn").forEach(function (b) {
+          b.classList.toggle("active", b.getAttribute("data-sound") === mode);
+        });
+      }
+
+      function bindSoundFix() {
+        var b427 = document.getElementById("play427Anchor");
+        var b724 = document.getElementById("play724Anchor");
+        var stopAnchor = document.getElementById("stopAnchorTone");
+        if (b427) b427.onclick = function () { playAnchor(427, "427"); };
+        if (b724) b724.onclick = function () { playAnchor(724, "724"); };
+        if (stopAnchor) stopAnchor.onclick = stopAllHRPSound;
+
+        document.querySelectorAll("[data-sound]").forEach(function (btn) {
+          btn.onclick = function () {
+            setMode(btn.getAttribute("data-sound"));
+          };
+        });
+
+        var play = document.getElementById("playSound");
+        var stop = document.getElementById("stopSound");
+        if (play) play.onclick = function () {
+          if (HRP_SOUND.mode === "pink") playPinkNoise();
+          else if (HRP_SOUND.mode === "white") playWhiteNoise();
+          else if (HRP_SOUND.mode === "plant") playPlantMusic();
+          else playMusicAnchor();
+        };
+        if (stop) stop.onclick = stopAllHRPSound;
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", bindSoundFix);
+      } else {
+        bindSoundFix();
       }
     })();
   </script>
