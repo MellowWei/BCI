@@ -2605,6 +2605,51 @@ a[href="#music-intervention-lab"]{pointer-events:auto!important;cursor:pointer!i
   opacity: .92;
 }
 
+
+/* === INSERTED FROM CLAUDE HRP MUSIC LAB PACKAGE === */
+/* === HRP MUSIC INTERVENTION LAB STYLES === */
+.music-module-wrap{padding:42px clamp(18px,4vw,56px);max-width:1500px;margin:0 auto;}
+.music-module-wrap .hero{border:1px solid rgba(0,245,255,.22);border-radius:32px;padding:34px;background:linear-gradient(135deg,rgba(0,245,255,.08),rgba(255,77,157,.05),rgba(184,255,87,.035)),rgba(10,15,26,.78);box-shadow:0 0 48px rgba(0,245,255,.08),inset 0 0 34px rgba(255,255,255,.025);margin-bottom:22px;}
+#music-intervention-native .mi-track-selector{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:12px;}
+#music-intervention-native .mi-track-btn{border:1px solid rgba(0,245,255,.18);background:rgba(255,255,255,.035);color:var(--text);border-radius:18px;padding:16px 14px;cursor:pointer;text-align:left;min-height:148px;transition:.22s ease;}
+#music-intervention-native .mi-track-btn:hover{transform:translateY(-4px);border-color:rgba(184,255,87,.48);box-shadow:0 0 28px rgba(184,255,87,.12);}
+#music-intervention-native .mi-track-btn strong{display:block;font-size:14px;margin-bottom:5px;}
+#music-intervention-native .mi-track-btn em{display:block;color:var(--cyan);font-style:normal;font-size:11px;letter-spacing:1px;margin-bottom:10px;}
+#music-intervention-native .mi-track-btn small{display:block;color:var(--muted);line-height:1.45;}
+.mi-dropzone{border:1px dashed rgba(0,245,255,.35);border-radius:24px;padding:22px;background:rgba(0,245,255,.035);}
+.mi-dropzone label{display:block;font-size:11px;letter-spacing:2px;color:var(--cyan);margin-bottom:12px;}
+.mi-audio-controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+button.mi-ctrl{border:1px solid rgba(0,245,255,.32);border-radius:999px;background:rgba(255,255,255,.04);color:var(--text);padding:12px 17px;font-family:'DM Mono',monospace;cursor:pointer;transition:.2s ease;}
+button.mi-ctrl:hover{background:rgba(0,245,255,.12);border-color:var(--cyan);}
+button.mi-ctrl.primary{border-color:rgba(184,255,87,.42);color:#b8ff57;}
+.mi-wave-wrap{position:relative;height:260px;border:1px solid rgba(0,245,255,.2);border-radius:28px;overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(0,245,255,.12),transparent 34%),rgba(255,255,255,.025);}
+.mi-wave-wrap canvas{width:100%;height:100%;display:block;}
+.mi-orb{position:absolute;left:50%;top:50%;width:154px;height:154px;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(184,255,87,.35);display:grid;place-items:center;text-align:center;background:radial-gradient(circle,rgba(184,255,87,.16),rgba(0,229,255,.10) 54%,transparent);box-shadow:0 0 42px rgba(0,229,255,.22);animation:orbBreathe 3.2s ease-in-out infinite;}
+.mi-orb span{font-size:12px;letter-spacing:2px;color:var(--text);text-shadow:0 0 16px rgba(0,229,255,.8);}
+.mi-metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px;}
+.mi-metric{padding:16px;border:1px solid rgba(0,245,255,.16);border-radius:20px;background:rgba(255,255,255,.028);}
+.mi-metric strong{display:block;font-size:9px;letter-spacing:2px;color:var(--cyan);margin-bottom:8px;}
+.mi-metric p{color:var(--muted);font-size:12px;}
+.mi-meter{height:7px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;margin-top:12px;}
+.mi-meter span{display:block;height:100%;border-radius:999px;transition:width .45s ease;}
+.mi-radar-wrap{height:360px;border:1px solid rgba(0,245,255,.18);border-radius:28px;overflow:hidden;background:radial-gradient(circle at center,rgba(0,245,255,.08),transparent 45%),rgba(255,255,255,.025);}
+.mi-radar-wrap canvas{width:100%;height:100%;display:block;}
+.mi-curve-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.mi-curve{height:240px;border:1px solid rgba(0,245,255,.18);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.025);}
+.mi-curve canvas{width:100%;height:100%;display:block;}
+.mi-protocol-table{width:100%;border-collapse:collapse;margin-top:10px;}
+.mi-protocol-table th{color:var(--cyan);background:rgba(3,4,10,.9);font-size:9px;letter-spacing:2px;text-align:left;padding:12px;border-bottom:1px solid rgba(0,245,255,.18);}
+.mi-protocol-table td{color:var(--muted);padding:13px 12px;border-bottom:1px solid rgba(0,245,255,.1);vertical-align:top;font-family:'Fraunces',serif;}
+.mi-protocol-table td:first-child{color:var(--text);font-family:'DM Mono',monospace;font-size:12px;}
+.mi-copybox{border-left:3px solid #b8ff57;padding:18px 22px;background:rgba(184,255,87,.035);border-radius:0 22px 22px 0;}
+.mi-copybox p{color:var(--text);font-family:'Fraunces',serif;font-size:15px;line-height:1.8;}
+.mi-copybox .cn{margin-top:10px;color:var(--muted);}
+.mi-note{color:var(--muted);font-family:'Fraunces',serif;font-size:13px;line-height:1.7;border-top:1px solid rgba(0,245,255,.14);padding-top:14px;margin-top:14px;}
+@media(max-width:1000px){
+  #music-intervention-native .mi-track-selector,
+  .mi-metric-grid,
+  .mi-curve-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 
@@ -2628,7 +2673,7 @@ a[href="#music-intervention-lab"]{pointer-events:auto!important;cursor:pointer!i
       <a href="#four-systems">FOUR SYSTEMS</a>
       <a href="#genre-matrix">GENRE MATRIX</a>
       <a href="#telaviv-examples">TELAVIV EXAMPLES</a>
-      <a href="#music-intervention-lab-lite">MUSIC INTERVENTION LAB</a>
+      <a href="#music-intervention-native">MUSIC INTERVENTION LAB</a>
       <a href="#five-genre-healing">FIVE-GENRE HEALING</a>
       <a href="#trinity-work">AI TRINITY WORK</a>
       <a href="#sound-lab">MUSIC LAB</a>
@@ -3837,111 +3882,188 @@ a[href="#music-intervention-lab"]{pointer-events:auto!important;cursor:pointer!i
       </div>
     </section>
 
-    <section id="music-intervention-lab-lite">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">MUSIC INTERVENTION LAB LITE // 轻量音乐疗愈图表</div>
-          <h2>Five playlist references. One lightweight dynamic analyzer.</h2>
-          <h2 class="cn">五首歌单参照。一个轻量动态分析器。</h2>
-          <p class="sub en">
-            This lightweight version selects one representative TelAviv track for each HRP genre.
-            Press DEMO PLAY to hear a procedural placeholder inspired by that genre, or upload your own licensed/original clip for real playback.
-            The chart visualizes how the music acts on Meaning, Emotion, Body, and Cognition.
-          </p>
-          <p class="sub cn">
-            这个轻量版从 TelAviv 歌单中为每个 HRP 音乐类型选择一首代表曲。
-            点击 DEMO PLAY 可以播放该类型的程序化占位声音；也可以上传你自己的授权/原创片段进行真实播放。
-            动态图表会展示音乐如何作用于意义、情绪、身体与认知。
-          </p>
+
+
+
+
+
+
+
+
+
+
+
+    <section id="music-intervention-native" style="display:block;">
+  <div class="music-module-wrap">
+
+    <div class="hero">
+      <div class="eyebrow">HRP MUSIC INTERVENTION LAB // 动态音乐疗愈图表模块 // WEI JUERAN × AI TRINITY</div>
+      <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7vw,96px);letter-spacing:4px;line-height:.9;margin-bottom:14px;">
+        Music is the <span style="color:var(--cyan);text-shadow:0 0 26px rgba(0,245,255,.55)">Protocol</span>.
+      </h1>
+      <p style="max-width:980px;color:var(--muted);font-family:'Fraunces',serif;font-size:15px;line-height:1.75;">
+        These charts explain how Wei Jueran's original music functions as a rhythm intervention interface across meaning, emotion, body, and cognition. Upload your own original clip to activate live visualization.
+        <br><em style="color:rgba(154,166,200,.8);">这些图表解释魏珏然的原创音乐如何作为节律干预接口，作用于意义、情绪、身体与认知。上传你的原创片段以激活实时可视化。</em>
+      </p>
+      <div class="tag-row" style="margin-top:16px;">
+        <span class="tag">Original Music / 原创音乐</span>
+        <span class="tag">QDR Therapy</span>
+        <span class="tag">44271 Neural Cuff</span>
+        <span class="tag">Meaning · Emotion · Body · Cognition</span>
+        <span class="tag">427Hz · 77347 · AI Trinity</span>
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <!-- GENRE SELECTOR -->
+      <div class="card span-12">
+        <div class="eyebrow">SELECT A GENRE PROTOCOL // 选择一个音乐协议</div>
+        <div class="mi-track-selector">
+          <button class="mi-track-btn" data-mi="phonk" style="border-left:4px solid #ff6b35;">
+            <strong>Drift Phonk</strong>
+            <em>Physical Drive / 身体驱动</em>
+            <small>Kick · Sub · Cowbell → breath-lock + haptic pacing</small>
+          </button>
+          <button class="mi-track-btn" data-mi="hyperpop" style="border-left:4px solid #f472b6;">
+            <strong>Hyperpop</strong>
+            <em>Cognitive Glitch / 认知故障</em>
+            <small>High BPM · Glitch · Sweet → research burst</small>
+          </button>
+          <button class="mi-track-btn" data-mi="synthpop" style="border-left:4px solid #818cf8;">
+            <strong>Synthpop</strong>
+            <em>Meaning Return / 意义回归</em>
+            <small>Hook · Harmony · Nostalgia → narrative</small>
+          </button>
+          <button class="mi-track-btn" data-mi="darkwave" style="border-left:4px solid #64748b;">
+            <strong>Darkwave</strong>
+            <em>Emotional Stabilization / 情绪稳定</em>
+            <small>Cold synth · Mourning tone → co-regulation</small>
+          </button>
+          <button class="mi-track-btn" data-mi="ambient" style="border-left:4px solid #34d399;">
+            <strong>Ambient Techno</strong>
+            <em>Flow Infrastructure / 心流基础设施</em>
+            <small>Pad · Minimal pulse · Delay → spatial focus</small>
+          </button>
         </div>
+      </div>
 
-        <div class="card span-4">
-          <div class="eyebrow">SELECT ONE TRACK // 选择一首代表曲</div>
-          <div class="lite-track-list">
-            <button class="lite-track active" data-lite="phonk">
-              <b>Drift Phonk</b>
-              <span>Tel Aviv — Skeler</span>
-            </button>
-            <button class="lite-track" data-lite="hyperpop">
-              <b>Hyperpop</b>
-              <span>SugarCrash! — ElyOtto</span>
-            </button>
-            <button class="lite-track" data-lite="synthpop">
-              <b>Synthpop</b>
-              <span>Top Dog — Magdalena Bay</span>
-            </button>
-            <button class="lite-track" data-lite="darkwave">
-              <b>Darkwave</b>
-              <span>The Perfect Girl — Mareux</span>
-            </button>
-            <button class="lite-track" data-lite="ambient">
-              <b>Ambient Techno Seed</b>
-              <span>Same Place — JOY.</span>
-            </button>
-          </div>
+      <!-- AUDIO INPUT + WAVEFORM -->
+      <div class="card span-5">
+        <div class="eyebrow">AUDIO INPUT // 音乐片段输入</div>
+        <h2 id="miTitle2" style="font-size:clamp(18px,3vw,32px);margin-bottom:4px;">Drift Phonk</h2>
+        <h2 id="miTitleCN2" style="font-size:clamp(13px,2vw,18px);font-style:italic;color:var(--muted);font-weight:400;margin-bottom:12px;">身体驱动协议</h2>
+        <p id="miDesc2" style="color:var(--muted);font-family:'Fraunces',serif;font-size:13px;margin-bottom:6px;">Use a short original clip with kick/sub pressure to show how the body returns through rhythm.</p>
+        <p id="miDescCN2" style="color:var(--muted);font-family:'Fraunces',serif;font-size:12px;font-style:italic;margin-bottom:16px;">使用一段带有 kick/sub 压强的原创短片段，展示身体如何通过节律返回。</p>
+        <div class="mi-dropzone">
+          <label>UPLOAD YOUR ORIGINAL MUSIC / 上传你的原创音乐</label>
+          <input id="miFile2" type="file" accept="audio/*">
         </div>
-
-        <div class="card span-4">
-          <div class="eyebrow">PLAYBACK // 播放</div>
-          <h3 id="liteTitle">Tel Aviv — Skeler</h3>
-          <h3 class="cn" id="liteGenre">Drift Phonk / 身体驱动</h3>
-          <p id="liteDesc" class="en">A body ignition reference: atmospheric pressure, night-drive pulse, and somatic return.</p>
-          <p id="liteDescCN" class="cn">身体点火参照：氛围压强、夜行脉冲与身体返回。</p>
-
-          <div class="demo-play-panel">
-            <div class="demo-play-label">INSTANT DEMO PLAYER // 即时占位播放器</div>
-            <button class="lite-ctrl primary demo-big" id="liteDemo">▶ PLAY GENRE DEMO / 播放当前风格 Demo</button>
-            <button class="lite-ctrl demo-stop" id="liteStop">■ STOP / 停止</button>
-            <p class="demo-help">
-              Click this first. It plays a lightweight generated demo for the selected genre.
-              <br><span class="cn">先点这里。它会播放当前所选音乐风格的轻量生成 demo。</span>
-            </p>
-          </div>
-
-          <div class="lite-upload">
-            <label>OPTIONAL: UPLOAD ORIGINAL / LICENSED CLIP // 可选：上传原创/授权片段</label>
-            <input id="liteUpload" type="file" accept="audio/*" />
-            <audio id="liteAudio" controls></audio>
-          </div>
-
-          <p class="lite-note">
-            Reference tracks are listed for analysis. To play actual commercial tracks publicly, use licensed clips.
-            <br><span class="cn">参照曲用于分析。公开播放商业歌曲需要授权；你的原创片段可直接上传演示。</span>
-          </p>
+        <div class="mi-audio-controls">
+          <button class="mi-ctrl primary" id="miPlay2">PLAY / 播放</button>
+          <button class="mi-ctrl" id="miPause2">PAUSE / 暂停</button>
+          <button class="mi-ctrl" id="miDemo2">DEMO / 占位音</button>
+          <button class="mi-ctrl" id="miStop2">STOP / 停止</button>
         </div>
-
-        <div class="card span-4">
-          <div class="eyebrow">FOUR-SYSTEM EFFECT // 四系统作用</div>
-          <div class="lite-bars">
-            <div><span>Meaning / 意义</span><i><b id="barMeaning"></b></i></div>
-            <div><span>Emotion / 情绪</span><i><b id="barEmotion"></b></i></div>
-            <div><span>Body / 身体</span><i><b id="barBody"></b></i></div>
-            <div><span>Cognition / 认知</span><i><b id="barCognition"></b></i></div>
-          </div>
-          <div class="lite-copy" id="liteCopy">
-            Kick/sub pressure becomes breath-lock, haptic pacing, and embodied return.
-          </div>
+        <audio id="miAudio2" controls style="width:100%;display:none;margin-top:10px;"></audio>
+        <div class="mi-note">
+          Upload your own original clips. Third-party reference tracks: show metadata only without permission.<br>
+          <em>上传你自己的原创片段。第三方参照曲如无授权，建议只展示曲目信息。</em>
         </div>
+      </div>
 
-        <div class="card span-12">
-          <div class="eyebrow">DYNAMIC ANALYSIS // 动态分析</div>
-          <div class="lite-canvas-wrap">
-            <canvas id="liteCanvas"></canvas>
-            <div class="lite-orb" id="liteOrb">BODY<br>ONLINE</div>
+      <div class="card span-7">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:12px;">
+          <div>
+            <div class="eyebrow">LIVE WAVE / SPECTRUM // 实时波形</div>
+            <h3 id="miVisual2" style="font-family:'Fraunces',serif;font-size:clamp(16px,2.5vw,24px);margin-bottom:3px;">Kick–Breath Sync</h3>
+            <h3 id="miVisualCN2" style="font-family:'Fraunces',serif;font-style:italic;font-size:14px;font-weight:400;color:var(--muted);">Kick–呼吸同步</h3>
+          </div>
+          <span id="miQualiaTag2" style="color:#b8ff57;border:1px solid rgba(184,255,87,.28);border-radius:999px;padding:5px 10px;font-size:10px;white-space:nowrap;flex-shrink:0;margin-top:4px;">Embodiment / 体现</span>
+        </div>
+        <div class="mi-wave-wrap">
+          <canvas id="miWave2"></canvas>
+          <div class="mi-orb"><span id="miOrb2">BODY<br>ONLINE</span></div>
+        </div>
+      </div>
+
+      <!-- FOUR SYSTEM METERS -->
+      <div class="card span-12">
+        <div class="eyebrow">FOUR-SYSTEM EFFECT METERS // 四系统作用强度</div>
+        <div class="mi-metric-grid">
+          <div class="mi-metric">
+            <strong>MEANING / 意义</strong>
+            <p id="miMTxt2">Narrative anchor</p>
+            <div class="mi-meter"><span id="miMM2" style="width:32%;background:linear-gradient(90deg,var(--cyan),var(--green));"></span></div>
+          </div>
+          <div class="mi-metric">
+            <strong>EMOTION / 情绪</strong>
+            <p id="miETxt2">Regulation pressure</p>
+            <div class="mi-meter"><span id="miEM2" style="width:58%;background:linear-gradient(90deg,#f472b6,#c084fc);"></span></div>
+          </div>
+          <div class="mi-metric">
+            <strong>BODY / 身体</strong>
+            <p id="miBTxt2">Somatic return</p>
+            <div class="mi-meter"><span id="miBM2" style="width:92%;background:linear-gradient(90deg,#ff6b35,#ffd166);"></span></div>
+          </div>
+          <div class="mi-metric">
+            <strong>COGNITION / 认知</strong>
+            <p id="miCTxt2">Information cadence</p>
+            <div class="mi-meter"><span id="miCM2" style="width:46%;background:linear-gradient(90deg,var(--cyan),#818cf8);"></span></div>
           </div>
         </div>
       </div>
-    </section>
 
+      <!-- RADAR + CURVES -->
+      <div class="card span-5">
+        <div class="eyebrow">RADAR MAP // 四系统雷达图</div>
+        <div class="mi-radar-wrap"><canvas id="miRadar2"></canvas></div>
+      </div>
 
+      <div class="card span-7">
+        <div class="eyebrow">DYNAMIC CURVES // 动态疗愈曲线</div>
+        <div class="mi-curve-grid">
+          <div>
+            <h3 id="miCA2title" style="font-family:'Fraunces',serif;font-size:15px;margin-bottom:3px;">Embodiment Curve</h3>
+            <p id="miCA2titleCN" style="font-family:'Fraunces',serif;font-style:italic;font-size:12px;color:var(--muted);margin-bottom:8px;">体现曲线</p>
+            <div class="mi-curve"><canvas id="miCurveA2"></canvas></div>
+          </div>
+          <div>
+            <h3 id="miCB2title" style="font-family:'Fraunces',serif;font-size:15px;margin-bottom:3px;">Intervention Load</h3>
+            <p id="miCB2titleCN" style="font-family:'Fraunces',serif;font-style:italic;font-size:12px;color:var(--muted);margin-bottom:8px;">干预负载</p>
+            <div class="mi-curve"><canvas id="miCurveB2"></canvas></div>
+          </div>
+        </div>
+      </div>
 
+      <!-- PROTOCOL TABLE -->
+      <div class="card span-12">
+        <div class="eyebrow">MUSIC → SYSTEM → INTERVENTION // 音乐到系统干预</div>
+        <table class="mi-protocol-table">
+          <thead>
+            <tr>
+              <th>Layer / 层</th>
+              <th>Music Element / 音乐元素</th>
+              <th>Chart Explanation / 图表解释</th>
+              <th>44271 Cuff Feedback / 袖环反馈</th>
+            </tr>
+          </thead>
+          <tbody id="miRows2"></tbody>
+        </table>
+      </div>
 
+      <!-- WEBSITE COPY -->
+      <div class="card span-12">
+        <div class="eyebrow">WEBSITE COPY // 网站文案</div>
+        <div class="mi-copybox">
+          <p id="miCopyEN2">This music segment drives the body back online through kick/sub pressure, turning rhythm into a somatic return signal.</p>
+          <p id="miCopyCN2" class="cn">这段音乐通过 kick/sub 压强让身体重新上线，把节律转化为身体返回信号。</p>
+        </div>
+      </div>
 
-
-
-
-
-
+    </div><!-- end .grid -->
+  </div><!-- end .music-module-wrap -->
+</section>
 
     <section id="trinity-work">
       <div class="grid">
@@ -6984,193 +7106,7 @@ function show(id){
 
 
 
-<script>
-(function(){
-  const profiles = {
-    phonk:{
-      title:"Tel Aviv — Skeler", genre:"Drift Phonk / 身体驱动",
-      desc:"A body ignition reference: atmospheric pressure, night-drive pulse, and somatic return.",
-      descCN:"身体点火参照：氛围压强、夜行脉冲与身体返回。",
-      color:"#ff6b35", orb:"BODY<br>ONLINE",
-      vals:{meaning:38, emotion:54, body:92, cognition:48},
-      copy:"Kick/sub pressure becomes breath-lock, haptic pacing, and embodied return."
-    },
-    hyperpop:{
-      title:"SugarCrash! — ElyOtto", genre:"Hyperpop / 认知故障",
-      desc:"A cognitive surge reference: sweet glitch, compression, fast signal, and anxiety offset.",
-      descCN:"认知激增参照：甜感 glitch、压缩、快速信号与焦虑偏移。",
-      color:"#f472b6", orb:"RESEARCH<br>BURST",
-      vals:{meaning:46, emotion:76, body:40, cognition:94},
-      copy:"Glitch and sweetness convert overload into information cadence and momentum."
-    },
-    synthpop:{
-      title:"Top Dog — Magdalena Bay", genre:"Synthpop / 意义回归",
-      desc:"A meaning-return reference: clear synth-pop identity, hook, and subjectivity confirmation.",
-      descCN:"意义回归参照：清晰 synth-pop 身份、hook 与主体性确认。",
-      color:"#818cf8", orb:"MEANING<br>RETURN",
-      vals:{meaning:92, emotion:60, body:42, cognition:62},
-      copy:"Melodic hooks and harmonic return rebuild narrative continuity."
-    },
-    darkwave:{
-      title:"The Perfect Girl — Mareux", genre:"Darkwave / 情绪稳定",
-      desc:"A cold-field reference: desire, distance, mourning tone, and emotional stabilization.",
-      descCN:"冷场参照：欲望、距离、哀悼音色与情绪稳定。",
-      color:"#64748b", orb:"14°C<br>FIELD",
-      vals:{meaning:58, emotion:92, body:48, cognition:38},
-      copy:"Cold atmosphere holds emotional floods without forcing grief to disappear."
-    },
-    ambient:{
-      title:"Same Place — JOY.", genre:"Ambient Techno Seed / 空间心流种子",
-      desc:"A spatial-flow reference: soft suspension, environmental stability, and focus without urgency.",
-      descCN:"空间心流参照：柔和悬浮、环境稳定与无紧迫感专注。",
-      color:"#34d399", orb:"FLOW<br>FIELD",
-      vals:{meaning:45, emotion:48, body:62, cognition:88},
-      copy:"Spatial texture and minimal pulse maintain attention without urgency."
-    }
-  };
 
-  let mode="phonk", ctx=null, analyser=null, source=null, nodes=[], audio=document.getElementById("liteAudio"), fileUrl=null;
-  const canvas=document.getElementById("liteCanvas");
-  const cctx=canvas ? canvas.getContext("2d") : null;
-
-  function $(id){ return document.getElementById(id); }
-  function setMode(m){
-    mode=m; const p=profiles[m];
-    document.querySelectorAll(".lite-track").forEach(b=>b.classList.toggle("active", b.dataset.lite===m));
-    $("liteTitle").textContent=p.title; $("liteGenre").textContent=p.genre;
-    $("liteDesc").textContent=p.desc; $("liteDescCN").textContent=p.descCN;
-    $("liteOrb").innerHTML=p.orb; $("liteCopy").textContent=p.copy;
-    $("barMeaning").style.width=p.vals.meaning+"%"; $("barEmotion").style.width=p.vals.emotion+"%";
-    $("barBody").style.width=p.vals.body+"%"; $("barCognition").style.width=p.vals.cognition+"%";
-  }
-  function ensureAudio(){
-    if(!ctx){
-      ctx=new (window.AudioContext||window.webkitAudioContext)();
-      analyser=ctx.createAnalyser(); analyser.fftSize=256; analyser.smoothingTimeConstant=.72;
-      analyser.connect(ctx.destination);
-    }
-    if(ctx.state==="suspended") ctx.resume();
-  }
-  window.__hrpLiteStopDemo = stopDemo;
-  function stopDemo(){
-    nodes.forEach(n=>{try{if(n.stop)n.stop()}catch(e){} try{if(n.disconnect)n.disconnect()}catch(e){}});
-    nodes=[];
-  }
-  function pulse(freq,type="sine",level=.06,dur=.18){
-    ensureAudio();
-    const o=ctx.createOscillator(), g=ctx.createGain();
-    o.type=type; o.frequency.value=freq;
-    g.gain.setValueAtTime(level,ctx.currentTime);
-    g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+dur);
-    o.connect(g); g.connect(analyser); o.start(); o.stop(ctx.currentTime+dur+.03);
-    nodes.push(o,g);
-  }
-  function drone(freq,type="sine",level=.035){
-    ensureAudio();
-    const o=ctx.createOscillator(), g=ctx.createGain();
-    o.type=type; o.frequency.value=freq; g.gain.value=level;
-    o.connect(g); g.connect(analyser); o.start(); nodes.push(o,g);
-  }
-  window.__hrpLitePlayDemo = playDemo;
-  function playDemo(){
-    stopDemo(); ensureAudio();
-    if(mode==="phonk"){
-      drone(53.375,"sine",.08);
-      const int=setInterval(()=>pulse(82,"sine",.14,.09),430);
-      nodes.push({stop(){clearInterval(int)},disconnect(){clearInterval(int)}});
-    } else if(mode==="hyperpop"){
-      const int=setInterval(()=>pulse([427,640,854,1280][Math.floor(Math.random()*4)],"square",.035,.05),140);
-      nodes.push({stop(){clearInterval(int)},disconnect(){clearInterval(int)}});
-    } else if(mode==="synthpop"){
-      [427,540,640.5].forEach((f,i)=>drone(f,"triangle",i?0.022:.05));
-    } else if(mode==="darkwave"){
-      [106.75,213.5,427].forEach((f,i)=>drone(f,"sawtooth",i?0.018:.045));
-    } else {
-      [106.75,213.5,427].forEach((f,i)=>drone(f,i?"triangle":"sine",i?0.014:.035));
-      const int=setInterval(()=>pulse(640.5,"sine",.012,.7),1000);
-      nodes.push({stop(){clearInterval(int)},disconnect(){clearInterval(int)}});
-    }
-  }
-
-  document.querySelectorAll(".lite-track").forEach(b=>b.onclick=()=>setMode(b.dataset.lite));
-  $("liteDemo").onclick=playDemo;
-  $("liteStop").onclick=()=>{ stopDemo(); audio.pause(); audio.currentTime=0; };
-  $("liteUpload").onchange=e=>{
-    const f=e.target.files[0]; if(!f) return;
-    if(fileUrl) URL.revokeObjectURL(fileUrl);
-    fileUrl=URL.createObjectURL(f); audio.src=fileUrl; audio.style.display="block";
-    ensureAudio();
-    if(!source){ source=ctx.createMediaElementSource(audio); source.connect(analyser); }
-  };
-
-  let visible=true;
-  const section=document.getElementById("music-intervention-lab-lite");
-  if("IntersectionObserver" in window && section){
-    new IntersectionObserver(entries=>{ visible=entries.some(e=>e.isIntersecting); },{threshold:.02}).observe(section);
-  }
-
-  let last=0;
-  function resizeCanvas(){
-    if(!canvas || !cctx) return {w:0,h:0,d:1};
-    const d=window.devicePixelRatio||1;
-    const rect=canvas.getBoundingClientRect();
-    const w=Math.max(1, Math.floor(rect.width*d));
-    const h=Math.max(1, Math.floor(rect.height*d));
-    if(canvas.width!==w || canvas.height!==h){
-      canvas.width=w; canvas.height=h;
-    }
-    return {w,h,d};
-  }
-
-  function draw(ts){
-    requestAnimationFrame(draw);
-    if(!visible || !cctx || !canvas) return;
-    if(ts-last<60) return; // very light: ~16fps
-    last=ts;
-
-    const s=resizeCanvas();
-    const p=profiles[mode];
-    const t=ts/1000;
-
-    cctx.clearRect(0,0,s.w,s.h);
-
-    // dark background painted directly into canvas, so it never appears white
-    const grad=cctx.createRadialGradient(s.w/2,s.h/2,10,s.w/2,s.h/2,Math.max(s.w,s.h)*.7);
-    grad.addColorStop(0,"rgba(0,245,255,.10)");
-    grad.addColorStop(1,"rgba(4,8,15,1)");
-    cctx.fillStyle=grad;
-    cctx.fillRect(0,0,s.w,s.h);
-
-    let data=new Uint8Array(64);
-    if(analyser) analyser.getByteFrequencyData(data);
-
-    for(let layer=0; layer<3; layer++){
-      cctx.beginPath();
-      for(let x=0; x<s.w; x+=14*s.d){
-        const nx=x/s.w;
-        const e=(data[Math.floor(nx*data.length)]||0)/255;
-        let amp;
-        if(mode==="phonk") amp=Math.sign(Math.sin(nx*24+t*4))*s.h*.025 + e*s.h*.10;
-        else if(mode==="hyperpop") amp=Math.sin(nx*58+t*8+layer)*s.h*.035 + e*s.h*.08;
-        else if(mode==="synthpop") amp=Math.sin(nx*14+t*1.2+layer)*s.h*.055 + e*s.h*.05;
-        else if(mode==="darkwave") amp=Math.sin(nx*7+t*.5+layer)*s.h*.08 + e*s.h*.035;
-        else amp=Math.sin(nx*9+t*.8+layer)*s.h*.04 + e*s.h*.04;
-
-        const y=s.h*(.5+(layer-1)*.16)+amp;
-        if(x===0)cctx.moveTo(x,y); else cctx.lineTo(x,y);
-      }
-      cctx.strokeStyle=p.color;
-      cctx.lineWidth=(layer===1?2:1)*s.d;
-      cctx.shadowBlur=6*s.d;
-      cctx.shadowColor=p.color;
-      cctx.stroke();
-    }
-  }
-
-  setMode("phonk");
-  requestAnimationFrame(draw);
-})();
-</script>
 
 
 <script>
@@ -7186,6 +7122,100 @@ function show(id){
       e.preventDefault();
       window.__hrpLiteStopDemo();
     }
+  }, true);
+})();
+</script>
+
+<script id="INSERT-3-JS-BEFORE-BODY-END">
+(function(){
+  var P={
+    phonk:{title:"Drift Phonk",cn:"身体驱动协议",desc:"Use a short original clip with kick/sub pressure.",descCN:"使用一段带有 kick/sub 压强的原创短片段。",vis:"Kick–Breath Sync",visCN:"Kick–呼吸同步",qualia:"Embodiment / 体现",orb:"BODY<br>ONLINE",col:"#ff6b35",v:{m:32,e:58,b:92,c:46},lbl:{m:"Existence confirmation / 存在确认",e:"Charge release / 电荷释放",b:"Somatic return / 身体返回",c:"Rhythm anchor / 节律锚点"},cA:"Embodiment Curve",cACN:"体现曲线",cB:"Breath-Lock Load",cBCN:"呼吸锁定负载",rows:[["Kick/Sub","Heavy kick and low-frequency pressure","Shows breath-lock and bodily ignition","Strong pulse synchronized to kick"],["Cowbell","Secondary rhythmic tracking","Shows micro-attention tracking","Light off-beat tap"],["Bass pressure","Sub-somatic resonance","Shows body returning before cognition","Inner-wrist pressure swell"]],en:"This music drives the body back online through kick/sub pressure, turning rhythm into a somatic return signal.",zh:"这段音乐通过 kick/sub 压强让身体重新上线，把节律转化为身体返回信号。"},
+    hyperpop:{title:"Hyperpop",cn:"认知故障协议",desc:"Use a high-density clip with glitch and sweet timbre.",descCN:"使用一段带有 glitch 与甜感音色的高密度片段。",vis:"Glitch–Information Cadence",visCN:"Glitch–信息节拍",qualia:"Momentum / 势能",orb:"RESEARCH<br>BURST",col:"#f472b6",v:{m:46,e:74,b:38,c:94},lbl:{m:"Directional spark / 方向火花",e:"Anxiety offset / 焦虑偏移",b:"Micro-activation / 微激活",c:"Research burst / 研究爆发"},cA:"Information Density",cACN:"信息密度",cB:"Glitch Reset",cBCN:"故障重置",rows:[["High BPM","Fast rhythmic grid","Shows information cadence","Short cognitive cue pulse"],["Glitch","Structural interruptions","Shows attention reset","Brief reset tap"],["Sweet melody","Saccharine surface","Shows anxiety offset","Soft stabilizing pulse"]],en:"This music turns cognitive overload into momentum through glitch and sweet instability.",zh:"这段音乐通过 glitch 与甜感不稳定，把认知超载转化为势能。"},
+    synthpop:{title:"Synthpop",cn:"意义回归协议",desc:"Use a melodic clip with hooks and harmony.",descCN:"使用一段带有旋律 hook 与和声的片段。",vis:"Melody–Meaning Return",visCN:"旋律–意义回归",qualia:"Return / 回归",orb:"MEANING<br>RETURN",col:"#818cf8",v:{m:94,e:62,b:40,c:58},lbl:{m:"Narrative continuity / 叙事连续",e:"Warm safety / 温暖安全",b:"Temporal body / 时间身体",c:"Stable structure / 稳定结构"},cA:"Narrative Arc",cACN:"叙事弧线",cB:"Melody Anchor",cBCN:"旋律锚点指数",rows:[["Melodic hook","Recurring motif","Shows subjectivity anchor","Warm pulse at return"],["Harmony","Resolution and expectation","Shows meaning tension/release","Slow arrival pulse"],["4/4 grid","Stable pop-time field","Shows continuity","Low-pressure regular cue"]],en:"This music uses melody and harmonic return to transform void into narrative continuity.",zh:"这段音乐用旋律与和声回归，把虚空转化为叙事连续。"},
+    darkwave:{title:"Darkwave",cn:"情绪稳定协议",desc:"Use a cold atmospheric clip with mourning tones.",descCN:"使用一段冷感氛围与哀悼音色的片段。",vis:"Cold Field Co-Regulation",visCN:"冷场共调",qualia:"Co-Regulation / 共调",orb:"14°C<br>FIELD",col:"#64748b",v:{m:52,e:92,b:46,c:36},lbl:{m:"Absence held / 缺席被承托",e:"Flood regulation / 洪水调节",b:"Slow breath / 慢呼吸",c:"Pressure reduction / 压强降低"},cA:"Arousal Cooling",cACN:"唤醒冷却",cB:"Mourning Container",cBCN:"哀悼容器",rows:[["Cold synth","Spectral coldness","Shows emotional cooling","Very slow 0.1Hz pulse"],["Mourning tone","Deep atmospheric grief","Shows grief held","Soft long-interval cue"],["Slow BPM","Reduced temporal pressure","Shows deceleration","Breath-paced cue"]],en:"This music creates a cold container large enough for emotion to exist safely.",zh:"这段音乐创造一个足够大的冷容器，让情绪可以安全存在。"},
+    ambient:{title:"Ambient Techno",cn:"空间专注协议",desc:"Use a long-form clip with ambient pads and minimal pulse.",descCN:"使用一段带有环境铺底与极简脉冲的长结构片段。",vis:"Spatial Focus Infrastructure",visCN:"空间专注基础设施",qualia:"Flow-Stabilization / 心流稳定",orb:"FLOW<br>FIELD",col:"#34d399",v:{m:42,e:46,b:64,c:88},lbl:{m:"Work carries meaning / 工作承载意义",e:"Neutral stability / 中性稳定",b:"Spatial presence / 空间存在",c:"Sustained flow / 持续心流"},cA:"Flow Maintenance",cACN:"心流维持",cB:"Transition Smoothing",cBCN:"转换平滑",rows:[["Ambient pad","Environmental texture","Shows space stabilizing","Near-imperceptible warmth"],["Minimal pulse","Low-pressure grid","Shows focus without urgency","25-min check-in cue"],["Spatial delay","Dimensional thought field","Shows cognitive space expanding","Transition bridge pulse"]],en:"This music builds spatial infrastructure that lets flow continue without urgency.",zh:"这段音乐建造让心流在无紧迫感中持续存在的空间基础设施。"}
+  };
+  var mode="phonk", actx=null, analyser=null, src=null, nodes=[], timer=null, objUrl=null;
+  var audio=document.getElementById("miAudio2");
+  function g(id){return document.getElementById(id);}
+  function s(id,h){var el=g(id);if(el)el.innerHTML=h;}
+  function setMode(m){
+    mode=m;
+    var p=P[m];
+    document.querySelectorAll("[data-mi]").forEach(function(b){
+      var active=b.getAttribute("data-mi")===m;
+      b.style.transform=active?"translateY(-4px)":"";
+      b.style.borderColor=active?"rgba(184,255,87,.48)":"";
+      b.style.boxShadow=active?"0 0 28px rgba(184,255,87,.12)":"";
+    });
+    s("miTitle2",p.title); s("miTitleCN2",p.cn);
+    s("miDesc2",p.desc); s("miDescCN2",p.descCN);
+    s("miVisual2",p.vis); s("miVisualCN2",p.visCN);
+    s("miQualiaTag2",p.qualia); s("miOrb2",p.orb);
+    s("miCA2title",p.cA); s("miCA2titleCN",p.cACN);
+    s("miCB2title",p.cB); s("miCB2titleCN",p.cBCN);
+    s("miMTxt2",p.lbl.m); s("miETxt2",p.lbl.e); s("miBTxt2",p.lbl.b); s("miCTxt2",p.lbl.c);
+    ["MM","EM","BM","CM"].forEach(function(k,i){
+      var el=g("mi"+k+"2"), vals=[p.v.m,p.v.e,p.v.b,p.v.c];
+      if(el) el.style.width=vals[i]+"%";
+    });
+    s("miCopyEN2",p.en); s("miCopyCN2",p.zh);
+    s("miRows2",p.rows.map(function(r){return"<tr><td>"+r[0]+"</td><td>"+r[1]+"</td><td>"+r[2]+"</td><td>"+r[3]+"</td></tr>";}).join(""));
+  }
+  document.querySelectorAll("[data-mi]").forEach(function(b){b.addEventListener("click",function(){setMode(b.getAttribute("data-mi"));});});
+  var fi=g("miFile2");
+  if(fi) fi.addEventListener("change",function(e){var f=e.target.files[0];if(!f)return;if(objUrl)URL.revokeObjectURL(objUrl);objUrl=URL.createObjectURL(f);audio.src=objUrl;audio.style.display="block";});
+  function ensure(){
+    if(!actx){actx=new(window.AudioContext||window.webkitAudioContext)();analyser=actx.createAnalyser();analyser.fftSize=1024;analyser.smoothingTimeConstant=.78;analyser.connect(actx.destination);}
+    if(actx.state==="suspended")actx.resume();
+  }
+  function connect(){ensure();if(!src){src=actx.createMediaElementSource(audio);src.connect(analyser);}}
+  var pb=g("miPlay2"),pab=g("miPause2"),sb=g("miStop2"),db=g("miDemo2");
+  if(pb)pb.onclick=function(){if(audio&&audio.src&&audio.src!==location.href){connect();audio.play();}else play();};
+  if(pab)pab.onclick=function(){if(audio)audio.pause();};
+  if(sb)sb.onclick=function(){if(audio){audio.pause();audio.currentTime=0;}stop();};
+  if(db)db.onclick=play;
+  function stop(){nodes.forEach(function(n){try{if(n.stop)n.stop();}catch(e){}try{if(n.disconnect)n.disconnect();}catch(e){}});nodes=[];if(timer){clearInterval(timer);timer=null;}}
+  function osc(f,t,l){ensure();var o=actx.createOscillator(),gg=actx.createGain();o.type=t||"sine";o.frequency.value=f;gg.gain.value=l||.05;o.connect(gg);gg.connect(analyser);o.start();nodes.push(o,gg);}
+  function tick(f,t,l,d){ensure();var o=actx.createOscillator(),gg=actx.createGain();o.type=t||"sine";o.frequency.value=f||90;gg.gain.setValueAtTime(l||.12,actx.currentTime);gg.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+(d||.11));o.connect(gg);gg.connect(analyser);o.start();o.stop(actx.currentTime+(d||.11)+.02);nodes.push(o,gg);}
+  function play(){
+    stop();ensure();
+    if(mode==="phonk"){osc(53.375,"sine",.12);timer=setInterval(function(){tick(82,"sine",.18,.10);tick(720,"square",.025,.05);},420);}
+    else if(mode==="hyperpop"){timer=setInterval(function(){var f=[427,640,854,1280,1710][Math.floor(Math.random()*5)];tick(f,Math.random()>.5?"square":"sawtooth",.05,.06);},110);}
+    else if(mode==="synthpop"){[427,540,640.5,854].forEach(function(f,i){osc(f,"triangle",i===0?.08:.025);});}
+    else if(mode==="darkwave"){[106.75,213.5,427].forEach(function(f,i){osc(f,"sawtooth",i===0?.06:.03);});}
+    else{[106.75,213.5,427,640.5].forEach(function(f,i){osc(f,i<2?"sine":"triangle",i===0?.045:.018);});timer=setInterval(function(){tick(427*(Math.random()>.5?1:1.5),"sine",.018,.8);},900);}
+    if(timer&&typeof timer!=="object") nodes.push({stop:function(){clearInterval(timer);},disconnect:function(){clearInterval(timer);}});
+  }
+  function sz(c){var r=c.getBoundingClientRect(),d=window.devicePixelRatio||1;c.width=r.width*d;c.height=r.height*d;return{w:c.width,h:c.height,d:d};}
+  function drawWave(){var c=g("miWave2");if(!c)return;var ctx=c.getContext("2d"),s=sz(c),p=P[mode],t=performance.now()/1000;ctx.clearRect(0,0,s.w,s.h);var data=new Uint8Array(512);if(analyser)analyser.getByteFrequencyData(data);for(var L=0;L<4;L++){ctx.beginPath();for(var x=0;x<s.w;x+=8*s.d){var nx=x/s.w,ae=(data[Math.floor(nx*data.length)]||0)/255,amp;if(mode==="phonk")amp=Math.sign(Math.sin(nx*40+t*7))*s.h*.035+Math.sin(nx*8+t)*s.h*.035+ae*s.h*.12;else if(mode==="hyperpop")amp=(Math.random()-.5)*s.h*.11+Math.sin(nx*90+t*10)*s.h*.025+ae*s.h*.09;else if(mode==="synthpop")amp=Math.sin(nx*18+t*1.4+L)*s.h*.07+ae*s.h*.06;else if(mode==="darkwave")amp=Math.sin(nx*8+t*.6+L)*s.h*.11+Math.sin(nx*22+t)*s.h*.02+ae*s.h*.04;else amp=Math.sin(nx*10+t*.9+L)*s.h*.05+Math.sin(nx*28+t*1.2)*s.h*.016+ae*s.h*.045;var y=s.h*(.5+(L-1.5)*.10)+amp;if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.strokeStyle=p.col;ctx.lineWidth=(L===1?2.8:1.2)*s.d;ctx.shadowBlur=16*s.d;ctx.shadowColor=p.col;ctx.stroke();}}
+  function drawRadar(){var c=g("miRadar2");if(!c)return;var ctx=c.getContext("2d"),s=sz(c),p=P[mode],cx=s.w/2,cy=s.h/2,r=Math.min(s.w,s.h)*.32,vals=[p.v.m,p.v.e,p.v.b,p.v.c],labs=["Meaning","Emotion","Body","Cognition"];ctx.clearRect(0,0,s.w,s.h);ctx.strokeStyle="rgba(0,229,255,.18)";ctx.lineWidth=s.d;for(var k=1;k<=4;k++){ctx.beginPath();for(var i=0;i<4;i++){var a=-Math.PI/2+i*Math.PI*2/4,rr=r*k/4,x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.closePath();ctx.stroke();}for(var i=0;i<4;i++){var a=-Math.PI/2+i*Math.PI*2/4;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);ctx.stroke();ctx.fillStyle="rgba(216,228,240,.72)";ctx.font=(12*s.d)+"px monospace";ctx.textAlign="center";ctx.fillText(labs[i],cx+Math.cos(a)*(r+34*s.d),cy+Math.sin(a)*(r+34*s.d));}ctx.beginPath();vals.forEach(function(v,i){var a=-Math.PI/2+i*Math.PI*2/4,rr=r*v/100,x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.closePath();ctx.fillStyle=p.col+"44";ctx.strokeStyle=p.col;ctx.lineWidth=2*s.d;ctx.fill();ctx.stroke();}
+  function drawCurve(id,kind){var c=g(id);if(!c)return;var ctx=c.getContext("2d"),s=sz(c),p=P[mode],t=performance.now()/1000;ctx.clearRect(0,0,s.w,s.h);ctx.strokeStyle="rgba(255,255,255,.08)";ctx.lineWidth=s.d;for(var i=1;i<5;i++){ctx.beginPath();ctx.moveTo(0,s.h*i/5);ctx.lineTo(s.w,s.h*i/5);ctx.stroke();}ctx.beginPath();for(var x=0;x<s.w;x+=6*s.d){var nx=x/s.w,y;if(kind==="A"){var tgt=mode==="phonk"?.82:mode==="hyperpop"?.72:mode==="synthpop"?.78:mode==="darkwave"?.45:.68;y=s.h*(1-(.18+tgt*(1-Math.exp(-nx*3))+Math.sin(nx*12+t)*.025));}else{var ld=mode==="ambient"?.25:mode==="darkwave"?.38:mode==="phonk"?.72:mode==="hyperpop"?.88:.48;y=s.h*(.5+Math.sin(nx*18+t*1.2)*.08-ld*.25+nx*.08);}if(x===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);}ctx.strokeStyle=p.col;ctx.lineWidth=3*s.d;ctx.shadowBlur=14*s.d;ctx.shadowColor=p.col;ctx.stroke();}
+  function loop(){drawWave();drawRadar();drawCurve("miCurveA2","A");drawCurve("miCurveB2","B");requestAnimationFrame(loop);}
+  setMode("phonk");
+  loop();
+})();
+</script>
+
+<style id="HRP-MUSIC-NAV-FIX">
+#music-intervention-native { scroll-margin-top: 96px; }
+a[href="#music-intervention-native"] {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative;
+  z-index: 10000;
+}
+</style>
+<script id="HRP-MUSIC-NAV-FIX-JS">
+(function(){
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest('a[href="#music-intervention-native"]');
+    if(!a) return;
+    var el = document.getElementById("music-intervention-native");
+    if(!el) return;
+    e.preventDefault();
+    el.scrollIntoView({behavior:"smooth", block:"start"});
+    try { history.replaceState(null, "", "#music-intervention-native"); } catch(err) {}
   }, true);
 })();
 </script>
