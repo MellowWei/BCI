@@ -2365,6 +2365,63 @@
 #music-intervention-lab{scroll-margin-top:110px;}
 a[href="#music-intervention-lab"]{pointer-events:auto!important;cursor:pointer!important;position:relative;z-index:10000;}
 
+
+/* v28 PERFORMANCE + LAYOUT PATCH */
+#music-intervention-lab .hero {
+  padding-bottom: 28px !important;
+  overflow: hidden !important;
+}
+
+#music-intervention-lab h1 {
+  font-size: clamp(48px, 7.2vw, 96px) !important;
+  line-height: .9 !important;
+  max-width: 100% !important;
+  margin-bottom: 24px !important;
+}
+
+#music-intervention-lab .track-selector {
+  grid-template-columns: repeat(5, minmax(150px, 1fr)) !important;
+  gap: 12px !important;
+}
+
+#music-intervention-lab .track-btn {
+  display: block !important;
+  min-height: 158px !important;
+  background: rgba(255,255,255,.045) !important;
+  color: var(--text) !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(0,229,255,.22) !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+}
+
+#music-intervention-lab .track-btn strong,
+#music-intervention-lab .track-btn em,
+#music-intervention-lab .track-btn small {
+  display: block !important;
+  white-space: normal !important;
+}
+
+#music-intervention-lab .wave-wrap,
+#music-intervention-lab .radar-wrap,
+#music-intervention-lab .curve {
+  contain: layout paint size !important;
+  transform: translateZ(0);
+}
+
+#music-intervention-lab canvas {
+  image-rendering: auto;
+}
+
+@media(max-width: 1100px){
+  #music-intervention-lab .track-selector {
+    grid-template-columns: 1fr !important;
+  }
+  #music-intervention-lab h1 {
+    font-size: clamp(44px, 12vw, 76px) !important;
+  }
+}
+
 </style>
 </head>
 
@@ -7114,9 +7171,20 @@ function playDemo(){
   }
 }
 
+const __hrpCanvasSizeCache = new WeakMap();
 function sizeCanvas(c){
-  const r=c.getBoundingClientRect(), d=window.devicePixelRatio||1;
-  c.width=r.width*d; c.height=r.height*d; return {w:c.width,h:c.height,d};
+  const r = c.getBoundingClientRect();
+  const d = window.devicePixelRatio || 1;
+  const w = Math.max(1, Math.floor(r.width * d));
+  const h = Math.max(1, Math.floor(r.height * d));
+  const cached = __hrpCanvasSizeCache.get(c);
+  if(!cached || cached.w !== w || cached.h !== h || cached.d !== d){
+    c.width = w;
+    c.height = h;
+    __hrpCanvasSizeCache.set(c, {w, h, d});
+    return {w, h, d};
+  }
+  return cached;
 }
 function drawWave(){
   const c=canvases.wave, ctx=c.getContext("2d"), {w,h,d}=sizeCanvas(c);
@@ -7132,7 +7200,7 @@ function drawWave(){
       const audioEnergy = data[Math.floor(nx*data.length)]/255 || 0;
       let amp;
       if(mode==="phonk") amp=Math.sign(Math.sin(nx*40+t*7))*h*.035 + Math.sin(nx*8+t)*h*.035 + audioEnergy*h*.12;
-      else if(mode==="hyperpop") amp=(Math.random()-.5)*h*.11 + Math.sin(nx*90+t*10)*h*.025 + audioEnergy*h*.09;
+      else if(mode==="hyperpop") amp=Math.sin(nx*137+t*17+layer)*h*.055 + Math.sin(nx*90+t*10)*h*.025 + audioEnergy*h*.09;
       else if(mode==="synthpop") amp=Math.sin(nx*18+t*1.4+layer)*h*.07 + audioEnergy*h*.06;
       else if(mode==="darkwave") amp=Math.sin(nx*8+t*.6+layer)*h*.11 + Math.sin(nx*22+t)*h*.02 + audioEnergy*h*.04;
       else amp=Math.sin(nx*10+t*.9+layer)*h*.05 + Math.sin(nx*28+t*1.2)*h*.016 + audioEnergy*h*.045;
@@ -7199,12 +7267,27 @@ function drawCurve(canvas, kind){
   }
   ctx.strokeStyle=color; ctx.lineWidth=3*d; ctx.shadowBlur=14*d; ctx.shadowColor=color; ctx.stroke();
 }
-function loop(){
-  drawWave(); drawRadar(); drawCurve(canvases.curveA,"A"); drawCurve(canvases.curveB,"B");
+let __hrpLastFrame = 0;
+let __hrpMusicLabVisible = true;
+const __hrpMusicLabSection = document.getElementById("music-intervention-lab");
+if("IntersectionObserver" in window && __hrpMusicLabSection){
+  const __hrpObserver = new IntersectionObserver(entries => {
+    __hrpMusicLabVisible = entries.some(e => e.isIntersecting);
+  }, {threshold: 0.02});
+  __hrpObserver.observe(__hrpMusicLabSection);
+}
+function loop(ts){
   requestAnimationFrame(loop);
+  if(!__hrpMusicLabVisible) return;
+  if(ts - __hrpLastFrame < 33) return;
+  __hrpLastFrame = ts;
+  drawWave();
+  drawRadar();
+  drawCurve(canvases.curveA,"A");
+  drawCurve(canvases.curveB,"B");
 }
 setMode("phonk");
-loop();
+requestAnimationFrame(loop);
 </script>
 
 <script>
