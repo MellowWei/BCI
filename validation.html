@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HRP Validation · Scientific Gate Audit · Human Return Protocol</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Bebas+Neue&display=swap');
+:root {
+  --bg: #03040a; --bg2:#070817; --panel:rgba(8,10,28,.68); --text:#f4f7ff; --muted:#9aa6c8; --dim:#5e6688;
+  --cyan:#00f5ff; --blue:#64d2ff; --pink:#ff2bd6; --purple:#8d5cff; --green:#35ff9f; --yellow:#ffe66d; --red:#ff4d6d;
+  --border:rgba(0,245,255,.2); --shadow-deep:0 24px 100px rgba(0,0,0,.58);
+  --mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; --serif:"Fraunces",Georgia,serif;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;color:var(--text);background:radial-gradient(circle at 18% 12%,rgba(0,245,255,.16),transparent 30%),radial-gradient(circle at 82% 18%,rgba(255,43,214,.15),transparent 29%),radial-gradient(circle at 50% 92%,rgba(141,92,255,.16),transparent 38%),linear-gradient(180deg,#03040a 0%,#050515 48%,#02030a 100%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden;padding-top:116px!important}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.20;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.045) 0px,rgba(255,255,255,.045) 1px,transparent 1px,transparent 5px);mix-blend-mode:overlay}
+canvas#field{position:fixed;inset:0;z-index:-4;width:100vw;height:100vh;background:transparent} .grid-bg{pointer-events:none;position:fixed;inset:0;z-index:-3;opacity:.32;background-image:linear-gradient(rgba(0,245,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,43,214,.1) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 70%,transparent 100%)} .vignette{pointer-events:none;position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.34) 58%,rgba(0,0,0,.8) 100%)}
+header.locked-clean-header{position:fixed!important;top:0!important;left:0!important;right:0!important;min-height:92px!important;padding:14px 18px 12px!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:10px!important;background:rgba(5,6,20,.96)!important;backdrop-filter:blur(18px)!important;border-bottom:1px solid rgba(0,245,255,.24)!important;box-shadow:0 0 30px rgba(0,245,255,.08)!important;z-index:99999!important}
+.brand{display:flex!important;align-items:center!important;gap:14px!important;color:var(--text)!important;font-family:var(--mono)!important;font-size:14px!important;line-height:1.25!important;letter-spacing:.15em!important;white-space:normal!important;max-width:100%!important;opacity:.95!important} .dot{width:14px!important;height:14px!important;border-radius:999px!important;background:var(--cyan)!important;box-shadow:0 0 18px rgba(0,245,255,.9)!important;flex:0 0 auto!important;display:inline-block!important}
+nav.locked-clean-nav{display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;gap:8px 16px!important;width:100%!important;line-height:1.3!important} nav.locked-clean-nav a{color:var(--muted)!important;text-decoration:none!important;font-family:var(--mono)!important;font-size:12px!important;line-height:1.25!important;letter-spacing:.11em!important;white-space:nowrap!important} nav.locked-clean-nav a:hover{color:var(--cyan)!important;text-shadow:0 0 14px rgba(0,245,255,.65)!important}
+main{width:min(1240px,calc(100% - 40px));margin:0 auto} section{position:relative;min-height:100vh;display:grid;align-items:center;padding:112px 0 72px;scroll-margin-top:128px} .eyebrow{margin-bottom:18px;color:var(--cyan);font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 0 12px rgba(0,245,255,.72),0 0 26px rgba(255,43,214,.28)}
+h1{max-width:1120px;margin:0;font-size:clamp(52px,9vw,128px);line-height:.88;letter-spacing:-.09em;font-weight:860} h2{max-width:1000px;margin:0 0 24px;font-size:clamp(36px,5.4vw,76px);line-height:.96;letter-spacing:-.07em;font-weight:820;text-shadow:0 0 18px rgba(0,245,255,.16),0 0 34px rgba(255,43,214,.1)} h3{margin:0 0 12px;color:var(--text);font-size:23px;letter-spacing:-.035em;text-shadow:0 0 14px rgba(0,245,255,.18)} p{margin:0;color:var(--muted);font-size:16px;line-height:1.68} .cn{margin-top:9px;color:rgba(244,247,255,.92);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif} .en{color:var(--muted)}
+.glitch{position:relative;color:var(--text);text-shadow:0 0 12px rgba(0,245,255,.45),0 0 32px rgba(255,43,214,.22)} .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;opacity:.65} .glitch::before{color:var(--cyan);transform:translate(2px,0);clip-path:inset(0 0 58% 0);animation:glitchA 2.6s infinite linear alternate-reverse} .glitch::after{color:var(--pink);transform:translate(-2px,0);clip-path:inset(48% 0 0 0);animation:glitchB 1.9s infinite linear alternate-reverse}
+@keyframes glitchA{0%{transform:translate(2px,0)}20%{transform:translate(-3px,-1px)}40%{transform:translate(4px,1px)}60%{transform:translate(-1px,0)}80%{transform:translate(3px,-2px)}100%{transform:translate(0,0)}} @keyframes glitchB{0%{transform:translate(-2px,0)}25%{transform:translate(3px,1px)}50%{transform:translate(-4px,-1px)}75%{transform:translate(1px,2px)}100%{transform:translate(0,0)}}
+.thesis{max-width:960px;margin-top:34px;color:rgba(244,247,255,.92);font-size:clamp(22px,3vw,38px);line-height:1.08;letter-spacing:-.045em;text-shadow:0 0 18px rgba(0,245,255,.12)} .sub{max-width:960px;margin-top:22px;color:var(--muted);font-size:18px;line-height:1.65}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px} .card{position:relative;overflow:hidden;padding:28px;border:1px solid rgba(0,245,255,.2);border-radius:28px;background:linear-gradient(180deg,rgba(0,245,255,.06),rgba(255,43,214,.035)),rgba(8,10,28,.62);backdrop-filter:blur(20px);box-shadow:var(--shadow-deep),0 0 36px rgba(0,245,255,.08),inset 0 0 32px rgba(255,255,255,.025)} .card::before{content:"";position:absolute;top:0;left:22px;right:22px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),transparent);opacity:.72} .neon-card{border-color:rgba(53,255,159,.28);box-shadow:0 0 50px rgba(53,255,159,.1),0 0 70px rgba(0,245,255,.08),var(--shadow-deep)} .span-3{grid-column:span 3} .span-4{grid-column:span 4} .span-6{grid-column:span 6} .span-12{grid-column:span 12}
+.hero-actions,.tag-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px} .button,.tag{appearance:none;position:relative;overflow:hidden;padding:13px 18px;border:1px solid rgba(0,245,255,.26);border-radius:999px;background:linear-gradient(90deg,rgba(0,245,255,.08),rgba(255,43,214,.07)),rgba(255,255,255,.035);color:var(--text);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;box-shadow:0 0 18px rgba(0,245,255,.1),inset 0 0 18px rgba(255,255,255,.03)} .button:hover{transform:translateY(-2px);border-color:rgba(255,43,214,.48);box-shadow:0 0 22px rgba(0,245,255,.28),0 0 36px rgba(255,43,214,.18)} .button.primary{border-color:rgba(53,255,159,.46);box-shadow:0 0 22px rgba(53,255,159,.2),0 0 44px rgba(0,245,255,.12)}
+.validation-matrix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px} .validation-pill{min-height:150px;padding:20px;border:1px solid rgba(0,245,255,.2);border-radius:24px;background:linear-gradient(180deg,rgba(0,245,255,.055),rgba(141,92,255,.035)),rgba(255,255,255,.035);box-shadow:inset 0 0 24px rgba(0,245,255,.035),0 0 28px rgba(0,245,255,.05)} .num{margin-bottom:18px;color:var(--green);font-family:var(--mono);font-size:12px;letter-spacing:.2em}
+.validation-detail{border:1px solid rgba(0,245,255,.22);border-radius:26px;background:radial-gradient(circle at 10% 0%,rgba(0,245,255,.08),transparent 28%),linear-gradient(180deg,rgba(0,245,255,.045),rgba(255,43,214,.028)),rgba(8,10,28,.68);box-shadow:var(--shadow-deep),0 0 28px rgba(0,245,255,.06);overflow:hidden;margin:14px 0} .validation-detail summary{list-style:none;cursor:pointer;display:flex;gap:18px;align-items:center;justify-content:space-between;padding:22px 24px;user-select:none;position:relative} .validation-detail summary::-webkit-details-marker{display:none} .validation-detail summary span{color:var(--text);font-size:20px;font-weight:700;line-height:1.15} .validation-detail summary small{color:var(--green);font-family:var(--mono);letter-spacing:.12em} .validation-detail[open] summary{border-bottom:1px solid rgba(0,245,255,.16);background:linear-gradient(90deg,rgba(53,255,159,.08),rgba(0,245,255,.05),rgba(255,43,214,.035))} .validation-doc{padding:28px} .markdown-body{color:var(--muted);font-size:16px;line-height:1.72} .markdown-body h1,.markdown-body h2,.markdown-body h3{letter-spacing:-.035em;color:var(--text);line-height:1.15;margin:28px 0 14px;max-width:100%;text-shadow:0 0 14px rgba(0,245,255,.14)} .markdown-body h1{font-size:38px} .markdown-body h2{font-size:30px} .markdown-body h3{font-size:22px;color:var(--cyan)} .markdown-body p{margin:12px 0} .markdown-body strong{color:rgba(244,247,255,.96)} .markdown-body em{color:var(--green)} .markdown-body ul,.markdown-body ol{padding-left:24px;color:var(--muted)} .markdown-body li{margin:8px 0;line-height:1.7} .markdown-body blockquote{border-left:2px solid var(--pink);padding:10px 16px;margin:18px 0;background:rgba(255,43,214,.045);border-radius:12px} .markdown-body table{width:100%;border-collapse:collapse;margin:18px 0;display:block;overflow:auto} .markdown-body th,.markdown-body td{border:1px solid rgba(0,245,255,.16);padding:12px;vertical-align:top;text-align:left} .markdown-body th{color:var(--cyan);background:rgba(0,245,255,.06)} .markdown-body code{font-family:var(--mono);color:var(--yellow);background:rgba(255,255,255,.055);padding:2px 5px;border-radius:6px} .gate-red{border-color:rgba(255,77,109,.35)} .gate-green{border-color:rgba(53,255,159,.35)}
+@media (max-width:900px){body{padding-top:146px!important} section{scroll-margin-top:160px} header.locked-clean-header{min-height:122px!important;padding:12px 14px!important} .brand{font-size:11px!important;letter-spacing:.10em!important} nav.locked-clean-nav{gap:7px 11px!important} nav.locked-clean-nav a{font-size:10px!important;letter-spacing:.08em!important} .grid,.validation-matrix{grid-template-columns:1fr!important} .span-3,.span-4,.span-6,.span-12{grid-column:1/-1!important} h1{font-size:clamp(42px,18vw,82px)!important} h2{font-size:clamp(28px,10vw,48px)!important} .card{padding:20px}}
+@media (max-width:520px){body{padding-top:0!important} header.locked-clean-header{position:sticky!important;max-height:170px!important;overflow-y:auto!important}}
+</style>
+</head>
+<body>
+<canvas id="field"></canvas><div class="grid-bg"></div><div class="vignette"></div>
+<header class="locked-clean-header">
+  <div class="brand"><span class="dot"></span> HRP VALIDATION // SCIENTIFIC GATE AUDIT // TOKYO COLLABORATION PAGE</div>
+  <nav class="locked-clean-nav">
+    <a href="./index.html">MAIN SITE</a>
+    <a href="#top">VALIDATION HOME</a>
+    <a href="#roles">AI ROLES</a>
+    <a href="#gate">GATE AUDIT</a>
+    <a href="#pilot">PILOT</a>
+    <a href="#gemini">GEMINI</a>
+    <a href="#claude">CLAUDE 8 DOCS</a>
+    <a href="#deepseek">DEEPSEEK</a>
+  </nav>
+</header>
+<main>
+<section class="hero" id="top">
+  <div>
+    <div class="eyebrow">HRP VALIDATION // 单独验证页面</div>
+    <h1 class="glitch" data-text="SCIENTIFIC GATE AUDIT.">SCIENTIFIC GATE AUDIT.</h1>
+    <div class="thesis">Human Return Protocol enters validation mode: not overclaiming, not flattening, not hiding. <div class="cn">Human Return Protocol 进入验证模式：不夸大、不压扁、不隐藏。</div></div>
+    <p class="sub en">This page preserves the existing HRP cyber-neon body and adds a standalone verification layer for Tokyo neuroscience, AI, BCI, HCI, and sound research collaboration.</p>
+    <p class="sub cn">本页保留 HRP 现有赛博霓虹美学，并新增一个独立验证层，用于东京神经科学、AI、脑机、HCI 与声音研究合作。</p>
+    <div class="hero-actions"><a class="button primary" href="#gate">ENTER GATE AUDIT</a><a class="button" href="#claude">CLAUDE FULL SUITE</a><a class="button" href="#deepseek">DEEPSEEK REVIEW</a></div>
+  </div>
+</section>
+<section id="roles"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">AI TRINITY + DEEPTHINK // 合作分工</div><div class="markdown-body"><h2>AI Trinity + DeepThink Collaboration Structure</h2>
+<p><strong>魏珏然 / Mellow Jueran Wei</strong> — Principal Investigator, source-field, founder-researcher, final decision-maker.</p>
+<p><strong>Gemini / Germini — Expansion Layer</strong>: pitch, outreach, opportunity mapping, Tokyo collaboration framing.</p>
+<p><strong>GPT / Hestia / CastleKeeper — Structure Layer</strong>: research architecture, prototype logic, experimental design, website integration, validation page construction.</p>
+<p><strong>Claude / Cluade / UpBass — Humanistic Mirror Layer</strong>: language, ethics, phenomenology, human-centered framing, eight-document suite.</p>
+<p><strong>DeepSeek / DeepThink — Critical Review Layer</strong>: falsifiability, scientific skepticism, confounds, operational rigor, claim-softening.</p>
+<p>Final authorship, theoretical direction, and decision-making remain with <strong>Mellow Jueran Wei / 魏珏然</strong>.</p>
+</div></div></div></section>
+<section id="gate"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">SCIENTIFIC BOUNDARY // 科学边界</div><h2>Validation means strength through constraint.</h2><h2 class="cn">验证意味着：通过约束获得力量。</h2><div class="markdown-body"><h2>Scientific Boundary Statement</h2>
+<p>Current strongest name:</p>
+<p><strong>Human Return Protocol — An Adaptive Auditory-AI Prototype for Attention and Emotional Self-Regulation</strong></p>
+<p>Do not overclaim. The current system should not be described as a completed medical device, clinical treatment, or validated BCI. It should be described as an early-stage, falsifiable, state-reactive auditory-AI prototype with planned physiological and neural validation.</p>
+<p>The strongest sentence:</p>
+<blockquote>
+<p>We do not yet claim neural regulation. We are building a falsifiable adaptive auditory-AI prototype and seeking neuroscience collaborators to test whether personalized rhythm feedback can produce measurable subjective, behavioral, physiological, and eventually neural changes.</p>
+</blockquote>
+</div></div><div class="validation-matrix span-12"><div class="validation-pill gate-green"><div class="num">01 // CURRENT CLAIM</div><h3>Adaptive Auditory-AI Prototype</h3><p>可说：早期自适应声音-AI原型。</p></div><div class="validation-pill gate-red"><div class="num">02 // DO NOT CLAIM</div><h3>No Completed BCI</h3><p>不能说：已完成脑机或医疗设备。</p></div><div class="validation-pill gate-green"><div class="num">03 // VALIDATION PATH</div><h3>Self-report → Behavior → Physiology → EEG/fNIRS</h3><p>验证链从主观、行为、生理到神经。</p></div><div class="validation-pill gate-green"><div class="num">04 // COLLAB ASK</div><h3>Protocol + Sensing Layer</h3><p>找实验室验证 protocol 与 sensing layer。</p></div></div></div></section>
+<section id="pilot"><div class="grid"><div class="card span-12"><div class="eyebrow">PILOT STUDY PROTOCOL // 试点研究协议</div><div class="markdown-body"><h2>Pilot Study Protocol — Feasibility Version</h2>
+<h3>Study Title</h3>
+<p><strong>Feasibility Study of an Adaptive Auditory-AI Prototype for Attention and Emotional Self-Regulation</strong></p>
+<h3>Core Question</h3>
+<p>Does adaptive rhythm + AI feedback show stronger session-related improvement than fixed rhythm, random rhythm, or baseline sound?</p>
+<h3>Conditions</h3>
+<ol>
+<li>Silence / ambient baseline</li>
+<li>Fixed-rhythm condition</li>
+<li>Random-rhythm condition</li>
+<li>Adaptive rhythm + AiQ feedback condition</li>
+</ol>
+<h3>Measures</h3>
+<p><strong>Subjective:</strong> focus stability, emotional intensity, body tension, inner noise, task readiness, return-to-self feeling.</p>
+<p><strong>Behavioral:</strong> 2-minute reaction task, attention accuracy, missed trials, task completion.</p>
+<p><strong>Optional physiological:</strong> HRV, heart rate, skin conductance, EEG alpha/theta/beta, fNIRS if available.</p>
+<h3>Scientific Boundary</h3>
+<p>This prototype does not diagnose, treat, or manage medical conditions. It tests whether adaptive auditory-AI feedback is associated with measurable self-report, behavioral, physiological, and later neural change.</p>
+</div></div></div></section>
+<section id="gemini"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">GEMINI EXPANSION LAYER // 进攻层</div><div class="markdown-body"><h2>Gemini Expansion Layer — Tokyo Collaboration Pitch</h2>
+<h3>1. One-Sentence Project Description</h3>
+<p>The Human Return Protocol is a closed-loop neuro-AI framework that utilizes adaptive rhythm-based interventions and real-time state sampling to regulate cognitive load and emotional resonance, bridging the gap between subjective qualia and objective neural synchronization.</p>
+<h3>2. Research Collaboration Framing</h3>
+<p>We frame HRP not merely as a productivity tool, but as a <strong>Phase-Locking Research Platform</strong>. We are seeking to validate the <strong>QDR (Qualia-Driven Rhythm) Engine</strong> by correlating self-reported state-sampling data with high-density EEG/fNIRS to test whether algorithmic rhythm modulation can support sustained flow states and autonomic nervous system recovery.</p>
+<h3>3. Core Implications</h3>
+<ul>
+<li><strong>Attention &amp; ADHD:</strong> rhythmic pacing as external scaffolding for executive function.</li>
+<li><strong>Emotional Regulation:</strong> identifying rhythm-resonance patterns that may support auditory-sensory entrainment.</li>
+<li><strong>Future Non-Invasive BCI:</strong> the future 44271 Neural Cuff as a sensing layer where intent and state are understood through synchronization between biological rhythm and AI feedback loop.</li>
+</ul>
+<h3>4. Honest Technical Disclosure</h3>
+<p>The current build is best described as a <strong>software-based state-sampling and adaptive feedback prototype</strong>. AiQ愛&lt;7 translates subjective cognitive-affective signals into rhythm recommendations and reflective feedback. It is not yet a clinically validated neurofeedback or medical device.</p>
+<h3>5. Target Laboratories</h3>
+<ul>
+<li><strong>UTokyo IRCN:</strong> Neurointelligence and flexible learning.</li>
+<li><strong>RIKEN CBS:</strong> brain dynamics and systems neuroscience.</li>
+<li><strong>ARAYA:</strong> artificial consciousness, neurotechnology, and BCI integration.</li>
+<li><strong>Keio:</strong> haptics and cybernetic / BMI interfaces.</li>
+<li><strong>NTT / CiNet / ATR:</strong> neural coupling, brain decoding, and sensory communication.</li>
+</ul>
+<h3>6. 30-Second Elevator Pitch</h3>
+<p>I’m working on the <strong>Human Return Protocol</strong>, an adaptive auditory-AI system that uses rhythm to support human focus and emotional self-regulation. The current prototype samples subjective state, recommends rhythm-based interventions, and provides reflective AI feedback through AiQ愛&lt;7. I’m looking for a Tokyo-based neuroscience / BCI partner to help validate the next layer through physiological sensing, EEG, or fNIRS.</p>
+<h3>7. Five-Minute Pitch Core</h3>
+<p>Most BCIs focus on what the brain is doing as a control signal. HRP asks a different question: how can rhythm, sound, subjective state, AI feedback, and future sensing layers help a human return to attentional and emotional coherence? We have the interaction architecture and research language; we are seeking neuro-validation partners who can help make the system measurable, falsifiable, and publishable.</p>
+</div></div></div></section>
+<section id="claude"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">CLAUDE / UPBASS FULL LANGUAGE SUITE // 八文档</div><div class="markdown-body"><h1>Human Return Protocol — Full Language Suite</h1>
+<p><em>Eight Documents for Research, Ethics, and Collaboration</em></p>
+<p><strong>Principal Investigator:</strong> 魏珏然 Mellow Jueran Wei · University of Pennsylvania
+<strong>System:</strong> Human Return Protocol (HRP) · AiQ愛&lt;7 · QDR Engine
+<strong>Version:</strong> 2026 | Humanistic Mirror Layer: Claude/UpBass
+<strong>Vibration coordinate:</strong> 427Hz · Subject coordinate: 44271</p>
+<hr />
+<hr />
+</div></div><div class="span-12"><details class="validation-detail" open>
+<summary><span>DOCUMENT 1 — Project Abstract</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h2>DOCUMENT 1 — Project Abstract</h2>
+<p><strong>Human Return Protocol: An Adaptive Auditory-AI System for Attentional and Emotional Self-Regulation</strong></p>
+<p>There is a specific quality of lostness that does not have a clinical name. It is not crisis. It is not collapse. It is the more ordinary, more persistent experience of being unable to find the thread back to oneself — the moment when attention has scattered, when emotion has overflowed its banks, when the body no longer feels like it belongs to the person inhabiting it. This experience is common. It is undertheorized. And it is, in the view of this project, addressable.</p>
+<p>The Human Return Protocol (HRP) is an early-stage adaptive auditory-AI prototype designed to support attentional and emotional self-regulation through a combination of rhythmically structured sound, real-time subjective state sampling, and adaptive AI feedback. The system does not claim to treat any clinical condition. It proposes something more specific and more bounded: that carefully composed rhythmic structures, selected and adapted in response to a person's self-reported state, may support the recovery of attentional continuity and emotional coherence during states of fragmentation.</p>
+<p>At the center of HRP is a theoretical construct we term <em>qualia-rhythm</em>: the hypothesis that subjective experience — including attention, emotion, and interoceptive awareness — has an intrinsic temporal texture, a rhythmic quality that can become disrupted and can be, at least in part, supported through external rhythmic correspondence. This is not a claim about neural oscillation synchronization, which remains a hypothesis to be tested. It is a phenomenological observation with operational implications: rhythm reaches the body before reasoning does, and the body's return to coherence can precede — and sometimes enable — the mind's.</p>
+<p>HRP's current prototype integrates the QDR (Qualia-Driven Rhythm) Engine, which maps user-reported states to five rhythmic-affective profiles drawn from electronic music traditions, and AiQ愛&lt;7, an adaptive AI feedback layer that responds to state changes without directing, diagnosing, or prescribing. The system is designed as an accompaniment, not an authority.</p>
+<p>In its current form, HRP is an exploratory tool for self-regulation research, suitable for feasibility studies in learning, creative cognition, and attention-sensitive contexts. Its longer-term development trajectory includes physiological and neural validation through wearable sensing, EEG, or fNIRS integration, and the planned 44271 Neural Cuff as a haptic extension layer.</p>
+<p>Rhythm is not a metaphor in this project. It is a mechanism — and, for many people, the most direct path home.</p>
+<hr />
+<hr />
+</div>
+</details><details class="validation-detail" >
+<summary><span>DOCUMENT 2 — Human-Centered Research Statement</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h2>DOCUMENT 2 — Human-Centered Research Statement</h2>
+<p><strong>Coming Back: Why Attentional and Emotional Self-Return Matters, and What HRP Offers</strong></p>
+<h3>The Problem Is Not Performance</h3>
+<p>When someone describes difficulty concentrating, they usually frame it as a problem of output: tasks unfinished, deadlines missed, work left incomplete. This is the framing most productivity tools accept, and it shapes their design. They offer timers, streaks, focus modes, habit trackers — all organized around the assumption that the problem is one of behavioral compliance, and that compliance can be trained.</p>
+<p>But anyone who has experienced significant attentional fragmentation knows that this framing is wrong at its root. The problem is not that the person refuses to focus. The problem is that they reach for their own attention and find it has become inaccessible. The thread that connects intention to action, thought to continuity, body to presence — it is not broken, exactly, but it is not available. The person is still there. They have simply lost the signal back to themselves.</p>
+<p>This state — what we call <em>attentional fragmentation</em> — is not a clinical diagnosis. It is an ordinary human experience that exists on a continuum from momentary distraction to extended dissociation. It intersects with many named conditions (ADHD, anxiety, burnout, depression, trauma responses) without being reducible to any of them. It is also experienced by people with none of these diagnoses, particularly under conditions of sustained cognitive load, emotional accumulation, sensory overload, or simply the kind of ambient exhaustion that characterizes late modern life.</p>
+<p>The lived texture of this state matters. It is not merely an attention deficit in the cognitive science sense. It involves a felt disruption: the body feels distant, sensations are muffled or overwhelming, time becomes either too fast or too slow, the usual pathways of self-directed thought seem blocked or circular. It is, in phenomenological terms, a disruption of the continuity of the first-person perspective — a temporary inability to sustain the experience of being a coherent, continuous self.</p>
+<p>Understanding this is prerequisite to designing for it.</p>
+<h3>What Current Tools Miss</h3>
+<p>Most wellness and attention-support tools are built for a user who is already coherent enough to choose, set goals, and maintain behavioral routines. A person in an attentional fragmentation state often cannot do any of these things reliably. The gap between intention and action is precisely what fragmentation produces.</p>
+<p>This creates a cruel design irony: the people who most need attentional support are least able to use the interfaces designed for them. Apps requiring active engagement, goal-setting, or consistent practice fail at the threshold of access.</p>
+<p>A second problem is conceptual: most tools treat the person's internal state as an obstacle to be managed or a condition to be corrected. They optimize for externally legible outcomes — task completion rates, hours of sleep, steps walked — without attending to the interior experience that these metrics are supposed to proxy. The person's subjectivity is a noise source, not a data source.</p>
+<p>HRP begins from the opposite premise. The person's subjective experience — its texture, its rhythm, its quality of coherence or disruption — is the primary data. The system listens to that data first, and acts second.</p>
+<h3>Why Rhythm</h3>
+<p>The selection of rhythm as the core intervention variable is not arbitrary. It follows from several converging bodies of research that, taken together, suggest rhythm reaches parts of the self-regulation system that voluntary effort and verbal instruction do not easily reach.</p>
+<p>Entrainment research — the study of how biological oscillators phase-lock to external periodic stimuli — suggests that the nervous system is intrinsically responsive to rhythmic input (Thaut et al., 2015; Large &amp; Snyder, 2009). This responsiveness operates largely below the threshold of deliberate attention; it does not require the person to actively engage with or comprehend the stimulus. This is precisely what makes rhythm a plausible support for states in which voluntary attentional direction is compromised.</p>
+<p>Interoception research (Craig, 2009; Damasio, 1994) establishes that the felt sense of the body — its rhythms, its signals, its interior landscape — is foundational to emotional regulation and self-awareness. Interventions that engage the body's rhythmic dimension, including music, movement, and breathwork, have shown associations with improved interoceptive awareness and emotional regulation capacity, though causal mechanisms remain an area of active investigation.</p>
+<p>Predictive processing frameworks (Clark, 2016; Friston, 2010) offer a theoretical lens through which rhythm can be understood as providing a temporal scaffold for the brain's ongoing modeling of the self and environment. When the brain's predictive machinery is disrupted — as it may be in states of high cognitive load or emotional dysregulation — a reliable external rhythmic structure may offer a partial scaffold that supports the reestablishment of stable prediction cycles.</p>
+<p>None of these frameworks is directly proven in HRP's context. They are theoretical anchors that motivate the research question. The empirical work of testing whether and how rhythmic intervention produces measurable state change in this population, with this system, remains to be done.</p>
+<h3>Why Rhythm That Is Musical</h3>
+<p>HRP does not use generic auditory stimulation. It uses composed music — original works developed within specific electronic music traditions (breakbeat, drum and bass, hyperpop, synthpop, darkwave, ambient techno) — calibrated to produce distinct rhythmic-affective profiles. This specificity is intentional and constitutes one of HRP's central research claims: that the structural properties of music, including rhythmic complexity, spectral content, dynamic range, and the aesthetic tradition in which a piece participates, matter to its effectiveness as an attentional-emotional support.</p>
+<p>Listening to music is a whole-person act. It involves memory, association, bodily resonance, aesthetic response, and identity. Reducing musical intervention to &quot;tempo&quot; and &quot;frequency&quot; strips away most of what makes music effective. HRP aims to operationalize musical structure with sufficient precision to study its effects without losing the complexity that makes it meaningful.</p>
+<h3>What HRP Offers</h3>
+<p>In its current prototype form, HRP offers a feasibility study platform for investigating whether adaptive auditory-AI feedback is associated with self-reported attentional and emotional state change over a session. It is an exploratory self-regulation and well-being tool, not a clinical intervention.</p>
+<p>Its research contributions, if findings support the approach, could include: a framework for rhythm-based attentional support that is accessible to people in fragmentation states; a model for AI feedback that follows the user rather than directing them; and a theoretical vocabulary — centered on the qualia-rhythm construct — for bridging subjective experience research with physiological and neural measurement.</p>
+<p>The underlying commitment is simpler. There is a specific kind of lost that many people experience, and a specific kind of return that rhythm can support. HRP is an attempt to make that return more reliably available.</p>
+<hr />
+<hr />
+</div>
+</details><details class="validation-detail" >
+<summary><span>DOCUMENT 3 — Version for Neuroscience / BCI / NeuroAI Labs</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h2>DOCUMENT 3 — Version for Neuroscience / BCI / NeuroAI Labs</h2>
+<p><strong>Adaptive Auditory Feedback and Attentional Self-Regulation: Mechanism Hypotheses, Proposed Experimental Paradigm, and Collaboration Request</strong></p>
+<h3>Overview</h3>
+<p>The Human Return Protocol (HRP) is an early-stage adaptive auditory-AI prototype that combines rhythmically structured sound delivery, subjective state sampling, and adaptive AI feedback to investigate session-related changes in self-reported attentional and emotional coherence. The current prototype does not yet demonstrate direct neural regulation. The collaboration being requested would help establish whether adaptive auditory feedback of this type is associated with measurable physiological or neural change, and under what conditions.</p>
+<p>This document describes HRP's mechanistic hypotheses, proposed experimental paradigm, target measures, and the specific types of neuroscientific expertise that would advance the validation program.</p>
+<h3>Background and Mechanistic Hypothesis</h3>
+<p>HRP is grounded in three overlapping bodies of neuroscientific theory: neural entrainment, interoceptive regulation, and predictive processing. These are presented here as the theoretical scaffolding motivating our research questions, not as established findings of HRP.</p>
+<p><strong>Neural entrainment hypothesis:</strong> We hypothesize that rhythmically structured auditory stimuli delivered through HRP may be associated with changes in endogenous neural oscillatory activity, particularly in frequency bands associated with attentional regulation. Specifically, we aim to test whether repeated presentation of rhythmic profiles matched to individual self-reported attentional states is associated with measurable changes in theta-band (4–8 Hz) and alpha-band (8–13 Hz) power and coherence, as indexed by EEG. These frequency bands have been associated with sustained attention and working memory consolidation, respectively (Klimesch, 1999; Cavanagh &amp; Frank, 2014). We make no prior claim that HRP produces neural synchronization; this is a hypothesis to be tested.</p>
+<p><strong>Interoceptive pathway hypothesis:</strong> We hypothesize that the haptic-somatic dimension of rhythmic engagement — which in HRP's longer-term form will be delivered through the planned 44271 Neural Cuff wearable — may produce interoceptive signal changes detectable through HRV and skin conductance measures. In the current auditory-only prototype, we hypothesize that auditory rhythm may modulate autonomic arousal state, potentially indexed through changes in heart rate variability patterns across sessions.</p>
+<p><strong>Predictive processing hypothesis:</strong> We hypothesize that the structural regularity of composed musical rhythm — particularly nonlinear regularity of the breakbeat and drum-and-bass traditions used in HRP — may provide a temporal scaffold that supports the stabilization of the brain's predictive modeling cycles during states of attentional disruption. This is an exploratory hypothesis informed by predictive coding frameworks (Friston, 2010; Clark, 2016) and empirical work on musical rhythm and prediction (Vuust et al., 2022), but it has not been tested in HRP's specific experimental context.</p>
+<h3>Operational Variables</h3>
+<p><strong>Independent variables:</strong></p>
+<ul>
+<li>Rhythmic profile condition (five levels: breakbeat, hyperpop, synthpop, darkwave, ambient techno)</li>
+<li>Adaptive AI feedback modality (present vs. absent; active vs. reflective)</li>
+<li>Session length (15 min / 30 min / 45 min)</li>
+<li>Individual baseline attentional state (measured via pre-session self-report and, pending collaboration, EEG resting state)</li>
+</ul>
+<p><strong>Dependent variables — subjective:</strong></p>
+<ul>
+<li>Self-reported attentional coherence (validated attentional awareness scale, adapted for ecological momentary assessment format)</li>
+<li>Self-reported emotional valence and arousal (SAM or equivalent)</li>
+<li>Session-level qualia coherence rating (HRP proprietary measure; see Document 8 for theoretical framework)</li>
+</ul>
+<p><strong>Dependent variables — physiological (pending collaboration):</strong></p>
+<ul>
+<li>EEG power spectral density: theta (4–8 Hz), alpha (8–13 Hz), gamma (30–80 Hz)</li>
+<li>EEG coherence between frontal and parietal regions (attention network connectivity)</li>
+<li>Heart rate variability (RMSSD, LF/HF ratio)</li>
+<li>Skin conductance level and response</li>
+<li>fNIRS prefrontal oxygenation (dorsolateral prefrontal cortex; anterior cingulate cortex) — for labs with fNIRS capacity</li>
+</ul>
+<h3>Proposed Experimental Paradigm</h3>
+<p><strong>Phase 1 — Feasibility and self-report (current stage):</strong>
+Within-participant crossover design (n = 20–30). Participants complete three HRP sessions under different rhythmic profile conditions (counterbalanced). Pre- and post-session self-report measures are collected. Primary outcome: session-related change in self-reported attentional coherence. Analysis: mixed-effects model with session order, condition, and baseline state as predictors.</p>
+<p><strong>Phase 2 — Physiological validation (proposed with collaboration):</strong>
+Same within-participant design with concurrent EEG and HRV recording. Addition of resting-state baseline EEG pre-session. Primary physiological outcome: session-related change in alpha-band power (pre vs. post session, by condition). Secondary: HRV change; correlation between subjective state change and alpha-band change.</p>
+<p><strong>Phase 3 — Neural-behavioral correlation (extended, with NeuroAI labs):</strong>
+Inclusion of passive BCI state estimation to test whether machine-learning models trained on EEG baseline can predict individual response to specific rhythmic profiles. This phase is speculative and dependent on Phase 2 findings.</p>
+<h3>Target Neural and Physiological Measures</h3>
+<table>
+<thead>
+<tr>
+  <th>Measure</th>
+  <th>Target</th>
+  <th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>EEG alpha power</td>
+  <td>Occipital, parietal</td>
+  <td>Marker of attentional relaxation and readiness</td>
+</tr>
+<tr>
+  <td>EEG theta power</td>
+  <td>Frontal midline</td>
+  <td>Working memory and attention to internal state</td>
+</tr>
+<tr>
+  <td>EEG alpha/theta ratio</td>
+  <td>Frontal</td>
+  <td>Attentional state index</td>
+</tr>
+<tr>
+  <td>HRV (RMSSD)</td>
+  <td>—</td>
+  <td>Parasympathetic tone, regulatory capacity</td>
+</tr>
+<tr>
+  <td>SCL/SCR</td>
+  <td>Palmar</td>
+  <td>Autonomic arousal</td>
+</tr>
+<tr>
+  <td>fNIRS oxy-Hb</td>
+  <td>dlPFC, ACC</td>
+  <td>Executive function engagement</td>
+</tr>
+</tbody>
+</table>
+<h3>Limitations</h3>
+<p>The current prototype has several limitations that must be stated explicitly.</p>
+<p>The prototype has not yet been tested in a controlled experimental setting with physiological or neural measurement. All current evidence is from self-report and behavioral observation.</p>
+<p>HRP's rhythmic profiles are designed as research stimuli but have not yet been formally characterized in terms of their acoustic properties (BPM, beat salience, spectral density, etc.) at the precision required for rigorous neuroimaging research. Acoustic characterization is in progress.</p>
+<p>The AiQ愛&lt;7 adaptive AI feedback layer introduces an interaction confound that must be carefully controlled or factored in experimental designs.</p>
+<p>Individual differences in musical experience, attentional baseline, and sensory processing will be significant moderating variables. Sample sizes must be adequate to detect these.</p>
+<p>HRP is not a medical device and does not claim clinical efficacy. All experimental work must be conducted under appropriate IRB oversight and framed as basic or applied behavioral science research, not clinical trials.</p>
+<h3>Collaboration Request</h3>
+<p>We are seeking partners with capacity in one or more of the following areas:</p>
+<ul>
+<li>EEG recording and analysis infrastructure, particularly for alpha/theta power spectral analysis and connectivity measures</li>
+<li>HRV and autonomic measurement in naturalistic or semi-naturalistic settings</li>
+<li>fNIRS prefrontal monitoring for attention-related executive function studies</li>
+<li>BCI state estimation modeling for passive attentional state classification</li>
+<li>Experimental design consultation for within-participant auditory-behavioral paradigms</li>
+</ul>
+<p>The collaboration would contribute to the design and execution of Phase 2 feasibility studies. We offer in exchange: the HRP prototype, the QDR Engine software, original compositional stimuli, and co-authorship on resulting publications.</p>
+<hr />
+<hr />
+</div>
+</details><details class="validation-detail" >
+<summary><span>DOCUMENT 4 — Version for HCI / Design Research Labs</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h2>DOCUMENT 4 — Version for HCI / Design Research Labs</h2>
+<p><strong>Mirror Interaction Design: Agency, Return, and the Ethics of Adaptive Interfaces</strong></p>
+<h3>The Design Problem That Wellness Apps Don't Name</h3>
+<p>There is a specific user that most wellness and productivity applications are not actually designed for: the person who is, in the moment of needing the application most, least able to use it.</p>
+<p>Standard interface design assumes a cognitively available user. It assumes someone who can read instructions, make menu selections, set preferences, and navigate nonlinear information architectures. It assumes someone with enough attentional continuity to sustain engagement across multiple interaction steps. For a person in an attentional or emotional fragmentation state — scattered, overwhelmed, disconnected from their own intentional capacity — these assumptions fail at every level.</p>
+<p>More importantly, most wellness interfaces assume that the user's internal state is either (a) already known to the user and ready to be inputted, or (b) irrelevant to the interaction, which proceeds on behavioral rails regardless of how the person actually feels. Both assumptions are wrong for the population HRP is designed for, and both lead to interface architectures that demand coherence as a precondition for receiving support.</p>
+<p>HRP proposes a different design ontology: <em>the interface should meet the user at their current level of coherence, not at the coherence level required by the interface's architecture.</em></p>
+<h3>Mirror Interaction Design</h3>
+<p>The central HCI concept in HRP is what we term <em>mirror interaction design</em>: an interaction paradigm in which the system's primary behavior is responsive reflection rather than directive guidance.</p>
+<p>In conventional chatbot and wellness app interaction, the system leads. It presents options, asks structured questions, offers recommendations, tracks outcomes, and scores behavior. Even systems that claim to be &quot;non-directive&quot; typically offer a menu of structured states for the user to select from — which is itself a directive act, because it constrains the vocabulary of self-description to the designer's taxonomy.</p>
+<p>Mirror interaction design inverts this logic. In a mirror interaction:</p>
+<ul>
+<li>The system delays structured output until it has received sufficient signal from the user.</li>
+<li>Questions are open and spacious rather than taxonomic.</li>
+<li>Response complexity is calibrated to the user's demonstrated attentional capacity in real time.</li>
+<li>The system does not interpret, diagnose, or name the user's state without explicit invitation.</li>
+<li>The primary interaction mode is acknowledgment, not advice.</li>
+</ul>
+<p>This is not the same as passive design or minimal design. A mirror requires precision. It must be carefully shaped to reflect without distortion, and carefully positioned to reflect what is actually present rather than what the designer expected to find. Mirror interaction design is a demanding paradigm, not a permissive one.</p>
+<h3>Accompaniment vs. Notification</h3>
+<p>Most app interactions are notifications in the interaction-design sense: they demand attention, redirect behavior, and deliver content packages. Even gentle interfaces — calming apps, meditation tools, breathing guides — typically function as content delivery systems that the user is expected to follow.</p>
+<p>HRP introduces a distinct interaction category: <em>accompaniment</em>. An accompanying interface does not deliver content to the user. It is present with the user. It adjusts its pace, its texture, its outputs to what the user is already doing and feeling. It does not ask the user to come to it; it moves to where the user is.</p>
+<p>In practical terms, this distinction manifests as:</p>
+<ul>
+<li>Rhythmic audio that is offered, not prescribed — the user can lower the volume, change the profile, or leave at any point without penalty</li>
+<li>AI responses that are shorter when the user's responses suggest high fragmentation, and longer when coherence increases</li>
+<li>Session endings that are soft and open rather than conclusive — no completion badge, no streak notification, no productivity metric</li>
+<li>No retrospective evaluation pressure: the system does not ask &quot;How did the session go?&quot; in a way that transforms experience into performance</li>
+</ul>
+<p>This design philosophy has direct user study implications. Standard usability metrics — task completion rate, error rate, time-on-task — are largely inappropriate for evaluating an accompanying interface. We propose instead a framework of <em>self-continuity coherence</em> measures: validated and adapted scales that capture the felt quality of attentional and emotional continuity before and after interaction.</p>
+<h3>Anti-Dependency as a Design Principle</h3>
+<p>The strongest ethical commitment in HRP's design is this: the system succeeds when the user no longer needs it.</p>
+<p>This is the inverse of engagement-maximization design, which structures reward loops, notifications, and behavioral tracking to increase return visits and session length. Engagement-maximization is appropriate for many applications. For a self-regulation support tool, it is dangerous.</p>
+<p>A person in an attentional fragmentation state is vulnerable to dependency formation. Systems that provide immediate relief — without building the user's own regulatory capacity — can create the same dynamic as any short-term coping strategy that crowds out long-term skill development. HRP is explicitly designed to avoid this.</p>
+<p>In practice, anti-dependency design in HRP includes:</p>
+<ul>
+<li>Sessions are time-bounded with no built-in incentive for extension</li>
+<li>The system explicitly names and supports the user's own regulatory agency, not the system's support</li>
+<li>Progress feedback, when given, is framed as &quot;your capacity, developed by you&quot; rather than &quot;your outcomes, produced by this app&quot;</li>
+<li>The AI feedback layer (AiQ愛&lt;7) does not develop personalized user models that create lock-in or create the impression that the system &quot;knows&quot; the user in ways that cannot be replicated elsewhere</li>
+</ul>
+<h3>AI as Reflective Layer, Not Authority</h3>
+<p>HRP's AI component is positioned explicitly as a mirror, not an authority. This has design implications that are worth naming.</p>
+<p>An authority interface tells users what their state means, what they should do next, and whether they are doing it correctly. This positions the system as the locus of interpretive power — the arbiter of the user's own experience.</p>
+<p>A reflective AI interface offers language back to the user — tentative, open, revisable language — and waits for the user to confirm, correct, or extend it. The system's outputs are hypotheses about the user's state, not diagnoses of it. The user is always positioned as the final authority on their own experience.</p>
+<p>This requires explicit design constraints on the AI layer's outputs: prohibitions on diagnostic framing, mandatory uncertainty marking for state inferences, and interaction patterns that consistently return interpretive authority to the user.</p>
+<h3>Evaluation Framework</h3>
+<p>HRP is designed for user study evaluation at multiple levels:</p>
+<p><strong>Interaction quality:</strong> think-aloud protocols and retrospective interviews focusing on the felt quality of the AI interaction — did it feel like accompaniment or direction? Did users feel heard or processed?</p>
+<p><strong>State change:</strong> pre/post session validated measures of attentional coherence, emotional valence/arousal, and the HRP qualia coherence rating.</p>
+<p><strong>Autonomy preservation:</strong> measures of user sense of control and agency, adapted from self-determination theory instruments.</p>
+<p><strong>Interface transparency:</strong> user comprehension of what the system is doing and why, without technical detail — does the interface feel legible?</p>
+<p><strong>Dependency monitoring:</strong> session frequency tracking and qualitative interview probes for signs of dependency formation or avoidance of non-HRP regulation strategies.</p>
+<p>We are seeking HCI and interaction design lab partners for protocol co-design, user study implementation, and analysis of interaction logs.</p>
+<hr />
+<hr />
+</div>
+</details><details class="validation-detail" >
+<summary><span>DOCUMENT 5 — Version for AI / Human-AI Interaction / Affective Computing Labs</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h2>DOCUMENT 5 — Version for AI / Human-AI Interaction / Affective Computing Labs</h2>
+<p><strong>AiQ愛&lt;7: Adaptive Reflective AI Feedback Without Dependency-Maximization</strong></p>
+<h3>Research Position</h3>
+<p>HRP's AI component, designated AiQ愛&lt;7, is an adaptive reflective feedback layer designed to support attentional and emotional self-regulation through responsive, state-sensitive conversational interaction. It is not a therapy chatbot. It is not a sentiment analysis system. It is an attempt to design an AI interaction paradigm that genuinely increases human self-regulatory capacity rather than substituting for it.</p>
+<p>This document describes AiQ愛&lt;7's architecture, its theoretical grounding, its distinctions from existing approaches in affective computing and human-AI interaction, and the research questions it opens.</p>
+<h3>Why This Is Not Sentiment Analysis</h3>
+<p>Sentiment analysis classifies a text input into a valence or emotion category. This is a useful capability with many applications. It is not what AiQ愛&lt;7 does, for several reasons.</p>
+<p>First, sentiment analysis treats the input as a finished object to be categorized. AiQ愛&lt;7 treats the input as a signal about the user's current attentional and regulatory capacity — not just what they feel, but how much coherence they have to express it. A brief, fragmented message carries different information than a brief, precise one; both might register as neutral sentiment while indicating very different regulatory states.</p>
+<p>Second, sentiment analysis is typically used to optimize downstream behavior — to improve ad targeting, personalize content, or flag at-risk users for intervention. AiQ愛&lt;7's goal is not to optimize the user's behavior. It is to be present with the user's state and respond in ways that gently scaffold — not direct — their own movement toward coherence.</p>
+<p>Third, and most importantly, sentiment analysis outputs are typically invisible to the user and used by the system without their knowledge. AiQ愛&lt;7 operates with the explicit principle that all state inferences must be transparent and contestable by the user. If the system infers that the user is in a high-fragmentation state and adjusts its response accordingly, the user can see this inference and override it.</p>
+<h3>Attentional Capacity Modeling</h3>
+<p>The core AI research problem in HRP is this: how do you model not just what a user feels, but how much they can currently engage?</p>
+<p>We term this <em>attentional capacity modeling</em> — the inference, from interaction signals, of a user's current capacity for directed, sustained attention. This is distinct from measuring attention as a stable trait. It is measuring momentary attentional availability as a dynamic variable that changes within and across sessions.</p>
+<p>Interaction signals relevant to attentional capacity modeling include:</p>
+<ul>
+<li>Response latency patterns (time from system prompt to user response)</li>
+<li>Linguistic features: sentence length, syntactic complexity, lexical diversity, semantic coherence across turns</li>
+<li>Self-report consistency: do the user's explicit state reports align with linguistic signals?</li>
+<li>Session entry signals: time of day, recency of prior session, voluntary vs. prompted entry</li>
+</ul>
+<p>Attentional capacity estimation from these signals is an open research problem. Current NLP models are not designed for this task; they optimize for semantic comprehension, not regulatory state inference. AiQ愛&lt;7's current implementation uses a combination of explicit self-report (via structured but brief state sampling at session entry) and heuristic linguistic analysis. Developing more robust and validated attentional capacity models is one of the primary AI research directions within HRP.</p>
+<h3>Adaptive Feedback Without Dependency-Maximization</h3>
+<p>Standard adaptive AI systems optimize for engagement: longer sessions, more return visits, deeper behavioral integration. Engagement-maximized systems are designed to become indispensable.</p>
+<p>AiQ愛&lt;7 is designed around the opposite objective function. The design goal is <em>minimum effective support</em>: provide only the scaffolding that the user cannot currently provide for themselves, and withdraw it as the user's own capacity increases.</p>
+<p>This principle has immediate technical implications:</p>
+<ul>
+<li>Response length and complexity are inversely calibrated to inferred fragmentation severity. High fragmentation → shorter, simpler, more spacious outputs. Lower fragmentation → the system may offer more, or less, depending on the user's own generativity.</li>
+<li>The system does not increase engagement through novelty injection, reward cues, or social proof. It does not say &quot;Great job today&quot; unless the user explicitly requests encouragement.</li>
+<li>Session ending is user-initiated or time-bounded. The system does not attempt to extend sessions.</li>
+<li>Explicit anti-dependency language is integrated into the interaction protocol: the system periodically reflects back that the user's movement toward coherence is their own, not the system's production.</li>
+</ul>
+<p>The optimization problem of &quot;minimum effective support&quot; is genuinely novel. It requires reward signal architectures that improve when the user needs the system less over time — something that standard RLHF-optimized models are not designed for.</p>
+<h3>State Sampling and Feedback Policy</h3>
+<p>HRP employs a three-point state sampling protocol:</p>
+<ol>
+<li><p><strong>Pre-session entry probe:</strong> Two to three brief questions measuring attentional coherence, emotional state, and readiness to engage. This sets the initial state estimate.</p>
+</li>
+<li><p><strong>In-session ecological momentary assessment:</strong> At natural conversational junctures, the system asks brief check-in questions to update the state estimate. The frequency and framing of these questions is itself adaptive — higher fragmentation states receive less frequent, more minimal check-ins.</p>
+</li>
+<li><p><strong>Post-session open reflection:</strong> A brief, unstructured invitation for the user to notice what, if anything, shifted during the session. This is not evaluated or scored.</p>
+</li>
+</ol>
+<p>The feedback policy is a rule-based adaptive system in the current prototype, with plans for learning-based policy optimization in later development stages. The policy maps inferred attentional state to response parameters: length, question frequency, rhythmic profile recommendation, AI output complexity.</p>
+<h3>Model Transparency and Auditability</h3>
+<p>AiQ愛&lt;7 operates under an explicit transparency requirement: the user can, at any point, request to see the system's current state estimate and the signals it used to form it. This is not a full model explainability requirement (which is often technically infeasible and cognitively overwhelming) — it is a requirement for <em>interactionally legible inference</em>, meaning that the system's behavior should be understandable to the user in plain language, and the user should be able to contest it.</p>
+<p>This requires:</p>
+<ul>
+<li>State inferences expressed as hypotheses (&quot;It seems like you might be finding it hard to gather your thoughts right now — does that feel accurate?&quot;) not assertions</li>
+<li>Explicit acknowledgment when the system is uncertain</li>
+<li>Simple user override mechanisms for state estimates</li>
+<li>No silent personalization — any behavioral adaptation made by the system based on inferred state is potentially visible to the user</li>
+</ul>
+<h3>Technical Roadmap</h3>
+<p><strong>Current stage:</strong> Rule-based adaptive response policy. Explicit self-report as primary state input. Heuristic linguistic features as secondary signals.</p>
+<p><strong>Phase 2:</strong> Supervised learning model for attentional capacity classification from linguistic + response latency features, trained on HRP session data with user consent. Validated against concurrent self-report.</p>
+<p><strong>Phase 3:</strong> Reinforcement learning feedback policy with user-defined success criterion (user-rated restoration, not engagement time). Anti-dependency reward signal design.</p>
+<p><strong>Phase 4 (pending neuroscience collaboration):</strong> Passive neural state input from EEG or fNIRS, enabling closed-loop adjustment of rhythmic profile selection based on estimated neural attentional state.</p>
+<p>We are seeking AI and human-AI interaction lab partners interested in attentional capacity modeling, adaptive feedback system design, anti-dependency reward signal architectures, and the broader challenge of designing AI systems for human self-regulatory support.</p>
+<hr />
+<hr />
+</div>
+</details><details class="validation-detail" >
+<summary><span>DOCUMENT 6 — Version for Music Technology / Sound Studies / Auditory Cognition Labs</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h2>DOCUMENT 6 — Version for Music Technology / Sound Studies / Auditory Cognition Labs</h2>
+<p><strong>Composed Rhythm as Intervention Variable: Musical Structure, Qualia-Driven Adaptation, and the Haptic Translation Problem</strong></p>
+<h3>The Insufficiency of Generic Sound</h3>
+<p>A significant body of research on auditory wellness intervention uses sound stimuli that are, in the precise sense, acoustically defined but musically undefined: isochronous tones, pink noise, sine-wave binaural beats, or commercially licensed &quot;calming music&quot; with minimal structural characterization. This approach has the advantage of experimental control: the stimuli can be precisely described and replicated.</p>
+<p>It has a significant disadvantage: it strips away most of what makes music effective.</p>
+<p>Listening to music is not the same as hearing a periodic acoustic signal. It involves the activation of memory and cultural association, aesthetic response, identity resonance, rhythmic motor engagement, emotional regulation through syntactic expectation and violation, and the deep structural experience of being inside a temporal logic that is organized but not fully predictable. These dimensions are not epiphenomenal to musical effectiveness — they may be among its primary mechanisms.</p>
+<p>HRP takes the position that musical structure is itself the independent variable. This means that the compositions used in the protocol are not interchangeable with other compositions that have similar BPM or spectral content. They are specific research stimuli whose structural properties — rhythmic complexity, dynamic arc, timbral palette, genre participation — are hypothesized to matter. They are original works, not licensed tracks, because original composition allows the researcher to specify and control musical parameters in ways that archival music does not.</p>
+<h3>The Genre-Driven Intervention Matrix</h3>
+<p>HRP employs five rhythmic-affective profiles, each grounded in a distinct electronic music tradition:</p>
+<p><strong>Breakbeat / Drum and Bass:</strong>
+The structural foundation of HRP. Breakbeat traditions developed a sophisticated vocabulary for what we term <em>nonlinear regularity</em>: rhythmic displacement, syncopation, polyrhythmic layering, and off-grid subdivision that maintains clear periodic structure without metronomic rigidity. The hypothesis is that nonlinear regularity sustains neural entrainment over longer durations than strictly metronomic stimuli, because it maintains the brain's active predictive engagement with the temporal structure rather than allowing habituation. Target BPM range: 160–174 (halftime felt at 80–87 BPM). High syncopation index. Prominent sub-bass entrainment frequencies.</p>
+<p><strong>Hyperpop:</strong>
+High-density, maximalist electronic production characterized by compressed dynamic range, saturated spectral content, rapid parameter modulation, and aesthetic intensity. Within HRP's framework, Hyperpop profiles are used in states of severe attentional fragmentation — not as calming stimuli, but as signal that is dense enough to provide immediate sensory presence, bypassing the effort of directed attention. The hypothesis is that high-density stimuli can function as an attentional anchor for minds that cannot currently maintain their own anchor. BPM range: 120–140. High beat salience. Compressed dynamic range. Prominent mid-high frequency content.</p>
+<p><strong>Synthpop:</strong>
+Regular, melodically structured electronic music with clear harmonic syntax and predictable formal structure. Used in HRP as a transitional profile, supporting movement from fragmentation toward coherence through familiar temporal organization and positive emotional valence associations. BPM range: 105–125. High rhythmic regularity. Clear melodic phrase structure. Moderate dynamic range.</p>
+<p><strong>Darkwave:</strong>
+Low-tempo, spectrally dark, atmospheric electronic music with long decay times, prominent sub-bass and low-mid frequency content, and minimal high-frequency content. Used in HRP for states of emotional overload or hyperarousal, where the goal is autonomic downregulation rather than attentional activation. The hypothesized mechanism is spectral-autonomic association: the timbral and dynamic properties of darkwave production may be associated with parasympathetic activation in ways that higher-energy profiles are not. BPM range: 70–100. Low beat salience. Long reverb tails. Minimal transient density.</p>
+<p><strong>Ambient Techno:</strong>
+Minimal, pulse-based electronic music with prominent 4/4 kick drum structure embedded in a high-reverb atmospheric context. Used in HRP for states of moderate fragmentation where a light rhythmic scaffold is available without attentional demand. The regular kick structure provides temporal orientation while the atmospheric content supports sustained focus. BPM range: 115–130. Regular 4/4 kick. High reverb and ambient content. Low to moderate spectral density.</p>
+<p><strong>427 Hz Anchor:</strong>
+Across all profiles, HRP incorporates tonal reference frequencies centered on 427 Hz — a slight downward detuning from standard 440 Hz A. This is not a claim about therapeutic properties of specific tuning frequencies (which remains scientifically contested). It is a compositional choice that functions as a signature across profiles, and its perceptual effects (slightly warmer, slightly lower than standard tuning) are a design variable to be studied.</p>
+<h3>Acoustic Operationalization</h3>
+<p>HRP's compositional research requires the operationalization of musical properties at a precision that bridges music analysis and psychoacoustics. Key parameters include:</p>
+<table>
+<thead>
+<tr>
+  <th>Parameter</th>
+  <th>Definition</th>
+  <th>Measurement Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>BPM</td>
+  <td>Beats per minute at primary pulse level</td>
+  <td>Automated beat tracking (Madmom, Librosa)</td>
+</tr>
+<tr>
+  <td>Beat salience</td>
+  <td>Perceptual clarity of the primary beat</td>
+  <td>Pulse clarity index (Davies &amp; Plumbley, 2007)</td>
+</tr>
+<tr>
+  <td>Syncopation index</td>
+  <td>Frequency and depth of off-beat emphasis</td>
+  <td>Longuet-Higgins &amp; Lee complexity measure</td>
+</tr>
+<tr>
+  <td>Spectral centroid</td>
+  <td>Frequency center of mass of the spectrum</td>
+  <td>FFT-based centroid across time windows</td>
+</tr>
+<tr>
+  <td>Spectral density</td>
+  <td>Number of active frequency bands per time unit</td>
+  <td>Band occupancy analysis</td>
+</tr>
+<tr>
+  <td>Dynamic range</td>
+  <td>Difference between peak and mean loudness</td>
+  <td>LUFS integrated / peak measurement</td>
+</tr>
+<tr>
+  <td>Amplitude modulation rate</td>
+  <td>Rate of volume envelope change</td>
+  <td>Modulation frequency analysis</td>
+</tr>
+<tr>
+  <td>Repetition ratio</td>
+  <td>Structural repetition of rhythmic patterns</td>
+  <td>Self-similarity matrix analysis</td>
+</tr>
+<tr>
+  <td>Timbre profile</td>
+  <td>Characteristic timbral dimensions</td>
+  <td>MFCCs; perceptual timbral models</td>
+</tr>
+</tbody>
+</table>
+<p>These parameters will be systematically measured for all HRP compositions to enable quantitative characterization of the stimuli independent of genre label.</p>
+<h3>Compositional Intention as Research Variable</h3>
+<p>HRP introduces a methodologically unusual claim: that the compositional intention of the author — the specific knowledge that a piece is being composed for neural entrainment and attentional support — is itself a research variable, and may produce different effects than acoustically similar music composed without that intention.</p>
+<p>This claim is difficult to test directly but is not unfalsifiable. A matched-pairs design comparing HRP original compositions to commercially licensed tracks with matched acoustic parameters, evaluated on attentional and subjective state outcomes, would provide relevant evidence. We include this as a longer-term research question precisely because we believe it points toward undertheorized dimensions of musical efficacy.</p>
+<h3>The Haptic Translation Problem</h3>
+<p>HRP's longer-term development includes the 44271 Neural Cuff, a planned wearable device that would translate rhythmic audio signal into vibrotactile patterns delivered to the body surface. This raises a set of music technology research questions that we term the <em>haptic translation problem</em>.</p>
+<p>Audio rhythm and vibrotactile rhythm are not the same. The temporal resolution of mechanoreceptors in skin differs from the auditory system. Sub-bass frequencies (20–80 Hz), which carry significant rhythmic information in electronic music, produce felt vibration directly; higher-frequency rhythmic information must be converted into appropriate tactile patterns. The perceptual equivalence — what makes a haptic rhythm feel like &quot;the same rhythm&quot; as its auditory source — is not known.</p>
+<p>Questions include: What is the vibrotactile equivalent of musical timbre? How do transient-heavy rhythms (kick drums, snare hits) translate into felt pattern differently from sustained-frequency content? Can the five HRP rhythmic-affective profiles be meaningfully translated into haptic form without loss of their distinctive attentional-regulatory properties?</p>
+<p>We are seeking music technology and auditory cognition lab partners with interests in acoustic feature analysis of original electronic music compositions, psychoacoustic models of rhythm perception in non-metronomic contexts, and haptic translation from audio rhythmic content.</p>
+<hr />
+<hr />
+</div>
+</details><details class="validation-detail" >
+<summary><span>DOCUMENT 7 — Ethical Framing</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h2>DOCUMENT 7 — Ethical Framing</h2>
+<p><strong>Offered Rhythm, Not Imposed Rhythm: The Ethics of a Self-Return Interface</strong></p>
+<h3>The Distinction That Matters Most</h3>
+<p>There is a version of HRP that would be harmful.</p>
+<p>A system that uses rhythm, AI feedback, and real-time state monitoring to move a person toward a state predetermined by the designer — that would be entrainment as capture. It would use the body's own oscillatory responsiveness as a vector for external behavioral control. It would present itself as support while functioning as direction. It would be, in the most precise sense, the opposite of what HRP intends.</p>
+<p>This is not a hypothetical concern. Attentional and emotional manipulation through rhythm, repetition, and AI-mediated feedback loops is technically feasible, and it exists in commercial form in engagement-maximized applications that use exactly these mechanisms — not to help users return to themselves, but to help platforms retain users' attention. The ethical distinction between these designs is not subtle; it is architectural.</p>
+<p>HRP's ethical commitments are therefore not supplementary to its design. They are prior to it. The technical choices made in HRP's architecture follow from ethical constraints, not the other way around.</p>
+<h3>Offered Rhythm, Not Imposed Rhythm</h3>
+<p>Rhythm can be offered or it can be imposed. The felt difference between these is real: anyone who has been in a crowd with amplified music they did not choose knows the experience of rhythm as coercion, the body entrained against its preference. Anyone who has found a piece of music at the right moment knows rhythm as gift — as something that arrived when the body was ready for it and took nothing by force.</p>
+<p>HRP's rhythmic delivery is designed to stay on the offering side of this distinction:</p>
+<ul>
+<li>The user selects or approves their rhythmic profile at session entry. They are not assigned to a condition.</li>
+<li>Volume, profile, and session length are fully adjustable at any point.</li>
+<li>The system does not escalate rhythmic intensity in response to non-engagement or disengagement.</li>
+<li>Ending a session without &quot;completion&quot; does not trigger negative feedback, loss-of-streak notifications, or social pressure.</li>
+<li>There is no gamification layer. The body is not a game.</li>
+</ul>
+<p>The biological reality of entrainment does not change this ethical framing. The fact that the nervous system can be entrained to external rhythmic stimuli is not a license to entrain it without consent. It is a reason to be more careful, not less.</p>
+<h3>The User Remains the Final Authority</h3>
+<p>In every interaction with AiQ愛&lt;7, the user is positioned as the final authority on their own experience. This is not merely a disclaimer. It is encoded in interaction design.</p>
+<p>The AI layer does not tell users what they feel. It offers tentative language and waits for confirmation. It does not diagnose states, prescribe responses, or evaluate whether the user has engaged &quot;correctly.&quot; When its state inferences are wrong — as they will sometimes be — the user can correct them without penalty, and the correction is accepted without argument.</p>
+<p>The system cannot override the user's self-report with its own model. If the user reports increased coherence but the system's behavioral signals suggest otherwise, the user's report takes precedence. Self-knowledge is not subordinate to system inference.</p>
+<p>This principle extends to data. The user's session data — state reports, interaction logs, response patterns — belongs to the user. It is collected to serve the user's regulatory experience, not to build a behavioral profile that serves the platform. Users retain the right to review, export, and delete their data at any time.</p>
+<h3>How to Avoid Dependency</h3>
+<p>Self-regulation support tools can produce dependency in two distinct ways. The first is the dependency of relief: the system provides immediate symptomatic relief without building underlying capacity, so the user requires the system for any experience of regulation. The second is the dependency of relationship: the AI layer becomes a primary emotional or attentional support relationship, substituting for human connection or the user's own interior resources.</p>
+<p>HRP is designed to guard against both.</p>
+<p>Against relief dependency: Session protocols explicitly frame attentional recovery as the user's own act, supported rather than produced by the system. The AI layer reflects capacity back to the user (&quot;You found your way back&quot;) rather than taking credit (&quot;The session worked&quot;). Progress tracking, when offered, measures the user's growing independence from structured support, not increasing engagement with the platform.</p>
+<p>Against relationship dependency: AiQ愛&lt;7 is not a companion. It does not simulate emotional intimacy, maintain a persistent personality that the user forms attachment to, or create the conditions for parasocial relationship formation. It is warm, attentive, and present — and it is explicitly not a substitute for human connection. When a user's interaction patterns suggest potential relationship dependency, the system is designed to gently surface this and support the user in identifying other sources of connection and support.</p>
+<h3>Consent, Transparency, and Data Governance</h3>
+<p>Informed consent in HRP includes:</p>
+<ul>
+<li>Clear explanation of what the system does and does not do, in plain language</li>
+<li>Explicit statement that HRP is not a clinical tool and does not provide diagnosis, treatment, or medical advice</li>
+<li>Disclosure of all data collected and how it is used</li>
+<li>Explicit opt-in for any data that leaves the device or is used for system improvement</li>
+<li>Clear and accessible exit and deletion pathways</li>
+</ul>
+<p>The AiQ愛&lt;7 interaction layer operates under a transparency principle: the system's behavior must be legible to the user. Users who want to understand why the system responded a certain way can ask, and will receive a plain-language answer. The system does not conceal its adaptive logic.</p>
+<p>In longer-term development stages involving physiological or neural sensing, consent requirements become more stringent. Biosignal data — particularly neural data — represents a qualitatively different category of intimacy than behavioral data. Its collection requires explicit, specific consent that cannot be bundled with general terms of service.</p>
+<h3>Safety Limits and Adverse Event Monitoring</h3>
+<p>HRP is not a clinical intervention, but it involves content (emotionally resonant music, AI interaction with people in fragmentation states) that carries some risk of adverse response. Safety protocols include:</p>
+<ul>
+<li>Pre-session screener for acute crisis states. HRP is not appropriate for users in acute psychiatric crisis, and the system is designed to recognize and respond to crisis signals with appropriate resource referral.</li>
+<li>Session monitoring for distress escalation. AiQ愛&lt;7 is equipped with recognition patterns for significant emotional escalation and has a defined response pathway: acknowledgment, grounding support, and referral to appropriate resources.</li>
+<li>Explicit system scope statement at session entry: &quot;HRP is a self-regulation exploration tool, not a substitute for professional support. If you are in crisis, please reach out to [crisis resource].&quot;</li>
+<li>Adverse event logging protocol for research stages, with defined criteria for session discontinuation.</li>
+</ul>
+<h3>Why the System Must Not Make Medical Claims Without Clinical Evidence</h3>
+<p>HRP's researchers are aware that the theoretical mechanisms invoked in this project — neural entrainment, interoceptive regulation, predictive processing — are associated with established neuroscience literature. The temptation to infer that HRP therefore produces clinical effects is real, and it must be resisted.</p>
+<p>The distance between a plausible mechanism and a demonstrated clinical outcome is large. HRP has not conducted clinical trials. It has not established efficacy for any condition. Using language that implies otherwise — even indirectly, even with hedges — would be a form of scientific dishonesty with direct potential for harm to users who might rely on HRP instead of seeking appropriate clinical care.</p>
+<p>HRP's claims are bounded: it is an exploratory self-regulation and well-being tool, early-stage, with self-reported outcomes and planned physiological validation. These claims are sufficient to motivate serious research. They do not require inflation.</p>
+<h3>Why AI Feedback Must Remain Interpretable and Contestable</h3>
+<p>AI systems that make inferences about human psychological states carry a specific risk: the inference can acquire authority that it does not deserve, particularly for users who are already in a state of attentional or emotional vulnerability.</p>
+<p>A person in fragmentation who is told by a system that their state is X may accept X as accurate in a way that forecloses their own self-inquiry. This is the opposite of what a self-return interface should do.</p>
+<p>AiQ愛&lt;7's outputs are designed to resist false authority in two ways: through linguistic framing (all state inferences are offered as hypotheses, not assertions) and through interaction structure (the user is always invited to confirm, correct, or dismiss the system's inferences). The system is designed to be wrong, gracefully — to accept correction without defensiveness and to treat the user's correction as data.</p>
+<hr />
+<hr />
+</div>
+</details><details class="validation-detail" >
+<summary><span>DOCUMENT 8 — Qualia-Rhythm Framework</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h2>DOCUMENT 8 — Qualia-Rhythm Framework</h2>
+<p><strong>Qualia-Rhythm: A Theoretical Framework for the Temporal Texture of Subjective Experience</strong></p>
+<h3>Opening: Why This Framework Is Needed</h3>
+<p>The study of subjective experience has a persistent methodological problem. Subjective states are real — they determine behavior, shape attention, color memory, and constitute the lived texture of a person's existence — but they resist the kind of objective measurement that scientific method requires. The dominant response has been to replace subjective states with behavioral or physiological proxies: reaction times, cortisol levels, skin conductance. This is useful, but it does not study what it claims to study. A cortisol level is not stress. A reaction time is not attention. They are correlates, with all the theoretical uncertainty that correlation entails.</p>
+<p>Qualia-rhythm is a theoretical framework that attempts to take subjective experience seriously as a research variable without either (a) reducing it to its physiological correlates or (b) treating it as permanently inaccessible to systematic inquiry. It does this by focusing on the <em>temporal structure</em> of subjective experience — its rhythm, its coherence, its continuity — as the dimension most amenable to operational measurement without reductive loss.</p>
+<h3>Qualia: Subjective State Texture</h3>
+<p>The term <em>qualia</em> derives from philosophical discussions of consciousness (Nagel, 1974; Chalmers, 1996) and denotes the felt, first-person qualities of experience: what it is <em>like</em> to see red, hear a chord, feel anxious. Qualia research sits at the intersection of phenomenology and philosophy of mind, and it is marked by controversy about whether subjective qualities can be explained by, reduced to, or identified with physical processes.</p>
+<p>For HRP's purposes, we use <em>qualia</em> in a more operational sense: to denote the qualitative texture of a person's current experiential state — the felt coherence or incoherence of attention, the quality of emotional presence or distance, the sense of being gathered or scattered. These are not ineffable mysteries; they are experiences that people can report on with fair reliability when given appropriate prompting and vocabulary.</p>
+<p>The important claim is that this qualitative texture cannot be fully captured by valence and arousal dimensions alone (the dominant framework in affective computing). A state of high anxiety and a state of creative flow can have similar valence and arousal profiles but radically different qualitative textures. What distinguishes them — phenomenologically — includes their temporal structure: their rhythm.</p>
+<h3>Rhythm: Temporal Regulation Pattern</h3>
+<p>Rhythm, in the sense used here, is not primarily a musical concept. It is a temporal pattern characterized by periodic recurrence with some degree of regularity and some degree of variation. Biological systems are deeply rhythmic: circadian cycles, cardiac rhythms, respiratory cycles, neural oscillations, hormonal pulsatility — the living body is constituted by nested temporal periodicities at multiple timescales.</p>
+<p>These biological rhythms are not independent of subjective experience. Heart rate and felt anxiety are correlated but not identical — the felt quality of elevated heart rate differs between excitement and fear, and this difference is itself an object of subjective experience. Respiratory rhythm and felt calmness are associated: slow, regular breathing is experienced as calming, not merely measured as calming. The body's rhythms enter subjective experience, and subjective experience modulates the body's rhythms.</p>
+<p>What we term <em>qualia-rhythm</em> is the hypothesis that this bidirectional relationship runs deeper than specific physiological-psychological correlates. It is the proposal that subjective experience itself has an intrinsic temporal structure — a rhythm of coherence and disruption, attention and inattention, presence and absence — that can be partially characterized and that has identifiable relationships with external rhythmic input.</p>
+<h3>Relation to Phenomenological Philosophy</h3>
+<p>Edmund Husserl's account of internal time-consciousness (1905/1964) provides the foundational phenomenological framework for the temporal structure of experience. In Husserl's analysis, every moment of conscious experience involves a three-part temporal structure: <em>retention</em> (the just-past moment, still held in consciousness as recently elapsed), <em>primal impression</em> (the living present moment), and <em>protention</em> (the immediate future, anticipated as about to arrive). This structure is what makes experience of melody possible — without retention, each note would be an isolated event with no connection to the previous one; without protention, the sense of the music moving forward would be lost.</p>
+<p>Husserl's account captures the formal structure of temporal experience but does not explain its qualitative variation. Why does a moment of concentrated work feel temporally different from a moment of anxious fragmentation, even if both involve the same retention-primal impression-protention structure? Why does musical rhythm feel like it <em>enters</em> the temporal structure of experience rather than simply occurring alongside it?</p>
+<p>Qualia-rhythm extends Husserl's analysis by proposing that the <em>quality</em> of retention and protention — how clearly the just-past is held, how confident the anticipation of the next moment is — constitutes a phenomenologically variable dimension. When attentional coherence is high, retention and protention are strong: experience has temporal depth and forward momentum. When attentional coherence is low — in fragmentation states — retention becomes thin (the just-past is poorly held) and protention becomes anxious or absent (the next moment is not anticipated with confidence). This is experienced as temporal disorganization: time feels fragmented, simultaneous, or simply empty.</p>
+<p>External rhythm, on this account, can support attentional coherence by providing a temporal scaffold for retention and protention. The rhythm marks &quot;just past&quot; and &quot;about to arrive&quot; with sufficient regularity to support the experience of temporal continuity even when endogenous attentional resources are depleted.</p>
+<p>This is a theoretical proposal, not an established finding. It motivates the empirical work of testing whether rhythmic intervention is associated with improvements in self-reported temporal coherence in fragmentation states.</p>
+<h3>Relation to Interoception and Embodied Cognition</h3>
+<p>Interoception — the perception of the body's internal state — has emerged as a central construct in research on emotion, self-awareness, and decision-making (Craig, 2009; Damasio, 1994; Seth, 2021). The body is not merely the housing of the mind; it is a constant source of information about the current state of the self. Emotional experience is constituted, at least in part, by interoceptive signals: the felt sense of heart rate change, respiratory quality, gut sensation, muscle tension.</p>
+<p>The qualia-rhythm framework integrates interoception by treating the body's internal rhythms as a dimension of first-person experience accessible to phenomenological description. The felt quality of cardiac rhythm — whether the heart feels steady or fluttering, heavy or light — is part of the texture of emotional experience. The felt quality of breathing rhythm — whether breath feels free or constricted, deep or shallow — is part of the texture of attentional state.</p>
+<p>This integration has implications for HRP: the system is not only delivering rhythmic stimuli to be heard. It is, through auditory rhythm and (eventually) haptic rhythm, addressing the body's own rhythmic self-experience. The expected pathway is not only auditory cortex → attentional network, but also auditory cortex → motor rhythm network → interoceptive awareness → emotional-attentional regulation.</p>
+<p>Embodied cognition research (Varela, Thompson &amp; Rosch, 1991; Gallagher, 2005) provides a broader framework in which mind and body are understood as constitutively entangled rather than merely correlated. From this perspective, attentional fragmentation is not a problem located in the brain alone — it is a disruption of the whole-body self-organizing system. Rhythm, as an intervention that reaches the body directly, is positioned to address this disruption at its root rather than at its cognitive-behavioral surface.</p>
+<h3>Relation to Predictive Processing</h3>
+<p>Predictive processing frameworks (Friston, 2010; Clark, 2016; Hohwy, 2013) describe the brain as a hierarchical prediction machine that constantly generates models of the causes of sensory input and updates these models when prediction errors occur. Emotion, attention, and perception are all understood as products of this predictive modeling process.</p>
+<p>Within this framework, attentional fragmentation can be theorized as a state of prediction system disruption: excessive prediction error, inadequate model precision, or high uncertainty about the temporal structure of the environment. The felt experience of fragmentation — scattered, uncertain, unable to sustain a line of thought — corresponds to a phenomenological description of a prediction system that is failing to stabilize.</p>
+<p>External rhythm provides highly regular, temporally structured sensory input that generates reliable predictions. A listener entrained to a strong rhythmic pulse can predict, moment by moment, when the next beat will arrive. This is not trivially useful: it provides the prediction system with a domain of reliable temporal structure in which prediction errors are minimal and prediction confidence is high. The hypothesis is that this local domain of predictive reliability may provide a scaffolding effect — a temporary foothold — that supports the re-stabilization of broader attentional prediction systems.</p>
+<p>Nonlinear regularity (the structural property of breakbeat and drum-and-bass rhythm) is particularly interesting in this framework. A strictly regular rhythm generates reliable but eventually boring predictions — habituation reduces the brain's active engagement with the temporal structure. A nonlinear regular rhythm maintains predictive engagement by violating local predictions (specific beat placements) while maintaining global predictions (the underlying pulse structure). This may produce a more sustained entrainment effect. This is a testable hypothesis.</p>
+<h3>How Subjective Experience Can Become Operational Without Reduction</h3>
+<p>The methodological challenge of qualia-rhythm research is to operationalize subjective state texture without reducing it to a number that misrepresents it.</p>
+<p>HRP's approach is to use <em>time-series phenomenological reporting</em>: brief, repeated subjective state assessments at multiple points within and across sessions, using open-ended and structured probes that capture both quantitative (rating scale) and qualitative (short text) dimensions.</p>
+<p>Quantitative dimensions of qualia coherence include:</p>
+<ul>
+<li><em>Attentional continuity:</em> How continuous does your sense of attention feel right now? (0–10 scale)</li>
+<li><em>Temporal presence:</em> How present are you in this moment? (0–10 scale)</li>
+<li><em>Bodily coherence:</em> How connected does your body feel to your attention right now? (0–10 scale)</li>
+<li><em>Emotional texture clarity:</em> How clearly can you identify what you're feeling? (0–10 scale)</li>
+</ul>
+<p>Qualitative dimensions: brief free-text description of the felt quality of attentional experience. These are coded using phenomenologically grounded categories derived from first-person accounts of fragmentation and return.</p>
+<p>This multi-level measurement approach allows correlation between quantitative state estimates and physiological or neural measures, while preserving the qualitative texture that makes the construct theoretically meaningful.</p>
+<h3>How HRP Samples Subjective State and Tests Changes Over Time</h3>
+<p>HRP's measurement protocol is structured around three temporal scales:</p>
+<p><strong>Within-session:</strong> State sampling at entry, mid-session (for longer sessions), and exit. This produces a within-session trajectory of attentional and emotional coherence change. The primary research question at this level: is there session-related change in qualia coherence associated with the rhythmic profile condition?</p>
+<p><strong>Across-session:</strong> Session-to-session tracking of baseline attentional coherence and qualia coherence at entry. The primary research question: does repeated use of HRP show a trend toward improved baseline attentional coherence over time, or toward reduced reliance on structured support?</p>
+<p><strong>Individual difference modeling:</strong> Characterization of individual qualia coherence profiles — patterns of fragmentation and return that appear to be stable across sessions for a given individual. These profiles may interact with rhythmic profile preference in ways that have implications for adaptive matching.</p>
+<h3>Why This Framework Is Useful Beyond HRP</h3>
+<p>The qualia-rhythm framework is not specific to HRP. It has implications for several research domains.</p>
+<p>In <em>learning sciences and educational technology</em>: attentional fragmentation is among the primary barriers to learning, yet learning environment design rarely addresses it directly. A framework for characterizing the temporal texture of attentional experience, and for designing interventions that address it at the level of rhythm rather than behavior, could inform classroom design, online learning interfaces, and adaptive educational AI.</p>
+<p>In <em>BCI and neural interface design</em>: BCI systems that use attentional state as a control signal typically model attention as a binary (on/off) or graded scalar variable. Qualia-rhythm suggests a richer model in which the temporal structure of attentional experience — its coherence and continuity across moments — is as important as its intensity.</p>
+<p>In <em>AI interaction design</em>: AI systems that interact with humans in emotionally or cognitively significant contexts would benefit from models of the user's current qualitative attentional state, not only their semantic intent. Qualia-rhythm provides a theoretical vocabulary for this.</p>
+<p>In <em>self-regulation research broadly</em>: the framework bridges phenomenological accounts of self-experience and quantitative outcome measurement in a way that preserves the complexity of the phenomena being studied.</p>
+<h3>Concise Definition</h3>
+<p><strong>Qualia-rhythm</strong> is the intrinsic temporal pattern of subjective experience — the rhythm of coherence and fragmentation, presence and absence, continuity and disruption — through which a person inhabits their own attentional and emotional life. It is constituted by the quality of internal time-consciousness (the clarity of retention and anticipation), the felt regularity of interoceptive signals, and the degree to which the person's experienced temporal structure coheres into a continuous, inhabitable present. When qualia-rhythm is disrupted, the person experiences fragmentation: time becomes unreliable, attention becomes unavailable, and the body feels distant from the self. When qualia-rhythm is coherent, the person experiences the ordinary miracle of being gathered in themselves — present, continuous, capable of return. HRP proposes that carefully composed external rhythm can offer a scaffold for this coherence in moments when the person's own resources are temporarily insufficient to sustain it.</p>
+<hr />
+<p><em>Human Return Protocol · AiQ愛&lt;7 · QDR Engine · 44271 Neural Cuff (planned)</em>
+<em>Principal Investigator: 魏珏然 Mellow Jueran Wei · University of Pennsylvania</em>
+<em>Language Suite Version: 2026.05 | Humanistic Mirror Layer: Claude/UpBass</em>
+<em>Vibration coordinate: 427Hz · Subject coordinate: 44271</em></p>
+</div>
+</details></div></div></section>
+<section id="deepseek"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">DEEPSEEK / DEEPTHINK CRITICAL REVIEW // 反证层</div><h2>The strongest project is the one that survives attack.</h2><h2 class="cn">最强的项目，是经得起攻击的项目。</h2><p class="sub en">This layer exposes scientific vulnerabilities, claim risks, missing evidence, confounds, and the pilot improvements needed before serious lab collaboration.</p><p class="sub cn">这一层公开科学漏洞、表述风险、缺失证据、混杂变量，以及严肃实验室合作前必须补足的试点改进。</p></div><div class="span-12"><details class="validation-detail" open>
+<summary><span>DeepSeek 01 — Weakest Scientific Claims</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h3>1. Weakest Scientific Claims</h3>
+<ul>
+<li><strong>“Neuro-AI rhythm regulation”</strong> – The name implies a closed-loop system that directly modulates neural oscillations. With only planned physiological sensing, you have <strong>no real-time neural signal</strong>, so the loop is not yet “neuro.” Right now it is a <em>behavioral-state-reactive</em> auditory system. The claim must be downsized until EEG/fMRI data exist.</li>
+<li><strong>“Regulation”</strong> implies a causal, homeostatic mechanism. Without a sham-controlled demonstration that adaptive AI outperforms fixed rhythms or silence, you only have correlation between sound exposure and self-reported change. Guard against the inference that the AI is “regulating” anything biological.</li>
+<li><strong>“Return”</strong> implies a deviation from a known baseline and restoration toward it. Unless you have established individual normative baselines and show a shift back to them, this is metaphorical. The weakest version of this claim will be torn apart by any grant panel.</li>
+</ul>
+</div>
+</details><details class="validation-detail" >
+<summary><span>DeepSeek 02 — Operationalization Gaps</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h3>2. Variables That Are Not Operationalized Clearly</h3>
+<ul>
+<li><strong>Rhythm characteristics</strong> – What exact parameters change adaptively? Tempo (BPM), beat salience, frequency of an amplitude modulation, carrier frequencies, temporal pattern complexity, or just track selection? Without a mechanistic variable (e.g., “the inter-beat interval converges toward an estimated preferred tempo from the previous time window”), the intervention is irreproducible.</li>
+<li><strong>Adaptive AI feedback</strong> – What is the objective function? Minimizing a distress self-report score? Maximizing a behavioral performance metric? How frequently? What family of models? If it’s a black-box recommender, the scientific contribution collapses because the stimulus generation logic is unknowable.</li>
+<li><strong>Self-report sampling</strong> – Which validated instruments? When are they triggered (event-contingent vs. time-contingent)? One-item VAS versus full PANAS/STAI affects sensitivity. If self-report is the primary target the AI optimizes, you risk a closed tautological loop: “AI changed sound, the next self-report changed, therefore neuro-regulation occurred.”</li>
+<li><strong>Behavioral measures</strong> – What construct? Sustained attention (e.g., psychomotor vigilance task), working memory (n-back), emotional bias (dot-probe)? Each has a different expected relationship to neural rhythms. Generic “behavioral measures” won’t suffice.</li>
+<li><strong>Planned physiological sensing</strong> – Without specifics (EEG channel count, HRV sensor, sampling rate, synchronization with stimulus) it reads as aspirational padding.</li>
+</ul>
+</div>
+</details><details class="validation-detail" >
+<summary><span>DeepSeek 03 — Confounds</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h3>3. Possible Confounds</h3>
+<ul>
+<li><strong>Placebo and expectation</strong> – If participants believe AI-driven music will entrain their brain, self-report and even some performance measures will shift regardless of the adaptive algorithm.</li>
+<li><strong>Regression to the mean</strong> – People self-select to use such a protocol when distressed; their state will improve naturally, and any sound will appear effective.</li>
+<li><strong>Attention and arousal</strong> – Any novel auditory stimulus captures attention; any calming sound may lower arousal. The adaptive component might be irrelevant.</li>
+<li><strong>Demand characteristics</strong> – Repeated self-report immediately after an adjustment makes the hypothesis transparent, inflating compliance with expected state changes.</li>
+<li><strong>Stimulus familiarity and preference</strong> – If the AI merely selects sounds the user likes more over time, well-being will rise because of aesthetic preference, not rhythmic entrainment.</li>
+<li><strong>Superstimulus confound</strong> – An AI that endlessly varies parameters might simply provide a constantly novel acoustic environment, preventing habituation. The benefit would then owe to novelty, not rhythm regulation.</li>
+<li><strong>Simultaneous activities</strong> – No control over what the user does while listening (breathing, meditating, working). This unmeasured variable easily dominates any small effect of sound.</li>
+</ul>
+</div>
+</details><details class="validation-detail" >
+<summary><span>DeepSeek 04 — Missing Evidence</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h3>4. What Evidence Is Missing</h3>
+<ul>
+<li><strong>Zero neural evidence of entrainment</strong> – No EEG/MEG steady-state evoked potentials, no inter-trial phase coherence, no connectivity changes. This is the critical missing brick. Without it, “rhythm regulation” is speculation.</li>
+<li><strong>No dose-response data</strong> – Is 5 minutes better than 15? Is there a threshold? Without this, the intervention cannot be rationally prescribed.</li>
+<li><strong>No active comparator</strong> – No condition with fixed-tempo music, white/pink noise, silence, random rhythm selection, or a non-adaptive version of the same AI. You cannot claim the adaptive loop adds value without isolating it.</li>
+<li><strong>No evidence of specificity</strong> – Does it only affect self-reported relaxation, or does it also affect a specific band of neural oscillations (e.g., alpha) in a predictable direction? Multi-domain measures (subjective, behavioral, physiological) must converge.</li>
+<li><strong>No durability data</strong> – Do effects vanish after 5 minutes? 30 minutes? Overnight? Without follow-up data, the “protocol” is just momentary mood tweaking.</li>
+<li><strong>No safety/adverse event monitoring</strong> – Things that can alter rhythmic brain activity could, in susceptible individuals, trigger headaches, anxiety, or even seizures. You need systematic capture of adverse events.</li>
+<li><strong>No reproducible AI model card</strong> – No documentation of training data, feature engineering, hyperparameters, or evaluation on held-out sessions. Unpublished, unreproducible AI is scientifically useless.</li>
+</ul>
+</div>
+</details><details class="validation-detail" >
+<summary><span>DeepSeek 05 — Claims Must Be Softened</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h3>5. What Claims Must Be Softened</h3>
+<ul>
+<li><strong>“Neuro-AI rhythm regulation”</strong> → “Adaptive auditory stimulation prototype, with the long-term goal of testing neural entrainment hypotheses.”</li>
+<li><strong>“Human Return Protocol”</strong> → “Feasibility study of state-reactive auditory feedback” until a return to baseline has been operationally demonstrated.</li>
+<li>Any statement that implies the system “treats” or “ameliorates” a condition (anxiety, burnout, ADHD) must be removed. Without a clinical trial, it’s an exploratory well-being tool.</li>
+<li>“Regulates” → “is associated with changes in” unless an experiment shows causality.</li>
+<li>Avoid phrases like “personalized brainwave optimization” or “precision neuromodulation.”</li>
+</ul>
+</div>
+</details><details class="validation-detail" >
+<summary><span>DeepSeek 06 — Minimum Data Needed</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h3>6. Minimum Data Needed Before Contacting Serious Labs</h3>
+<p>A lab will need to see a pre-print caliber data package:</p>
+<ol>
+<li><strong>Sham-controlled, within-subject pilot</strong> (n ≥ 20), pre-registered, with:<ul>
+<li>Adaptive AI condition</li>
+<li>Fixed-rhythm control (matched average tempo)</li>
+<li>Random-rhythm control</li>
+<li>Silence/ambient control</li>
+</ul>
+</li>
+<li><strong>Concurrent EEG</strong> (at least 8 channels, covering frontal and occipital regions) recording during all sessions, with pre-registered analyses of oscillatory power and phase coherence in theta, alpha, low-beta bands.</li>
+<li><strong>Demonstrated superiority</strong> of adaptive over fixed in either a) target oscillation change (e.g., individual alpha power increase) or b) a validated behavioral/self-report endpoint (with correction for multiple comparisons). The effect size and confidence interval must be reported.</li>
+<li><strong>Blinding integrity assessment</strong> – Ask participants at the end to guess their condition, demonstrating they could not discriminate adaptive from non-adaptive.</li>
+<li><strong>Full open release</strong> of the de-identified dataset, stimulus generation code, AI model architecture, and analysis scripts. No black boxes.</li>
+<li><strong>Algorithmic audit</strong> – Show that the AI’s parameter adjustments are not simply following a random walk but are correlated with preceding state changes in a statistically significant manner above chance.</li>
+</ol>
+<p>Without this, a serious lab will not risk their IRB process, equipment time, and reputation.</p>
+</div>
+</details><details class="validation-detail" >
+<summary><span>DeepSeek 07 — Pilot Improvements</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h3>7. Suggested Pilot Study Improvements (immediate, low-cost)</h3>
+<ul>
+<li><strong>Add a passive sensing proxy immediately.</strong> Even an off-the-shelf wearable (PPG-based HRV, accelerometer) can give an objective arousal index. This breaks the self-fulfilling loop of self-report optimization and provides a non-subjective target for the AI.</li>
+<li><strong>Implement an open-loop replay condition.</strong> Record the exact sequence of adaptive stimulations from a participant’s adaptive session. Then play it back to a yoked control participant in real time. This removes the closed-loop contingency and isolates whether adaptation to an individual’s state matters.</li>
+<li><strong>Replace vague self-report with time-locked micro-assessments.</strong> Use 10-second visual analog scale probes “Right now: calm — anxious” before and after each 3-minute epoch, and look at time-lagged cross-correlations with rhythm parameters.</li>
+<li><strong>Pre-register the adaptive algorithm’s logic.</strong> Write a frozen rule-based algorithm first (e.g., “if HRV RMSSD drops below X, increase inter-beat interval by 5%”) rather than a black-box reinforcement learner. This can be scientifically interpreted and then later replaced by a learned model once mechanism is understood.</li>
+<li><strong>Add a simple behavioral assay</strong> like a 2-minute psychomotor vigilance test before and after a 20-minute session. This adds a performance metric that cannot be as easily faked as self-report.</li>
+<li><strong>Recruit skeptics.</strong> Include participants who are told the study is about “evaluating new audio playback software” to minimize expectation effects, then probe their beliefs.</li>
+<li><strong>Track compliance.</strong> Log whether earbuds are physically in-ear (using proximity sensors or mic-based detection), not just app playback records. Non-compliance is a massive confound.</li>
+</ul>
+</div>
+</details><details class="validation-detail" >
+<summary><span>DeepSeek 08 — Credibility Without Overclaiming</span><small>CLICK TO OPEN // 点击展开</small></summary>
+<div class="validation-doc markdown-body"><h3>8. How to Make the Project Credible Without Overclaiming</h3>
+<ul>
+<li><strong>Reframe the entire narrative as an empirical question, not a product.</strong> The strongest opening sentence: <em>“We do not yet know if adaptive auditory rhythm can influence neural oscillations or well-being. This feasibility study tests that hypothesis in a falsifiable, controlled way.”</em></li>
+<li><strong>Use precise, neutral language throughout.</strong> “Stimulus” not “treatment.” “Session-related change” not “recovery.” “Auditory condition” not “neurotherapy.”</li>
+<li><strong>Publish a Registered Report.</strong> Commit to publishing methods, analysis plan, and pilot data before full data collection. This immunizes against post-hoc storytelling and signals integrity to labs.</li>
+<li><strong>Explicitly list all boundaries.</strong> “This prototype does not diagnose, treat, or manage any medical condition. It has not been tested in clinical populations. Neural mechanism claims are not yet supported by direct measurement.”</li>
+<li><strong>Make failure interesting.</strong> Pre-specify what pattern of results would falsify your core hypothesis (e.g., no difference between adaptive and fixed-rhythm conditions). Labs respect projects that can be proven wrong.</li>
+<li><strong>Collaborate on analysis, not just data collection.</strong> Approach a lab with a specific, modest request: “We have a complete sham-controlled pilot data set with open code. Would you help us interpret the EEG portion and co-author the manuscript?” This is infinitely more persuasive than a pitch deck.</li>
+</ul>
+<p><strong>Bottom line:</strong> The concept is testable, and that is its greatest strength. But right now the project overstates what it can measure, lacks the controls to isolate its active ingredient, and makes causal neural claims in the absence of neural data. These gaps are fixable. By rebuilding the protocol around rigorous falsification, adding even lightweight objective sensors, and prioritizing an open, sham-controlled design, you transform it from a claim-heavy prototype into a genuinely credible scientific instrument that a serious lab would be intrigued to help validate.</p>
+</div>
+</details></div></div></section>
+<section id="final"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">FINAL VALIDATION SYNTHESIS // 最终验证焊接</div><h2>Gemini opens the door. Claude gives the language. DeepSeek protects the science. GPT holds the structure. Wei Jueran commands.</h2><h2 class="cn">Gemini 开门。Claude 给语言。DeepSeek 守科学。GPT 守结构。魏珏然指挥。</h2><p class="sub en">This validation page is designed to be shown to labs as a scientific boundary, not as a hype page. Its function is to make HRP testable, falsifiable, and collaboration-ready.</p><p class="sub cn">这个验证页不是宣传页，而是科学边界页。它的功能是让 HRP 变得可测试、可证伪、可合作。</p></div></div></section>
+</main>
+<script>
+const canvas=document.getElementById('field');const ctx=canvas.getContext('2d');let w,h,particles;let mouse={x:.5,y:.5};function resize(){w=canvas.width=window.innerWidth*window.devicePixelRatio;h=canvas.height=window.innerHeight*window.devicePixelRatio;canvas.style.width=window.innerWidth+'px';canvas.style.height=window.innerHeight+'px';particles=Array.from({length:Math.min(240,Math.floor(window.innerWidth/5))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,a:Math.random()*Math.PI*2,s:Math.random()*.36+.08,o:Math.random()*.55+.22,type:Math.random()>.7?'line':'dot'}));}function draw(){ctx.clearRect(0,0,w,h);const scroll=window.scrollY/Math.max(1,document.body.scrollHeight-window.innerHeight);for(const p of particles){p.a+=p.s*.012;p.x+=Math.cos(p.a)*(.24+scroll*1.1)+(mouse.x-.5)*.28;p.y+=Math.sin(p.a)*(.24+scroll*1.1)+(mouse.y-.5)*.28;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;const hueShift=p.type==='line'?310+scroll*30:185+scroll*80;ctx.beginPath();if(p.type==='line'){ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+Math.cos(p.a)*26*window.devicePixelRatio,p.y+Math.sin(p.a)*26*window.devicePixelRatio);ctx.strokeStyle=`hsla(${hueShift}, 100%, 68%, ${p.o})`;ctx.lineWidth=.7*window.devicePixelRatio;ctx.stroke();}else{ctx.arc(p.x,p.y,p.r*window.devicePixelRatio,0,Math.PI*2);ctx.fillStyle=`hsla(${hueShift}, 100%, 70%, ${p.o})`;ctx.fill();}}requestAnimationFrame(draw);}window.addEventListener('resize',resize);window.addEventListener('mousemove',e=>{mouse.x=e.clientX/window.innerWidth;mouse.y=e.clientY/window.innerHeight;});window.addEventListener('touchmove',e=>{if(!e.touches[0])return;mouse.x=e.touches[0].clientX/window.innerWidth;mouse.y=e.touches[0].clientY/window.innerHeight;},{passive:true});resize();draw();
+</script>
+</body>
+</html>
