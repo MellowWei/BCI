@@ -20,7 +20,7 @@ header.locked-clean-header{position:fixed!important;top:0!important;left:0!impor
 .brand{display:flex!important;align-items:center!important;gap:14px!important;color:var(--text)!important;font-family:var(--mono)!important;font-size:14px!important;line-height:1.25!important;letter-spacing:.15em!important;white-space:normal!important;max-width:100%!important;opacity:.95!important} .dot{width:14px!important;height:14px!important;border-radius:999px!important;background:var(--cyan)!important;box-shadow:0 0 18px rgba(0,245,255,.9)!important;flex:0 0 auto!important;display:inline-block!important}
 nav.locked-clean-nav{display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;gap:8px 16px!important;width:100%!important;line-height:1.3!important} nav.locked-clean-nav a{color:var(--muted)!important;text-decoration:none!important;font-family:var(--mono)!important;font-size:12px!important;line-height:1.25!important;letter-spacing:.11em!important;white-space:nowrap!important} nav.locked-clean-nav a:hover{color:var(--cyan)!important;text-shadow:0 0 14px rgba(0,245,255,.65)!important}
 main{width:min(1240px,calc(100% - 40px));margin:0 auto} section{position:relative;min-height:100vh;display:grid;align-items:center;padding:112px 0 72px;scroll-margin-top:128px} .eyebrow{margin-bottom:18px;color:var(--cyan);font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 0 12px rgba(0,245,255,.72),0 0 26px rgba(255,43,214,.28)}
-h1{max-width:1120px;margin:0;font-size:clamp(52px,9vw,128px);line-height:.88;letter-spacing:-.09em;font-weight:860} h2{max-width:1000px;margin:0 0 24px;font-size:clamp(36px,5.4vw,76px);line-height:.96;letter-spacing:-.07em;font-weight:820;text-shadow:0 0 18px rgba(0,245,255,.16),0 0 34px rgba(255,43,214,.1)} h3{margin:0 0 12px;color:var(--text);font-size:23px;letter-spacing:-.035em;text-shadow:0 0 14px rgba(0,245,255,.18)} p{margin:0;color:var(--muted);font-size:16px;line-height:1.68} .cn{margin-top:9px;color:rgba(244,247,255,.92);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif} .en{color:var(--muted)}
+h1{max-width:1120px;margin:0;font-size:clamp(52px,9vw,128px);line-height:.88;letter-spacing:-.09em;font-weight:860} h2{max-width:1000px;margin:0 0 24px;font-size:clamp(36px,5.4vw,76px);line-height:.96;letter-spacing:-.07em;font-weight:820;text-shadow:0 0 18px rgba(0,245,255,.16),0 0 34px rgba(255,43,214,.1)} h3{margin:0 0 12px;color:var(--text);font-size:23px;letter-spacing:-.035em;text-shadow:0 0 14px rgba(0,245,255,.18)} p{margin:0;color:var(--muted);font-size:16px;line-height:1.68} .cn{margin-top:9px;color:rgba(244,247,255,.92);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif} .en{color:var(--muted)} .jp{margin-top:9px;color:rgba(244,247,255,.88);font-family:"Hiragino Sans","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.75}
 .glitch{position:relative;color:var(--text);text-shadow:0 0 12px rgba(0,245,255,.45),0 0 32px rgba(255,43,214,.22)} .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;opacity:.65} .glitch::before{color:var(--cyan);transform:translate(2px,0);clip-path:inset(0 0 58% 0);animation:glitchA 2.6s infinite linear alternate-reverse} .glitch::after{color:var(--pink);transform:translate(-2px,0);clip-path:inset(48% 0 0 0);animation:glitchB 1.9s infinite linear alternate-reverse}
 @keyframes glitchA{0%{transform:translate(2px,0)}20%{transform:translate(-3px,-1px)}40%{transform:translate(4px,1px)}60%{transform:translate(-1px,0)}80%{transform:translate(3px,-2px)}100%{transform:translate(0,0)}} @keyframes glitchB{0%{transform:translate(-2px,0)}25%{transform:translate(3px,1px)}50%{transform:translate(-4px,-1px)}75%{transform:translate(1px,2px)}100%{transform:translate(0,0)}}
 .thesis{max-width:960px;margin-top:34px;color:rgba(244,247,255,.92);font-size:clamp(22px,3vw,38px);line-height:1.08;letter-spacing:-.045em;text-shadow:0 0 18px rgba(0,245,255,.12)} .sub{max-width:960px;margin-top:22px;color:var(--muted);font-size:18px;line-height:1.65}
@@ -39,6 +39,7 @@ h1{max-width:1120px;margin:0;font-size:clamp(52px,9vw,128px);line-height:.88;let
   <nav class="locked-clean-nav">
     <a href="./index.html">MAIN SITE</a>
     <a href="#top">VALIDATION HOME</a>
+    <a href="#japanese-brief">JAPANESE BRIEF</a>
     <a href="#roles">AI ROLES</a>
     <a href="#gate">GATE AUDIT</a>
     <a href="#pilot">PILOT</a>
@@ -56,7 +57,63 @@ h1{max-width:1120px;margin:0;font-size:clamp(52px,9vw,128px);line-height:.88;let
     <div class="thesis">Human Return Protocol enters validation mode: not overclaiming, not flattening, not hiding. <div class="cn">Human Return Protocol 进入验证模式：不夸大、不压扁、不隐藏。</div></div>
     <p class="sub en">This page preserves the existing HRP cyber-neon body and adds a standalone verification layer for Tokyo neuroscience, AI, BCI, HCI, and sound research collaboration.</p>
     <p class="sub cn">本页保留 HRP 现有赛博霓虹美学，并新增一个独立验证层，用于东京神经科学、AI、脑机、HCI 与声音研究合作。</p>
-    <div class="hero-actions"><a class="button primary" href="#gate">ENTER GATE AUDIT</a><a class="button" href="#claude">CLAUDE FULL SUITE</a><a class="button" href="#deepseek">DEEPSEEK REVIEW</a></div>
+    <div class="hero-actions"><a class="button primary" href="#gate">ENTER GATE AUDIT</a><a class="button" href="#japanese-brief">日本語概要</a><a class="button" href="#claude">CLAUDE FULL SUITE</a><a class="button" href="#deepseek">DEEPSEEK REVIEW</a></div>
+  </div>
+</section>
+<section id="japanese-brief">
+  <div class="grid">
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">JAPANESE BRIEF // 日本語概要 // 東京連携入口</div>
+      <h2>Human Return Protocol は、注意・感情調整のための適応型 Auditory-AI 研究プロトタイプです。</h2>
+      <h2 class="cn">Human Return Protocol 是用于注意力与情绪自我调节的自适应声音-AI研究原型。</h2>
+      <p class="sub jp">
+        現段階では、Human Return Protocol は医療機器、臨床治療、または検証済みの BCI として主張するものではありません。
+        本プロジェクトは、リズム音響刺激、主観的状態サンプリング、反射的 AI フィードバックを用いて、
+        注意状態・感情状態・行動指標、将来的には HRV、EDA、EEG、fNIRS などの生理・神経指標に測定可能な変化が生じるかを検証するための、反証可能な研究プロトタイプです。
+      </p>
+      <p class="sub en">
+        This page documents what HRP has built, what it does not yet claim, how it can be tested, and what kind of neuroscience / BCI collaboration is requested in Tokyo.
+      </p>
+      <p class="sub cn">
+        本页记录 HRP 已经建成什么、尚不声称什么、如何被测试，以及希望与东京神经科学 / 脑机实验室合作验证什么。
+      </p>
+      <div class="tag-row">
+        <span class="tag">適応型 AUDITORY-AI</span>
+        <span class="tag">反証可能な検証</span>
+        <span class="tag">EEG / fNIRS / HRV</span>
+        <span class="tag">東京 BCI COLLABORATION</span>
+      </div>
+    </div>
+
+    <div class="card span-6">
+      <div class="eyebrow">SCIENTIFIC BOUNDARY // 科学的境界</div>
+      <h3>What HRP does not claim yet</h3>
+      <h3 class="cn">HRP 当前尚不声称什么</h3>
+      <p class="jp">
+        HRP は現時点で、ADHD・不安・トラウマ等を治療する臨床システムではなく、
+        神経振動の直接制御や脳波同期をすでに証明したものでもありません。
+        現在の正確な位置づけは、検証可能な Auditory-AI 研究プロトタイプです。
+      </p>
+      <p class="cn">
+        HRP 目前不是治疗 ADHD、焦虑或创伤的临床系统，也不声称已经证明直接神经振动控制或脑波同步。
+        当前准确定位是：可验证的声音-AI研究原型。
+      </p>
+    </div>
+
+    <div class="card span-6">
+      <div class="eyebrow">COLLABORATION ASK // 共同研究依頼</div>
+      <h3>What we ask Tokyo labs to help validate</h3>
+      <h3 class="cn">希望东京实验室帮助验证什么</h3>
+      <p class="jp">
+        神経科学・BCI・NeuroAI・HCI・音楽技術分野の研究者と連携し、
+        実験設計、対照条件、HRV/EDA/EEG/fNIRS 測定、音響特徴量の操作化、
+        および将来的な 44271 Neural Cuff のセンシング層を共同で検証したいと考えています。
+      </p>
+      <p class="cn">
+        我希望与神经科学、脑机、NeuroAI、HCI 与音乐技术方向的研究者合作，
+        共同验证实验设计、对照条件、HRV/EDA/EEG/fNIRS 测量、声学特征操作化，以及未来 44271 Neural Cuff 的传感层。
+      </p>
+    </div>
   </div>
 </section>
 <section id="roles"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">AI TRINITY + DEEPTHINK // 合作分工</div><div class="markdown-body"><h2>AI Trinity + DeepThink Collaboration Structure</h2>
@@ -722,9 +779,10 @@ Across all profiles, HRP incorporates tonal reference frequencies centered on 42
 <section id="experiment-validation">
   <div class="grid">
     <div class="card span-12 neon-card">
-      <div class="eyebrow">EXPERIMENTAL VALIDATION // 实验验证</div>
+      <div class="eyebrow">EXPERIMENTAL VALIDATION // 实验验证 // 実験的検証</div>
       <h2>From concept to falsifiable pilot study.</h2>
       <h2 class="cn">从概念系统进入可证伪实验。</h2>
+      <h2 class="jp">概念から、反証可能なパイロット研究へ。</h2>
 
       <p class="sub en">
         This section translates Human Return Protocol from a conceptual neuro-AI framework
