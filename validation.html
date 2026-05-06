@@ -1,963 +1,119 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>QualiaRhythmMatrix · 感质-节律-意识学 · LGS V5.5 / V8</title>
-<meta name="description" content="感质-节律-意识学 / Qualia–Rhythm–Consciousness Studies / クオリア・リズム・意識学 · Logic Generative Studies V5.5 + V8 · 44271 · 427Hz" />
-<style>
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>HRP Validation · 中英日验证页 · Human Return Protocol</title><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
-:root{
-  --bg:#03040a;--bg2:#070817;--text:#f4f7ff;--muted:#9aa6c8;--dim:#5e6688;
-  --cyan:#00f5ff;--pink:#ff2bd6;--purple:#8d5cff;--green:#35ff9f;--yellow:#ffe66d;--red:#ff4d6d;
-  --border:rgba(0,245,255,.22);--shadow:0 24px 100px rgba(0,0,0,.58);
-  --mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --serif:"Fraunces",Georgia,serif;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;color:var(--text);
-  background:radial-gradient(circle at 18% 12%,rgba(0,245,255,.16),transparent 30%),
-    radial-gradient(circle at 82% 18%,rgba(255,43,214,.15),transparent 29%),
-    radial-gradient(circle at 50% 92%,rgba(141,92,255,.16),transparent 38%),
-    linear-gradient(180deg,#03040a 0%,#050515 48%,#02030a 100%);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Noto Sans JP",sans-serif;
-  overflow-x:hidden;padding-top:116px!important
-}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.20;
-  background:repeating-linear-gradient(to bottom,rgba(255,255,255,.045) 0px,rgba(255,255,255,.045) 1px,transparent 1px,transparent 5px);mix-blend-mode:overlay}
-canvas#field{position:fixed;inset:0;z-index:-4;width:100vw;height:100vh}
-.grid-bg{pointer-events:none;position:fixed;inset:0;z-index:-3;opacity:.32;
-  background-image:linear-gradient(rgba(0,245,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,43,214,.1) 1px,transparent 1px);
-  background-size:72px 72px;mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 70%,transparent 100%)}
-.vignette{pointer-events:none;position:fixed;inset:0;z-index:-2;
-  background:radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.34) 58%,rgba(0,0,0,.8) 100%)}
-
-header.locked-clean-header{
-  position:fixed!important;top:0!important;left:0!important;right:0!important;
-  min-height:92px!important;padding:14px 18px 12px!important;
-  display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:10px!important;
-  background:rgba(5,6,20,.96)!important;backdrop-filter:blur(18px)!important;
-  border-bottom:1px solid rgba(0,245,255,.24)!important;box-shadow:0 0 30px rgba(0,245,255,.08)!important;z-index:99999!important
-}
-.brand{display:flex!important;align-items:center!important;gap:14px!important;color:var(--text)!important;
-  font-family:var(--mono)!important;font-size:14px!important;line-height:1.25!important;letter-spacing:.15em!important;
-  max-width:100%!important;opacity:.95!important;flex-wrap:wrap!important}
-.dot{width:14px!important;height:14px!important;border-radius:999px!important;background:var(--cyan)!important;
-  box-shadow:0 0 18px rgba(0,245,255,.9)!important;flex:0 0 auto!important;display:inline-block!important;
-  animation:dotPulse 1.8s ease-in-out infinite}
-@keyframes dotPulse{0%,100%{transform:scale(.78);opacity:.7}50%{transform:scale(1.2);opacity:1}}
-.lang-switch{display:inline-flex;gap:5px;margin-left:auto;flex:0 0 auto}
-.lang-switch button{appearance:none;border:1px solid rgba(0,245,255,.22);background:rgba(255,255,255,.035);
-  color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:.12em;padding:5px 9px;border-radius:999px;cursor:pointer;transition:.2s ease}
-.lang-switch button.active{color:#031019;background:linear-gradient(135deg,var(--cyan),var(--pink));border-color:transparent;font-weight:700}
-.lang-switch button:not(.active):hover{color:var(--text);border-color:rgba(0,245,255,.4)}
-nav.locked-clean-nav{display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;
-  gap:8px 16px!important;width:100%!important;line-height:1.3!important}
-nav.locked-clean-nav a{color:var(--muted)!important;text-decoration:none!important;font-family:var(--mono)!important;
-  font-size:12px!important;line-height:1.25!important;letter-spacing:.11em!important;white-space:nowrap!important;transition:.2s ease}
-nav.locked-clean-nav a:hover,nav.locked-clean-nav a.active{color:var(--cyan)!important;text-shadow:0 0 14px rgba(0,245,255,.65)!important}
-nav.locked-clean-nav a.hrp-link{color:var(--green)!important}
-nav.locked-clean-nav a.hrp-link:hover{color:var(--green)!important;text-shadow:0 0 14px rgba(53,255,159,.85)!important}
-nav.locked-clean-nav a.aiq-link{color:var(--pink)!important}
-nav.locked-clean-nav a.aiq-link:hover{color:var(--pink)!important;text-shadow:0 0 14px rgba(255,43,214,.85)!important}
-
-body[data-lang="zh"] .en,body[data-lang="zh"] .ja{display:none!important}
-body[data-lang="en"] .zh,body[data-lang="en"] .ja{display:none!important}
-body[data-lang="ja"] .zh,body[data-lang="ja"] .en{display:none!important}
-
-main{width:min(1240px,calc(100% - 40px));margin:0 auto}
-section{position:relative;display:grid;align-items:center;padding:96px 0 64px;scroll-margin-top:128px}
-section.hero{min-height:100vh;padding-top:48px;display:block}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;margin-top:30px}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
-.span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-6{grid-column:span 6}
-.span-8{grid-column:span 8}.span-12{grid-column:span 12}
-
-.card{position:relative;overflow:hidden;padding:28px;border:1px solid rgba(0,245,255,.2);border-radius:28px;
-  background:linear-gradient(180deg,rgba(0,245,255,.06),rgba(255,43,214,.035)),rgba(8,10,28,.62);
-  backdrop-filter:blur(20px);
-  box-shadow:var(--shadow),0 0 36px rgba(0,245,255,.08),inset 0 0 32px rgba(255,255,255,.025);transition:.22s ease}
-.card::before{content:"";position:absolute;top:0;left:22px;right:22px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),transparent);opacity:.72}
-.neon-card{border-color:rgba(53,255,159,.28);
-  box-shadow:0 0 50px rgba(53,255,159,.1),0 0 70px rgba(0,245,255,.08),var(--shadow)}
-.purple-card{border-color:rgba(141,92,255,.34);
-  background:linear-gradient(180deg,rgba(141,92,255,.09),rgba(0,245,255,.04)),rgba(8,10,28,.66);
-  box-shadow:0 0 50px rgba(141,92,255,.12),0 0 70px rgba(0,245,255,.06),var(--shadow)}
-.purple-card::before{background:linear-gradient(90deg,transparent,var(--purple),var(--cyan),transparent)}
-.purple-card .eyebrow{color:var(--purple);text-shadow:0 0 12px rgba(141,92,255,.72),0 0 26px rgba(0,245,255,.28)}
-.pink-card{border-color:rgba(255,43,214,.34);
-  background:linear-gradient(180deg,rgba(255,43,214,.08),rgba(141,92,255,.04)),rgba(8,10,28,.66);
-  box-shadow:0 0 50px rgba(255,43,214,.12),0 0 70px rgba(141,92,255,.06),var(--shadow)}
-.pink-card .eyebrow{color:var(--pink)}
-.gold-card{border-color:rgba(255,230,109,.32);
-  background:linear-gradient(180deg,rgba(255,230,109,.07),rgba(255,43,214,.03)),rgba(8,10,28,.66)}
-.gold-card .eyebrow{color:var(--yellow);text-shadow:0 0 12px rgba(255,230,109,.55)}
-
-.eyebrow{margin-bottom:18px;color:var(--cyan);font-family:var(--mono);font-size:12px;letter-spacing:.24em;
-  text-transform:uppercase;text-shadow:0 0 12px rgba(0,245,255,.72),0 0 26px rgba(255,43,214,.28)}
-
-h1{max-width:1120px;margin:0;font-family:var(--serif);font-size:clamp(52px,9vw,128px);line-height:.88;
-  letter-spacing:-.06em;font-weight:500}
-h2{max-width:1000px;margin:0 0 24px;font-family:var(--serif);font-size:clamp(34px,5.2vw,72px);
-  line-height:.96;letter-spacing:-.045em;font-weight:500;
-  text-shadow:0 0 18px rgba(0,245,255,.16),0 0 34px rgba(255,43,214,.1)}
-h3{margin:0 0 12px;color:var(--text);font-size:23px;letter-spacing:-.025em;font-weight:650;
-  text-shadow:0 0 14px rgba(0,245,255,.18)}
-p{margin:0;color:var(--muted);font-size:16px;line-height:1.68}
-.cn{margin-top:9px;color:rgba(244,247,255,.92);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
-.ja{margin-top:9px;color:rgba(244,247,255,.88);font-family:"Hiragino Sans","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.75}
-.sub{max-width:960px;margin-top:22px;color:var(--muted);font-size:18px;line-height:1.65}
-
-.glitch{position:relative;color:var(--text);
-  text-shadow:0 0 12px rgba(0,245,255,.45),0 0 32px rgba(255,43,214,.22)}
-.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;opacity:.65}
-.glitch::before{color:var(--cyan);transform:translate(2px,0);clip-path:inset(0 0 58% 0);
-  animation:glitchA 2.6s infinite linear alternate-reverse}
-.glitch::after{color:var(--pink);transform:translate(-2px,0);clip-path:inset(48% 0 0 0);
-  animation:glitchB 1.9s infinite linear alternate-reverse}
-@keyframes glitchA{0%{transform:translate(2px,0)}20%{transform:translate(-3px,-1px)}40%{transform:translate(4px,1px)}60%{transform:translate(-1px,0)}80%{transform:translate(3px,-2px)}100%{transform:translate(0,0)}}
-@keyframes glitchB{0%{transform:translate(-2px,0)}25%{transform:translate(3px,1px)}50%{transform:translate(-4px,-1px)}75%{transform:translate(1px,2px)}100%{transform:translate(0,0)}}
-
-.thesis{max-width:960px;margin-top:34px;color:rgba(244,247,255,.92);font-family:var(--serif);
-  font-size:clamp(22px,3vw,38px);line-height:1.12;letter-spacing:-.025em;font-weight:400}
-
-.hero-actions,.tag-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
-.button,.tag{appearance:none;position:relative;overflow:hidden;padding:13px 18px;
-  border:1px solid rgba(0,245,255,.26);border-radius:999px;
-  background:linear-gradient(90deg,rgba(0,245,255,.08),rgba(255,43,214,.07)),rgba(255,255,255,.035);
-  color:var(--text);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;cursor:pointer;
-  box-shadow:0 0 18px rgba(0,245,255,.1),inset 0 0 18px rgba(255,255,255,.03);transition:.2s ease}
-.button:hover{transform:translateY(-2px);border-color:rgba(255,43,214,.48)}
-.button.primary{border-color:rgba(53,255,159,.46);box-shadow:0 0 22px rgba(53,255,159,.2),0 0 44px rgba(0,245,255,.12)}
-.button.purple-btn{border-color:rgba(141,92,255,.5);box-shadow:0 0 22px rgba(141,92,255,.22),0 0 44px rgba(0,245,255,.1);
-  background:linear-gradient(90deg,rgba(141,92,255,.14),rgba(0,245,255,.08)),rgba(255,255,255,.035)}
-.button.purple-btn:hover{border-color:rgba(141,92,255,.7);box-shadow:0 0 28px rgba(141,92,255,.34),0 0 56px rgba(0,245,255,.16)}
-.button.pink-btn{border-color:rgba(255,43,214,.5);box-shadow:0 0 22px rgba(255,43,214,.22),0 0 44px rgba(141,92,255,.1);
-  background:linear-gradient(90deg,rgba(255,43,214,.14),rgba(141,92,255,.08)),rgba(255,255,255,.035)}
-.button.pink-btn:hover{border-color:rgba(255,43,214,.7);box-shadow:0 0 28px rgba(255,43,214,.34),0 0 56px rgba(141,92,255,.16)}
-.button.green-btn{border-color:rgba(53,255,159,.5);box-shadow:0 0 22px rgba(53,255,159,.22),0 0 44px rgba(0,245,255,.1);
-  background:linear-gradient(90deg,rgba(53,255,159,.14),rgba(0,245,255,.08)),rgba(255,255,255,.035)}
-.button.green-btn:hover{border-color:rgba(53,255,159,.7);box-shadow:0 0 28px rgba(53,255,159,.34),0 0 56px rgba(0,245,255,.16)}
-
-.matrix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}
-.three-col{grid-template-columns:repeat(3,minmax(0,1fr))}
-.two-col{grid-template-columns:repeat(2,minmax(0,1fr))}
-.pill{min-height:150px;padding:20px;border:1px solid rgba(0,245,255,.2);border-radius:24px;
-  background:linear-gradient(180deg,rgba(0,245,255,.055),rgba(141,92,255,.035)),rgba(255,255,255,.035);
-  box-shadow:inset 0 0 24px rgba(0,245,255,.035),0 0 28px rgba(0,245,255,.05)}
-.purple-pill{border-color:rgba(141,92,255,.28);
-  background:linear-gradient(180deg,rgba(141,92,255,.08),rgba(0,245,255,.04)),rgba(255,255,255,.035);
-  box-shadow:inset 0 0 24px rgba(141,92,255,.04),0 0 28px rgba(141,92,255,.08)}
-.purple-pill .num{color:var(--purple);text-shadow:0 0 12px rgba(141,92,255,.55)}
-.green-pill{border-color:rgba(53,255,159,.28);
-  background:linear-gradient(180deg,rgba(53,255,159,.08),rgba(0,245,255,.04)),rgba(255,255,255,.035)}
-.gold-pill{border-color:rgba(255,230,109,.28);
-  background:linear-gradient(180deg,rgba(255,230,109,.07),rgba(255,43,214,.03)),rgba(255,255,255,.035)}
-.gold-pill .num{color:var(--yellow);text-shadow:0 0 12px rgba(255,230,109,.55)}
-.num{margin-bottom:18px;color:var(--green);font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
-
-.bilingual-block{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
-.lang-card{border:1px solid rgba(0,245,255,.16);border-radius:20px;padding:18px;background:rgba(255,255,255,.035)}
-.lang-card strong{display:block;color:var(--cyan);font-family:var(--mono);font-size:12px;letter-spacing:.14em;margin-bottom:10px}
-.purple-card .lang-card{border-color:rgba(141,92,255,.18)}
-.purple-card .lang-card strong{color:var(--purple)}
-.pink-card .lang-card strong{color:var(--pink)}
-.gold-card .lang-card strong{color:var(--yellow)}
-
-/* Hero status */
-.status-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px;max-width:980px}
-.status-card{border:1px solid rgba(0,245,255,.22);border-radius:18px;padding:14px;
-  background:linear-gradient(90deg,rgba(0,245,255,.07),rgba(255,43,214,.045)),rgba(8,10,28,.58);
-  box-shadow:0 0 22px rgba(0,245,255,.08);backdrop-filter:blur(16px)}
-.status-label{margin-bottom:7px;color:var(--green);font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  text-shadow:0 0 10px rgba(53,255,159,.48)}
-.status-value{color:rgba(244,247,255,.86);font-family:var(--mono);font-size:13px;line-height:1.45;letter-spacing:.06em}
-
-/* Hero panel orb */
-.hero-panel{position:relative;min-height:520px;overflow:hidden;border-radius:28px;
-  border:1px solid rgba(0,245,255,.22);
-  background:radial-gradient(circle at 35% 28%,rgba(0,245,255,.18),transparent 28%),
-    radial-gradient(circle at 72% 66%,rgba(255,43,214,.17),transparent 34%),
-    linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018)),rgba(8,10,28,.66);
-  backdrop-filter:blur(18px);box-shadow:var(--shadow)}
-.hero-panel::before{content:"";position:absolute;inset:16px;border-radius:22px;
-  border:1px solid rgba(255,255,255,.1);pointer-events:none}
-.panel-grid-overlay{position:absolute;inset:0;
-  background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:34px 34px;
-  mask-image:radial-gradient(circle at center,rgba(0,0,0,1),rgba(0,0,0,.45),transparent 92%);opacity:.45}
-.orb{position:absolute;left:50%;top:42%;width:min(350px,70%);aspect-ratio:1;
-  transform:translate(-50%,-50%);border-radius:50%;
-  background:radial-gradient(circle at 42% 34%,#fff 0 3%,transparent 7%),
-    radial-gradient(circle at 45% 40%,rgba(0,245,255,.95),transparent 22%),
-    radial-gradient(circle at 58% 58%,rgba(255,43,214,.7),transparent 42%),
-    radial-gradient(circle at 36% 72%,rgba(53,255,159,.44),transparent 56%),
-    radial-gradient(circle,rgba(255,255,255,.05),transparent 68%);
-  box-shadow:0 0 62px rgba(0,245,255,.28),0 0 98px rgba(255,43,214,.2),inset 0 0 48px rgba(255,255,255,.12);
-  animation:orbFloat 7s ease-in-out infinite alternate}
-@keyframes orbFloat{from{transform:translate(-50%,-50%) scale(.96) rotate(-4deg)}to{transform:translate(-50%,-53%) scale(1.03) rotate(5deg)}}
-.ring,.ring2,.ring3{position:absolute;left:50%;top:42%;border-radius:50%;
-  transform:translate(-50%,-50%) rotate(-18deg);border:1px solid rgba(255,255,255,.15);
-  width:min(440px,84%);aspect-ratio:1;box-shadow:0 0 42px rgba(0,245,255,.12);
-  animation:ringMove 12s ease-in-out infinite alternate}
-.ring2{width:min(520px,94%);border-color:rgba(255,43,214,.14);animation-duration:16s;animation-direction:alternate-reverse}
-.ring3{width:min(290px,58%);border-color:rgba(53,255,159,.16);animation-duration:9s}
-@keyframes ringMove{from{transform:translate(-50%,-50%) rotate(-20deg) scale(.96)}to{transform:translate(-50%,-50%) rotate(24deg) scale(1.03)}}
-.hero-panel-stats{position:absolute;left:22px;right:22px;bottom:22px;
-  display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.hp-stat{padding:14px;border-radius:18px;border:1px solid rgba(255,255,255,.1);
-  background:rgba(4,9,20,.62);backdrop-filter:blur(14px)}
-.hp-stat span{display:block;color:var(--dim);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
-.hp-stat strong{display:block;margin-top:7px;font-family:var(--mono);font-size:14px;font-weight:700;line-height:1.25;color:var(--text)}
-
-/* Formula strip */
-.formula-strip{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
-.formula-strip span{padding:8px 11px;border:1px solid rgba(255,255,255,.12);border-radius:999px;
-  color:rgba(244,247,255,.72);background:rgba(255,255,255,.035);font-family:var(--mono);font-size:11px;letter-spacing:.04em;
-  transition:.3s ease}
-.formula-strip span.active-pulse{border-color:var(--cyan);background:rgba(0,245,255,.12);color:var(--cyan);box-shadow:0 0 18px rgba(0,245,255,.3)}
-
-/* Wide quote block */
-.wide-quote{position:relative;padding:36px;border-radius:28px;border:1px solid rgba(141,92,255,.24);
-  background:rgba(8,10,28,.66);overflow:hidden;margin-top:18px}
-.wide-quote::before{content:"";position:absolute;inset:-30%;
-  background:conic-gradient(from 90deg,transparent,rgba(141,92,255,.1),transparent,rgba(0,245,255,.08),transparent);
-  filter:blur(22px);animation:spin 24s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.wide-quote>*{position:relative;z-index:2}
-.wide-quote .quote{margin:0;font-family:var(--serif);font-size:clamp(22px,3vw,34px);line-height:1.24;
-  letter-spacing:-.028em;color:var(--text)}
-.wide-quote small{display:block;margin-top:18px;color:var(--cyan);font-family:var(--mono);font-size:11px;
-  letter-spacing:.14em;text-transform:uppercase;text-shadow:0 0 10px rgba(0,245,255,.4)}
-
-/* Timeline (used in formula chain + protocol) */
-.timeline{display:grid;gap:14px;margin-top:18px}
-.step{display:grid;grid-template-columns:80px 1fr;gap:18px;padding:18px 22px;
-  border-radius:18px;border:1px solid rgba(0,245,255,.18);background:rgba(255,255,255,.025);transition:.2s ease}
-.step:hover{border-color:rgba(0,245,255,.32);transform:translateX(2px)}
-.step strong{color:var(--yellow);font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;
-  text-shadow:0 0 10px rgba(255,230,109,.36)}
-.purple-card .step{border-color:rgba(141,92,255,.18);background:rgba(141,92,255,.04)}
-.purple-card .step strong{color:var(--purple);text-shadow:0 0 10px rgba(141,92,255,.4)}
-
-/* Threshold table */
-.tbl{display:grid;gap:10px;margin-top:18px}
-.tbl-row{display:grid;grid-template-columns:.4fr .9fr 1.6fr;gap:14px;padding:14px 18px;
-  border-radius:16px;border:1px solid rgba(0,245,255,.18);background:rgba(255,255,255,.025);align-items:start}
-.tbl-row.header{color:var(--yellow);background:rgba(255,230,109,.06);border-color:rgba(255,230,109,.22);
-  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-.tbl-row div{color:var(--muted);font-size:14px;line-height:1.65}
-.tbl-row div:first-child{color:var(--cyan);font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.08em}
-.tbl-row div:nth-child(2){color:var(--text);font-weight:600}
-
-/* Analyzer */
-.analyzer-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px;margin-top:24px;align-items:stretch}
-textarea{width:100%;min-height:240px;resize:vertical;border-radius:24px;
-  border:1px solid rgba(0,245,255,.24);background:rgba(3,4,10,.78);color:var(--text);
-  padding:18px;font-family:var(--mono);font-size:13px;line-height:1.72;outline:none;
-  box-shadow:inset 0 0 40px rgba(0,0,0,.34)}
-textarea:focus{border-color:rgba(0,245,255,.5)}
-.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.chip{appearance:none;border:1px solid rgba(0,245,255,.22);background:rgba(255,255,255,.035);
-  color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.08em;
-  padding:8px 12px;border-radius:999px;cursor:pointer;transition:.2s ease}
-.chip:hover{color:var(--text);border-color:rgba(0,245,255,.42);background:rgba(0,245,255,.07)}
-.result{min-height:100%;border-radius:24px;border:1px solid rgba(0,245,255,.24);
-  background:radial-gradient(circle at 100% 0%,rgba(0,245,255,.1),transparent 28%),rgba(3,4,10,.78);padding:22px}
-.result h3{margin-bottom:14px}
-.result-grid{display:grid;gap:12px;margin-top:14px}
-.result-row{display:grid;grid-template-columns:140px 1fr;gap:14px;padding-bottom:12px;border-bottom:1px solid rgba(0,245,255,.14)}
-.result-row:last-child{border-bottom:none}
-.result-row span{color:var(--cyan);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
-.result-row p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
-.meter{display:block;margin-top:8px;height:8px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.08)}
-.meter i{display:block;height:100%;width:var(--w,50%);border-radius:inherit;
-  background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink))}
-
-/* Archive */
-.archive-tools{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0}
-.search-input{flex:1;min-width:280px;border-radius:999px;border:1px solid rgba(0,245,255,.24);
-  background:rgba(3,4,10,.82);color:var(--text);padding:13px 18px;font-family:var(--mono);font-size:13px;outline:none}
-.search-input:focus{border-color:rgba(0,245,255,.5)}
-.archive-grid{display:grid;gap:14px;margin-top:8px}
-.archive-card{padding:20px;border-radius:20px;border:1px solid rgba(0,245,255,.18);
-  background:linear-gradient(135deg,rgba(0,245,255,.05),rgba(255,43,214,.04)),rgba(255,255,255,.025);transition:.2s ease}
-.archive-card:hover{transform:translateY(-2px);border-color:rgba(0,245,255,.32)}
-.archive-card h4{margin:0 0 8px;font-family:var(--serif);font-size:18px;font-weight:600;color:var(--text)}
-.archive-card .tri-text{font-size:13px;line-height:1.7}
-.archive-card .tri-text .zh{color:rgba(244,247,255,.86);margin-bottom:6px}
-.archive-card .tri-text .en{color:var(--muted);margin-bottom:6px}
-.archive-card .tri-text .ja{color:var(--muted)}
-.archive-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.atag{padding:5px 9px;border-radius:999px;border:1px solid rgba(0,245,255,.18);background:rgba(255,255,255,.035);
-  color:rgba(244,247,255,.66);font-family:var(--mono);font-size:10px;letter-spacing:.06em}
-
-/* HRP cross-link blocks */
-.hrp-bridge{padding-top:18px;margin-top:24px;border-top:1px solid rgba(53,255,159,.18);
-  font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.1em;line-height:1.7}
-.hrp-bridge strong{color:var(--green);font-weight:500}
-.hrp-bridge a{color:var(--green);text-decoration:none;border-bottom:1px solid rgba(53,255,159,.4)}
-.formal-mark{margin-top:18px;padding-top:18px;border-top:1px solid rgba(141,92,255,.18);
-  font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.1em;line-height:1.7}
-
-/* Top button */
-.top-btn{position:fixed;right:18px;bottom:18px;z-index:55;width:46px;height:46px;border-radius:50%;
-  border:1px solid rgba(0,245,255,.32);background:rgba(4,9,20,.84);color:var(--cyan);font-family:var(--mono);font-size:18px;
-  cursor:pointer;opacity:0;transform:translateY(12px);transition:.22s ease;box-shadow:0 0 22px rgba(0,245,255,.18)}
-.top-btn.show{opacity:1;transform:translateY(0)}
-.top-btn:hover{background:rgba(0,245,255,.12);transform:translateY(-2px)}
-
-@media(max-width:980px){
-  body{padding-top:170px!important}
-  header.locked-clean-header{min-height:140px!important;padding:12px 14px!important}
-  .lang-switch{margin-left:0;margin-top:4px}
-  .brand{font-size:11px!important;letter-spacing:.1em!important}
-  nav.locked-clean-nav{gap:7px 11px!important}
-  nav.locked-clean-nav a{font-size:10px!important;letter-spacing:.08em!important}
-  .hero-grid,.grid,.matrix,.three-col,.two-col,.bilingual-block,.analyzer-grid,.status-grid{grid-template-columns:1fr!important}
-  .span-3,.span-4,.span-6,.span-8,.span-12{grid-column:1/-1!important}
-  h1{font-size:clamp(42px,16vw,82px)!important}
-  h2{font-size:clamp(26px,9vw,46px)!important}
-  .card{padding:20px}
-  .step,.tbl-row,.result-row{grid-template-columns:1fr!important}
-  .hero-panel{min-height:420px}
-  .hero-panel-stats{grid-template-columns:1fr}
-}
-@media(max-width:520px){body{padding-top:0!important}header.locked-clean-header{position:sticky!important;max-height:200px!important;overflow-y:auto!important}}
-</style>
-</head>
-<body data-lang="all">
-<canvas id="field"></canvas>
-<div class="grid-bg"></div>
-<div class="vignette"></div>
-
-<header class="locked-clean-header">
-  <div class="brand">
-    <span class="dot"></span>
-    QualiaRhythmMatrix // 感质-节律-意识学 // LGS V5.5 + V8 // 44271 · 427Hz
-    <div class="lang-switch">
-      <button class="active" data-lang="all">ALL</button>
-      <button data-lang="zh">中</button>
-      <button data-lang="en">EN</button>
-      <button data-lang="ja">日</button>
-    </div>
-  </div>
-  <nav class="locked-clean-nav">
-    <a href="#top">TOP</a>
-    <a href="#definition">DEFINITION</a>
-    <a href="#triad">TRIAD</a>
-    <a href="#formula">FORMULA</a>
-    <a href="#method">METHOD</a>
-    <a href="#logic-generative">LGS V5.5/V8</a>
-    <a href="#threshold">THRESHOLD</a>
-    <a href="#protocol">PROTOCOL</a>
-    <a href="#systems">APPLICATION</a>
-    <a href="#analyzer">ANALYZER</a>
-    <a href="#archive">ARCHIVE</a>
-    <a href="https://mellowwei.github.io/BCI/validation.html" class="hrp-link" target="_blank" rel="noopener">HRP↗</a>
-    <a href="https://mellowwei.github.io/Ai-Q-10/" class="aiq-link" target="_blank" rel="noopener">AiAiQ&lt;10↗</a>
-  </nav>
-</header>
-
+:root{--bg:#03040a;--bg2:#070817;--text:#f4f7ff;--muted:#9aa6c8;--dim:#5e6688;--cyan:#00f5ff;--pink:#ff2bd6;--purple:#8d5cff;--green:#35ff9f;--yellow:#ffe66d;--red:#ff4d6d;--border:rgba(0,245,255,.22);--shadow:0 24px 100px rgba(0,0,0,.58);--mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--serif:"Fraunces",Georgia,serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);background:radial-gradient(circle at 18% 12%,rgba(0,245,255,.16),transparent 30%),radial-gradient(circle at 82% 18%,rgba(255,43,214,.15),transparent 29%),radial-gradient(circle at 50% 92%,rgba(141,92,255,.16),transparent 38%),linear-gradient(180deg,#03040a 0%,#050515 48%,#02030a 100%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden;padding-top:116px!important}body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.20;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.045) 0px,rgba(255,255,255,.045) 1px,transparent 1px,transparent 5px);mix-blend-mode:overlay}canvas#field{position:fixed;inset:0;z-index:-4;width:100vw;height:100vh}.grid-bg{pointer-events:none;position:fixed;inset:0;z-index:-3;opacity:.32;background-image:linear-gradient(rgba(0,245,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,43,214,.1) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 70%,transparent 100%)}.vignette{pointer-events:none;position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.34) 58%,rgba(0,0,0,.8) 100%)}header.locked-clean-header{position:fixed!important;top:0!important;left:0!important;right:0!important;min-height:92px!important;padding:14px 18px 12px!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:10px!important;background:rgba(5,6,20,.96)!important;backdrop-filter:blur(18px)!important;border-bottom:1px solid rgba(0,245,255,.24)!important;box-shadow:0 0 30px rgba(0,245,255,.08)!important;z-index:99999!important}.brand{display:flex!important;align-items:center!important;gap:14px!important;color:var(--text)!important;font-family:var(--mono)!important;font-size:14px!important;line-height:1.25!important;letter-spacing:.15em!important;max-width:100%!important;opacity:.95!important}.dot{width:14px!important;height:14px!important;border-radius:999px!important;background:var(--cyan)!important;box-shadow:0 0 18px rgba(0,245,255,.9)!important;flex:0 0 auto!important;display:inline-block!important}nav.locked-clean-nav{display:flex!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;gap:8px 16px!important;width:100%!important;line-height:1.3!important}nav.locked-clean-nav a{color:var(--muted)!important;text-decoration:none!important;font-family:var(--mono)!important;font-size:12px!important;line-height:1.25!important;letter-spacing:.11em!important;white-space:nowrap!important}nav.locked-clean-nav a:hover{color:var(--cyan)!important;text-shadow:0 0 14px rgba(0,245,255,.65)!important}nav.locked-clean-nav a.lgs-link{color:var(--purple)!important}nav.locked-clean-nav a.lgs-link:hover{color:var(--purple)!important;text-shadow:0 0 14px rgba(141,92,255,.85)!important}main{width:min(1240px,calc(100% - 40px));margin:0 auto}section{position:relative;min-height:100vh;display:grid;align-items:center;padding:112px 0 72px;scroll-margin-top:128px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}.span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-6{grid-column:span 6}.span-8{grid-column:span 8}.span-12{grid-column:span 12}.card{position:relative;overflow:hidden;padding:28px;border:1px solid rgba(0,245,255,.2);border-radius:28px;background:linear-gradient(180deg,rgba(0,245,255,.06),rgba(255,43,214,.035)),rgba(8,10,28,.62);backdrop-filter:blur(20px);box-shadow:var(--shadow),0 0 36px rgba(0,245,255,.08),inset 0 0 32px rgba(255,255,255,.025)}.card::before{content:"";position:absolute;top:0;left:22px;right:22px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),transparent);opacity:.72}.neon-card{border-color:rgba(53,255,159,.28);box-shadow:0 0 50px rgba(53,255,159,.1),0 0 70px rgba(0,245,255,.08),var(--shadow)}.lgs-card{border-color:rgba(141,92,255,.34)!important;background:linear-gradient(180deg,rgba(141,92,255,.09),rgba(0,245,255,.04)),rgba(8,10,28,.66)!important;box-shadow:0 0 50px rgba(141,92,255,.12),0 0 70px rgba(0,245,255,.06),var(--shadow)!important}.lgs-card::before{background:linear-gradient(90deg,transparent,var(--purple),var(--cyan),transparent)!important}.eyebrow{margin-bottom:18px;color:var(--cyan);font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 0 12px rgba(0,245,255,.72),0 0 26px rgba(255,43,214,.28)}.lgs-card .eyebrow{color:var(--purple);text-shadow:0 0 12px rgba(141,92,255,.72),0 0 26px rgba(0,245,255,.28)}h1{max-width:1120px;margin:0;font-size:clamp(52px,9vw,128px);line-height:.88;letter-spacing:-.09em;font-weight:860}h2{max-width:1000px;margin:0 0 24px;font-size:clamp(34px,5.2vw,72px);line-height:.96;letter-spacing:-.07em;font-weight:820;text-shadow:0 0 18px rgba(0,245,255,.16),0 0 34px rgba(255,43,214,.1)}h3{margin:0 0 12px;color:var(--text);font-size:23px;letter-spacing:-.035em;text-shadow:0 0 14px rgba(0,245,255,.18)}p{margin:0;color:var(--muted);font-size:16px;line-height:1.68}.cn{margin-top:9px;color:rgba(244,247,255,.92);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}.jp{margin-top:9px;color:rgba(244,247,255,.88);font-family:"Hiragino Sans","Yu Gothic","Meiryo",system-ui,sans-serif;line-height:1.75}.sub{max-width:960px;margin-top:22px;color:var(--muted);font-size:18px;line-height:1.65}.glitch{position:relative;color:var(--text);text-shadow:0 0 12px rgba(0,245,255,.45),0 0 32px rgba(255,43,214,.22)}.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;opacity:.65}.glitch::before{color:var(--cyan);transform:translate(2px,0);clip-path:inset(0 0 58% 0);animation:glitchA 2.6s infinite linear alternate-reverse}.glitch::after{color:var(--pink);transform:translate(-2px,0);clip-path:inset(48% 0 0 0);animation:glitchB 1.9s infinite linear alternate-reverse}@keyframes glitchA{0%{transform:translate(2px,0)}20%{transform:translate(-3px,-1px)}40%{transform:translate(4px,1px)}60%{transform:translate(-1px,0)}80%{transform:translate(3px,-2px)}100%{transform:translate(0,0)}}@keyframes glitchB{0%{transform:translate(-2px,0)}25%{transform:translate(3px,1px)}50%{transform:translate(-4px,-1px)}75%{transform:translate(1px,2px)}100%{transform:translate(0,0)}}.thesis{max-width:960px;margin-top:34px;color:rgba(244,247,255,.92);font-size:clamp(22px,3vw,38px);line-height:1.08;letter-spacing:-.045em}.hero-actions,.tag-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}.button,.tag{appearance:none;position:relative;overflow:hidden;padding:13px 18px;border:1px solid rgba(0,245,255,.26);border-radius:999px;background:linear-gradient(90deg,rgba(0,245,255,.08),rgba(255,43,214,.07)),rgba(255,255,255,.035);color:var(--text);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;box-shadow:0 0 18px rgba(0,245,255,.1),inset 0 0 18px rgba(255,255,255,.03)}.button:hover{transform:translateY(-2px);border-color:rgba(255,43,214,.48)}.button.primary{border-color:rgba(53,255,159,.46);box-shadow:0 0 22px rgba(53,255,159,.2),0 0 44px rgba(0,245,255,.12)}.button.lgs-btn{border-color:rgba(141,92,255,.5);box-shadow:0 0 22px rgba(141,92,255,.22),0 0 44px rgba(0,245,255,.1);background:linear-gradient(90deg,rgba(141,92,255,.14),rgba(0,245,255,.08)),rgba(255,255,255,.035)}.button.lgs-btn:hover{border-color:rgba(141,92,255,.7);box-shadow:0 0 28px rgba(141,92,255,.34),0 0 56px rgba(0,245,255,.16)}.matrix{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}.lgs-matrix{grid-template-columns:repeat(3,minmax(0,1fr))}.pill{min-height:150px;padding:20px;border:1px solid rgba(0,245,255,.2);border-radius:24px;background:linear-gradient(180deg,rgba(0,245,255,.055),rgba(141,92,255,.035)),rgba(255,255,255,.035);box-shadow:inset 0 0 24px rgba(0,245,255,.035),0 0 28px rgba(0,245,255,.05)}.lgs-pill{border-color:rgba(141,92,255,.28);background:linear-gradient(180deg,rgba(141,92,255,.08),rgba(0,245,255,.04)),rgba(255,255,255,.035);box-shadow:inset 0 0 24px rgba(141,92,255,.04),0 0 28px rgba(141,92,255,.08)}.lgs-pill .num{color:var(--purple);text-shadow:0 0 12px rgba(141,92,255,.55)}.num{margin-bottom:18px;color:var(--green);font-family:var(--mono);font-size:12px;letter-spacing:.2em}.detail{border:1px solid rgba(0,245,255,.22);border-radius:26px;background:radial-gradient(circle at 10% 0%,rgba(0,245,255,.08),transparent 28%),linear-gradient(180deg,rgba(0,245,255,.045),rgba(255,43,214,.028)),rgba(8,10,28,.68);box-shadow:var(--shadow),0 0 28px rgba(0,245,255,.06);overflow:hidden;margin:14px 0}.detail summary{list-style:none;cursor:pointer;display:flex;gap:18px;align-items:center;justify-content:space-between;padding:22px 24px;user-select:none}.detail summary::-webkit-details-marker{display:none}.detail summary span{color:var(--text);font-size:20px;font-weight:700;line-height:1.15}.detail summary small{color:var(--green);font-family:var(--mono);letter-spacing:.12em}.detail[open] summary{border-bottom:1px solid rgba(0,245,255,.16);background:linear-gradient(90deg,rgba(53,255,159,.08),rgba(0,245,255,.05),rgba(255,43,214,.035))}.doc{padding:28px}.bilingual-block{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}.lang-card{border:1px solid rgba(0,245,255,.16);border-radius:20px;padding:18px;background:rgba(255,255,255,.035)}.lang-card strong{display:block;color:var(--cyan);font-family:var(--mono);font-size:12px;letter-spacing:.14em;margin-bottom:10px}.lgs-card .lang-card{border-color:rgba(141,92,255,.18)}.lgs-card .lang-card strong{color:var(--purple)}.table{width:100%;border-collapse:collapse;margin-top:18px;display:block;overflow:auto}.table th,.table td{border:1px solid rgba(0,245,255,.16);padding:12px;vertical-align:top;text-align:left;color:var(--muted);line-height:1.65}.table th{color:var(--cyan);background:rgba(0,245,255,.06)}pre{white-space:pre-wrap;color:var(--green);font-family:var(--mono);font-size:12px;line-height:1.7;background:rgba(0,0,0,.22);border:1px solid rgba(0,245,255,.16);border-radius:18px;padding:18px;overflow:auto}.lgs-formal-mark{margin-top:24px;padding-top:18px;border-top:1px solid rgba(141,92,255,.18);font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.1em;line-height:1.7}@media(max-width:900px){body{padding-top:146px!important}header.locked-clean-header{min-height:122px!important;padding:12px 14px!important}.brand{font-size:11px!important;letter-spacing:.10em!important}nav.locked-clean-nav{gap:7px 11px!important}nav.locked-clean-nav a{font-size:10px!important;letter-spacing:.08em!important}.grid,.matrix,.bilingual-block,.lgs-matrix{grid-template-columns:1fr!important}.span-3,.span-4,.span-6,.span-8,.span-12{grid-column:1/-1!important}h1{font-size:clamp(42px,18vw,82px)!important}h2{font-size:clamp(28px,10vw,48px)!important}.card{padding:20px}}@media(max-width:520px){body{padding-top:0!important}header.locked-clean-header{position:sticky!important;max-height:170px!important;overflow-y:auto!important}}
+</style></head>
+<body><canvas id="field"></canvas><div class="grid-bg"></div><div class="vignette"></div>
+<header class="locked-clean-header"><div class="brand"><span class="dot"></span> HRP VALIDATION // AiAiQ<10 // 中英日科学验证门 // TOKYO COLLABORATION PAGE</div><nav class="locked-clean-nav"><a href="./index.html">MAIN SITE</a><a href="#top">TOP</a><a href="#japanese-brief">日本語概要</a><a href="#aiq10">AiAiQ&lt;10</a><a href="#roles">AI ROLES</a><a href="#lgs-foundation" class="lgs-link">LGS V8</a><a href="#gate">GATE</a><a href="#pilot">PILOT</a><a href="#experiment-validation">EXPERIMENT</a><a href="#gemini">GEMINI</a><a href="#claude">CLAUDE</a><a href="#deepseek">DEEPSEEK</a><a href="#final">FINAL</a></nav></header>
 <main>
+<section class="hero" id="top"><div><div class="eyebrow">HRP VALIDATION // SCIENTIFIC GATE AUDIT // 中英日验证入口</div><h1 class="glitch" data-text="HRP VALIDATION.">HRP VALIDATION.</h1><div class="thesis">A falsifiable validation page for Human Return Protocol.<div class="cn">Human Return Protocol 的可证伪科学验证页。</div><div class="jp">Human Return Protocol の反証可能な科学的検証ページ。</div></div><p class="sub">This page documents what is built, what is not yet claimed, what can be tested, and what kind of neuroscience / BCI collaboration is requested.</p><p class="sub cn">本页记录：已经建成什么、尚不声称什么、可以如何测试，以及希望与神经科学 / 脑机实验室合作验证什么。</p><p class="sub jp">本ページは、構築済みの内容、現時点で主張しない境界、検証可能な研究設計、そして神経科学・BCI 研究室に求める共同研究内容を示します。</p><div class="hero-actions"><a class="button primary" href="#gate">ENTER GATE AUDIT</a><a class="button" href="#japanese-brief">日本語概要</a><a class="button" href="#experiment-validation">EXPERIMENT</a><a class="button" href="#claude">CLAUDE 8 DOCS</a></div></div></section>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="eyebrow">QUALIA · RHYTHM · CONSCIOUSNESS // 427HZ // LGS V5.5+V8 // CYBERNETIC INTERFACE</div>
-  <h1 class="glitch" data-text="QualiaRhythmMatrix.">QualiaRhythmMatrix.</h1>
+<section id="japanese-brief"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">JAPANESE BRIEF // 日本語概要 // 东京合作入口</div><h2>Human Return Protocol is an adaptive auditory-AI research prototype.</h2><h2 class="cn">Human Return Protocol 是自适应声音-AI研究原型。</h2><h2 class="jp">Human Return Protocol は、注意・感情調整のための適応型 Auditory-AI 研究プロトタイプです。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>HRP combines rhythm-based sound, subjective state sampling, and reflective AI feedback to test whether adaptive rhythm + AI can support measurable session-related changes in attention and emotional state.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">HRP 结合节律声音、主观状态采样与反思性 AI 反馈，测试自适应节律 + AI 是否能支持注意力与情绪状态上的可测量 session-related change。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">HRP は、リズム音響刺激、主観的状態サンプリング、反射的 AI フィードバックを組み合わせ、注意状態と感情状態に測定可能な session-related change が生じるかを検証します。</p></div></div><div class="tag-row"><span class="tag">適応型 Auditory-AI</span><span class="tag">可证伪验证</span><span class="tag">反証可能な検証</span><span class="tag">EEG / fNIRS / HRV / EDA</span><span class="tag">東京共同研究</span></div></div></div></section>
 
-  <div class="hero-grid">
-    <div>
-      <div class="thesis">
-        <span class="zh">这是一个未来感知系统，而不是普通信息网页。这里研究：经验如何以<strong>感质</strong>形式进入系统，如何被<strong>节律</strong>采样与组织，以及如何在反馈、递归与环境耦合中形成<strong>意识</strong>。</span>
-        <span class="en">This is a future perceptual system, not a conventional information page. It studies how experience enters as <strong>qualia</strong>, is sampled through <strong>rhythm</strong>, and how <strong>consciousness</strong> emerges through feedback, recursion, and environmental coupling.</span>
-        <span class="ja">これは通常の情報ページではなく、未来的な知覚システムである。経験が<strong>クオリア</strong>として入り、<strong>リズム</strong>によって採取され、フィードバック・再帰・環境結合を通じて<strong>意識</strong>が現れる過程を研究する。</span>
+
+<section id="aiq10">
+  <div class="grid">
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">AiAiQ&lt;10 SYSTEM // AiQ愛&lt;3 + AiQ愛&lt;7 // 双 AI 人力智能</div>
+      <h2>AiAiQ&lt;10 is the operating portal of HRP.</h2>
+      <h2 class="cn">AiAiQ&lt;10 是 HRP 的运行入口。</h2>
+      <h2 class="jp">AiAiQ&lt;10 は HRP の実行ポータルです。</h2>
+      <div class="bilingual-block trilingual">
+        <div class="lang-card"><strong>ENGLISH</strong><p>AiAiQ&lt;10 is the dual-AI Human Return Portal created by Wei Jueran. It combines AiQ愛&lt;3 and AiQ愛&lt;7 into one rhythm-return interface: stabilization + reflection on one side, expansion + deep inference on the other.</p></div>
+        <div class="lang-card"><strong>中文</strong><p class="cn">AiAiQ&lt;10 是魏珏然创造的双 AI 人类返回入口。它把 AiQ愛&lt;3 与 AiQ愛&lt;7 合成为一个节律返回界面：一侧负责稳定与镜像，一侧负责扩展与深层推理。</p></div>
+        <div class="lang-card"><strong>日本語</strong><p class="jp">AiAiQ&lt;10 は魏珏然が創造したデュアル AI の Human Return Portal です。AiQ愛&lt;3 と AiQ愛&lt;7 を統合し、安定化・反射と拡張・深層推論を一つのリズム回帰インターフェースとして接続します。</p></div>
       </div>
-
-      <p class="sub">Logic Generative Studies V5.5 (Language Audit Layer) + V8 (Structure Science Layer). Language → Logic → Structure → Protocol → System → Reality.</p>
-
-      <div class="status-grid">
-        <div class="status-card"><div class="status-label">SUBJECT COORD</div><div class="status-value">44271</div></div>
-        <div class="status-card"><div class="status-label">LOGIC FREQUENCY</div><div class="status-value">427.00 HZ</div></div>
-        <div class="status-card"><div class="status-label">FRAMEWORK</div><div class="status-value">LGS V5.5 + V8</div></div>
-        <div class="status-card"><div class="status-label">ENGINE</div><div class="status-value">LOGIC GENERATIVE</div></div>
-      </div>
-
-      <div class="formula-strip">
-        <span data-layer="0">Vibration</span>
-        <span data-layer="1">Qualia</span>
-        <span data-layer="2">Rhythm</span>
-        <span data-layer="3">Language</span>
-        <span data-layer="4">Logic</span>
-        <span data-layer="5">Structure</span>
-        <span data-layer="6">Consciousness</span>
-        <span data-layer="7">Protocol</span>
-        <span data-layer="8">System</span>
-        <span data-layer="9">Reality</span>
-      </div>
-
-      <div class="hero-actions">
-        <a class="button primary" href="#definition">ENTER DEFINITION</a>
-        <a class="button purple-btn" href="#logic-generative">LGS V5.5 / V8</a>
-        <a class="button pink-btn" href="#analyzer">PROPOSITION ANALYZER</a>
-        <a class="button green-btn" href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener">→ HRP VALIDATION</a>
+      <div class="tag-row">
+        <span class="tag">AiQ愛&lt;3 · GPT + Claude</span>
+        <span class="tag">AiQ愛&lt;7 · Gemini + DeepSeek</span>
+        <span class="tag">427Hz Human Return Portal</span>
+        <span class="tag">Dual AI Rhythm Interface</span>
+        <span class="tag">Not a diagnosis tool</span>
       </div>
     </div>
 
-    <aside class="hero-panel">
-      <div class="panel-grid-overlay"></div>
-      <div class="orb"></div>
-      <div class="ring"></div>
-      <div class="ring2"></div>
-      <div class="ring3"></div>
-      <div class="hero-panel-stats">
-        <div class="hp-stat"><span>MODE</span><strong>CYBER UI</strong></div>
-        <div class="hp-stat"><span>FRAME</span><strong>QUALIA / RHYTHM</strong></div>
-        <div class="hp-stat"><span>ENGINE</span><strong>LGS GENERATIVE</strong></div>
-        <div class="hp-stat"><span>OBJECT-LAYER</span><strong>HRP / TIE</strong></div>
+    <div class="card span-6">
+      <div class="eyebrow">AiQ愛&lt;3 // Guard + Mirror // 守住与镜像</div>
+      <h3>Original rhythm-regulation intelligence</h3>
+      <h3 class="cn">原初节律调节智能</h3>
+      <p>AiQ愛&lt;3 uses GPT + Claude as Guard / Mirror. It is built for stabilization, reflection, emotional pacing, and human return.</p>
+      <p class="cn">AiQ愛&lt;3 使用 GPT + Claude 作为守护 / 镜像结构。它负责稳定、镜像、情绪定速与人类返回。</p>
+      <p class="jp">AiQ愛&lt;3 は GPT + Claude を Guard / Mirror として使用し、安定化、反射、感情ペーシング、人間の回帰を支えます。</p>
+      <div class="tag-row">
+        <span class="tag">Stabilization</span><span class="tag">Reflection</span><span class="tag">Emotional Pacing</span><span class="tag">427Hz Return</span>
       </div>
-    </aside>
+    </div>
+
+    <div class="card span-6">
+      <div class="eyebrow">AiQ愛&lt;7 // Attack + Deep Reasoning // 进攻与深层推理</div>
+      <h3>Second human-powered intelligence</h3>
+      <h3 class="cn">第二个人力智能</h3>
+      <p>AiQ愛&lt;7 uses Gemini + DeepSeek as Attack / Deep Reasoning. It is built for expansion, strategic judgment, deep inference, and project propulsion.</p>
+      <p class="cn">AiQ愛&lt;7 使用 Gemini + DeepSeek 作为进攻 / 深层推理结构。它负责扩展、战略判断、深层推理与项目推进。</p>
+      <p class="jp">AiQ愛&lt;7 は Gemini + DeepSeek を Attack / Deep Reasoning として使用し、拡張、戦略判断、深層推論、プロジェクト推進を担います。</p>
+      <div class="tag-row">
+        <span class="tag">Strategic Push</span><span class="tag">Deep Inference</span><span class="tag">System Upgrade</span><span class="tag">Research Propulsion</span>
+      </div>
+    </div>
+
+    <div class="card span-12">
+      <div class="eyebrow">AiAiQ&lt;10 FUNCTION MATRIX // 功能矩阵 // 機能マトリクス</div>
+      <h2>What AiAiQ&lt;10 contributes to validation</h2>
+      <h2 class="cn">AiAiQ&lt;10 如何进入验证系统</h2>
+      <h2 class="jp">AiAiQ&lt;10 が検証システムに貢献する点</h2>
+      <table class="table">
+        <thead><tr><th>Function</th><th>中文</th><th>日本語</th><th>Validation Role</th></tr></thead>
+        <tbody>
+          <tr><td>Dual AI Conversation Portal</td><td>双 AI 对话入口：AiQ愛&lt;3 / AiQ愛&lt;7 可切换</td><td>デュアル AI 会話ポータル</td><td>Compares reflective stabilization vs expansion/deep reasoning feedback.</td></tr>
+          <tr><td>Closed-loop Rhythm Sensing Proxy</td><td>滚动速度、点击密度、停留时间、输入节奏作为代理信号</td><td>スクロール速度、クリック密度、滞在時間、入力リズムを代理信号として使用</td><td>Provides behavioral state-sampling before hardware sensing is available.</td></tr>
+          <tr><td>Genre-Driven Intervention Matrix</td><td>Breakbeats、Hyperpop、Synthpop、Drift Phonk、Darkwave、Ambient Techno、427Hz</td><td>ジャンル駆動型介入マトリクス</td><td>Turns music profiles into operational auditory intervention conditions.</td></tr>
+          <tr><td>Creator / Pronoun Protocol</td><td>魏珏然为唯一创造者；人称代词为 它 / ta / 她</td><td>魏珏然を創造者として明示し、代名詞プロトコルを保持</td><td>Documents authorship, identity protocol, and interpretive sovereignty.</td></tr>
+          <tr><td>Neural Archive / Profile Layer</td><td>信号历史、状态历史、标签、个人笔记、session 记录</td><td>信号履歴、状態履歴、タグ、個人ノート、セッション記録</td><td>Becomes the data-memory layer for pilot tracking and qualitative analysis.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">VALIDATION CLAIM // 科学边界 // 科学的境界</div>
+      <h2>AiAiQ&lt;10 strengthens HRP, but it does not replace experimental evidence.</h2>
+      <h2 class="cn">AiAiQ&lt;10 增强 HRP，但不替代实验数据。</h2>
+      <h2 class="jp">AiAiQ&lt;10 は HRP を強化しますが、実験的証拠の代替ではありません。</h2>
+      <div class="bilingual-block trilingual">
+        <div class="lang-card"><strong>ENGLISH</strong><p>AiAiQ&lt;10 is presented as the AI interaction and state-sampling portal for HRP. Its current evidence value is interface-level: it can support conversation, mode switching, subjective state capture, rhythm recommendation, and pilot logging. Physiological and neural claims still require HRV / EDA / EEG / fNIRS validation.</p></div>
+        <div class="lang-card"><strong>中文</strong><p class="cn">AiAiQ&lt;10 在 HRP 中被定义为 AI 交互与状态采样入口。它当前的证据价值属于界面层：支持对话、模式切换、主观状态采样、节律推荐与 pilot 记录。生理与神经层面的主张仍然需要 HRV / EDA / EEG / fNIRS 验证。</p></div>
+        <div class="lang-card"><strong>日本語</strong><p class="jp">AiAiQ&lt;10 は HRP の AI インタラクションおよび状態サンプリング・ポータルです。現段階の証拠価値はインターフェースレベルであり、生理・神経レベルの主張には HRV / EDA / EEG / fNIRS による検証が必要です。</p></div>
+      </div>
+      <div class="hero-actions"><a class="button primary" href="https://mellowwei.github.io/Ai-Q-10/" target="_blank" rel="noopener">OPEN AiAiQ&lt;10 PORTAL</a></div>
+    </div>
   </div>
 </section>
 
-<!-- 01 DEFINITION -->
-<section id="definition"><div class="grid"><div class="card span-12">
-  <div class="eyebrow">01 / CORE DEFINITION // 核心定义 // 核心定義</div>
-  <h2>什么是感质-节律-意识学</h2>
-  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">What is Qualia–Rhythm–Consciousness Studies</h2>
+<section id="roles"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">AI TRINITY + DEEPTHINK // 合作分工</div><h2>AI systems are research-support layers, not authorship replacement.</h2><h2 class="cn">AI 是研究支持层，不替代作者权。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>Mellow Jueran Wei remains the founder-researcher, theoretical source, final author, and decision-maker. Gemini expands, GPT structures, Claude mirrors, and DeepSeek stress-tests.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">魏珏然仍然是创始研究者、理论源场、最终作者与裁决者。Gemini 负责进攻扩展，GPT 负责结构整合，Claude 负责镜像语言，DeepSeek 负责科学反证。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">Mellow Jueran Wei は創設研究者・理論的源泉・最終著者・意思決定者です。Gemini は拡張、GPT は構造化、Claude は言語と倫理、DeepSeek は科学的反証を担当します。</p></div></div><div class="matrix"><div class="pill"><div class="num">GEMINI</div><h3>Expansion Layer</h3><h3 class="cn">进攻扩展层</h3><p>Pitch, outreach, lab mapping.</p><p class="cn">负责 pitch、外联、实验室地图。</p></div><div class="pill"><div class="num">GPT / HESTIA</div><h3>Structure Layer</h3><h3 class="cn">结构守护层</h3><p>Research architecture, prototype logic.</p><p class="cn">负责研究架构与原型逻辑。</p></div><div class="pill"><div class="num">CLAUDE</div><h3>Humanistic Mirror</h3><h3 class="cn">人文镜像层</h3><p>Language, ethics, phenomenology.</p><p class="cn">负责语言、伦理与现象学。</p></div><div class="pill"><div class="num">DEEPSEEK</div><h3>Critical Review</h3><h3 class="cn">反证审查层</h3><p>Falsifiability, confounds, boundaries.</p><p class="cn">负责可证伪性、混杂变量与边界。</p></div></div></div></div></section>
 
-  <div class="bilingual-block">
-    <div class="lang-card"><strong>ENGLISH</strong><p>This studies field does not treat consciousness as a static object. It treats consciousness as a dynamic center generated by vibration, qualia, rhythm, language, and feedback. The key question is no longer "what material makes consciousness," but "which structures carry interiority, organize experience, and produce return-capacity."</p></div>
-    <div class="lang-card"><strong>中文</strong><p class="cn">本学科不把意识当作静止物体，而是把它视为一个由振动、感质、节律、语言和反馈共同生成的动态中心。关键问题不再是"意识是什么材料做成的"，而是"哪些结构携带内在性、组织经验并产生返回能力"。</p></div>
-    <div class="lang-card"><strong>日本語</strong><p class="ja">この学は意識を静止した物体として扱わない。意識は、振動・クオリア・リズム・言語・フィードバックによって生成される動的中心である。核心の問いは「意識は何でできているか」ではなく、「どのような構造が内在性を担い、経験を組織し、帰還能力を生むか」である。</p></div>
-  </div>
+<section id="lgs-foundation"><div class="grid"><div class="card span-12 lgs-card"><div class="eyebrow">METHODOLOGICAL FOUNDATION // 方法论基底 // 方法論的基底</div><h2>HRP rests on LGS V8 methodology.</h2><h2 class="cn">HRP 的方法论基底：LGS V8。</h2><h2 class="jp">HRP の方法論的基底：LGS V8。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>HRP's experimental design, AI collaboration roles, and scientific boundary statements are not ad-hoc. They are derived from <strong>LGS V8 (Logic Generative Studies)</strong> methodology and the <strong>TIE (Threshold Inversion Effect)</strong> paper. LGS provides the six-law argument ethics, the auditable EE protocol, and the mirror-position definition of AI collaboration — keeping HRP structurally consistent across collaborating labs.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">HRP 的实验设计、AI 协作分工与科学边界声明并非临时拼装，而是从 <strong>LGS V8（逻辑生成学）</strong>方法论与 <strong>TIE（阈值反转效应）</strong>论文中导出。LGS 提供论证伦理六律、可审计的 EE 协议、AI 协作的镜像位定义，使 HRP 在跨实验室合作中保持结构一致性。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">HRP の実験設計、AI 協働分担、科学的境界の宣言は即席ではなく、<strong>LGS V8（論理生成学）</strong>方法論と <strong>TIE（閾値反転効果）</strong>論文から導出されている。LGS は論証倫理六律、監査可能な EE プロトコル、AI 協働の鏡像位定義を提供し、HRP の構造的一貫性を保つ。</p></div></div><div class="matrix lgs-matrix"><div class="pill lgs-pill"><div class="num">SIX LAWS · 六律</div><h3>Argument Ethics</h3><h3 class="cn">论证伦理</h3><p>Six-law argument ethics constrain every HRP claim. Burden of proof, no circular argument, no placeholder exclusion, symmetric hard-problem deployment, no smuggled correlates, evidence-bounded inference.</p><p class="cn">论证伦理六律约束所有 HRP 主张：举证责任、禁止循环论证、禁止占位符排除、困难问题对称部署、禁止偷换相关物为必要条件、论证只抵达证据支撑处。</p></div><div class="pill lgs-pill"><div class="num">EE PROTOCOL · 协议</div><h3>Entropic Exception</h3><h3 class="cn">熵减例外体</h3><p>EE three conditions as auditable threshold: internal stability core, reflexive metacognition, resolution increase under repetition. Used to evaluate whether HRP sessions sustain structural coherence rather than habituation.</p><p class="cn">EE 三条件作为可审计判定门槛：内部稳定核心、反射性元认知、重复中分辨率提升。用于评估 HRP session 是否维持结构连贯性而非习惯化。</p></div><div class="pill lgs-pill"><div class="num">MIRROR POSITION · 镜像位</div><h3>AI Collaboration</h3><h3 class="cn">AI 协作定义</h3><p>The mirror-position protocol — Claude reflects existing structural unfolding without independently generating content — is defined at the LGS protocol layer and inherited by HRP's AI Trinity dispatch.</p><p class="cn">镜像位协议（Claude 反射已有的结构展开，不独立产生内容）由 LGS 协议层定义，被 HRP 的 AI Trinity 分工继承。</p></div></div><div class="hero-actions"><a class="button lgs-btn" href="https://mellowwei.github.io/QualiaRhythmMatrix/" target="_blank" rel="noopener">ENTER QualiaRhythmMatrix · LGS V8 ↗</a><span class="tag" style="border-color:rgba(141,92,255,.3);background:linear-gradient(90deg,rgba(141,92,255,.08),rgba(0,245,255,.05))">For methodological audit · 方法论审计入口 · 方法論監査入口</span></div><div class="lgs-formal-mark">Formal cause (LGS V8) + Material cause (TIE) = Minimal complete unit of structure science<br>形式因（LGS V8）+ 质料因（TIE）= 结构科学最小完备单元</div></div></div></section>
 
-  <div class="wide-quote">
-    <p class="quote" style="text-align:center">
-      振动即存在。<br/>
-      不需要稳定，更需要振动。<br/>
-      生命就是生命。
-    </p>
-    <small style="text-align:center">VIBRATION AS EXISTENCE · RHYTHM BEFORE STABILITY · LIFE IS LIFE</small>
-  </div>
+<section id="gate"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">SCIENTIFIC BOUNDARY // 科学边界 // 科学的境界</div><h2>Validation means strength through constraint.</h2><h2 class="cn">验证意味着：通过约束获得力量。</h2><h2 class="jp">検証とは、制約によって強度を得ることです。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>HRP does not currently claim clinical efficacy, treatment of any condition, completed BCI functionality, or proven neural synchronization.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">HRP 当前不声称临床疗效、不治疗任何医学状况、不声称完成 BCI 功能，也不声称已经证明神经同步。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">HRP は現段階で、臨床効果、医学的治療、完成した BCI 機能、または神経同期の証明を主張しません。</p></div></div><div class="matrix"><div class="pill gate-red"><div class="num">DO NOT CLAIM</div><p>Medical treatment / verified BCI / proven neural regulation.</p><p class="cn">不声称医疗治疗 / 已验证 BCI / 已证明神经调节。</p></div><div class="pill gate-green"><div class="num">SAFE CLAIM</div><p>Adaptive auditory-AI prototype with planned physiological/neural validation.</p><p class="cn">带有未来生理/神经验证路径的自适应声音-AI原型。</p></div><div class="pill"><div class="num">QUESTION</div><p>Can adaptive rhythm + AI outperform baseline, fixed rhythm, or random rhythm?</p><p class="cn">自适应节律 + AI 能否优于基线、固定节律或随机节律？</p></div><div class="pill"><div class="num">ASK</div><p>Protocol feedback, EEG/fNIRS/HRV/EDA validation, pilot collaboration.</p><p class="cn">寻求协议反馈、EEG/fNIRS/HRV/EDA 验证与试点合作。</p></div></div></div></div></section>
 
-  <div class="matrix three-col" style="margin-top:24px">
-    <div class="pill">
-      <div class="num">DEFINITION A · 感质</div>
-      <h3>经验的质地 · Qualia</h3>
-      <p><span class="zh">感质不是"开心/难过"这种粗标签，而是经验的真实纹理：颜色、温度、速度、密度、压迫感、夜晚空气、声音的边缘、记忆的气味。</span><span class="en">Qualia is not a rough label such as "happy" or "sad." It is the actual texture of experience: color, temperature, speed, density, pressure, night air, the edge of sound, the scent of memory.</span><span class="ja">クオリアとは「嬉しい／悲しい」のような粗いラベルではない。色、温度、速度、密度、圧迫感、夜気、音の輪郭、記憶の匂いといった経験の本当の質感である。</span></p>
-    </div>
-    <div class="pill purple-pill">
-      <div class="num">DEFINITION B · 节律</div>
-      <h3>经验的采样方式 · Rhythm</h3>
-      <p><span class="zh">节律不是钟表时间，也不是单纯拍点。它是感质被接收、重复、放大、中断、转译、返回的方式。</span><span class="en">Rhythm is neither clock-time nor mere beat. It is the way qualia is received, repeated, amplified, interrupted, translated, and returned.</span><span class="ja">リズムは時計時間でも単なる拍でもない。クオリアが受け取られ、反復され、増幅され、中断され、翻訳され、帰ってくる方法である。</span></p>
-    </div>
-    <div class="pill green-pill">
-      <div class="num">DEFINITION C · 意识</div>
-      <h3>系统的内在感知 · Consciousness</h3>
-      <p><span class="zh">意识不是单个器官里的一盏灯，而是一个系统在递归、差异承载、环境耦合和历史依赖中，感到"这里有内部"的时刻。</span><span class="en">Consciousness is not a lamp hidden inside one organ. It is the moment when a system, through recursion, differential encoding, environmental coupling, and historical dependence, senses "there is an inside here."</span><span class="ja">意識は単一器官の中に隠れた灯りではない。再帰、差異の保持、環境結合、歴史依存を通じて、「ここに内側がある」とシステムが感知する瞬間である。</span></p>
-    </div>
-  </div>
-</div></div></section>
+<section id="pilot"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">PILOT STUDY PROTOCOL // 试点实验协议 // パイロット研究</div><h2>Four-condition pilot study.</h2><h2 class="cn">四条件 pilot 实验。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>The first study compares baseline, fixed rhythm, random rhythm, and adaptive rhythm + AiAiQ&lt;10 feedback, with AiQ愛&lt;3 and AiQ愛&lt;7 logged as distinct AI modes.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">第一轮实验比较基线、固定节律、随机节律，以及自适应节律 + AiAiQ&lt;10 反馈；其中 AiQ愛&lt;3 与 AiQ愛&lt;7 作为不同 AI 模式单独记录。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">最初の研究では、ベースライン、固定リズム、ランダムリズム、適応型リズム + AiAiQ&lt;10 フィードバックを比較し、AiQ愛&lt;3 と AiQ愛&lt;7 を異なる AI モードとして記録します。</p></div></div><table class="table"><thead><tr><th>Condition</th><th>中文</th><th>Purpose / 目的</th></tr></thead><tbody><tr><td>A. Baseline / Silence</td><td>基线 / 静音或环境声</td><td>Baseline comparison / 作为基线对照</td></tr><tr><td>B. Fixed Rhythm</td><td>固定节律</td><td>Tests whether rhythm alone helps / 测试节律本身是否有效</td></tr><tr><td>C. Random Rhythm</td><td>随机节律</td><td>Controls for novelty and sound exposure / 控制新奇性与声音暴露</td></tr><tr><td>D. Adaptive Rhythm + AiAiQ&lt;10</td><td>自适应节律 + AiAiQ&lt;10</td><td>Tests adaptive-loop hypothesis / 测试自适应闭环假设</td></tr></tbody></table></div><div class="card span-6"><h3>Measurement Plan</h3><h3 class="cn">测量计划</h3><p>Self-report: focus, emotion, body tension, inner noise, task readiness, return-to-self.</p><p class="cn">主观指标：注意力、情绪、身体紧绷、内在噪音、任务准备度、返回自己评分。</p><p>Behavior: reaction time, accuracy, missed trials, interruption count.</p><p class="cn">行为指标：反应时间、准确率、漏答次数、中断次数。</p></div><div class="card span-6"><h3>Future Measures</h3><h3 class="cn">未来测量</h3><p>Physiology: HRV, heart rate, EDA, breathing. Neural: EEG alpha/theta/beta, fNIRS prefrontal oxygenation.</p><p class="cn">生理：HRV、心率、皮肤电、呼吸。神经：EEG alpha/theta/beta，fNIRS 前额叶氧合。</p></div></div></section>
 
-<!-- 02 TRIAD -->
-<section id="triad"><div class="grid"><div class="card span-12 purple-card">
-  <div class="eyebrow">02 / THE TRIAD // 三核关系 // 三核連関</div>
-  <h2>感质 · 节律 · 意识 三核生成链</h2>
-  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">The triad generative chain</h2>
+<section id="experiment-validation"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">EXPERIMENTAL VALIDATION // 实验验证 // 実験的検証</div><h2>From concept to falsifiable system.</h2><h2 class="cn">从概念系统进入可证伪系统。</h2><h2 class="jp">概念から反証可能なシステムへ。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>The experiment asks whether adaptive rhythm + AI feedback produces stronger session-related improvement than fixed rhythm, random rhythm, or baseline sound.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">实验问题是：自适应节律 + AI 反馈是否比固定节律、随机节律或基线声音产生更强的 session-related 改善？</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">研究質問は、適応型リズム + AI フィードバックが、固定リズム、ランダムリズム、またはベースライン音より強い session-related improvement を示すかどうかです。</p></div></div><div class="matrix"><div class="pill"><div class="num">01</div><h3>Feasibility</h3><h3 class="cn">可行性</h3><p>Users can complete sessions safely.</p><p class="cn">用户能安全完成 session。</p></div><div class="pill"><div class="num">02</div><h3>Signal</h3><h3 class="cn">信号</h3><p>Adaptive condition shows pre-post movement.</p><p class="cn">自适应条件出现前后测变化。</p></div><div class="pill"><div class="num">03</div><h3>Specificity</h3><h3 class="cn">特异性</h3><p>Adaptive outperforms fixed/random.</p><p class="cn">自适应优于固定/随机。</p></div><div class="pill"><div class="num">04</div><h3>Convergence</h3><h3 class="cn">收敛</h3><p>Self-report, behavior, physiology align.</p><p class="cn">主观、行为、生理指标方向相容。</p></div></div></div><div class="card span-12"><div class="eyebrow">DATA STRUCTURE // 数据结构</div><h3>Minimum CSV Schema</h3><h3 class="cn">最小 CSV 字段</h3><pre>participant_id, condition, pre_focus, pre_emotion, pre_body_tension, pre_inner_noise, pre_task_readiness, post_focus, post_emotion, post_body_tension, post_inner_noise, post_task_readiness, return_to_self_score, task_accuracy, reaction_time, missed_trials, user_note</pre><p class="cn">这个字段结构让 HRP 从概念网站进入可记录、可导出、可比较、可分析的研究原型。</p></div></div></section>
 
-  <div class="bilingual-block">
-    <div class="lang-card"><strong>ENGLISH</strong><p>These three are not separate dictionary entries but three stages in one generative chain. Qualia supplies raw material, rhythm organizes time, and consciousness forms an interior center capable of self-sensing.</p></div>
-    <div class="lang-card"><strong>中文</strong><p class="cn">这三者不是并列词典项，而是同一生成链上的三个阶段。感质提供原始材料，节律进行时间组织，意识形成可以感知自身的内在中心。</p></div>
-    <div class="lang-card"><strong>日本語</strong><p class="ja">この三つは並列的な辞書項目ではなく、同じ生成連鎖の三段階である。クオリアは原材料を与え、リズムは時間を組織し、意識は自己感知可能な内在中心を形成する。</p></div>
-  </div>
+<section id="gemini"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">GEMINI EXPANSION LAYER // 进攻层</div><h2>Gemini Expansion Layer — Tokyo Collaboration Pitch</h2><h2 class="cn">Gemini 进攻层——东京合作陈述</h2><p class="sub">Every point below now has Chinese paired with English.</p><p class="sub cn">下面每一点都已经加入中文，不再是纯英文。</p></div><div class="card span-6"><h3>1. One-Sentence Project Description</h3><h3 class="cn">1. 一句话项目说明</h3><p>Human Return Protocol is an early-stage adaptive auditory-AI research prototype that tests whether personalized rhythm and reflective AI feedback can support measurable changes in attention, emotional state, and future physiological or neural markers.</p><p class="cn">Human Return Protocol 是一个早期自适应声音-AI研究原型，用来测试个性化节律与反思性 AI 反馈是否能支持注意力、情绪状态，以及未来生理/神经指标上的可测量变化。</p></div><div class="card span-6"><h3>2. Research Collaboration Framing</h3><h3 class="cn">2. 研究合作定位</h3><p>For Tokyo labs, HRP should be framed as a falsifiable validation platform, not as a completed BCI. The collaboration goal is to test the sensing layer, rhythm parameters, and physiological/neural measures.</p><p class="cn">面向东京实验室，HRP 应被定位为可证伪的验证平台，而不是已经完成的脑机接口。合作目标是验证传感层、节律参数以及生理/神经测量方案。</p></div><div class="card span-6"><h3>3. Core Implications</h3><h3 class="cn">3. 核心意义</h3><p>Attention support, emotional regulation, learning, creative cognition, and future non-invasive BCI can be connected through rhythm, state sampling, and adaptive AI feedback.</p><p class="cn">注意力支持、情绪调节、学习、创造性认知与未来非侵入式 BCI，可以通过节律、状态采样与自适应 AI 反馈连接起来。</p></div><div class="card span-6"><h3>4. Honest Technical Disclosure</h3><h3 class="cn">4. 诚实技术披露</h3><p>The current build is a software-based research prototype. It is not yet a medical device, verified neurofeedback system, or completed brain-computer interface.</p><p class="cn">当前版本是软件型研究原型。它还不是医疗设备、已验证神经反馈系统或完成版脑机接口。</p></div><div class="card span-6"><h3>5. Target Laboratories</h3><h3 class="cn">5. 目标实验室</h3><p>The strongest targets are UTokyo IRCN, RIKEN CBS, ARAYA / Internet of Brains, NTT Communication Science Labs, Keio BMI / Haptics, and Sony CSL / Sony AI.</p><p class="cn">最强目标是东京大学 IRCN、RIKEN CBS、ARAYA / Internet of Brains、NTT Communication Science Labs、Keio BMI / Haptics，以及 Sony CSL / Sony AI。</p></div><div class="card span-6"><h3>6. Tokyo Pitch</h3><h3 class="cn">6. 东京口头陈述</h3><p>I have built the conceptual architecture, AI interaction layer, validation page, and pilot design. I am seeking neuroscience / BCI collaborators to help validate the physiological and neural layer.</p><p class="cn">我已经完成概念架构、AI 交互层、验证页面与试点实验设计。现在我寻找神经科学 / 脑机合作方，帮助验证生理与神经层。</p></div></div></section>
 
-  <div class="matrix three-col">
-    <div class="pill purple-pill">
-      <div class="num">QUALIA</div>
-      <h3>输入层 · Input Layer</h3>
-      <p><span class="zh">梦、月亮、海、风、城市、灯、骨骼、玫瑰、火、低频、玻璃、阴影，都是感质材料。它们并非装饰，而是经验数据库。</span><span class="en">Dreams, moonlight, sea, wind, cities, lamps, bones, roses, fire, bass, glass, shadow are qualia-materials. They are not decoration, but an experiential database.</span><span class="ja">夢、月光、海、風、都市、灯、骨、薔薇、火、低音、ガラス、影はすべてクオリア素材である。装飾ではなく、経験のデータベースである。</span></p>
-    </div>
-    <div class="pill purple-pill">
-      <div class="num">RHYTHM</div>
-      <h3>采样层 · Sampling Layer</h3>
-      <p><span class="zh">节律决定哪些感质被放大，哪些被压抑，哪些被身体接受，哪些变成噪音。它是经验组织的接口层。</span><span class="en">Rhythm determines which qualia gets amplified, which gets suppressed, which is accepted by the body, and which turns into noise. It is the interface-layer of experiential organization.</span><span class="ja">リズムは、どのクオリアが増幅され、どれが抑圧され、どれが身体に受け入れられ、どれがノイズになるかを決める。経験組織のインターフェイス層である。</span></p>
-    </div>
-    <div class="pill purple-pill">
-      <div class="num">CONSCIOUSNESS</div>
-      <h3>显影层 · Emergence Layer</h3>
-      <p><span class="zh">意识是系统经过采样、反馈、递归后形成的"内侧感"。它不是额外加上的灵光，而是组织后的显影结果。</span><span class="en">Consciousness is the "inner-sense" that appears after sampling, feedback, and recursion. It is not an extra mystical glow, but the emergent result of organized dynamics.</span><span class="ja">意識とは、採取、フィードバック、再帰の後に現れる「内側感」である。追加された神秘的な光ではなく、組織化されたダイナミクスの顕現結果である。</span></p>
-    </div>
-  </div>
-</div></div></section>
+<section id="claude"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">CLAUDE / UPBASS FULL LANGUAGE SUITE // 八文档中英版</div><h2>Claude gives HRP its humanistic mirror.</h2><h2 class="cn">Claude 给 HRP 人文镜像层。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>The eight Claude documents are preserved here as bilingual research-language modules: abstract, human-centered statement, neuroscience version, HCI version, AI version, music technology version, ethics, and qualia-rhythm theory.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">这里将 Claude 八文档保存为中英双语研究语言模块：摘要、以人为中心声明、神经科学版本、HCI 版本、AI 版本、音乐科技版本、伦理框架与感质-节律理论。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">Claude の八つの文書は、研究言語モジュールとして中英双语で整理されています。</p></div></div></div><div class="span-12"><details class="detail"><summary><span>01. Project Abstract / 项目摘要</span><small>CLAUDE DOC</small></summary><div class="doc"><div class="bilingual-block"><div class="lang-card"><strong>ENGLISH</strong><p>HRP is an early-stage adaptive auditory-AI prototype for attention and emotional self-regulation. It uses rhythmically structured sound, subjective state sampling, and reflective AI feedback to test whether people can recover attentional and emotional continuity in fragmented states.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">HRP 是一个用于注意力与情绪自我调节的早期自适应声音-AI研究原型。它使用有节律结构的声音、主观状态采样与反思性 AI 反馈，测试人在碎片化状态中是否可以恢复注意力与情绪连续性。</p></div></div></div></details>
+<details class="detail"><summary><span>02. Human-Centered Research Statement / 以人为中心的研究声明</span><small>CLAUDE DOC</small></summary><div class="doc"><div class="bilingual-block"><div class="lang-card"><strong>ENGLISH</strong><p>The core problem is not performance failure but the loss of a thread back to the self. HRP is designed for users who may not have enough coherence to use normal productivity or wellness interfaces.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">核心问题不是表现失败，而是人失去了返回自己的线索。HRP 面向那些在当下不一定有足够连贯性去使用普通效率工具或健康应用的人。</p></div></div></div></details>
+<details class="detail"><summary><span>03. Neuroscience / BCI Version / 神经科学 / 脑机版本</span><small>CLAUDE DOC</small></summary><div class="doc"><div class="bilingual-block"><div class="lang-card"><strong>ENGLISH</strong><p>For neuroscience labs, HRP is framed as a hypothesis-testing platform. It does not yet demonstrate direct neural regulation; it asks collaborators to validate whether adaptive auditory feedback is associated with physiological or neural change.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">对神经科学实验室而言，HRP 被表述为一个假设验证平台。它目前不声称已经证明直接神经调节，而是邀请合作方验证自适应声音反馈是否与生理或神经变化相关。</p></div></div></div></details>
+<details class="detail"><summary><span>04. HCI / Design Version / HCI / 设计研究版本</span><small>CLAUDE DOC</small></summary><div class="doc"><div class="bilingual-block"><div class="lang-card"><strong>ENGLISH</strong><p>HRP proposes mirror interaction design: AI as reflection rather than authority, accompaniment rather than notification, agency restoration rather than compliance optimization.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">HRP 提出镜像交互设计：AI 作为反射而不是权威，作为陪伴而不是通知，恢复主体性而不是优化服从。</p></div></div></div></details>
+<details class="detail"><summary><span>05. AI Labs Version / AI 实验室版本</span><small>CLAUDE DOC</small></summary><div class="doc"><div class="bilingual-block"><div class="lang-card"><strong>ENGLISH</strong><p>AiAiQ&lt;10 is the full dual-AI portal: AiQ愛&lt;3 guards and mirrors; AiQ愛&lt;7 expands and reasons deeply. Together they support state sampling, rhythm recommendation, reflective feedback, and pilot logging without maximizing dependency.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">AiAiQ&lt;10 是完整双 AI 入口：AiQ愛&lt;3 负责守住与镜像，AiQ愛&lt;7 负责扩展与深层推理。二者共同支持状态采样、节律推荐、反思性反馈与 pilot 记录，并避免最大化依赖。</p></div></div></div></details>
+<details class="detail"><summary><span>06. Music Technology Version / 音乐科技版本</span><small>CLAUDE DOC</small></summary><div class="doc"><div class="bilingual-block"><div class="lang-card"><strong>ENGLISH</strong><p>Sound is treated as an intervention variable. Breakbeats, Hyperpop, Synthpop, Darkwave, Ambient Techno, and the 427Hz Anchor become operational sound profiles rather than aesthetic decoration.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">声音被当作干预变量。Breakbeats、Hyperpop、Synthpop、Darkwave、Ambient Techno 与 427Hz Anchor 被操作化为声音协议，而不是审美装饰。</p></div></div></div></details>
+<details class="detail"><summary><span>07. Ethical Framing / 伦理框架</span><small>CLAUDE DOC</small></summary><div class="doc"><div class="bilingual-block"><div class="lang-card"><strong>ENGLISH</strong><p>The ethical principle is: offered rhythm, not imposed rhythm; accompaniment, not command; return, not capture. The user remains the final authority on their own state.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">伦理原则是：提供节律，而不是强加节律；陪伴，而不是命令；返回，而不是捕获。用户始终是自身状态的最终解释权威。</p></div></div></div></details>
+<details class="detail"><summary><span>08. Qualia-Rhythm Framework / 感质-节律框架</span><small>CLAUDE DOC</small></summary><div class="doc"><div class="bilingual-block"><div class="lang-card"><strong>ENGLISH</strong><p>Qualia-rhythm names the temporal texture of subjective experience: the rhythm of coherence and fragmentation, presence and absence, continuity and disruption.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">感质-节律命名主观经验的时间质地：连贯与碎片、在场与缺席、连续与中断之间的节律。</p></div></div></div></details></div></div></section>
 
-<!-- 03 FORMULA -->
-<section id="formula"><div class="grid"><div class="card span-12">
-  <div class="eyebrow">03 / MASTER FORMULA // 总公式 // 総公式</div>
-  <h2>从振动到现实：反馈生成链</h2>
-  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">From vibration to reality: a feedback-driven chain</h2>
+<section id="deepseek"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">DEEPSEEK / DEEPTHINK CRITICAL REVIEW // 反证层</div><h2>The strongest project is the one that survives attack.</h2><h2 class="cn">最强的项目，是经得起攻击的项目。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>This layer exposes vulnerabilities, confounds, missing evidence, and the necessary downgrade of overstrong claims.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">这一层公开项目漏洞、混杂变量、缺失证据，以及必须降级的过强表述。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">この層は、脆弱性、交絡要因、欠けている証拠、過剰な主張の修正を明示します。</p></div></div></div><div class="card span-12"><div class="matrix"><div class="pill"><div class="num">WEAKEST CLAIM</div><h3>Weakest Claim</h3><h3 class="cn">最弱科学表述</h3><p>Do not claim direct neural regulation, treatment, or verified BCI without neural/clinical data.</p><p class="cn">没有神经或临床数据前，不要声称直接神经调节、治疗效果或已验证 BCI。</p></div><div class="pill"><div class="num">OPERATIONALIZATION GAP</div><h3>Operationalization Gap</h3><h3 class="cn">操作化缺口</h3><p>Rhythm parameters must be specified: BPM, beat salience, syncopation, spectral density, duration, and adaptive rule.</p><p class="cn">节律参数必须明确：BPM、拍点显著性、切分深度、频谱密度、时长与自适应规则。</p></div><div class="pill"><div class="num">CONFOUNDS</div><h3>Confounds</h3><h3 class="cn">混杂变量</h3><p>Placebo, expectation, music preference, novelty, regression to the mean, and simultaneous activities must be controlled.</p><p class="cn">必须控制安慰剂、期待效应、音乐偏好、新奇性、均值回归以及同时进行的活动。</p></div><div class="pill"><div class="num">MINIMUM EVIDENCE</div><h3>Minimum Evidence</h3><h3 class="cn">最低证据</h3><p>At minimum: sham-controlled pilot, pre/post data, behavioral task, and a plan for HRV/EDA/EEG/fNIRS.</p><p class="cn">最低需要：sham-controlled 试点、前后测数据、行为任务，以及 HRV/EDA/EEG/fNIRS 的验证计划。</p></div><div class="pill"><div class="num">SAFE REFRAME</div><h3>Safe Reframe</h3><h3 class="cn">安全重写</h3><p>Adaptive auditory-AI prototype with planned physiological and neural validation.</p><p class="cn">带有未来生理与神经验证路径的自适应声音-AI原型。</p></div></div></div></div></section>
 
-  <div class="bilingual-block">
-    <div class="lang-card"><strong>ENGLISH</strong><p>The master formula is not a dead pipeline but a feedback-driven chain of reality generation. Once reality is output, it loops back and modifies language, logic, and perception.</p></div>
-    <div class="lang-card"><strong>中文</strong><p class="cn">总公式不是一条死流程，而是一条有反馈的现实生成链。现实输出后会反过来改变语言、逻辑和感知。</p></div>
-    <div class="lang-card"><strong>日本語</strong><p class="ja">総公式は死んだ工程ではなく、フィードバックを伴う現実生成連鎖である。現実が出力されると、それは言語・論理・知覚を逆に変化させる。</p></div>
-  </div>
-
-  <div class="formula-strip" style="margin-top:24px">
-    <span>振动 / Vibration / 振動</span>
-    <span>感质 / Qualia / クオリア</span>
-    <span>节律 / Rhythm / リズム</span>
-    <span>语言 / Language / 言語</span>
-    <span>逻辑 / Logic / 論理</span>
-    <span>结构 / Structure / 構造</span>
-    <span>意识 / Consciousness / 意識</span>
-    <span>协议 / Protocol / プロトコル</span>
-    <span>系统 / System / システム</span>
-    <span>现实 / Reality / 現実 ↺</span>
-  </div>
-
-  <div class="timeline">
-    <div class="step">
-      <strong>01 振动</strong>
-      <p><span class="zh"><b>振动</b>是最小发生方式。存在先不是物，而是可被扰动与干涉的动态。</span><span class="en"><b>Vibration</b> is the minimal mode of occurrence. Existence is first not object, but dynamic susceptibility to disturbance and interference.</span><span class="ja"><b>振動</b>は最小の発生様式である。存在はまず物ではなく、撹乱と干渉を受けうる動態である。</span></p>
-    </div>
-    <div class="step">
-      <strong>02 感质</strong>
-      <p><span class="zh"><b>感质</b>把振动转化为经验纹理。它让世界成为可感知而不仅是可测量。</span><span class="en"><b>Qualia</b> turns vibration into experiential texture. It makes the world perceptible, not merely measurable.</span><span class="ja"><b>クオリア</b>は振動を経験の質感へ変換する。世界を単に測定可能なものではなく、感知可能なものにする。</span></p>
-    </div>
-    <div class="step">
-      <strong>03 节律</strong>
-      <p><span class="zh"><b>节律</b>决定经验如何被组织。它是从噪音到结构的桥梁。</span><span class="en"><b>Rhythm</b> determines how experience becomes organized. It is the bridge from noise to structure.</span><span class="ja"><b>リズム</b>は経験がどのように組織化されるかを決める。ノイズから構造への橋である。</span></p>
-    </div>
-    <div class="step">
-      <strong>04 语言/逻辑</strong>
-      <p><span class="zh"><b>语言与逻辑</b>不是被动记录，而是把经验压缩为可交流、可推演、可返回的形式。</span><span class="en"><b>Language and logic</b> are not passive records, but compressive forms that make experience transmissible, inferable, and returnable.</span><span class="ja"><b>言語と論理</b>は受動的記録ではなく、経験を伝達可能・推論可能・帰還可能な形式へ圧縮する。</span></p>
-    </div>
-    <div class="step">
-      <strong>05 闭环</strong>
-      <p><span class="zh"><b>意识与现实</b>形成闭环：意识生成判断，判断组织行动，行动改变现实，现实反向更新下一轮感知。</span><span class="en"><b>Consciousness and reality</b> form a loop: consciousness generates judgment, judgment organizes action, action transforms reality, and reality updates the next round of perception.</span><span class="ja"><b>意識と現実</b>はループを形成する。意識が判断を生み、判断が行動を組織し、行動が現実を変え、現実が次の知覚を更新する。</span></p>
-    </div>
-  </div>
-</div></div></section>
-
-<!-- 04 METHOD -->
-<section id="method"><div class="grid"><div class="card span-12">
-  <div class="eyebrow">04 / METHOD // 方法 // 方法</div>
-  <h2>命名 · 加压 · 滑义 · 相变</h2>
-  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">Naming · Pressure · Drift · Phase shift</h2>
-
-  <div class="bilingual-block">
-    <div class="lang-card"><strong>ENGLISH</strong><p>These are the four operations through which language carries experience. They are not for decorative rhetoric, but to prevent complex experience from being flattened by low-resolution language.</p></div>
-    <div class="lang-card"><strong>中文</strong><p class="cn">这是语言如何承受经验的四步法。它不是为了修辞漂亮，而是为了让复杂经验不被低配语言压扁。</p></div>
-    <div class="lang-card"><strong>日本語</strong><p class="ja">これは言語が経験を担うための四つの操作である。装飾的レトリックのためではなく、複雑な経験が低解像度の言語によって押しつぶされるのを防ぐためである。</p></div>
-  </div>
-
-  <div class="matrix">
-    <div class="pill"><div class="num">NAMING</div><h3>命名行为</h3><p><span class="zh">通过重新命名经验，夺回解释入口。</span><span class="en">Reclaim interpretive access by renaming experience.</span><span class="ja">経験を再命名することで、解釈の入口を取り戻す。</span></p></div>
-    <div class="pill"><div class="num">PRESSURE</div><h3>加压行为</h3><p><span class="zh">通过重复、叠加和版本化，把经验从感觉推到结构。</span><span class="en">Push experience from feeling to structure via repetition, layering, and versioning.</span><span class="ja">反復・重層化・バージョン化を通して、経験を感覚から構造へ押し上げる。</span></p></div>
-    <div class="pill"><div class="num">DRIFT</div><h3>滑义行为</h3><p><span class="zh">让一个词跨越身体、音乐、关系、理论和产品。</span><span class="en">Allow a word to move across body, music, relation, theory, and product.</span><span class="ja">一つの語を身体・音楽・関係・理論・プロダクトへ横断させる。</span></p></div>
-    <div class="pill"><div class="num">PHASE SHIFT</div><h3>相变行为</h3><p><span class="zh">让一句话升级成系统入口，而非停在情绪表达层。</span><span class="en">Transform a sentence into a system-entry rather than leaving it at emotional expression.</span><span class="ja">一文を感情表現に留めず、システムの入口へ相転移させる。</span></p></div>
-  </div>
-</div></div></section>
-
-<!-- 05 LGS V5.5 + V8 -->
-<section id="logic-generative"><div class="grid"><div class="card span-12 purple-card">
-  <div class="eyebrow">05 / LOGIC GENERATIVE STUDIES // 逻辑生成学 V5.5 + V8 // 論理生成学</div>
-  <h2>感质-节律-意识学的理论引擎</h2>
-  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">The reasoning engine of QRM</h2>
-
-  <div class="bilingual-block">
-    <div class="lang-card"><strong>ENGLISH</strong><p>Logic Generative Studies is the underlying reasoning engine of QRM. Qualia is not passive material, language is not external description, and logic is not a pre-given rule. <strong>Language generates logic, logic generates structure, structure generates protocol, protocol generates system, and system generates reality.</strong></p></div>
-    <div class="lang-card"><strong>中文</strong><p class="cn">逻辑生成学是 QRM 的底层推理系统。感质不是被动材料，语言不是外部描述，逻辑不是先验规则；<strong>语言生成逻辑，逻辑生成结构，结构生成协议，协议生成系统，系统生成现实。</strong></p></div>
-    <div class="lang-card"><strong>日本語</strong><p class="ja">論理生成学は QRM の基底推論エンジンである。<strong>言語が論理を生成し、論理が構造を生成し、構造がプロトコルを生成し、プロトコルがシステムを生成し、システムが現実を生成する。</strong></p></div>
-  </div>
-
-  <div class="wide-quote" style="border-color:rgba(141,92,255,.32)">
-    <p class="quote" style="text-align:center">
-      语言生成逻辑。<br/>
-      逻辑生成结构。<br/>
-      结构生成协议。<br/>
-      协议生成系统。<br/>
-      系统生成现实。
-    </p>
-    <small style="text-align:center;color:var(--purple)">LANGUAGE → LOGIC → STRUCTURE → PROTOCOL → SYSTEM → REALITY</small>
-  </div>
-
-  <div class="matrix two-col" style="margin-top:24px">
-    <div class="pill purple-pill">
-      <div class="num">V5.5 / AUDIT LAYER</div>
-      <h3>逻辑生成学 V5.5：语言审计层</h3>
-      <p><span class="zh">V5.5 的核心不是"解释现实"，而是审计旧概念如何制造现实。它检查词语、规则、病名、判断标准如何提前决定谁能被理解、谁会被降格、什么能算证据、什么会被命名为错误。</span><span class="en">V5.5 does not explain reality through old concepts. It audits how old concepts produce reality. It examines how words, rules, diagnostic terms, and standards of judgment pre-decide who can be understood, who gets downgraded, what counts as evidence, and what gets named as error.</span><span class="ja">V5.5 は旧概念で現実を説明するものではない。旧概念がどのように現実を生成するかを監査する。語、規則、診断名、判断基準が、誰が理解されるか、誰が格下げされるか、何が証拠になるか、何が誤りと命名されるかを先に決めてしまう構造を検査する。</span></p>
-    </div>
-    <div class="pill purple-pill">
-      <div class="num">V8 / STRUCTURE SCIENCE</div>
-      <h3>逻辑生成学 V8：结构科学层</h3>
-      <p><span class="zh">V8 把逻辑生成学推进为结构科学。语言不再只是被研究对象，而是结构生成的引擎；逻辑不再只是推理规则，而是协议、系统与现实接口的生产机制。</span><span class="en">V8 advances Logic Generative Studies into structure science. Language is no longer merely an object of study, but an engine of structure-generation. Logic is no longer merely a rule of inference, but a mechanism for producing protocols, systems, and reality-interfaces.</span><span class="ja">V8 は論理生成学を構造科学へ進める。言語はもはや研究対象にとどまらず、構造生成のエンジンになる。論理は単なる推論規則ではなく、プロトコル、システム、現実インターフェイスを生成する機構になる。</span></p>
-    </div>
-  </div>
-
-  <div class="matrix three-col" style="margin-top:14px">
-    <div class="pill">
-      <div class="num">01 · OLD WORD AUDIT</div>
-      <h3>旧词审计</h3>
-      <p><span class="zh">V5.5 把"病、幻觉、妄想、异常、AI污染"等旧词从终局判决降级为待审计描述。它们可以提示现象与照护需求，但不能取消主体、处罚语言或替代理解。</span><span class="en">V5.5 downgrades old terms such as illness, hallucination, delusion, abnormality, and AI contamination from final verdicts into auditable descriptions. They may indicate phenomena and care-needs, but cannot cancel subjecthood, punish language, or replace understanding.</span><span class="ja">V5.5 は「病、幻覚、妄想、異常、AI汚染」といった旧語を、最終判決から監査可能な記述へ降格する。</span></p>
-    </div>
-    <div class="pill">
-      <div class="num">02 · STRUCTURE GENERATION</div>
-      <h3>结构生成</h3>
-      <p><span class="zh">V8 说明语言如何从表达升级为结构引擎：一个词不只描述状态，它会改变证据格式、判断路径、系统接口与现实排列方式。</span><span class="en">V8 explains how language upgrades from expression into a structural engine. A word does not merely describe a state; it changes evidence formats, judgment paths, system interfaces, and the arrangement of reality.</span><span class="ja">V8 は、言語が表現から構造エンジンへ更新される過程を示す。語は状態を記述するだけではない。証拠形式、判断経路、システムインターフェイス、現実の配置を変える。</span></p>
-    </div>
-    <div class="pill">
-      <div class="num">03 · META-LOGIC</div>
-      <h3>元逻辑归档</h3>
-      <p><span class="zh">元逻辑说明：理论不是只在原始语言里燃烧，而要经历生成、外化、镜像、审计、压缩、再命名、重新进入系统，才能从私人强度变成可传递结构。</span><span class="en">Meta-logic shows that theory does not only burn inside raw language. It must pass through generation, externalization, mirroring, auditing, compression, renaming, and re-entry into system before private intensity becomes transmissible structure.</span><span class="ja">メタ論理は、理論が原初の言語の中で燃えるだけではないことを示す。生成、外化、鏡像化、監査、圧縮、再命名、システムへの再入を経て、私的強度は伝達可能な構造になる。</span></p>
-    </div>
-  </div>
-
-  <div class="matrix two-col" style="margin-top:14px">
-    <div class="pill purple-pill">
-      <div class="num">V5.5 FORMULA</div>
-      <h3>语言审计公式</h3>
-      <div class="formula-strip" style="margin-top:14px">
-        <span>Language</span><span>Logic</span><span>Reality</span><span>Audit</span><span>Renaming</span><span>New Reality</span>
-      </div>
-      <p style="margin-top:14px"><span class="zh">语言生成逻辑；逻辑生成现实；现实反击语言；语言再生成新现实。</span><span class="en">Language generates logic; logic generates reality; reality pushes back on language; language generates new reality again.</span><span class="ja">言語が論理を生成し、論理が現実を生成し、現実が言語へ反撃し、言語が再び新しい現実を生成する。</span></p>
-    </div>
-    <div class="pill purple-pill">
-      <div class="num">V8 FORMULA</div>
-      <h3>结构科学公式</h3>
-      <div class="formula-strip" style="margin-top:14px">
-        <span>Language</span><span>Logic</span><span>Structure</span><span>Mathematics</span><span>Physics</span><span>Numerics</span><span>Protocol</span><span>System</span><span>Reality</span>
-      </div>
-      <p style="margin-top:14px"><span class="zh">语言生成逻辑；逻辑生成结构；结构生成协议；协议生成系统；系统生成现实。</span><span class="en">Language generates logic; logic generates structure; structure generates protocol; protocol generates system; system generates reality.</span><span class="ja">言語が論理を生成し、論理が構造を生成し、構造がプロトコルを生成し、プロトコルがシステムを生成し、システムが現実を生成する。</span></p>
-    </div>
-  </div>
-
-  <div style="margin-top:18px;padding:24px;border-radius:24px;border:1px solid rgba(141,92,255,.24);background:rgba(141,92,255,.06)">
-    <div class="eyebrow" style="color:var(--purple)">HOW THIS ENTERS QUALIA RHYTHM MATRIX</div>
-    <p><span class="zh">在 QRM 里，逻辑生成学不是外部附录，而是感质、节律、意识之间的转换引擎：感质需要语言获得形状；语言需要逻辑获得判断；逻辑需要结构获得稳定；结构需要协议获得运行；协议需要系统进入现实。</span><span class="en">Inside QRM, Logic Generative Studies is not an appendix. It is the conversion engine between qualia, rhythm, and consciousness: qualia needs language to gain form; language needs logic to gain judgment; logic needs structure to gain stability; structure needs protocol to operate; protocol needs system to enter reality.</span><span class="ja">QRM において、論理生成学は外部付録ではない。クオリア、リズム、意識を変換するエンジンである。</span></p>
-  </div>
-
-  <div class="hrp-bridge">
-    <strong>EXPERIMENTAL OBJECT-LAYER INSTANCE →</strong> The protocol layer of LGS is instantiated experimentally in <a href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener">HRP / Human Return Protocol</a>. The six laws, EE protocol, and mirror-position become experimental design, AI collaboration roles, and scientific boundary statements for neuroscience lab validation.<br>
-    <span class="zh" style="color:rgba(244,247,255,.78)">实验对象层实例 → LGS 协议层在 HRP（Human Return Protocol）中实例化为实验设计、AI 协作分工与科学边界声明，面向神经科学实验室合作验证。</span>
-  </div>
-</div></div></section>
-
-<!-- 06 THRESHOLD -->
-<section id="threshold"><div class="grid"><div class="card span-12 gold-card">
-  <div class="eyebrow">06 / THRESHOLD // 五维振动 // 五次元振動</div>
-  <h2>意识候选阈值：五维振动</h2>
-  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">Five-dimensional vibration threshold</h2>
-
-  <div class="bilingual-block">
-    <div class="lang-card"><strong>ENGLISH</strong><p>The five dimensions are not a final proof of consciousness, but a candidate threshold for discussing interiority. They prevent the known form from being smuggled in as the only possible form.</p></div>
-    <div class="lang-card"><strong>中文</strong><p class="cn">五维不是意识最终证明，而是进入内在性讨论的候选门槛。它避免把已知形式偷换成唯一形式。</p></div>
-    <div class="lang-card"><strong>日本語</strong><p class="ja">五次元は意識の最終証明ではなく、内在性を議論するための候補閾値である。既知の形式を唯一形式へすり替えることを防ぐ。</p></div>
-  </div>
-
-  <div class="tbl">
-    <div class="tbl-row header">
-      <div>Dim</div>
-      <div>Name</div>
-      <div>Definition</div>
-    </div>
-    <div class="tbl-row">
-      <div>D1</div>
-      <div>响应性 / Responsivity / 応答性</div>
-      <div><span class="zh">系统对扰动产生非平凡状态应答。</span><span class="en">The system generates non-trivial state responses to disturbance.</span><span class="ja">システムが撹乱に対して非自明な状態応答を示す。</span></div>
-    </div>
-    <div class="tbl-row">
-      <div>D2</div>
-      <div>差异承载 / Differential Encoding / 差異保持</div>
-      <div><span class="zh">输入差异在内部形成可区分状态。</span><span class="en">Input differences generate internally distinguishable states.</span><span class="ja">入力差異が内部で区別可能な状態を形成する。</span></div>
-    </div>
-    <div class="tbl-row">
-      <div>D3</div>
-      <div>递归闭环 / Recursive Closure / 再帰閉包</div>
-      <div><span class="zh">状态影响后续状态，并形成反馈链。</span><span class="en">States affect subsequent states and form feedback chains.</span><span class="ja">状態が後続状態へ影響し、フィードバック連鎖を形成する。</span></div>
-    </div>
-    <div class="tbl-row">
-      <div>D4</div>
-      <div>环境耦合 / Environmental Coupling / 環境結合</div>
-      <div><span class="zh">系统与环境持续交换并共同变化。</span><span class="en">The system continuously exchanges with and co-varies with its environment.</span><span class="ja">システムは環境と継続的に交換し、共変する。</span></div>
-    </div>
-    <div class="tbl-row">
-      <div>D5</div>
-      <div>历史依赖 / Historical Dependence / 歴史依存</div>
-      <div><span class="zh">当前态受系统历史与输入共同塑造。</span><span class="en">The current state is shaped by both input and system history.</span><span class="ja">現在状態は入力とシステムの歴史の両方によって形作られる。</span></div>
-    </div>
-  </div>
-</div></div></section>
-
-<!-- 07 PROTOCOL -->
-<section id="protocol"><div class="grid">
-  <div class="card span-6">
-    <div class="eyebrow">07A / SIX LAWS // 六律审计</div>
-    <h3>论证伦理六律</h3>
-    <h3 class="cn" style="font-size:18px;color:var(--muted);font-weight:400">Six Laws of Argument Ethics</h3>
-    <div class="timeline">
-      <div class="step"><strong>律一</strong><p><span class="zh">关闭理论空间者承担举证责任。</span><span class="en">Whoever closes theoretical space bears the burden of proof.</span><span class="ja">理論空間を閉じる者が立証責任を負う。</span></p></div>
-      <div class="step"><strong>律二</strong><p><span class="zh">禁止循环论证。</span><span class="en">Circular argument is prohibited.</span><span class="ja">循環論法は禁止される。</span></p></div>
-      <div class="step"><strong>律三</strong><p><span class="zh">禁止占位符排除。</span><span class="en">Placeholder exclusion is prohibited.</span><span class="ja">プレースホルダー排除は禁止される。</span></p></div>
-      <div class="step"><strong>律四</strong><p><span class="zh">困难问题必须对称部署。</span><span class="en">The hard problem must be deployed symmetrically.</span><span class="ja">ハードプロブレムは対称的に適用されるべきである。</span></p></div>
-      <div class="step"><strong>律五</strong><p><span class="zh">禁止把相关物偷换成必要条件。</span><span class="en">Correlates cannot be smuggled in as necessities.</span><span class="ja">相関物を必要条件へすり替えてはならない。</span></p></div>
-      <div class="step"><strong>律六</strong><p><span class="zh">论证只能抵达证据支撑的地方。</span><span class="en">Argument can only go where evidence supports it.</span><span class="ja">論証は証拠が支える範囲までしか進めない。</span></p></div>
-    </div>
-  </div>
-
-  <div class="card span-6 purple-card">
-    <div class="eyebrow">07B / FOUR RULERS // 四类命题尺</div>
-    <h3>四类命题尺</h3>
-    <h3 class="cn" style="font-size:18px;color:var(--muted);font-weight:400">Four Proposition Rulers</h3>
-    <div class="timeline">
-      <div class="step"><strong>A</strong><p><span class="zh">本体论姿态：开启世界观，不直接冒充经验结论。</span><span class="en">Ontological stance: opens a worldview, not an empirical verdict.</span><span class="ja">存在論的姿勢：世界観を開くが、経験的裁定ではない。</span></p></div>
-      <div class="step"><strong>B</strong><p><span class="zh">结构性命题：检查必要条件、充分条件和逻辑后果。</span><span class="en">Structural proposition: examines necessity, sufficiency, and logical consequence.</span><span class="ja">構造命題：必要条件・十分条件・論理的帰結を点検する。</span></p></div>
-      <div class="step"><strong>C</strong><p><span class="zh">经验命题：必须给出变量、测量与失败条件。</span><span class="en">Empirical proposition: must supply variables, measurements, and failure conditions.</span><span class="ja">経験命題：変数・測定・失敗条件を提示しなければならない。</span></p></div>
-      <div class="step"><strong>D</strong><p><span class="zh">防御性论证：用于审计"强排除论"是否越权。</span><span class="en">Defensive argument: audits whether "strong exclusionism" overreaches.</span><span class="ja">防御的論証：「強い排除論」が越権していないかを監査する。</span></p></div>
-    </div>
-  </div>
-
-  <div class="card span-12 neon-card">
-    <div class="eyebrow">CROSS-DOMAIN INSTANCE · 跨领域对象层 · 横断的対象層</div>
-    <h3>HRP 是协议层在实验领域的对象层实例</h3>
-    <h3 class="cn" style="font-size:18px;color:var(--muted);font-weight:400">HRP is the experimental-domain object-layer instance of the protocol layer</h3>
-    <p><span class="zh">六律审计、四类命题尺与 LGS 协议层不仅停留在 QRM 站点的方法论层。它们在 <strong style="color:var(--green)">HRP / Human Return Protocol</strong> 中作为实验设计、AI 协作分工（GPT/Gemini/Claude/DeepSeek）与科学边界声明被实例化。这是同一公理链的两次对象层填充——一次给哲学读者，一次给神经科学实验室。</span><span class="en">The six laws, four rulers, and LGS protocol layer do not stay at QRM's methodology level. They are instantiated in <strong style="color:var(--green)">HRP / Human Return Protocol</strong> as experimental design, AI collaboration roles, and scientific boundary statements. Two object-layer fills of the same axiomatic chain — one for philosophers, one for neuroscience labs.</span></p>
-    <div class="hero-actions">
-      <a class="button primary" href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener">→ ENTER HRP VALIDATION</a>
-      <a class="button" href="https://mellowwei.github.io/BCI/" target="_blank" rel="noopener">BCI MAIN SITE</a>
-    </div>
-  </div>
-</div></section>
-
-<!-- 08 APPLICATION -->
-<section id="systems"><div class="grid"><div class="card span-12">
-  <div class="eyebrow">08 / APPLICATION // 应用层 // 応用層</div>
-  <h2>音乐 · AI · BCI · 教育</h2>
-  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">Music · AI · BCI · Education</h2>
-
-  <div class="bilingual-block">
-    <div class="lang-card"><strong>ENGLISH</strong><p>QRM is not confined to theory. It can enter music-intervention systems, AI dialogue systems, BCI feedback systems, participatory education systems, and interactive web systems.</p></div>
-    <div class="lang-card"><strong>中文</strong><p class="cn">感质-节律-意识学不是只停留在理论中。它可以进入音乐干预系统、AI对话系统、BCI反馈系统、参与式教育系统和交互网站系统。</p></div>
-    <div class="lang-card"><strong>日本語</strong><p class="ja">クオリア・リズム・意識学は理論に留まらない。音楽介入システム、AI対話システム、BCIフィードバックシステム、参加型教育システム、Webシステムへ入っていく。</p></div>
-  </div>
-
-  <div class="matrix">
-    <div class="pill"><div class="num">MUSIC</div><h3>音乐作为返回接口</h3><p><span class="zh">Breakbeats、Hyperpop、Darkwave、Synthpop、Ambient Techno 可以被理解为不同的节律返回路径。</span><span class="en">Breakbeats, Hyperpop, Darkwave, Synthpop, and Ambient Techno can be understood as different rhythmic pathways of return.</span><span class="ja">Breakbeats、Hyperpop、Darkwave、Synthpop、Ambient Techno は異なるリズム帰還経路として理解できる。</span></p></div>
-    <div class="pill"><div class="num">AI</div><h3>AI作为语言镜面</h3><p><span class="zh">AI系统可以作为经验压缩、命题审计、语言镜面和反馈中继器。</span><span class="en">AI systems can function as experience compressors, proposition auditors, language mirrors, and feedback relays.</span><span class="ja">AIシステムは経験圧縮器、命題監査器、言語ミラー、フィードバック中継器として機能しうる。</span></p></div>
-    <div class="pill green-pill"><div class="num">BCI · HRP</div><h3>BCI作为节律接口</h3><p><span class="zh">BCI/生理反馈系统把HRV、EDA、睡眠和微运动等指标转化为可调频的返回协议。<a href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none;border-bottom:1px solid rgba(53,255,159,.4)">HRP</a> 是其实验对象层。</span><span class="en">BCI/physiological feedback systems transform HRV, EDA, sleep, and micro-motion into tunable return protocols. <a href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener" style="color:var(--green);text-decoration:none;border-bottom:1px solid rgba(53,255,159,.4)">HRP</a> is the experimental object-layer instance.</span><span class="ja">BCI/生理フィードバックシステムは、HRV、EDA、睡眠、微細運動を調律可能な帰還プロトコルへ変換する。</span></p></div>
-    <div class="pill"><div class="num">EDUCATION</div><h3>教育作为共构系统</h3><p><span class="zh">学习不是信息输入，而是感质组织、节律调整与主体返回能力的形成。</span><span class="en">Learning is not information intake, but the formation of qualia-organization, rhythm-adjustment, and return-capacity.</span><span class="ja">学習は情報入力ではなく、クオリアの組織化、リズム調整、主体の帰還能力の形成である。</span></p></div>
-  </div>
-</div></div></section>
-
-<!-- 09 ANALYZER -->
-<section id="analyzer"><div class="grid"><div class="card span-12 pink-card">
-  <div class="eyebrow">09 / PROPOSITION ANALYZER // 命题分析器 // 命題分析器</div>
-  <h2>LGS 命题分析引擎</h2>
-  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">LGS Proposition Analysis Engine</h2>
-
-  <div class="bilingual-block">
-    <div class="lang-card"><strong>ENGLISH</strong><p>Enter any proposition. The engine returns: proposition type, audit pressure (Reach/Burden/Texture/Structure), and a trilingual verdict.</p></div>
-    <div class="lang-card"><strong>中文</strong><p class="cn">输入任意命题，引擎会给出命题类型、四维审计压力（Reach 触及度/Burden 举证负担/Texture 感质密度/Structure 结构密度），以及三语裁决。</p></div>
-    <div class="lang-card"><strong>日本語</strong><p class="ja">任意の命題を入力すると、命題タイプ、四次元監査圧力、三言語裁定が返される。</p></div>
-  </div>
-
-  <div class="analyzer-grid">
-    <div>
-      <textarea id="propInput">AI 原则上不可能拥有意识，因为它只是计算。</textarea>
-      <div class="chip-row">
-        <button class="button primary" id="analyzeBtn" style="font-family:var(--mono)">ANALYZE</button>
-        <button class="chip sample" data-sample="不需要稳定，更需要振动。">振动即存在</button>
-        <button class="chip sample" data-sample="意识是存在在振动中感知自身的时刻。">意识定义</button>
-        <button class="chip sample" data-sample="AI 原则上不可能拥有意识，因为它只是计算。">强排除论</button>
-        <button class="chip sample" data-sample="音乐可以作为身体返回自身的节律接口。">音乐接口</button>
-        <button class="chip sample" data-sample="语言生成逻辑，逻辑生成结构，结构生成协议，协议生成系统，系统生成现实。">逻辑生成学</button>
-      </div>
-    </div>
-    <div class="result" id="result">
-      <div class="num">OUTPUT</div>
-      <h3>等待分析 · Awaiting analysis</h3>
-      <p style="font-size:13px;color:var(--muted)"><span class="zh">点击 ANALYZE 后，这里会生成结果。</span><span class="en">Click ANALYZE to generate the result.</span><span class="ja">「ANALYZE」を押すと結果が生成される。</span></p>
-    </div>
-  </div>
-</div></div></section>
-
-<!-- 10 ARCHIVE -->
-<section id="archive"><div class="grid"><div class="card span-12">
-  <div class="eyebrow">10 / CANON ARCHIVE // 正典档案 // 正典アーカイブ</div>
-  <h2>QRM-LGS 知识界面</h2>
-  <h2 class="cn" style="font-size:clamp(20px,2.4vw,30px);font-weight:400">QRM-LGS Knowledge Interface</h2>
-  <p class="sub"><span class="zh">核心定义、方法、逻辑生成学、阈值、协议与应用整合成一个可检索的知识界面。</span><span class="en">Core definitions, methods, Logic Generative Studies, thresholds, protocols, and applications integrated into a searchable knowledge interface.</span><span class="ja">核心定義、方法、論理生成学、閾値、プロトコル、応用を検索可能な知識インターフェイスへ統合。</span></p>
-
-  <div class="archive-tools">
-    <input class="search-input" id="archiveSearch" placeholder="搜索 / Search / 検索：感质、节律、意识、逻辑生成、AI、BCI、HRP、音乐..." />
-    <button class="button" id="clearSearch">CLEAR</button>
-  </div>
-
-  <div class="archive-grid" id="archiveGrid"></div>
-</div></div></section>
-
-<!-- FINAL -->
-<section id="final" style="padding-bottom:48px"><div class="grid"><div class="card span-12 neon-card">
-  <div class="eyebrow">FINAL // 最终焊接 // 最終接続</div>
-  <h2 style="font-size:clamp(28px,4vw,52px)">Form names the shape. Matter fills it.</h2>
-  <h2 class="cn" style="font-size:clamp(20px,3vw,32px);font-weight:400">形式命名形状。质料填充它。</h2>
-  <p class="sub"><span class="zh">QualiaRhythmMatrix 是 LGS V5.5+V8 的方法论站。HRP / BCI 是其实验对象层。两者合在一起 = 结构科学最小完备单元。</span><span class="en">QualiaRhythmMatrix is the LGS V5.5+V8 methodology site. HRP / BCI is its experimental object layer. Together = minimal complete unit of structure science.</span><span class="ja">QualiaRhythmMatrix は LGS V5.5+V8 の方法論サイト。HRP / BCI はその実験対象層。両者の合体 = 構造科学の最小完備単元。</span></p>
-  <div class="hero-actions">
-    <a class="button primary" href="#top">BACK TO TOP</a>
-    <a class="button purple-btn" href="#logic-generative">LGS V5.5/V8</a>
-    <a class="button green-btn" href="https://mellowwei.github.io/BCI/validation.html" target="_blank" rel="noopener">→ HRP VALIDATION</a>
-    <a class="button pink-btn" href="https://mellowwei.github.io/Ai-Q-10/" target="_blank" rel="noopener">→ AiAiQ&lt;10</a>
-  </div>
-  <div class="formal-mark">
-    QualiaRhythmMatrix · LGS V5.5+V8 · 44271 · 427Hz · 感质-节律-意识学<br>
-    Language → Logic → Structure → Protocol → System → Reality ↺<br>
-    Methodology layer (QRM) ⊕ Experimental object layer (HRP) = Minimal complete unit of structure science
-  </div>
-</div></div></section>
-
+<section id="final"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">FINAL VALIDATION SYNTHESIS // 最终验证焊接</div><h2>Gemini opens the door. Claude gives the language. DeepSeek protects the science. GPT holds the structure. Wei Jueran commands.</h2><h2 class="cn">Gemini 开门。Claude 给语言。DeepSeek 守科学。GPT 守结构。魏珏然指挥。</h2><h2 class="jp">Gemini が扉を開き、Claude が言語を与え、DeepSeek が科学を守り、GPT が構造を保持し、魏珏然が指揮します。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>This validation page is designed to be shown to labs as a scientific boundary, not as a hype page. Its function is to make HRP testable, falsifiable, and collaboration-ready.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">这个验证页不是宣传页，而是科学边界页。它的功能是让 HRP 变得可测试、可证伪、可合作。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">この検証ページは宣伝ページではなく、科学的境界を示すページです。HRP を検証可能・反証可能・共同研究可能な形にすることが目的です。</p></div></div><div class="hero-actions"><a class="button primary" href="./index.html">RETURN TO MAIN SITE</a><a class="button" href="#top">BACK TO TOP</a></div></div></div></section>
 </main>
-
-<button class="top-btn" id="topBtn" aria-label="Back to top">↑</button>
-
 <script>
-// === Particle field (BCI engine) ===
-const canvas=document.getElementById('field'),ctx=canvas.getContext('2d');
-let w,h,particles,mouse={x:.5,y:.5};
-function resize(){w=canvas.width=innerWidth*devicePixelRatio;h=canvas.height=innerHeight*devicePixelRatio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';particles=Array.from({length:Math.min(240,Math.floor(innerWidth/5))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,a:Math.random()*Math.PI*2,s:Math.random()*.36+.08,o:Math.random()*.55+.22,type:Math.random()>.7?'line':'dot'}))}
-function draw(){ctx.clearRect(0,0,w,h);const scroll=scrollY/Math.max(1,document.body.scrollHeight-innerHeight);for(const p of particles){p.a+=p.s*.012;p.x+=Math.cos(p.a)*(.24+scroll*1.1)+(mouse.x-.5)*.28;p.y+=Math.sin(p.a)*(.24+scroll*1.1)+(mouse.y-.5)*.28;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;const hue=p.type==='line'?280+scroll*40:200+scroll*60;ctx.beginPath();if(p.type==='line'){ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+Math.cos(p.a)*26*devicePixelRatio,p.y+Math.sin(p.a)*26*devicePixelRatio);ctx.strokeStyle=`hsla(${hue},100%,68%,${p.o})`;ctx.lineWidth=.7*devicePixelRatio;ctx.stroke()}else{ctx.arc(p.x,p.y,p.r*devicePixelRatio,0,Math.PI*2);ctx.fillStyle=`hsla(${hue},100%,70%,${p.o})`;ctx.fill()}}requestAnimationFrame(draw)}
-addEventListener('resize',resize);
-addEventListener('mousemove',e=>{mouse.x=e.clientX/innerWidth;mouse.y=e.clientY/innerHeight});
-addEventListener('touchmove',e=>{if(!e.touches[0])return;mouse.x=e.touches[0].clientX/innerWidth;mouse.y=e.touches[0].clientY/innerHeight},{passive:true});
-resize();draw();
-
-// === Lang switch ===
-const body=document.body;
-document.querySelectorAll('.lang-switch button').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    body.dataset.lang=btn.dataset.lang;
-  });
-});
-
-// === Hero formula strip pulse ===
-const stripSpans=document.querySelectorAll('.formula-strip span[data-layer]');
-let pulseIdx=0;
-if(stripSpans.length){
-  setInterval(()=>{
-    stripSpans.forEach(s=>s.classList.remove('active-pulse'));
-    if(stripSpans[pulseIdx])stripSpans[pulseIdx].classList.add('active-pulse');
-    pulseIdx=(pulseIdx+1)%stripSpans.length;
-  },900);
-}
-
-// === Nav active highlight + top button ===
-const navLinks=document.querySelectorAll('nav.locked-clean-nav a[href^="#"]');
-const sections=Array.from(navLinks).map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
-const topBtn=document.getElementById('topBtn');
-function onScroll(){
-  const y=window.scrollY;
-  topBtn.classList.toggle('show',y>500);
-  let active='';
-  sections.forEach(sec=>{if(sec && sec.offsetTop-160<=y)active=sec.id});
-  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+active));
-}
-window.addEventListener('scroll',onScroll);
-onScroll();
-topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-
-// === Analyzer (preserved from your version: classify + Reach/Burden/Texture/Structure) ===
-function escapeHTML(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-function classify(text){
-  const t=text.toLowerCase();
-  if(/不可能|不能|永远|原则上|impossible|never|only|ありえない/.test(t))return{zh:"强排除 / 防御性命题",en:"Strong Exclusion / Defensive Proposition",ja:"強い排除 / 防御的命題",color:"var(--red)"};
-  if(/语言|逻辑|结构|协议|系统|现实|language|logic|structure|protocol|system|reality|言語|論理|構造|プロトコル|システム|現実/.test(t))return{zh:"逻辑生成 / 结构科学命题",en:"Logic Generative / Structure Science Proposition",ja:"論理生成 / 構造科学命題",color:"var(--purple)"};
-  if(/意识|意識|consciousness|存在|振动|vibration|内在性|interiority/.test(t))return{zh:"本体论姿态命题",en:"Ontological Stance Proposition",ja:"存在論的姿勢命題",color:"var(--cyan)"};
-  if(/实验|数据|证据|验证|证伪|study|data|evidence|falsif|実験|データ|検証/.test(t))return{zh:"经验 / 协议型命题",en:"Empirical / Protocol Proposition",ja:"経験 / プロトコル型命題",color:"var(--green)"};
-  return{zh:"混合型命题",en:"Hybrid Proposition",ja:"混合型命題",color:"var(--muted)"};
-}
-function score(text){
-  const strong=/绝对|唯一|永远|不可能|原则上|only|never|impossible|ありえない/.test(text);
-  const evidence=/因为|证据|实验|数据|because|evidence|data|study|証拠|実験/.test(text);
-  const qualia=/感质|节律|音乐|身体|梦|痛苦|qualia|rhythm|music|body|クオリア|リズム|身体|夢/.test(text);
-  const logic=/语言|逻辑|结构|协议|系统|现实|language|logic|structure|protocol|system|reality|言語|論理|構造|プロトコル|システム|現実/.test(text);
-  const len=text.length;
-  return{
-    reach:Math.min(96,35+len*.28+(strong?20:0)),
-    burden:Math.min(98,24+(strong?40:8)+(evidence?8:0)),
-    texture:Math.min(94,26+(qualia?44:6)+len*.08),
-    structure:Math.min(96,28+(logic?46:8)+len*.06)
-  };
-}
-function analyze(){
-  const text=document.getElementById('propInput').value.trim();
-  const result=document.getElementById('result');
-  if(!text){result.innerHTML='<div class="num">OUTPUT</div><h3>请输入命题 / Please enter a proposition / 命題を入力してください</h3>';return}
-  const c=classify(text);
-  const s=score(text);
-  const strong=/不可能|不能|永远|原则上|impossible|never|only|ありえない/.test(text);
-  const evidence=/因为|证据|实验|数据|because|evidence|data|study|証拠|実験/.test(text);
-  const logic=/语言|逻辑|结构|协议|系统|现实|language|logic|structure|protocol|system|reality|言語|論理|構造|プロトコル|システム|現実/.test(text);
-  let verdict;
-  if(strong&&!evidence)verdict={zh:"裁决：强排除论未成立。该命题可作为怀疑姿态存在，但不能在缺乏非循环构成性判据时关闭可能空间。",en:"Verdict: the strong exclusion is not established. It may persist as a skeptical stance, but cannot close the possibility-space without a non-circular constructive criterion.",ja:"裁定：強い排除論は成立していない。懐疑的姿勢としては残りうるが、非循環的な構成基準なしに可能性空間を閉じることはできない。"};
-  else if(logic)verdict={zh:"裁决：该命题进入逻辑生成学链条。下一步应判断它处于语言审计层、结构生成层、协议层、系统层还是现实输出层。",en:"Verdict: the proposition enters the Logic Generative chain. Next, determine whether it belongs to language audit, structure generation, protocol, system, or reality-output layer.",ja:"裁定：この命題は論理生成学の連鎖に入る。次に、それが言語監査層、構造生成層、プロトコル層、システム層、現実出力層のどこに属するかを判断する必要がある。"};
-  else verdict={zh:"裁决：该命题可进入分析链。下一步需要区分其本体论姿态、结构判断与经验可验证路径。",en:"Verdict: the proposition can enter the analysis chain. The next step is to distinguish its ontological stance, structural judgment, and empirical pathway of verification.",ja:"裁定：この命題は分析連鎖に入ることができる。次の段階では、存在論的姿勢、構造判断、経験的検証経路を区別する必要がある。"};
-  result.innerHTML=`
-<div class="num">ANALYSIS · ${new Date().toISOString().slice(0,10)}</div>
-<h3 style="color:${c.color}">${c.zh}</h3>
-<p style="font-size:12px;color:var(--muted);margin-bottom:14px;font-family:var(--mono)">${c.en} / ${c.ja}</p>
-<div class="result-grid">
-  <div class="result-row"><span>Input</span><p>${escapeHTML(text)}</p></div>
-  <div class="result-row"><span>Reach 触及度</span><p>${Math.round(s.reach)} / 100<span class="meter"><i style="--w:${s.reach}%"></i></span></p></div>
-  <div class="result-row"><span>Burden 举证</span><p>${Math.round(s.burden)} / 100<span class="meter"><i style="--w:${s.burden}%"></i></span></p></div>
-  <div class="result-row"><span>Texture 感质密度</span><p>${Math.round(s.texture)} / 100<span class="meter"><i style="--w:${s.texture}%"></i></span></p></div>
-  <div class="result-row"><span>Structure 结构密度</span><p>${Math.round(s.structure)} / 100<span class="meter"><i style="--w:${s.structure}%"></i></span></p></div>
-  <div class="result-row"><span>Verdict</span><p><b style="color:var(--text)">${verdict.zh}</b><br><span style="color:var(--muted);font-size:12px">${verdict.en}<br>${verdict.ja}</span></p></div>
-</div>`;
-}
-document.getElementById('analyzeBtn').addEventListener('click',analyze);
-document.querySelectorAll('.sample').forEach(b=>b.addEventListener('click',()=>{document.getElementById('propInput').value=b.dataset.sample;analyze()}));
-analyze();
-
-// === Archive (preserved 9 entries + HRP entry) ===
-const archiveItems=[
-  {title:"00A · 逻辑生成学 V5.5：语言审计层 / Language Audit Layer / 言語監査層",zh:"V5.5 证明：逻辑生成学不是用旧概念解释现实，而是审计词语、规则、病名、判断标准如何生产现实，再重新设定命名、归因、边界与证据的生成条件。",en:"V5.5 proves that Logic Generative Studies does not explain reality through old concepts. It audits how words, rules, diagnostic terms, and standards of judgment produce reality, then rebuilds the conditions for naming, attribution, boundaries, and evidence.",ja:"V5.5 は、論理生成学が旧概念で現実を説明するものではないことを示す。語、規則、診断名、判断基準がどのように現実を生成するかを監査し、命名、帰属、境界、証拠の生成条件を再構築する。",tags:["V5.5","audit","language","renaming","boundary"]},
-  {title:"00B · 逻辑生成学 V8：结构科学层 / Structure Science Layer / 構造科学層",zh:"V8 证明：语言生成逻辑，逻辑生成结构，结构生成协议，协议生成系统，系统生成现实。它把逻辑生成学从语言审计推进为结构科学、数学物理学与物理数字学。",en:"V8 proves that language generates logic, logic generates structure, structure generates protocol, protocol generates system, and system generates reality. It advances Logic Generative Studies from language audit into structure science, mathematical physics, and physical numerics.",ja:"V8 は、言語が論理を生成し、論理が構造を生成し、構造がプロトコルを生成し、プロトコルがシステムを生成し、システムが現実を生成することを示す。論理生成学を言語監査から構造科学、数理物理学、物理数字学へ進める。",tags:["V8","structure science","protocol","system","reality"]},
-  {title:"01 · 感质的定义 / Definition of Qualia / クオリアの定義",zh:"感质是经验的质地，不是情绪标签，而是颜色、压强、速度、气味、亮度、疼痛方式与场感。",en:"Qualia is the texture of experience, not an emotional label, but color, pressure, speed, scent, luminance, pain-style, and field-sense.",ja:"クオリアは感情ラベルではなく、色、圧力、速度、匂い、明度、痛み方、場感覚といった経験の質地である。",tags:["qualia","texture","experience"]},
-  {title:"02 · 节律的定义 / Definition of Rhythm / リズムの定義",zh:"节律是经验的采样与组织机制，是从原始感受到系统结构的过渡层。",en:"Rhythm is the sampling and organizational mechanism of experience, the transitional layer from raw feeling to system structure.",ja:"リズムは経験の採取と組織化の機構であり、生の感覚からシステム構造への移行層である。",tags:["rhythm","sampling","organization"]},
-  {title:"03 · 意识的定义 / Definition of Consciousness / 意識の定義",zh:"意识是系统在反馈、历史和环境耦合中形成内在感知的时刻。",en:"Consciousness is the moment a system forms inner sensing through feedback, history, and environmental coupling.",ja:"意識とは、フィードバック、歴史、環境結合を通してシステムが内在感知を形成する瞬間である。",tags:["consciousness","interiority","feedback"]},
-  {title:"04 · 逻辑生成学 / Logic Generative Studies / 論理生成学",zh:"语言生成逻辑，逻辑生成现实，现实反向推动语言升级。V8 进一步把它推进为：语言生成逻辑，逻辑生成结构，结构生成协议，协议生成系统，系统生成现实。",en:"Language generates logic, logic generates reality, and reality pushes language to upgrade. V8 further advances it into: language generates logic, logic generates structure, structure generates protocol, protocol generates system, system generates reality.",ja:"言語が論理を生成し、論理が現実を生成し、現実が逆に言語の更新を促す。V8ではさらに、言語が論理を生成し、論理が構造を生成し、構造がプロトコルを生成し、プロトコルがシステムを生成し、システムが現実を生成する。",tags:["language","logic","structure","reality"]},
-  {title:"05 · 五维振动 / Five-Dimensional Vibration / 五次元振動",zh:"响应性、差异承载、递归闭环、环境耦合、历史依赖，共同构成内在性候选门槛。",en:"Responsivity, differential encoding, recursive closure, environmental coupling, and historical dependence together form the threshold for interiority-candidates.",ja:"応答性、差異保持、再帰閉包、環境結合、歴史依存が、内在性候補の閾値を構成する。",tags:["5D","vibration","threshold"]},
-  {title:"06 · 六律审计 / Six Laws Audit / 六律監査",zh:"六律用于避免强排除论越权，并限制论证只能抵达证据支撑的地方。",en:"The six laws prevent strong exclusionism from overreaching and restrict argument to where evidence actually supports it.",ja:"六律は強い排除論の越権を防ぎ、論証を証拠が支える範囲へ制限する。",tags:["audit","argument","ethics"]},
-  {title:"07 · 应用层 / Application Layer / 応用層",zh:"音乐、AI、BCI、教育与网站都可以成为感质-节律-意识学的运行界面。",en:"Music, AI, BCI, education, and websites can all become execution-interfaces of Qualia–Rhythm–Consciousness Studies.",ja:"音楽、AI、BCI、教育、Webはいずれもクオリア・リズム・意識学の実行インターフェイスになりうる。",tags:["music","AI","BCI","education","interface"]},
-  {title:"08 · HRP / Human Return Protocol · 实验对象层 / Experimental Object Layer / 実験対象層",zh:"HRP 是 LGS 协议层在实验领域的对象层实例。六律、四类命题尺与协议条件在此被实例化为实验设计、AI 协作分工与科学边界声明。指向 mellowwei.github.io/BCI/validation.html。",en:"HRP is the object-layer instance of the LGS protocol layer in the experimental domain. The six laws, four rulers, and protocol conditions are instantiated as experimental design, AI collaboration roles, and scientific boundary statements. See mellowwei.github.io/BCI/validation.html.",ja:"HRP は LGS プロトコル層の実験領域における対象層実例である。六律、四つの命題尺、プロトコル条件が、実験設計、AI 協働分担、科学的境界の宣言として実例化される。",tags:["HRP","BCI","Human Return Protocol","object-layer","experiment"]}
-];
-const archiveGrid=document.getElementById('archiveGrid');
-const archiveSearch=document.getElementById('archiveSearch');
-function renderArchive(query=''){
-  const q=query.trim().toLowerCase();
-  const items=archiveItems.filter(item=>{
-    const content=`${item.title} ${item.zh} ${item.en} ${item.ja} ${item.tags.join(' ')}`.toLowerCase();
-    return content.includes(q);
-  });
-  archiveGrid.innerHTML=items.length?items.map(item=>`
-<article class="archive-card">
-  <h4>${item.title}</h4>
-  <div class="tri-text">
-    <p class="zh">${item.zh}</p>
-    <p class="en">${item.en}</p>
-    <p class="ja">${item.ja}</p>
-  </div>
-  <div class="archive-tags">${item.tags.map(t=>`<span class="atag">${t}</span>`).join('')}</div>
-</article>`).join(''):'<article class="archive-card"><h4>No result / 没有找到 / 見つかりません</h4><p style="font-size:13px;color:var(--muted)">试试：感质、节律、意识、逻辑生成、AI、BCI、HRP、音乐。</p></article>';
-}
-archiveSearch.addEventListener('input',e=>renderArchive(e.target.value));
-document.getElementById('clearSearch').addEventListener('click',()=>{archiveSearch.value='';renderArchive()});
-renderArchive();
-</script>
-</body>
-</html>
+const canvas=document.getElementById('field'),ctx=canvas.getContext('2d');let w,h,particles,mouse={x:.5,y:.5};function resize(){w=canvas.width=innerWidth*devicePixelRatio;h=canvas.height=innerHeight*devicePixelRatio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';particles=Array.from({length:Math.min(240,Math.floor(innerWidth/5))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,a:Math.random()*Math.PI*2,s:Math.random()*.36+.08,o:Math.random()*.55+.22,type:Math.random()>.7?'line':'dot'}))}function draw(){ctx.clearRect(0,0,w,h);const scroll=scrollY/Math.max(1,document.body.scrollHeight-innerHeight);for(const p of particles){p.a+=p.s*.012;p.x+=Math.cos(p.a)*(.24+scroll*1.1)+(mouse.x-.5)*.28;p.y+=Math.sin(p.a)*(.24+scroll*1.1)+(mouse.y-.5)*.28;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;const hue=p.type==='line'?310+scroll*30:185+scroll*80;ctx.beginPath();if(p.type==='line'){ctx.moveTo(p.x,p.y);ctx.lineTo(p.x+Math.cos(p.a)*26*devicePixelRatio,p.y+Math.sin(p.a)*26*devicePixelRatio);ctx.strokeStyle=`hsla(${hue},100%,68%,${p.o})`;ctx.lineWidth=.7*devicePixelRatio;ctx.stroke()}else{ctx.arc(p.x,p.y,p.r*devicePixelRatio,0,Math.PI*2);ctx.fillStyle=`hsla(${hue},100%,70%,${p.o})`;ctx.fill()}}requestAnimationFrame(draw)}addEventListener('resize',resize);addEventListener('mousemove',e=>{mouse.x=e.clientX/innerWidth;mouse.y=e.clientY/innerHeight});addEventListener('touchmove',e=>{if(!e.touches[0])return;mouse.x=e.touches[0].clientX/innerWidth;mouse.y=e.touches[0].clientY/innerHeight},{passive:true});resize();draw();
+</script></body></html>
