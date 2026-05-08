@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HRP · Laboratory Collaboration Gate · Causality × Adaptive Music Interface · Human Return Protocol</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+
+:root {
+  --bg:#03040a;--bg2:#070817;--panel:rgba(8,10,28,.68);
+  --text:#f4f7ff;--muted:#9aa6c8;--dim:#5e6688;
+  --cyan:#00f5ff;--blue:#64d2ff;--pink:#ff2bd6;
+  --purple:#8d5cff;--green:#35ff9f;--yellow:#ffe66d;
+  --red:#ff4d6d;--amber:#ffb830;
+  --border:rgba(0,245,255,.2);
+  --shadow-deep:0 24px 100px rgba(0,0,0,.58);
+  --mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --serif:"Fraunces",Georgia,serif;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+  margin:0;color:var(--text);
+  background:
+    radial-gradient(circle at 18% 12%,rgba(0,245,255,.16),transparent 30%),
+    radial-gradient(circle at 82% 18%,rgba(255,43,214,.15),transparent 29%),
+    radial-gradient(circle at 50% 92%,rgba(141,92,255,.16),transparent 38%),
+    linear-gradient(180deg,#03040a 0%,#050515 48%,#02030a 100%);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;
+  overflow-x:hidden;
+  padding-top:116px!important;
+}
+
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.20;
+  background:repeating-linear-gradient(to bottom,rgba(255,255,255,.045) 0px,rgba(255,255,255,.045) 1px,transparent 1px,transparent 5px);
+  mix-blend-mode:overlay;
+}
+
+canvas#field{position:fixed;inset:0;z-index:-4;width:100vw;height:100vh;}
+
+.grid-bg{
+  pointer-events:none;position:fixed;inset:0;z-index:-3;opacity:.32;
+  background-image:linear-gradient(rgba(0,245,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,43,214,.1) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 70%,transparent 100%);
+}
+
+.vignette{
+  pointer-events:none;position:fixed;inset:0;z-index:-2;
+  background:radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.34) 58%,rgba(0,0,0,.8) 100%);
+}
+
+/* LOCKED HEADER */
+header.locked-clean-header{
+  position:fixed!important;top:0!important;left:0!important;right:0!important;
+  min-height:92px!important;padding:14px 18px 12px!important;
+  display:flex!important;flex-direction:column!important;
+  align-items:flex-start!important;justify-content:center!important;gap:10px!important;
+  background:rgba(5,6,20,.96)!important;backdrop-filter:blur(18px)!important;
+  border-bottom:1px solid rgba(0,245,255,.24)!important;
+  box-shadow:0 0 30px rgba(0,245,255,.08)!important;
+  z-index:99999!important;
+}
+
+.brand{
+  display:flex!important;align-items:center!important;gap:14px!important;
+  color:var(--text)!important;font-family:var(--mono)!important;
+  font-size:14px!important;line-height:1.25!important;letter-spacing:.15em!important;
+  opacity:.95!important;
+}
+
+.dot{
+  width:14px!important;height:14px!important;border-radius:999px!important;
+  background:var(--cyan)!important;box-shadow:0 0 18px rgba(0,245,255,.9)!important;
+  flex:0 0 auto!important;display:inline-block!important;
+  animation:sigilPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes sigilPulse{
+  0%,100%{transform:scale(.82);opacity:.75;}
+  50%{transform:scale(1.2);opacity:1;}
+}
+
+nav.locked-clean-nav{
+  display:flex!important;flex-wrap:wrap!important;
+  align-items:center!important;justify-content:flex-start!important;
+  gap:8px 16px!important;width:100%!important;line-height:1.3!important;
+}
+
+nav.locked-clean-nav a{
+  color:var(--muted)!important;text-decoration:none!important;
+  font-family:var(--mono)!important;font-size:12px!important;
+  letter-spacing:.11em!important;white-space:nowrap!important;
+  transition:color .2s,text-shadow .2s;
+}
+
+nav.locked-clean-nav a:hover{color:var(--cyan)!important;text-shadow:0 0 14px rgba(0,245,255,.65)!important;}
+nav.locked-clean-nav a.active-link{color:var(--green)!important;text-shadow:0 0 12px rgba(53,255,159,.6)!important;}
+
+/* LAYOUT */
+main{width:min(1240px,calc(100% - 40px));margin:0 auto;}
+
+section{
+  position:relative;min-height:100vh;
+  display:grid;align-items:center;
+  padding:112px 0 72px;
+  scroll-margin-top:128px;
+}
+
+.eyebrow{
+  margin-bottom:18px;color:var(--cyan);
+  font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+  text-shadow:0 0 12px rgba(0,245,255,.72),0 0 26px rgba(255,43,214,.28);
+}
+.eyebrow.green{color:var(--green);text-shadow:0 0 12px rgba(53,255,159,.72);}
+.eyebrow.amber{color:var(--amber);text-shadow:0 0 12px rgba(255,184,48,.72);}
+
+h1{
+  max-width:1120px;margin:0;font-family:var(--serif);
+  font-size:clamp(52px,9vw,128px);line-height:.88;letter-spacing:-.09em;font-weight:860;
+}
+
+h2{
+  max-width:1000px;margin:0 0 24px;font-family:var(--serif);
+  font-size:clamp(34px,5.2vw,72px);line-height:.96;letter-spacing:-.07em;font-weight:820;
+  text-shadow:0 0 18px rgba(0,245,255,.16),0 0 34px rgba(255,43,214,.1);
+}
+
+h3{margin:0 0 12px;color:var(--text);font-size:23px;letter-spacing:-.035em;text-shadow:0 0 14px rgba(0,245,255,.18);}
+
+p{margin:0;color:var(--muted);font-size:16px;line-height:1.68;}
+p+p{margin-top:10px;}
+.cn{margin-top:9px;color:rgba(244,247,255,.92);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;}
+.sub{max-width:960px;margin-top:22px;color:var(--muted);font-size:18px;line-height:1.65;}
+
+/* GLITCH */
+.glitch{position:relative;color:var(--text);text-shadow:0 0 12px rgba(0,245,255,.45),0 0 32px rgba(255,43,214,.22);}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;opacity:.65;}
+.glitch::before{color:var(--cyan);transform:translate(2px,0);clip-path:inset(0 0 58% 0);animation:glitchA 2.6s infinite linear alternate-reverse;}
+.glitch::after{color:var(--pink);transform:translate(-2px,0);clip-path:inset(48% 0 0 0);animation:glitchB 1.9s infinite linear alternate-reverse;}
+@keyframes glitchA{0%{transform:translate(2px,0);}20%{transform:translate(-3px,-1px);}40%{transform:translate(4px,1px);}60%{transform:translate(-1px,0);}80%{transform:translate(3px,-2px);}100%{transform:translate(0,0);}}
+@keyframes glitchB{0%{transform:translate(-2px,0);}25%{transform:translate(3px,1px);}50%{transform:translate(-4px,-1px);}75%{transform:translate(1px,2px);}100%{transform:translate(0,0);}}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;}
+.span-3{grid-column:span 3;}.span-4{grid-column:span 4;}.span-5{grid-column:span 5;}
+.span-6{grid-column:span 6;}.span-7{grid-column:span 7;}.span-8{grid-column:span 8;}
+.span-12{grid-column:span 12;}
+
+/* CARDS */
+.card{
+  position:relative;overflow:hidden;padding:28px;
+  border:1px solid rgba(0,245,255,.2);border-radius:28px;
+  background:linear-gradient(180deg,rgba(0,245,255,.06),rgba(255,43,214,.035)),rgba(8,10,28,.62);
+  backdrop-filter:blur(20px);
+  box-shadow:var(--shadow-deep),0 0 36px rgba(0,245,255,.08),inset 0 0 32px rgba(255,255,255,.025);
+}
+.card::before{
+  content:"";position:absolute;top:0;left:22px;right:22px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),transparent);opacity:.72;
+}
+.neon-card{border-color:rgba(53,255,159,.28);box-shadow:0 0 50px rgba(53,255,159,.1),0 0 70px rgba(0,245,255,.08),var(--shadow-deep);}
+.green-card{border-color:rgba(53,255,159,.28);background:linear-gradient(180deg,rgba(53,255,159,.07),rgba(0,245,255,.04)),rgba(8,10,28,.62);}
+.green-card::before{background:linear-gradient(90deg,transparent,var(--green),var(--cyan),transparent);}
+.amber-card{border-color:rgba(255,184,48,.28);background:linear-gradient(180deg,rgba(255,184,48,.05),rgba(0,245,255,.03)),rgba(8,10,28,.62);}
+.amber-card::before{background:linear-gradient(90deg,transparent,var(--amber),var(--cyan),transparent);}
+
+/* STATUS GRID */
+.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:980px;margin:0 0 26px;}
+.status-card{
+  border:1px solid rgba(0,245,255,.22);border-radius:18px;padding:13px 15px;
+  background:linear-gradient(90deg,rgba(0,245,255,.07),rgba(255,43,214,.045)),rgba(8,10,28,.58);
+  backdrop-filter:blur(16px);
+}
+.status-label{margin-bottom:7px;color:var(--green);font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;text-shadow:0 0 10px rgba(53,255,159,.48);}
+.status-value{color:rgba(244,247,255,.86);font-family:var(--mono);font-size:11px;line-height:1.45;letter-spacing:.08em;text-transform:uppercase;}
+
+/* THESIS */
+.thesis{max-width:960px;margin-top:34px;color:rgba(244,247,255,.92);font-family:var(--serif);font-size:clamp(22px,3vw,38px);line-height:1.08;letter-spacing:-.045em;}
+
+/* TAGS / BUTTONS */
+.tag-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.tag{padding:8px 11px;border:1px solid rgba(0,245,255,.22);border-radius:999px;background:linear-gradient(90deg,rgba(0,245,255,.07),rgba(255,43,214,.045));color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.08em;}
+.tag.green{border-color:rgba(53,255,159,.3);color:var(--green);}
+
+.button{
+  appearance:none;position:relative;overflow:hidden;padding:13px 18px;
+  border:1px solid rgba(0,245,255,.26);border-radius:999px;
+  background:linear-gradient(90deg,rgba(0,245,255,.08),rgba(255,43,214,.07)),rgba(255,255,255,.035);
+  color:var(--text);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  cursor:pointer;box-shadow:0 0 18px rgba(0,245,255,.1),inset 0 0 18px rgba(255,255,255,.03);
+  transition:transform .2s,border-color .2s,box-shadow .2s;display:inline-block;
+}
+.button:hover{transform:translateY(-2px);border-color:rgba(255,43,214,.48);}
+.button.primary{border-color:rgba(53,255,159,.46);box-shadow:0 0 22px rgba(53,255,159,.2),0 0 44px rgba(0,245,255,.12);}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;}
+
+/* NUM */
+.num{margin-bottom:18px;color:var(--green);font-family:var(--mono);font-size:12px;letter-spacing:.2em;}
+
+/* INTERSECTION TABLE */
+.int-table{width:100%;border-collapse:collapse;margin-top:24px;display:block;overflow:auto;}
+.int-table th,.int-table td{border:1px solid rgba(0,245,255,.16);padding:13px 16px;vertical-align:top;text-align:left;}
+.int-table th{color:var(--cyan);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(0,245,255,.05);}
+.int-table td{color:var(--muted);line-height:1.65;font-size:14px;background:rgba(255,255,255,.02);}
+.int-table td:first-child{color:var(--text);font-size:13px;font-weight:600;}
+
+.strength{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:999px;margin-top:5px;}
+.strength.high{background:rgba(53,255,159,.12);color:var(--green);border:1px solid rgba(53,255,159,.3);}
+.strength.mid{background:rgba(0,245,255,.1);color:var(--cyan);border:1px solid rgba(0,245,255,.25);}
+
+/* RQ BLOCK */
+.rq-block{margin:24px 0;padding:22px 26px;border-left:3px solid var(--cyan);background:rgba(0,245,255,.04);border-radius:0 16px 16px 0;}
+.rq-block.pink{border-left-color:var(--pink);background:rgba(255,43,214,.04);}
+.rq-label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;color:var(--cyan);margin-bottom:10px;}
+.rq-block.pink .rq-label{color:var(--pink);}
+.rq-text{font-family:var(--serif);font-size:clamp(17px,2vw,24px);font-style:italic;line-height:1.45;color:var(--text);}
+
+/* PILOT CONDITIONS */
+.conditions{margin-top:20px;display:grid;gap:10px;}
+.condition-row{display:grid;grid-template-columns:90px 1fr 1.4fr;border:1px solid rgba(0,245,255,.14);border-radius:16px;overflow:hidden;}
+.cond-label{display:flex;align-items:center;justify-content:center;padding:16px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:500;background:rgba(0,245,255,.06);color:var(--cyan);border-right:1px solid rgba(0,245,255,.12);}
+.condition-row.highlight .cond-label{background:rgba(53,255,159,.08);color:var(--green);border-right-color:rgba(53,255,159,.2);}
+.cond-name{padding:16px 18px;font-size:14px;font-weight:600;color:var(--text);border-right:1px solid rgba(0,245,255,.08);display:flex;align-items:center;}
+.cond-desc{padding:16px 18px;font-size:13px;color:var(--muted);display:flex;align-items:center;line-height:1.55;}
+
+/* SYSTEM LOOP */
+.system-loop{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px;}
+.loop-item{min-height:160px;padding:22px;border:1px solid rgba(0,245,255,.2);border-radius:24px;background:linear-gradient(180deg,rgba(0,245,255,.055),rgba(141,92,255,.035)),rgba(255,255,255,.035);}
+
+/* FALSIFIABILITY */
+.falsif-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+.falsif-item{padding:16px 18px;border-radius:14px;font-size:13px;line-height:1.65;}
+.falsif-item.no{border:1px solid rgba(255,77,109,.22);background:rgba(255,77,109,.04);color:var(--muted);}
+.falsif-item.no::before{content:"NOT CLAIMED";display:block;font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--red);margin-bottom:8px;}
+.falsif-item.yes{border:1px solid rgba(53,255,159,.22);background:rgba(53,255,159,.04);color:var(--muted);}
+.falsif-item.yes::before{content:"CLAIMED + TESTABLE";display:block;font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--green);margin-bottom:8px;}
+
+/* EXCHANGE */
+.exchange-wrap{display:grid;grid-template-columns:1fr 80px 1fr;gap:16px;align-items:center;margin-top:24px;}
+.exchange-side{padding:26px;border-radius:22px;border:1px solid rgba(0,245,255,.18);}
+.exchange-side.hrp{border-color:rgba(53,255,159,.26);background:rgba(53,255,159,.04);}
+.exchange-side.lab{border-color:rgba(0,245,255,.26);background:rgba(0,245,255,.04);}
+.exchange-label{font-family:var(--mono);font-size:9px;letter-spacing:.22em;margin-bottom:14px;}
+.exchange-side.hrp .exchange-label{color:var(--green);}
+.exchange-side.lab .exchange-label{color:var(--cyan);}
+.exchange-arrow{text-align:center;font-family:var(--mono);font-size:28px;color:var(--dim);}
+.exchange-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:14px;line-height:1.55;color:var(--muted);}
+.exchange-item::before{content:"→";font-family:var(--mono);font-size:11px;color:var(--dim);flex-shrink:0;margin-top:2px;}
+.exchange-side.hrp .exchange-item::before{color:var(--green);}
+.exchange-side.lab .exchange-item::before{color:var(--cyan);}
+
+/* PAPER CARDS */
+.paper-card{padding:22px 24px;border:1px solid rgba(0,245,255,.16);border-radius:22px;background:rgba(255,255,255,.025);margin-bottom:14px;}
+.paper-number{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--dim);margin-bottom:10px;}
+.paper-title{font-family:var(--serif);font-size:clamp(16px,1.8vw,22px);font-style:italic;color:var(--text);margin-bottom:10px;line-height:1.35;}
+.paper-venue{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--cyan);margin-bottom:12px;}
+
+/* CTA */
+.cta-wrap{padding:44px 48px;border:1px solid rgba(53,255,159,.32);border-radius:32px;background:linear-gradient(160deg,rgba(53,255,159,.06),rgba(0,245,255,.03)),rgba(8,10,28,.8);position:relative;overflow:hidden;margin-top:54px;}
+.cta-wrap::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(53,255,159,.65),transparent);}
+
+/* GENRE CHIPS */
+.genre-chip{padding:10px 16px;border:1px solid rgba(0,245,255,.2);border-radius:14px;font-family:var(--mono);font-size:12px;color:var(--cyan);}
+.genre-chip span{color:var(--muted);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  body{padding-top:146px!important;}
+  header.locked-clean-header{min-height:122px!important;padding:12px 14px!important;}
+  .brand{font-size:11px!important;letter-spacing:.1em!important;}
+  nav.locked-clean-nav a{font-size:10px!important;}
+  .grid,.system-loop,.exchange-wrap{grid-template-columns:1fr!important;}
+  .span-3,.span-4,.span-5,.span-6,.span-7,.span-8,.span-12{grid-column:1/-1!important;}
+  .condition-row{grid-template-columns:70px 1fr;}
+  .cond-desc{display:none;}
+  .falsif-grid{grid-template-columns:1fr;}
+  .exchange-arrow{display:none;}
+  .status-grid{grid-template-columns:1fr!important;}
+  .cta-wrap{padding:28px 22px;}
+}
+
+@media(max-width:520px){
+  body{padding-top:0!important;}
+  header.locked-clean-header{position:sticky!important;max-height:170px!important;overflow-y:auto!important;}
+}
+</style>
+</head>
+<body>
+<canvas id="field"></canvas>
+<div class="grid-bg"></div>
+<div class="vignette"></div>
+
+<header class="locked-clean-header">
+  <div class="brand">
+    <span class="dot"></span>
+    HRP // LABORATORY COLLABORATION GATE // HUMAN RETURN PROTOCOL // 实验室合作入口
+  </div>
+  <nav class="locked-clean-nav">
+    <a href="./index.html">← MAIN SITE</a>
+    <a href="./validation.html">VALIDATION</a>
+    <a href="#top" class="active-link">GATE HOME</a>
+    <a href="#intersection">INTERSECTION</a>
+    <a href="#research">RESEARCH Q</a>
+    <a href="#pilot">PILOT</a>
+    <a href="#exchange">EXCHANGE</a>
+    <a href="#papers">PAPERS</a>
+    <a href="#system">SYSTEM</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ── HERO ── -->
+<section id="top">
+  <div>
+    <div class="eyebrow">LABORATORY COLLABORATION GATE // 实验室合作入口 // UPENN · 2026</div>
+
+    <div class="status-grid">
+      <div class="status-card">
+        <div class="status-label">COLLABORATION STATUS</div>
+        <div class="status-value">SEEKING VALIDATION PARTNERS // PHYSIOLOGICAL + NEURAL LAYER // NORTH AMERICA · EAST ASIA</div>
+      </div>
+      <div class="status-card">
+        <div class="status-label">SYSTEM READINESS</div>
+        <div class="status-value">ARCHITECTURE COMPLETE // PILOT DESIGN READY // DATA PROTOCOL DEFINED</div>
+      </div>
+    </div>
+
+    <h1 class="glitch" data-text="A CAUSAL INFERENCE PROBLEM">A CAUSAL INFERENCE PROBLEM</h1>
+    <div class="thesis">
+      dressed in rhythm.
+      <div class="cn">穿着节律的外衣。</div>
+    </div>
+
+    <p class="sub">The Human Return Protocol is an <strong style="color:var(--text)">adaptive auditory-AI research prototype</strong> for attention and emotional self-regulation. Its core validation challenge is one that computational neuroscience and BCI labs are uniquely positioned to solve: establishing causal effects of a rhythm-based intervention when randomized controlled trials are not feasible.</p>
+    <p class="sub cn" style="font-size:16px;margin-top:10px;">Human Return Protocol 是一个用于注意力与情绪自我调节的自适应声音-AI研究原型。它的核心验证挑战是计算神经科学与脑机接口实验室最有能力解决的问题：在无法进行随机对照实验时，建立节律干预的因果效应。</p>
+
+    <div class="hero-actions">
+      <a class="button primary" href="#intersection">INTERSECTION ANALYSIS</a>
+      <a class="button primary" href="#pilot">PILOT DESIGN</a>
+      <a class="button" href="#exchange">COLLABORATION STRUCTURE</a>
+      <a class="button" href="./validation.html">VALIDATION DOCS</a>
+      <a class="button" href="./index.html">FULL SYSTEM</a>
+    </div>
+
+    <div class="tag-row">
+      <span class="tag green">Adaptive auditory-AI</span>
+      <span class="tag green">Causal inference</span>
+      <span class="tag green">Non-diagnostic framework</span>
+      <span class="tag">ADHD · anxiety · burnout</span>
+      <span class="tag">HRV / EDA / EEG / fNIRS</span>
+      <span class="tag">44271 Neural Cuff</span>
+      <span class="tag">427Hz</span>
+      <span class="tag">UPenn · Learning Sciences + HCI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTERSECTION ── -->
+<section id="intersection">
+  <div class="grid">
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">PART 01 // RESEARCH INTERSECTION // 研究交叉点</div>
+      <h2>Where HRP connects to computational neuroscience.</h2>
+      <h2 class="cn">HRP 与计算神经科学研究的真实交叉。</h2>
+      <p class="sub">Four direct intersections — concrete methodological contact points between specific HRP components and active research domains in computational neuroscience, BCI, and causal behavior science. Not analogies. Not aspirational overlaps.</p>
+      <p class="sub cn" style="font-size:16px;margin-top:10px;">四个真实交叉点——HRP 各组件与计算神经科学、脑机接口、因果行为科学活跃研究方向之间的具体方法论接触点。不是比喻，不是期望中的重叠。</p>
+
+      <table class="int-table">
+        <thead>
+          <tr>
+            <th>HRP Component</th>
+            <th>Research Domain</th>
+            <th>Specific Connection</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>QDR Engine · intervention effect validation<br/><span class="strength high">PRIMARY</span></td>
+            <td style="color:var(--cyan)">Causal inference in human behavior</td>
+            <td>HRP cannot use RCTs. Validating whether adaptive rhythm <em>causes</em> state change — rather than merely correlating with it — requires observational causal methods: instrumental variables, difference-in-differences, or quasi-experimental designs. This is the precise methodological gap that determines whether HRP produces correlational findings or defensible causal evidence.</td>
+          </tr>
+          <tr>
+            <td>44271 Neural Cuff · wearable biosignal<br/><span class="strength high">PRIMARY</span></td>
+            <td style="color:var(--cyan)">Neurotechnology · wearable physiological sensing</td>
+            <td>Inner-wrist pulse-line placement, non-invasive, continuous HRV / EDA / skin temperature capture. The hardware acquisition layer of the HRP closed feedback loop. Connects directly to labs working on wearable biosignal acquisition, physiological state classification, and real-time neural feedback systems.</td>
+          </tr>
+          <tr>
+            <td>Genre × BPM intervention matrix<br/><span class="strength mid">SECONDARY</span></td>
+            <td style="color:var(--blue)">Computational analysis of music and movement</td>
+            <td>Do different rhythmic genre profiles — defined by BPM range, beat salience, syncopation depth, spectral density — produce distinct physiological response signatures? HRP operationalizes this as a testable experimental condition, building on computational kinematics and auditory neuroscience literature.</td>
+          </tr>
+          <tr>
+            <td>Personalized rhythm response modeling<br/><span class="strength mid">SECONDARY</span></td>
+            <td style="color:var(--blue)">Individual variability in neural and behavioral data</td>
+            <td>HRP assumes inter-individual differences in rhythm entrainment response. Labs with frameworks for modeling individual variability in neural, physiological, or behavioral data provide the analytical infrastructure to test whether a personalized rhythm model outperforms a population-average model.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESEARCH QUESTION ── -->
+<section id="research">
+  <div class="grid">
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">PART 02 // RESEARCH QUESTION // 研究问题</div>
+      <h2>The question we are actually asking.</h2>
+      <h2 class="cn">我们真正在问的问题。</h2>
+
+      <div class="rq-block">
+        <div class="rq-label">PRIMARY RESEARCH QUESTION</div>
+        <div class="rq-text">Does adaptive rhythm + AI feedback produce stronger within-session attentional and emotional state recovery than fixed rhythm, random rhythm, or silence — and can this effect be attributed causally using observational methods?</div>
+      </div>
+      <div class="rq-block pink" style="margin-top:0;">
+        <div class="rq-label">一级研究问题</div>
+        <div class="rq-text" style="font-size:clamp(14px,1.8vw,20px);">自适应节律 + AI 反馈，是否比固定节律、随机节律或静音产生更强的 session 内注意力与情绪状态恢复——且这一效应能否用观察性因果方法加以归因？</div>
+      </div>
+    </div>
+
+    <div class="card span-6">
+      <h3>Not music therapy.</h3>
+      <h3 class="cn">不是音乐疗法。</h3>
+      <p>Music therapy asks whether music reduces clinical symptoms over extended treatment. This asks whether a specific rhythm parameter — adaptive vs. fixed vs. random — produces measurable within-session state change. The outcome is a state variable, not a symptom score. The population is non-clinical.</p>
+      <p class="cn">音乐疗法问的是音乐是否在长期治疗中减少临床症状。HRP 问的是特定节律参数是否在单次 session 内产生可测量的状态变化。结果变量是状态，不是症状分数。人群是非临床的。</p>
+    </div>
+
+    <div class="card span-6">
+      <h3>Not standard BCI.</h3>
+      <h3 class="cn">不是标准脑机接口。</h3>
+      <p>Standard BCI research decodes neural signals to control external devices. HRP inverts the direction: physiological signals modulate an auditory feedback loop. The system responds to the user's rhythm state; it does not issue commands to the user. The claim is about adaptive feedback efficacy, not neural decoding accuracy.</p>
+      <p class="cn">标准脑机接口研究解码神经信号以控制外部设备。HRP 反转了方向：生理信号调制声音反馈回路。系统响应用户的节律状态，而不是向用户发出命令。</p>
+    </div>
+
+    <div class="card span-12 amber-card">
+      <div class="eyebrow amber">THE CAUSAL INFERENCE PROBLEM // 因果推断问题</div>
+      <h3>Why observational causal methods are the only rigorous path.</h3>
+      <h3 class="cn">为什么观察性因果方法是唯一严格的路径。</h3>
+      <p>The intervention is embedded in daily context. Participants cannot be randomly assigned to receive adaptive rhythm for six months of their life. This means the core validation challenge is methodological: how to distinguish the causal effect of the adaptive condition from regression to the mean, novelty effects, expectation, and concurrent environmental variables. Pre/post correlations are insufficient. Observational causal design — instrumental variables, difference-in-differences, synthetic controls, or interrupted time series — is required. This is precisely the domain where collaboration with a computationally oriented neuroscience lab creates publishable value that neither party could reach alone.</p>
+      <p class="cn">干预嵌入在日常情境中。参与者不能被随机分配去"在接下来六个月里接受自适应节律"。这意味着核心验证挑战是方法论性的：如何把自适应条件的因果效应与均值回归、新奇性效应、预期效应和并发环境变量区分开来。前后测相关性是不够的。需要观察性因果设计。这正是双方合作创造双方单独都无法达到的发表价值的精确领域。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PILOT ── -->
+<section id="pilot">
+  <div class="grid">
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">PART 03 // PILOT STUDY DESIGN // 试点实验设计</div>
+      <h2>A four-condition pilot ready to execute.</h2>
+      <h2 class="cn">四条件试点实验，已准备好执行。</h2>
+      <p class="sub">The experimental design, condition structure, and data collection protocol are fully specified. The pilot can be initiated with consumer-grade wearables at first pass and expanded to lab-grade physiological instrumentation in a second phase.</p>
+      <p class="sub cn" style="font-size:16px;margin-top:8px;">实验设计、条件结构与数据收集协议已完全确定。试点可以在第一阶段使用消费级可穿戴设备启动，并在第二阶段扩展到实验室级生理仪器。</p>
+    </div>
+
+    <div class="card span-12">
+      <div class="eyebrow">FOUR CONDITIONS // 四个条件</div>
+      <div class="conditions">
+        <div class="condition-row">
+          <div class="cond-label">A</div>
+          <div class="cond-name">Baseline / Silence</div>
+          <div class="cond-desc">Ambient environment or silence. Establishes baseline state trajectory without auditory intervention. Controls for time-on-task and session structure effects.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-label">B</div>
+          <div class="cond-name">Fixed Rhythm</div>
+          <div class="cond-desc">Constant BPM, fixed genre profile. Tests whether rhythmic structure alone — independent of adaptivity — produces state change relative to baseline.</div>
+        </div>
+        <div class="condition-row">
+          <div class="cond-label">C</div>
+          <div class="cond-name">Random Rhythm</div>
+          <div class="cond-desc">Variable BPM and genre, non-adaptive. Controls for novelty, auditory exposure, and expectation effects. Isolates the contribution of adaptivity from variation alone.</div>
+        </div>
+        <div class="condition-row highlight">
+          <div class="cond-label">D ★</div>
+          <div class="cond-name">Adaptive Rhythm + AI Feedback</div>
+          <div class="cond-desc">Rhythm parameters adjusted in real-time based on self-report state sampling and behavioral proxies. AI provides reflective micro-dialogue. The core HRP condition under test.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card span-4">
+      <div class="num">LAYER 01 // SELF-REPORT</div>
+      <h3>Subjective state sampling</h3>
+      <h3 class="cn">主观状态采样</h3>
+      <p>Pre/post session: focus, emotional state, body tension, inner noise, task readiness, return-to-self score. CSV schema already defined. Items are mappable to validated instruments (PANAS, BRIEF-A, PSS).</p>
+      <p class="cn">Session 前后采样：注意力、情绪状态、身体紧绷、内在噪音、任务准备度、返回自我得分。CSV 字段已定义，可映射到已验证量表。</p>
+    </div>
+    <div class="card span-4">
+      <div class="num">LAYER 02 // BEHAVIORAL</div>
+      <h3>Performance measures</h3>
+      <h3 class="cn">行为表现指标</h3>
+      <p>Sustained attention task, reaction time, accuracy rate, missed trials, interruption count. Established paradigms — no novel task development required. Provides objective convergence layer for self-report data.</p>
+      <p class="cn">持续注意任务、反应时、准确率、漏答次数、中断次数。已有成熟范式，无需开发新任务。为自我报告提供客观收敛层。</p>
+    </div>
+    <div class="card span-4">
+      <div class="num">LAYER 03 // PHYSIOLOGICAL</div>
+      <h3>Biosignal acquisition</h3>
+      <h3 class="cn">生理信号采集</h3>
+      <p>Phase 1: HRV, heart rate, EDA, respiration via consumer wearable. Phase 2 (lab access): EEG alpha/theta/beta ratio and fNIRS prefrontal oxygenation.</p>
+      <p class="cn">第一阶段：消费级可穿戴设备的 HRV、心率、EDA、呼吸。第二阶段（实验室）：EEG alpha/theta/beta 比值与 fNIRS 前额叶氧合。</p>
+    </div>
+
+    <div class="card span-12">
+      <div class="eyebrow">FALSIFIABILITY STRUCTURE // 可证伪性结构</div>
+      <div class="falsif-grid">
+        <div class="falsif-item no">Direct neural regulation without physiological measurement</div>
+        <div class="falsif-item yes">Condition D produces larger pre/post state change than A, B, C on at least two of three measurement layers</div>
+        <div class="falsif-item no">Clinical treatment effect or symptom reduction in any diagnosed population</div>
+        <div class="falsif-item yes">Adaptive condition outperforms matched-exposure fixed and random conditions, controlling for novelty</div>
+        <div class="falsif-item no">Completed BCI device functionality or verified neural decoding</div>
+        <div class="falsif-item yes">Self-report recovery scores converge directionally with HRV/EDA in Condition D but not in Condition A</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXCHANGE ── -->
+<section id="exchange">
+  <div class="grid">
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">PART 04 // COLLABORATION STRUCTURE // 合作结构</div>
+      <h2>A genuine methodological exchange.</h2>
+      <h2 class="cn">真正的方法论交换。</h2>
+      <p class="sub">Neither party can reach the research outcome alone. The collaboration is valuable precisely because the intervention framework and the causal inference methodology are structurally complementary — one without the other produces either an interesting system without scientific validity, or a rigorous method without a novel application domain.</p>
+      <p class="sub cn" style="font-size:16px;margin-top:10px;">双方单独都无法达到研究成果。合作之所以有价值，正是因为干预框架与因果推断方法论在结构上是互补的——没有对方，要么是有趣的系统却缺乏科学效度，要么是严格的方法却缺乏新颖的应用领域。</p>
+    </div>
+
+    <div class="card span-12">
+      <div class="exchange-wrap">
+        <div class="exchange-side hrp">
+          <div class="exchange-label">HRP / WEI JUERAN BRINGS // HRP / 魏珏然提供</div>
+          <div class="exchange-item">Complete intervention framework: adaptive rhythm + AI closed-loop architecture, fully documented at mellowwei.github.io/BCI</div>
+          <div class="exchange-item">Non-diagnostic theoretical grounding: rhythm sovereignty as a non-clinical outcome framework, distinct from symptom reduction models</div>
+          <div class="exchange-item">Pilot-ready protocol: four conditions, three measurement layers, CSV schema, IRB-ready participant framing for non-clinical populations</div>
+          <div class="exchange-item">Cross-domain research position: Learning Sciences + HCI + Sound Studies + AI Interaction at UPenn</div>
+          <div class="exchange-item">Non-clinical participant access: ADHD, anxiety, burnout populations via community and university recruitment</div>
+          <div class="exchange-item">Theoretical monograph: <em>Vibration Is Existence / 振动即存在</em> (2026) — foundation for rhythm-as-interface framework</div>
+        </div>
+        <div class="exchange-arrow">⇄</div>
+        <div class="exchange-side lab">
+          <div class="exchange-label">COLLABORATING LAB BRINGS // 合作实验室提供</div>
+          <div class="exchange-item">Causal inference methodology: observational causal design for non-randomizable intervention evaluation — the core methodological gap in HRP's current architecture</div>
+          <div class="exchange-item">Neural and physiological data analysis: signal processing, individual variability modeling, multi-layer convergence testing</div>
+          <div class="exchange-item">Lab-grade instrumentation: EEG, fNIRS, precision HRV/EDA acquisition for Phase 2 validation</div>
+          <div class="exchange-item">Publication infrastructure: access to high-impact venues in computational neuroscience, human behavior, and digital health</div>
+          <div class="exchange-item">Scientific credibility layer: peer-reviewed methodology to accompany HRP's original theoretical and design contributions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PAPERS ── -->
+<section id="papers">
+  <div class="grid">
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">PART 05 // PUBLICATION DIRECTIONS // 发表方向</div>
+      <h2>Two papers this collaboration enables.</h2>
+      <h2 class="cn">这个合作能支撑的两篇论文。</h2>
+      <p class="sub">Both papers have genuine novelty. Neither would exist without the collaboration. The first is a methodological contribution generalizable beyond HRP; the second is the primary empirical result of the four-condition pilot.</p>
+    </div>
+
+    <div class="span-12">
+      <div class="paper-card">
+        <div class="paper-number">PAPER 01 · METHODS</div>
+        <div class="paper-title">Causal evaluation of non-randomizable rhythm interventions: an observational design framework for adaptive auditory systems</div>
+        <div class="paper-venue">Target: Nature Human Behaviour · PLOS Computational Biology · Journal of Neuroscience Methods</div>
+        <p>Addresses the core methodological problem: how to establish causal claims about rhythm-based interventions without RCTs. Uses HRP pilot data as the primary case study. The contribution is the causal design framework itself — generalizable to all non-randomizable behavioral interventions in digital health, HCI, and computational psychiatry.</p>
+        <p class="cn">解决核心方法论问题：如何在没有随机对照实验的情况下建立关于节律干预的因果主张。以 HRP 试点数据为案例研究。贡献是因果设计框架本身——可推广到数字健康、HCI 和计算精神病学中所有不可随机化的行为干预。</p>
+      </div>
+      <div class="paper-card">
+        <div class="paper-number">PAPER 02 · EMPIRICAL</div>
+        <div class="paper-title">Adaptive rhythm + AI feedback versus fixed and random auditory conditions: within-session state recovery in attention-dysregulated adults</div>
+        <div class="paper-venue">Target: Nature Mental Health · npj Digital Medicine · Frontiers in Human Neuroscience</div>
+        <p>The primary empirical result from the four-condition pilot. Reports self-report, behavioral, and physiological convergence data across conditions. Key novelty: the first study to test adaptive vs. non-adaptive rhythm conditions using a non-diagnostic, rhythm-sovereignty outcome framework — measuring state recovery rather than symptom reduction as the primary dependent variable.</p>
+        <p class="cn">四条件试点的主要实证结果。关键原创性：第一个使用非诊断性、节律主权结果框架测试自适应与非自适应节律条件的研究——以状态恢复而非症状减少作为主要因变量。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SYSTEM ── -->
+<section id="system">
+  <div class="grid">
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">PART 06 // SYSTEM OVERVIEW // 系统概览</div>
+      <h2>Four components. One closed loop.</h2>
+      <h2 class="cn">四个组件。一个闭环。</h2>
+    </div>
+
+    <div class="card span-6">
+      <div class="eyebrow">44271 NEURAL CUFF</div>
+      <h3>Wearable biosignal sensing</h3>
+      <h3 class="cn">可穿戴生物信号传感</h3>
+      <p>Inner-wrist pulse-line placement. Non-invasive, continuous. Captures HRV, pulse amplitude, EDA, skin temperature, and micro-motion as rhythm-state proxies. The hardware acquisition layer of the closed feedback loop.</p>
+      <p class="cn">内腕脉搏线放置。非侵入，持续采集。HRV、脉搏幅度、皮肤电、皮肤温度与微运动作为节律状态代理。闭合反馈回路的硬件采集层。</p>
+      <div class="tag-row"><span class="tag">PPG · HRV</span><span class="tag">EDA</span><span class="tag">Temperature</span><span class="tag">IMU</span><span class="tag">Inner wrist</span></div>
+    </div>
+
+    <div class="card span-6">
+      <div class="eyebrow">QDR ENGINE</div>
+      <h3>Rhythm-signal processing</h3>
+      <h3 class="cn">节律信号处理</h3>
+      <p>Dynamic response engine mapping incoming biosignal data to intervention parameters: genre selection, BPM range, haptic protocol intensity, and adaptive update frequency. The computational core of the system.</p>
+      <p class="cn">动态响应引擎，将传入的生理信号数据映射到干预参数：流派选择、BPM 范围、触觉协议强度与自适应更新频率。</p>
+      <div class="tag-row"><span class="tag">Adaptive feedback</span><span class="tag">Genre mapping</span><span class="tag">427Hz anchor</span></div>
+    </div>
+
+    <div class="card span-6">
+      <div class="eyebrow">HUMAN RETURN APP</div>
+      <h3>Interface + state sampling</h3>
+      <h3 class="cn">界面 + 状态采样</h3>
+      <p>User-facing interface for session initiation, subjective state self-report, rhythm recommendation display, and session logging. Provides the behavioral proxy signal layer and the user's primary point of contact with the system.</p>
+      <p class="cn">用户界面，用于 session 启动、主观状态自我报告、节律推荐显示与 session 记录。提供行为代理信号层以及用户与系统的接触点。</p>
+      <div class="tag-row"><span class="tag">Self-report</span><span class="tag">AI micro-dialogue</span><span class="tag">Session log</span></div>
+    </div>
+
+    <div class="card span-6 green-card">
+      <div class="eyebrow green">QDR THERAPY FRAMEWORK</div>
+      <h3>Non-diagnostic intervention ethics</h3>
+      <h3 class="cn">非诊断干预伦理框架</h3>
+      <p>Non-surveillance. Non-diagnostic. Designed for ADHD, anxiety, and burnout populations outside clinical settings. Outcome goal: rhythm sovereignty — the user's capacity to return to their own regulatory baseline — rather than symptom suppression or clinical classification.</p>
+      <p class="cn">非监控。非诊断。面向临床环境之外的人群。结果目标：节律主权——用户返回自身调节基线的能力——而非症状压制或临床分类。</p>
+      <div class="tag-row"><span class="tag green">Non-diagnostic</span><span class="tag green">Rhythm sovereignty</span><span class="tag green">Non-surveillance</span></div>
+    </div>
+
+    <div class="card span-12">
+      <div class="eyebrow">FIVE GENRE INTERVENTION PROTOCOLS // 五个流派干预协议</div>
+      <p style="margin-bottom:18px;">Each genre profile operationalizes a distinct regulatory function. BPM ranges, beat salience profiles, and the 427Hz carrier frequency are specified per protocol. Genre is the independent variable; regulatory function is the theoretical mapping; physiological response is the dependent variable under test.</p>
+      <p class="cn" style="margin-bottom:18px;">每个流派配置文件操作化一个独特的调节功能。每个协议都有指定的 BPM 范围、节拍显著性配置文件和 427Hz 载波频率。流派是自变量；调节功能是理论映射；生理响应是被测的因变量。</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <span class="genre-chip">Drift Phonk → <span>embodied grounding / 具身接地</span></span>
+        <span class="genre-chip">Hyperpop → <span>cognitive momentum / 认知动能</span></span>
+        <span class="genre-chip">Synthpop → <span>meaning return / 意义返回</span></span>
+        <span class="genre-chip">Darkwave → <span>emotional co-regulation / 情绪共调</span></span>
+        <span class="genre-chip">Ambient Techno → <span>flow-state maintenance / 心流维持</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="cta-wrap">
+    <div class="eyebrow green">COLLABORATION INQUIRY // 合作探询</div>
+    <h2 style="max-width:760px;">A brief conversation to determine fit.</h2>
+    <h2 class="cn" style="font-size:clamp(22px,3vw,44px);">一次简短的对话，判断是否匹配。</h2>
+    <p class="sub" style="max-width:680px;">The research question is specified. The pilot design is ready. The causal inference gap is real and addressable. If your lab works in computational neuroscience, adaptive systems, causal inference in human behavior, or wearable neurotechnology — there may be a research question here worth pursuing together.</p>
+    <p class="sub cn" style="font-size:16px;margin-top:10px;max-width:680px;">研究问题已确定。试点设计已就绪。因果推断缺口是真实且可解决的。如果你的实验室从事计算神经科学、自适应系统、人类行为因果推断或可穿戴神经技术——这里可能有一个值得一起追求的研究问题。</p>
+
+    <div class="hero-actions">
+      <a class="button primary" href="./validation.html">→ FULL VALIDATION DOCUMENTATION</a>
+      <a class="button primary" href="./index.html">→ FULL SYSTEM SITE</a>
+      <a class="button" href="https://mellowwei.github.io/Ai-Q-10/" target="_blank" rel="noopener">→ AIQ PORTAL ↗</a>
+    </div>
+
+    <p style="margin-top:28px;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.12em;line-height:1.9;">
+      Wei Jueran (魏珏然) / Mellow Wei · University of Pennsylvania<br/>
+      Learning Sciences + HCI + Sound Studies + AI Interaction<br/>
+      BCI-HRP · Human Return Protocol · mellowwei.github.io/BCI
+    </p>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  const canvas=document.getElementById('field');
+  const ctx=canvas.getContext('2d');
+  let w,h,particles,mouse={x:.5,y:.5};
+
+  function resize(){
+    w=canvas.width=innerWidth*devicePixelRatio;
+    h=canvas.height=innerHeight*devicePixelRatio;
+    canvas.style.width=innerWidth+'px';
+    canvas.style.height=innerHeight+'px';
+    particles=Array.from({length:Math.min(240,Math.floor(innerWidth/5))},()=>({
+      x:Math.random()*w,y:Math.random()*h,
+      r:Math.random()*1.8+.4,
+      a:Math.random()*Math.PI*2,
+      s:Math.random()*.36+.08,
+      o:Math.random()*.55+.22,
+      type:Math.random()>.7?'line':'dot'
+    }));
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    const scroll=scrollY/Math.max(1,document.body.scrollHeight-innerHeight);
+    for(const p of particles){
+      p.a+=p.s*.012;
+      p.x+=Math.cos(p.a)*(.24+scroll*1.1)+(mouse.x-.5)*.28;
+      p.y+=Math.sin(p.a)*(.24+scroll*1.1)+(mouse.y-.5)*.28;
+      if(p.x<0)p.x=w; if(p.x>w)p.x=0;
+      if(p.y<0)p.y=h; if(p.y>h)p.y=0;
+      const hue=p.type==='line'?310+scroll*30:185+scroll*80;
+      ctx.beginPath();
+      if(p.type==='line'){
+        ctx.moveTo(p.x,p.y);
+        ctx.lineTo(p.x+Math.cos(p.a)*26*devicePixelRatio,p.y+Math.sin(p.a)*26*devicePixelRatio);
+        ctx.strokeStyle=`hsla(${hue},100%,68%,${p.o})`;
+        ctx.lineWidth=.7*devicePixelRatio;
+        ctx.stroke();
+      } else {
+        ctx.arc(p.x,p.y,p.r*devicePixelRatio,0,Math.PI*2);
+        ctx.fillStyle=`hsla(${hue},100%,70%,${p.o})`;
+        ctx.fill();
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  addEventListener('resize',resize);
+  addEventListener('mousemove',e=>{mouse.x=e.clientX/innerWidth;mouse.y=e.clientY/innerHeight;});
+  addEventListener('touchmove',e=>{if(!e.touches[0])return;mouse.x=e.touches[0].clientX/innerWidth;mouse.y=e.touches[0].clientY/innerHeight;},{passive:true});
+  resize();draw();
+})();
+</script>
+</body>
+</html>
