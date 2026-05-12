@@ -2624,6 +2624,47 @@
       }
     }
 
+
+
+    .language-edition-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .language-edition-card {
+      min-height: 250px;
+      padding: 24px;
+      border: 1px solid rgba(0,245,255,.20);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(0,245,255,.08), transparent 30%),
+        linear-gradient(180deg, rgba(0,245,255,.045), rgba(255,43,214,.030)),
+        rgba(255,255,255,.035);
+      box-shadow: inset 0 0 24px rgba(0,245,255,0.035), 0 0 28px rgba(0,245,255,0.05);
+    }
+
+    .language-edition-card.primary-edition {
+      border-color: rgba(53,255,159,.34);
+      box-shadow: 0 0 34px rgba(53,255,159,.09), inset 0 0 24px rgba(0,245,255,0.035);
+    }
+
+    .language-edition-kicker {
+      margin-bottom: 14px;
+      color: var(--yellow);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255,230,109,.42);
+    }
+
+    @media (max-width: 1024px) {
+      .relation-ladder,
+      .language-edition-grid {
+        grid-template-columns: 1fr;
+      }
   </style>
 </head>
 
@@ -2635,7 +2676,7 @@
  <header class="locked-clean-header">
   <div class="brand">
     <span class="dot"></span>
-    METALOGIC ROOT // GPT CORE BODY // 44271 NEURAL CUFF // PROTOTYPE // QDR // GEMINI ATTACK // CLAUDE MIRROR
+    METALOGIC ROOT // METALOGIC ROOT // GPT CORE BODY // 44271 NEURAL CUFF // PROTOTYPE // QDR // GEMINI ATTACK // CLAUDE MIRROR
   </div>
 
   <nav class="locked-clean-nav">
@@ -2644,6 +2685,7 @@
     <a href="https://mellowwei.github.io/Ai-Q-10/?from=bci&enter=aiq-3" data-link-type="system-internal">AIQ PORTAL ↗</a>
     <a href="#overview-map">OVERVIEW MAP</a>
     <a href="#metalogic-root">METALOGIC ROOT</a>
+    <a href="#language-editions">LANGUAGE PAGES</a>
     <a href="#gpt-core">GPT CORE</a>
     <a href="#neural-cuff">NEURAL CUFF</a>
     <a href="#claude-layer">CLAUDE</a>
@@ -2859,6 +2901,62 @@
         </div>
       </div>
     </section>
+
+
+
+    <section id="language-editions">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">LANGUAGE EDITIONS // 中英文单页入口 // MAIN SITE GATE</div>
+          <h2>The main site now carries both single-language editions.</h2>
+          <h2 class="cn">主站现在承载两个单语言版本。</h2>
+          <p class="sub en">
+            The bilingual main site remains the canonical system body. The English-only and Chinese-only pages are not separate projects;
+            they are focused reading modes for different audiences, now aligned with the same MetaLogic root, BCI-HRP system body, and QDR v+1 protocol nerve.
+          </p>
+          <p class="sub cn">
+            双语主站仍然是系统正典身体。英文单页与中文单页不是独立项目，
+            而是面向不同读者的阅读模式；现在它们已经与同一个 MetaLogic 理论根、BCI-HRP 系统身体与 QDR v+1 协议神经对齐。
+          </p>
+
+          <div class="language-edition-grid">
+            <article class="language-edition-card primary-edition">
+              <div class="language-edition-kicker">CANONICAL BODY</div>
+              <h3>Bilingual Main Site</h3>
+              <h3 class="cn">双语主站</h3>
+              <p class="en">For labs, advisors, collaborators, and portfolio readers who need the whole system in one place.</p>
+              <p class="cn">给实验室、导师、合作者与作品集读者看的完整系统总入口。</p>
+              <div class="relation-link-row">
+                <a class="button primary" href="./index.html">OPEN MAIN</a>
+              </div>
+            </article>
+
+            <article class="language-edition-card">
+              <div class="language-edition-kicker">ENGLISH READING MODE</div>
+              <h3>English-Only Page</h3>
+              <h3 class="cn">英文单页</h3>
+              <p class="en">A clean English path for international labs, HCI readers, BCI collaborators, and academic outreach.</p>
+              <p class="cn">面向国际实验室、HCI 读者、BCI 合作者与学术外联的纯英文阅读路径。</p>
+              <div class="relation-link-row">
+                <a class="button" href="./index-en.html">OPEN EN ONLY</a>
+              </div>
+            </article>
+
+            <article class="language-edition-card">
+              <div class="language-edition-kicker">CHINESE READING MODE</div>
+              <h3>Chinese-Only Page</h3>
+              <h3 class="cn">中文单页</h3>
+              <p class="en">A full Chinese path for Chinese-speaking collaborators, friends, cultural readers, and local explanation.</p>
+              <p class="cn">面向中文合作者、朋友、文化读者与本土解释场景的完整中文阅读路径。</p>
+              <div class="relation-link-row">
+                <a class="button" href="./index-zh.html">打开中文版</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <section id="gpt-core">
       <div class="grid">
