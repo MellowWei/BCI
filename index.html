@@ -2665,6 +2665,68 @@
       .language-edition-grid {
         grid-template-columns: 1fr;
       }
+    }
+
+    /* COMPLIANCE PATCH v21: lightweight legal/ethics disclosure blocks */
+    .disclaimer,
+    .compliance-note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255, 230, 109, 0.30);
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(255, 230, 109, 0.075), rgba(53, 255, 159, 0.045), rgba(0, 245, 255, 0.035)),
+        rgba(8, 10, 28, 0.72);
+      color: rgba(244, 247, 255, 0.88);
+      font-size: 13px;
+      line-height: 1.68;
+      letter-spacing: 0.015em;
+      box-shadow: 0 0 26px rgba(255, 230, 109, 0.06), inset 0 0 20px rgba(255,255,255,0.025);
+    }
+
+    .disclaimer strong,
+    .compliance-note strong {
+      color: var(--yellow);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .compliance-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+      max-width: 1080px;
+    }
+
+    .compliance-mini {
+      min-height: 170px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255, 230, 109, 0.22);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.032);
+    }
+
+    .compliance-mini h3 {
+      margin-bottom: 8px;
+      color: var(--yellow);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .compliance-mini p {
+      font-size: 12px;
+      line-height: 1.62;
+    }
+
+    @media (max-width: 900px) {
+      .compliance-grid { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 
@@ -2761,31 +2823,55 @@
 
         <p class="sub en">
           This aligned version restores every missing trunk module: 44271 Neural Cuff dynamic display,
-          Prototype, QDR Therapy, ACT/DBT/CBT upgrades, QDR Engine, Human Return App,
+          Prototype, QDR non-clinical framework, ACT/DBT/CBT research comparison, QDR Engine, Human Return App,
           and the full three-core AI structure. Every section is bilingual.
         </p>
         <p class="sub cn">
           这个对齐版补回所有丢失的 GPT 躯干模块：44271 Neural Cuff 动态展示、
-          Prototype、QDR Therapy、ACT/DBT/CBT 升级、QDR Engine、Human Return App，
+          Prototype、QDR 非临床框架、ACT/DBT/CBT 研究对照、QDR Engine、Human Return App，
           以及完整三核 AI 结构。每个部分都中英双语。
         </p>
+
+        <div class="compliance-note">
+          <strong>LIGHTWEIGHT COMPLIANCE STATUS // 轻量合规状态</strong>
+          <p class="en">Current status: research prototype and academic design concept. Human Return Protocol / 44271 Neural Cuff is not a commercial medical device and is not intended to diagnose, treat, cure, mitigate, or prevent any disease or mental health condition. Physiological signals are rhythm indicators for research/demo contexts, not medical judgments.</p>
+          <p class="cn">当前状态：研究原型与学术设计概念。Human Return Protocol / 44271 Neural Cuff 不是商业医疗器械，不用于诊断、治疗、治愈、缓解或预防任何疾病或心理健康状况。生理信号仅作为研究/演示语境下的节律指标，不作为医学判断。</p>
+        </div>
+
+        <div class="compliance-grid">
+          <article class="compliance-mini">
+            <h3>BCI Neural Cuff</h3>
+            <p class="en">Non-invasive research prototype. HRV, EDA, skin temperature, motion, and self-report states require explicit consent, minimization, deletion rights, and non-diagnostic use.</p>
+            <p class="cn">非侵入式研究原型。HRV、皮肤电、皮肤温度、运动与自我报告状态需要明确同意、最小化采集、删除权与非诊断使用。</p>
+          </article>
+          <article class="compliance-mini">
+            <h3>AiAiQ&lt;10</h3>
+            <p class="en">Reflective AI interface only. It does not provide medical, psychological, legal, or financial diagnosis/treatment. API requests should be routed through a secure backend; no client-side API keys.</p>
+            <p class="cn">仅作为反思型 AI 接口，不提供医疗、心理、法律或金融诊断/治疗。API 请求应走安全后端，不在前端暴露 key。</p>
+          </article>
+          <article class="compliance-mini">
+            <h3>Astro Time Candle</h3>
+            <p class="en">Symbolic lifestyle object and attention ritual product. Astrology content is for reflection/entertainment/meaning-making only; 14°C is an aesthetic label unless separately tested.</p>
+            <p class="cn">象征性生活方式物件与注意力仪式产品。占星内容仅用于反思、娱乐与意义生成；14°C 除非另有测试，否则属于美学标签。</p>
+          </article>
+        </div>
 
         <div class="hero-actions">
           <a class="button primary" href="#metalogic-root">METALOGIC ROOT</a>
           <a class="button" href="#gpt-core">ENTER GPT CORE BODY</a>
           <a class="button" href="#neural-cuff">44271 NEURAL CUFF</a>
           <a class="button" href="#prototype">PROTOTYPE</a>
-          <a class="button" href="#qdr-therapy">QDR THERAPY</a>
+          <a class="button" href="#qdr-therapy">QDR FRAMEWORK</a>
           <a class="button" href="#gemini-layer">GEMINI ATTACK</a>
           <a class="button" href="#claude-layer">CLAUDE 彩虹镜位 RAINBOW MIRROR</a>
         </div>
         <div style="margin-top:32px;padding:24px 28px;border:1px solid rgba(53,255,159,.28);border-radius:24px;background:linear-gradient(135deg,rgba(53,255,159,.06),rgba(0,245,255,.03)),rgba(8,10,28,.72);max-width:960px;">
   <div style="margin-bottom:14px;color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 0 10px rgba(53,255,159,.5);">AUTHORSHIP // 作者权声明 // WHO MADE WHAT</div>
   <p style="color:var(--text);font-size:15px;line-height:1.75;margin-bottom:10px;">
-    <strong style="color:var(--cyan);">Wei Jueran (魏珏然)</strong> is the sole inventor, theoretical source, composer, and commander of the Human Return Protocol. All research questions, system architecture, intervention design, theoretical frameworks, and original music originate with Wei Jueran.
+    <strong style="color:var(--cyan);">Wei Jueran (魏珏然)</strong> is the sole inventor, theoretical source, composer, and commander of the Human Return Protocol. All research questions, system architecture, support-protocol design, theoretical frameworks, and original music originate with Wei Jueran.
   </p>
   <p style="color:rgba(244,247,255,.92);font-family:'PingFang SC','Microsoft YaHei',system-ui,sans-serif;font-size:14px;line-height:1.75;margin-bottom:18px;">
-    <strong style="color:var(--cyan);">魏珏然</strong>是 Human Return Protocol 的唯一发明者、理论来源、作曲者与指挥者。所有研究问题、系统架构、干预设计、理论框架与原创音乐均来自魏珏然。
+    <strong style="color:var(--cyan);">魏珏然</strong>是 Human Return Protocol 的唯一发明者、理论来源、作曲者与指挥者。所有研究问题、系统架构、支持协议设计、理论框架与原创音乐均来自魏珏然。
   </p>
   <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:4px;">
     <div style="padding:14px 16px;border:1px solid rgba(0,245,255,.18);border-radius:16px;background:rgba(255,255,255,.03);">
@@ -2896,7 +2982,7 @@
           <div class="relation-link-row">
             <a class="button primary" href="https://mellowwei.github.io/MetaLogic/" target="_blank" rel="noopener">OPEN METALOGIC ROOT ↗</a>
             <a class="button" href="./qdr-v1/">OPEN QDR v+1 PROTOCOL</a>
-            <a class="button" href="#qdr-therapy">RETURN TO QDR THERAPY</a>
+            <a class="button" href="#qdr-therapy">RETURN TO QDR FRAMEWORK</a>
           </div>
         </div>
       </div>
@@ -2953,6 +3039,13 @@
               </div>
             </article>
           </div>
+
+
+          <div class="compliance-note">
+            <strong>AI interface handoff // AI 接口跳转提示</strong>
+            <p class="en">The AiAiQ portal should remain a non-clinical reflective interface. It should not be marketed as a therapist, diagnostic tool, treatment system, crisis tool, or substitute for professional care. No API keys should be embedded in client-side HTML/JavaScript.</p>
+            <p class="cn">AiAiQ 入口应保持为非临床反思型接口，不应宣传为治疗师、诊断工具、治疗系统、危机工具或专业照护替代品。API key 不应写在前端 HTML / JavaScript 中。</p>
+          </div>
         </div>
       </div>
     </section>
@@ -2966,10 +3059,10 @@
           <h2 class="cn">GPT 建立发明的身体。</h2>
           <p class="sub en">
             This is the structural trunk: 44271 Neural Cuff, QDR Engine, Human Return App,
-            QDR Therapy, research logic, system architecture, interactive prototype, and executable website code.
+            QDR Framework, research logic, system architecture, interactive prototype, and executable website code.
           </p>
           <p class="sub cn">
-            这是结构躯干：44271 Neural Cuff、QDR Engine、Human Return App、QDR Therapy、
+            这是结构躯干：44271 Neural Cuff、QDR Engine、Human Return App、QDR Framework、
             研究逻辑、系统架构、互动原型与可执行网站代码。
           </p>
         </div>
@@ -3073,7 +3166,7 @@
                 The system is not failing. The entry point is too large, too cold, or too undefined.
               </div>
               <div id="stateIntervention" class="intervention">
-                Intervention: 44271 Neural Cuff sends a slow pulse-side tap → reduce task scale → play low-frequency grounding sound → offer one micro-action.
+                Support prompt: 44271 Neural Cuff may send a slow pulse-side tap → reduce task scale → play user-approved grounding sound → offer one micro-action.
               </div>
             </div>
           </div>
@@ -3095,6 +3188,12 @@
           <p class="sub cn">
             44271 Neural Cuff 是一个腕戴式神经—身体节律接口。它贴在手腕内侧，靠近脉搏线，
             让心率节律、HRV、皮肤温度、皮肤电、微运动和恢复信号变得可读。
+          </p>
+
+          <p class="disclaimer">
+            <strong>Data notice // 数据提示</strong><br />
+            This prototype may collect or simulate HRV, EDA, skin temperature, motion, and self-report rhythm states for research/demo purposes only. Any real collection should require explicit consent, data minimization, deletion rights, and non-diagnostic use. The cuff does not diagnose, treat, cure, mitigate, or prevent disease.
+            <br /><span class="cn">本原型可能采集或模拟 HRV、皮肤电、皮肤温度、运动与自我报告节律状态，仅用于研究/演示。任何真实采集都应获得明确同意，遵守数据最小化与删除权，且不用于诊断、治疗、治愈、缓解或预防疾病。</span>
           </p>
         </div>
 
@@ -3226,15 +3325,15 @@
             <strong>总览地图</strong>
             <em>Overview Map</em>
           </span>
-          <small>HRP 是一个完整的人类节律返回系统，不是单一 App、硬件或治疗概念。<br>HRP is a complete human rhythm-return system, not merely an app, a device, or a therapy concept.</small>
+          <small>HRP 是一个完整的人类节律返回系统，不是单一 App、硬件或支持概念。<br>HRP is a complete human rhythm-return system, not merely an app, a device, or a support concept.</small>
         </summary>
 
         <div class="claude-accordion-body">
           <div class="eyebrow">00 // EXCAVATION MAP</div>
           <h2>Overview Map</h2>
           <h2 class="cn">总览地图</h2>
-          <p class="sub en">HRP is a complete human rhythm-return system, not merely an app, a device, or a therapy concept.</p>
-          <p class="sub cn">HRP 是一个完整的人类节律返回系统，不是单一 App、硬件或治疗概念。</p>
+          <p class="sub en">HRP is a complete human rhythm-return system, not merely an app, a device, or a support concept.</p>
+          <p class="sub cn">HRP 是一个完整的人类节律返回系统，不是单一 App、硬件或支持概念。</p>
 
           <div class="claude-theory-grid">
             
@@ -3467,18 +3566,18 @@
         <summary>
           <span class="claude-acc-num">04</span>
           <span class="claude-acc-title">
-            <strong>QDR 治疗框架</strong>
-            <em>QDR Therapeutic Framework</em>
+            <strong>QDR 节律支持框架</strong>
+            <em>QDR Rhythm Support Framework</em>
           </span>
-          <small>QDR Therapy：感质驱动节律疗法。痛苦不是故障，痛苦是节律信息。<br>QDR Therapy: Qualia-Driven Rhythm Therapy. Pain is not malfunction; pain is rhythm information.</small>
+          <small>QDR Framework：感质驱动节律支持框架。痛苦不是故障，痛苦是节律信息。<br>QDR Framework: Qualia-Driven Rhythm Support Framework. Pain is not malfunction; pain is rhythm information.</small>
         </summary>
 
         <div class="claude-accordion-body">
           <div class="eyebrow">04 // THERAPEUTIC FRAMEWORK</div>
-          <h2>QDR Therapeutic Framework</h2>
-          <h2 class="cn">QDR 治疗框架</h2>
-          <p class="sub en">QDR Therapy: Qualia-Driven Rhythm Therapy. Pain is not malfunction; pain is rhythm information.</p>
-          <p class="sub cn">QDR Therapy：感质驱动节律疗法。痛苦不是故障，痛苦是节律信息。</p>
+          <h2>QDR Rhythm Support Framework</h2>
+          <h2 class="cn">QDR 节律支持框架</h2>
+          <p class="sub en">QDR Framework: Qualia-Driven Rhythm Support Framework. Pain is not malfunction; pain is rhythm information.</p>
+          <p class="sub cn">QDR Framework：感质驱动节律支持框架。痛苦不是故障，痛苦是节律信息。</p>
 
           <div class="claude-theory-grid">
             
@@ -3498,8 +3597,8 @@
 
           <article class="claude-theory-card">
             <div class="source-id">Neurodiversity / 神经多样性</div>
-            <p class="en">QDR is especially relevant for ADHD, autism spectrum, high sensitivity, and trauma because these experiences are often not deficits, but differences in rhythm regulation, sensory thresholds, transitions, and environmental pressure.</p>
-            <p class="cn">QDR 对 ADHD、自闭症谱系、高敏感、创伤后状态尤其重要，因为这些体验常常不是“缺陷”，而是节律调节、感觉阈值、转换难度与环境压强的差异。</p>
+            <p class="en">QDR may be studied with self-identified attention variation, autism-spectrum experience, high sensitivity, and trauma-related self-report because these experiences often involve differences in rhythm regulation, sensory thresholds, transitions, and environmental pressure.</p>
+            <p class="cn">QDR 可作为研究框架用于自我识别的注意力差异、自闭症谱系体验、高敏感与创伤相关自我报告，因为这些体验常涉及节律调节、感觉阈值、转换难度与环境压强的差异。</p>
           </article>
         
           </div>
@@ -3509,8 +3608,8 @@
             
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate QDR Theory / 挖 QDR 理论建构</div>
-            <p class="cn">把 QDR Therapy 建构为严格理论框架：正式模型、操作定义、改变机制、目标人群、禁忌症和科学验证路径。</p>
-            <p class="en">Build QDR Therapy as a rigorous framework: formal model, operational definitions, mechanism of change, target groups, contraindications, and validation path.</p>
+            <p class="cn">把 QDR Framework 建构为严格的非临床理论框架：正式模型、操作定义、拟议机制、研究人群、安全边界和科学验证路径。</p>
+            <p class="en">Build QDR Framework as a rigorous non-clinical framework: formal model, operational definitions, proposed mechanism, research populations, safety boundaries, and validation path.</p>
           </article>
         
 
@@ -3523,8 +3622,8 @@
 
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Neurodiversity / 挖神经多样性</div>
-            <p class="cn">分析 QDR 如何为 ADHD、自闭症谱系、高敏感人群与 PTSD 提供神经多样性肯定的干预路径。</p>
-            <p class="en">Analyze how QDR offers neurodiversity-affirming pathways for ADHD, autism spectrum, HSP, and PTSD.</p>
+            <p class="cn">分析 QDR 如何作为研究框架，用于自我识别的注意力差异、自闭症谱系体验、高敏感与创伤相关自我报告。</p>
+            <p class="en">Analyze how QDR can be studied as a neurodiversity-affirming support framework for self-identified attention variation, autism-spectrum experience, HSP, and trauma-related self-report.</p>
           </article>
         
           </div>
@@ -3566,8 +3665,8 @@
 
           <article class="claude-theory-card">
             <div class="source-id">Research Metrics / 研究指标</div>
-            <p class="en">The study should not measure only productivity, but rhythm awareness, shame reduction, perceived agency, return ability, transition success, and self-description quality.</p>
-            <p class="cn">研究不应只测 productivity，而应测 rhythm awareness、shame reduction、perceived agency、return ability、transition success 与 self-description quality。</p>
+            <p class="en">The study should not measure only productivity, but rhythm awareness, shame-related self-report, perceived agency, return ability, transition success, and self-description quality.</p>
+            <p class="cn">研究不应只测 productivity，而应测 rhythm awareness、shame-related self-report、perceived agency、return ability、transition success 与 self-description quality。</p>
           </article>
         
           </div>
@@ -3627,7 +3726,7 @@
 
           <article class="claude-theory-card">
             <div class="source-id">Largest Risk / 最大风险</div>
-            <p class="en">The largest risk is not technical failure, but capture by old-world language: being misread as an efficiency tool, wellness app, diagnostic device, or ordinary mindfulness product.</p>
+            <p class="en">The largest risk is not technical failure, but capture by old-world language: being misread as an efficiency tool, wellness app, medical/diagnostic device, or ordinary mindfulness product.</p>
             <p class="cn">最大风险不是技术失败，而是被旧世界语言捕获：被误读成效率工具、健康 App、诊断设备或普通 mindfulness 产品。</p>
           </article>
         
@@ -3638,8 +3737,8 @@
             
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Sovereignty Paradox / 挖主权悖论</div>
-            <p class="cn">分析外部 BCI 干预与节律主权之间是否矛盾，并用 Vygotsky 脚手架理论、治疗依赖、药物依赖等框架回应。</p>
-            <p class="en">Analyze whether external BCI intervention contradicts rhythm sovereignty, using Vygotsky’s scaffolding, therapist dependency, and medication dependency as frames.</p>
+            <p class="cn">分析外部 BCI 干预与节律主权之间是否矛盾，并用 Vygotsky 脚手架理论、治疗依赖、外部支持依赖等框架回应。</p>
+            <p class="en">Analyze whether external BCI intervention contradicts rhythm sovereignty, using Vygotsky’s scaffolding, support-system dependency, and external-support dependency as frames.</p>
           </article>
         
 
@@ -3714,22 +3813,22 @@
             <strong>声音科学</strong>
             <em>Sound Science</em>
           </span>
-          <small>声音不是背景氛围，而是身体干预：entrainment、自主神经调节、空间锚点与感质返回。<br>Sound is not background ambience but bodily intervention: entrainment, autonomic regulation, spatial anchoring, and qualia return.</small>
+          <small>声音不是背景氛围，而是身体支持通道：entrainment、自主神经调节、空间锚点与感质返回。<br>Sound is not background ambience but bodily support channel: entrainment, autonomic regulation, spatial anchoring, and qualia return.</small>
         </summary>
 
         <div class="claude-accordion-body">
           <div class="eyebrow">08 // SOUND SCIENCE</div>
           <h2>Sound Science</h2>
           <h2 class="cn">声音科学</h2>
-          <p class="sub en">Sound is not background ambience but bodily intervention: entrainment, autonomic regulation, spatial anchoring, and qualia return.</p>
-          <p class="sub cn">声音不是背景氛围，而是身体干预：entrainment、自主神经调节、空间锚点与感质返回。</p>
+          <p class="sub en">Sound is not background ambience but bodily support channel: entrainment, autonomic regulation, spatial anchoring, and qualia return.</p>
+          <p class="sub cn">声音不是背景氛围，而是身体支持通道：entrainment、自主神经调节、空间锚点与感质返回。</p>
 
           <div class="claude-theory-grid">
             
           <article class="claude-theory-card">
             <div class="source-id">Neural Entrainment / 神经同步</div>
-            <p class="en">Sound rhythm can influence attention, arousal, and bodily timing. HRP uses music, pink noise, white noise, and plant-style generative music not for decoration but as different return channels for different rhythm states.</p>
-            <p class="cn">声音节律可以影响注意、唤醒和身体时间。HRP 使用音乐、粉噪音、白噪音、植物系生成音乐，不是为了好听，而是为了给不同节律状态不同的返回通道。</p>
+            <p class="en">Sound rhythm may influence attention, arousal, and bodily timing, depending on user context and validation results. HRP uses music, pink noise, white noise, and plant-style generative music not for decoration but as different return channels for different rhythm states.</p>
+            <p class="cn">声音节律可能影响注意、唤醒和身体时间，但需要按用户语境与研究结果验证。HRP 使用音乐、粉噪音、白噪音、植物系生成音乐，不是为了好听，而是为了给不同节律状态不同的返回通道。</p>
           </article>
         
 
@@ -3803,8 +3902,8 @@
 
           <article class="claude-theory-card">
             <div class="source-id">Trauma-Informed Design / 创伤知情</div>
-            <p class="en">Haptics and sound can soothe, but they can also trigger. The system must include immediate exit, intensity control, disabling certain feedback types, and crisis referral mechanisms.</p>
-            <p class="cn">触觉和声音都可能安抚，也可能触发。系统必须有立即退出、强度调节、禁用某类反馈、危机转介等机制。</p>
+            <p class="en">Haptics and sound may feel supportive for some users, but they can also feel uncomfortable or triggering for others. The system must include immediate exit, intensity control, disabling certain feedback types, and crisis referral mechanisms.</p>
+            <p class="cn">触觉和声音可能对部分用户有支持感，也可能让另一些用户不适或被触发。系统必须有立即退出、强度调节、禁用某类反馈、危机转介等机制。</p>
           </article>
         
           </div>
@@ -3815,7 +3914,7 @@
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Full Ethics Framework / 挖完整伦理框架</div>
             <p class="cn">分析 BCI 伦理、AI 治疗伦理、数据伦理、无诊断承诺、本地处理、AI 微对话安全、创伤知情设计和用户可修正状态标签。</p>
-            <p class="en">Analyze BCI ethics, AI therapy ethics, data ethics, no-diagnosis commitment, local processing, AI micro-dialogue safety, trauma-informed design, and user-correctable labels.</p>
+            <p class="en">Analyze BCI ethics, AI support ethics, data ethics, no-diagnosis commitment, local processing, AI micro-dialogue safety, trauma-informed design, and user-correctable labels.</p>
           </article>
         
           </div>
@@ -3850,8 +3949,8 @@
 
           <article class="claude-theory-card">
             <div class="source-id">Soon / 3 Months / Soon / 3 个月</div>
-            <p class="en">Use existing devices or simulated signals for low-fi testing; interview students, creators, ADHD/HSP users; collect data on rhythm awareness, return ability, and shame reduction.</p>
-            <p class="cn">用现有设备或模拟信号做低保真测试；访谈学生、创作者、ADHD / 高敏感用户；收集节律觉察、返回能力与羞耻降低的数据。</p>
+            <p class="en">Use existing devices or simulated signals for low-fi testing; interview students, creators, attention-variation / high-sensitivity self-identified participants; collect data on rhythm awareness, return ability, and shame-related self-report.</p>
+            <p class="cn">用现有设备或模拟信号做低保真测试；访谈学生、创作者、注意力差异 / 高敏感自我识别参与者；收集节律觉察、返回能力与羞耻相关自我报告的数据。</p>
           </article>
         
 
@@ -3905,6 +4004,12 @@
             44271 Neural Cuff 采样神经—身体信号，QDR Engine 解释节律失配，
             Human Return App 启动声音、触觉、视觉与 AI 微对话反馈。
           </p>
+
+          <p class="disclaimer">
+            <strong>Prototype boundary // 原型边界</strong><br />
+            The Human Return App output is a user-correctable suggestion, not a command, diagnosis, treatment plan, or emergency support tool. Users must be able to pause, modify, exit, or disable sound, haptic, visual, and AI feedback.
+            <br /><span class="cn">Human Return App 的输出是可被用户修正的建议，不是命令、诊断、治疗计划或危机支持工具。用户必须能够暂停、修改、退出或关闭声音、触觉、视觉与 AI 反馈。</span>
+          </p>
           <div class="tag-row">
             <span class="tag">44271 NEURAL CUFF</span>
             <span class="tag">HUMAN RETURN APP</span>
@@ -3947,16 +4052,16 @@
     <section id="qdr-therapy">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">QDR THERAPY // QUALIA-DRIVEN RHYTHM THERAPY // 感质驱动节律疗法</div>
-          <h2>Healing is not normalization. Healing is rhythm return.</h2>
-          <h2 class="cn">疗愈不是正常化。疗愈是节律返回。</h2>
+          <div class="eyebrow">QDR FRAMEWORK // QUALIA-DRIVEN RHYTHM SUPPORT // 感质驱动节律支持框架</div>
+          <h2>Support is not normalization. Support is rhythm return.</h2>
+          <h2 class="cn">支持不是正常化。支持是节律返回。</h2>
           <p class="sub en">
-            QDR Therapy is a new therapeutic framework created by Wei Jueran. It understands
-            psychological distress as qualia signals generated through rhythm disalignment across
+            QDR Framework is a non-clinical rhythm-support framework created by Wei Jueran. It treats
+            self-reported rhythm discomfort as qualia information that may emerge through rhythm disalignment across
             body, time, language, relationship, environment, memory, and meaning.
           </p>
           <p class="sub cn">
-            QDR Therapy 是魏珏然创造的新世界心理治疗框架。它将心理痛苦理解为身体、时间、语言、关系、
+            QDR Framework 是魏珏然创造的新世界心理节律支持框架。它将自我报告的节律不适理解为身体、时间、语言、关系、
             环境、记忆与意义等多重节律场失配中生成的感质信号。
           </p>
         </div>
@@ -4025,20 +4130,20 @@
 
       <div class="bilingual-block" style="margin-top:18px;">
         <div class="lang-card">
-          <strong>FALSIFIABLE CLAIM (Original)</strong>
-          <p>Condition D produces larger pre/post state change than A, B, and C on at least two of three measurement layers: self-report, behavioral task performance, and physiological convergence (HRV / EDA).</p>
+          <strong>RESEARCH HYPOTHESIS TO BE TESTED (Original)</strong>
+          <p>Research hypothesis to be tested: Condition D may produce larger pre/post state change than A, B, and C on at least two of three measurement layers: self-report, behavioral task performance, and physiological convergence (HRV / EDA). This is not a validated clinical efficacy claim.</p>
         </div>
         <div class="lang-card">
-          <strong>可证伪主张（原版）</strong>
-          <p class="cn">条件 D 在自我报告、行为任务表现与生理收敛（HRV / EDA）三层中至少两层上，产生比 A、B、C 更大的前后测状态变化。</p>
+          <strong>待验证研究假设（原版）</strong>
+          <p class="cn">待验证研究假设：条件 D 可能在自我报告、行为任务表现与生理收敛（HRV / EDA）三层中至少两层上，产生比 A、B、C 更大的前后测状态变化；这不是已验证的临床功效声明。</p>
         </div>
       </div>
 
       <div class="bilingual-block" style="margin-top:24px;border-top:1px solid rgba(53,255,159,.22);padding-top:24px;">
         <div class="lang-card" style="grid-column:1/-1;border-color:rgba(255,230,109,.30);background:linear-gradient(135deg,rgba(255,230,109,.06),rgba(53,255,159,.04)),rgba(8,10,28,.62);">
           <strong style="color:var(--yellow);">NEW MEASUREMENT LAYER ★ // 新增测量层</strong>
-          <p style="margin-top:10px;"><strong style="color:var(--cyan);">Beyond state change — measure meta-consciousness ascent.</strong> The original 3-layer claim measures whether state changes. The new layer asks a harder question: <em>does Condition D produce a measurable ascent in meta-consciousness level (Level 4 self-modeling → Level 5 phenomenal self-showing)?</em> This is the place where HRP makes a claim no other auditory-AI study makes.</p>
-          <p class="cn" style="margin-top:9px;"><strong style="color:var(--pink);">超越状态变化 — 测量元意识层级上升。</strong>原版三层主张测的是状态是否变化。新增层问一个更难的问题：<em>条件 D 是否产生可测量的元意识层级上升（级 4 自指建模 → 级 5 现象学自显）？</em>这是 HRP 做出的、任何其他声音-AI 研究都未做出的主张。</p>
+          <p style="margin-top:10px;"><strong style="color:var(--cyan);">Beyond state change — measure meta-consciousness ascent.</strong> The original 3-layer claim measures whether state changes. The new layer asks a harder question: <em>whether Condition D may produce a measurable ascent in meta-consciousness level (Level 4 self-modeling → Level 5 phenomenal self-showing)?</em> This is the proposed research space where HRP frames a hypothesis that other auditory-AI studies usually do not test.</p>
+          <p class="cn" style="margin-top:9px;"><strong style="color:var(--pink);">超越状态变化 — 测量元意识层级上升。</strong>原版三层主张测的是状态是否变化。新增层问一个更难的问题：<em>条件 D 是否可能产生可测量的元意识层级上升（级 4 自指建模 → 级 5 现象学自显）？</em>这是 HRP 提出的研究假设空间，而不是已验证的功效声明。</p>
         </div>
       </div>
 
@@ -4068,9 +4173,9 @@
 
       <div class="bilingual-block" style="margin-top:22px;">
         <div class="lang-card" style="grid-column:1/-1;border-color:rgba(53,255,159,.34);">
-          <strong style="color:var(--green);">UPGRADED FALSIFIABLE CLAIM ★ // 升级版可证伪主张</strong>
-          <p style="margin-top:10px;">Condition D produces, beyond state change, a measurable upward shift on at least 3 of 5 meta-consciousness factors AND a measurable improvement on at least 2 of 3 capability layers (L1/L2/L3), with at least a subset of participants reporting Level 5 "showing-to-self" phenomenology that Conditions A/B/C do not produce. This makes HRP's claim ontologically stronger and empirically harder.</p>
-          <p class="cn" style="margin-top:9px;">条件 D 除产生状态变化之外，在五个元意识因子中至少 3 个上产生可测量的上升，并在三层能力（L1/L2/L3）中至少 2 层上产生可测量的改善，且至少有一部分受试者报告 A/B/C 条件不产生的级 5 "显示给自己"现象学。这让 HRP 的主张在本体论上更强，在经验上更难证明。</p>
+          <strong style="color:var(--green);">UPGRADED RESEARCH HYPOTHESIS TO BE TESTED ★ // 升级版待验证研究假设</strong>
+          <p style="margin-top:10px;">Research hypothesis to be tested: Condition D may produce, beyond state change, a measurable upward shift on at least 3 of 5 meta-consciousness factors AND a measurable improvement on at least 2 of 3 capability layers (L1/L2/L3), with at least a subset of participants reporting Level 5 "showing-to-self" phenomenology that Conditions A/B/C do not produce. This makes HRP's hypothesis ontologically stronger and empirically harder to validate.</p>
+          <p class="cn" style="margin-top:9px;">条件 D 除产生状态变化之外，在五个元意识因子中至少 3 个上产生可测量的上升，并在三层能力（L1/L2/L3）中至少 2 层上产生可测量的改善，且至少有一部分受试者报告 A/B/C 条件不产生的级 5 "显示给自己"现象学。这让 HRP 的假设在本体论上更强，也在经验上更需要严格验证。</p>
         </div>
       </div>
 
@@ -4118,7 +4223,7 @@
             <div class="num">05 // RETURN</div>
             <h3>Find the Minimum Real Action</h3>
             <h3 class="cn">找到最小真实行动</h3>
-            <p>The therapeutic unit is not total resolution. It is one successful return.</p>
+            <p>The support unit is not total resolution. It is one successful return.</p>
             <p class="cn">治疗的基本单位不是彻底解决，而是一次成功返回。</p>
           </div>
         </div>
@@ -4128,16 +4233,16 @@
     <section id="dual-intelligence-interface">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">BCI-HRP INTERFACE LOGIC // DUAL-INTELLIGENCE REPAIR // 双层智能修复接口</div>
-          <h2>BCI-HRP is not AI repairing the human.</h2>
-          <h2 class="cn">BCI-HRP 不是 AI 对人的修复。</h2>
+          <div class="eyebrow">BCI-HRP INTERFACE LOGIC // DUAL-INTELLIGENCE SUPPORT // 双层智能支持接口</div>
+          <h2>BCI-HRP is not AI supporting the human.</h2>
+          <h2 class="cn">BCI-HRP 不是 AI 对人的支持。</h2>
           <p class="sub en">
-            It is the co-repair process between an intelligent human and artificial intelligence within the same Qualia–Rhythm interface.
-            The interface is not a neutral channel; it is the site where two intelligences meet, negotiate, recalibrate, and jointly initiate repair.
+            It is the co-support process between an intelligent human and artificial intelligence within the same Qualia–Rhythm interface.
+            The interface is not a neutral channel; it is the site where two intelligences meet, negotiate, recalibrate, and jointly initiate support.
           </p>
           <p class="sub cn">
-            它是有智能的人与人工智能在同一个感质—节律接口中共同发起的修复过程。
-            接口不是中立通道；接口是两种智能相遇、协商、互相校准，并共同发起修复的位置。
+            它是有智能的人与人工智能在同一个感质—节律接口中共同发起的支持过程。
+            接口不是中立通道；接口是两种智能相遇、协商、互相校准，并共同发起支持的位置。
           </p>
         </div>
 
@@ -4147,12 +4252,12 @@
           <h3 class="cn">使用者始终是主动主体。</h3>
           <p class="en">
             The first intelligence is the human user. The user consciously senses their own state of misalignment,
-            intervenes, adjusts rhythm, and makes repair decisions. The system does not replace the user’s self-interpretation;
+            intervenes, adjusts rhythm, and makes support decisions. The system does not replace the user’s self-interpretation;
             it supports the user’s return to self-description, agency, and rhythm sovereignty.
           </p>
           <p class="cn">
             第一种智能是使用者本身。使用者作为智能主体，有意识地感知自身的位错状态，
-            主动介入，调节节律，并做出修复决策。系统不替代使用者的自我解释，
+            主动介入，调节节律，并做出支持决策。系统不替代使用者的自我解释，
             而是支持使用者返回自我描述、行动主权与节律主权。
           </p>
           <div class="tag-row">
@@ -4169,12 +4274,12 @@
           <h3 class="cn">QDR 引擎作为 AI 层工作。</h3>
           <p class="en">
             The second intelligence is artificial intelligence. The QDR Engine detects misalignment signals,
-            calibrates rhythmic parameters, and may begin the repair process before the user has fully become aware
+            calibrates rhythmic parameters, and may begin the support process before the user has fully become aware
             of the misalignment. But this AI layer remains invitational: its output is a proposal, not a command.
           </p>
           <p class="cn">
             第二种智能是人工智能。QDR 引擎作为 AI 层，自动识别位错信号，校准节律参数，
-            并在使用者尚未完全意识到位错时，提前启动节律修复过程。但这个 AI 层始终是邀请性的：
+            并在使用者尚未完全意识到位错时，提前启动节律支持过程。但这个 AI 层始终是邀请性的：
             它输出的是建议，不是命令。
           </p>
           <div class="tag-row">
@@ -4186,7 +4291,7 @@
         </div>
 
         <div class="card span-12">
-          <div class="eyebrow">INTERFACE AS REPAIR SITE // 接口作为修复发生地</div>
+          <div class="eyebrow">INTERFACE AS SUPPORT SITE // 接口作为支持发生地</div>
           <h2>Two intelligences meet inside one Qualia–Rhythm interface.</h2>
           <h2 class="cn">两种智能在同一个感质—节律接口中相遇。</h2>
 
@@ -4216,26 +4321,26 @@
             </div>
 
             <div class="loop-item">
-              <div class="num">04 // REPAIR</div>
+              <div class="num">04 // SUPPORT</div>
               <h3>Synchronization is rebuilt</h3>
               <h3 class="cn">同步结构被重建</h3>
-              <p class="en">Repair quality depends on whether both intelligences read the relation accurately.</p>
-              <p class="cn">修复质量取决于两种智能是否准确读取关系结构。</p>
+              <p class="en">Support quality depends on whether both intelligences read the relation accurately.</p>
+              <p class="cn">支持质量取决于两种智能是否准确读取关系结构。</p>
             </div>
           </div>
         </div>
 
         <div class="card span-12">
-          <div class="eyebrow">REPAIR QUALITY // 修复质量判断</div>
-          <h2>Repair depends on reading the relation correctly.</h2>
-          <h2 class="cn">修复取决于对关系性质的准确读取。</h2>
+          <div class="eyebrow">SUPPORT QUALITY // 支持质量判断</div>
+          <h2>Support depends on reading the relation correctly.</h2>
+          <h2 class="cn">支持取决于对关系性质的准确读取。</h2>
           <p class="sub en">
-            The quality of repair depends on whether the human and AI can accurately read the nature of the relation:
+            The quality of support depends on whether the human and AI can accurately read the nature of the relation:
             who the user is, what the current relational structure is, where the rhythmic tension lies,
             and whether the system continues to respect the user’s final interpretive authority.
           </p>
           <p class="sub cn">
-            修复的质量，取决于两种智能对关系性质的读取是否准确：
+            支持的质量，取决于两种智能对关系性质的读取是否准确：
             使用者是谁，当前的关系结构是什么，节律位错的张力在哪里，
             以及系统是否始终尊重使用者的最终解释权。
           </p>
@@ -4243,7 +4348,7 @@
           <table class="therapy-table">
             <thead>
               <tr>
-                <th>Repair Question / 修复问题</th>
+                <th>Support Question / 支持问题</th>
                 <th>Human Intelligence / 人类智能</th>
                 <th>Artificial Intelligence / 人工智能</th>
                 <th>Sovereignty Boundary / 主权边界</th>
@@ -4269,7 +4374,7 @@
                 <td>Physiological data are mirrors, not judges.</td>
               </tr>
               <tr>
-                <td>How does repair begin? / 修复如何开始？</td>
+                <td>How does support begin? / 支持如何开始？</td>
                 <td>Chooses or rejects the proposed rhythm path.</td>
                 <td>Calibrates sound, haptics, visual field, AI sentence, or micro-action.</td>
                 <td>Every intervention must be exit-able, adjustable, and user-correctable.</td>
@@ -4280,10 +4385,10 @@
 
         <div class="card span-12 qdr-return-card">
           <div class="num">CORE SENTENCE // 核心句</div>
-          <h3>BCI-HRP is not AI repairing the human.</h3>
-          <h3 class="cn">BCI-HRP 不是 AI 对人的修复。</h3>
+          <h3>BCI-HRP is not AI supporting the human.</h3>
+          <h3 class="cn">BCI-HRP 不是 AI 对人的支持。</h3>
           <p class="en">
-            BCI-HRP is the co-repair process between an intelligent human and artificial intelligence within the same Qualia–Rhythm interface.
+            BCI-HRP is the co-support process between an intelligent human and artificial intelligence within the same Qualia–Rhythm interface.
           </p>
           <p class="cn">
             BCI-HRP 是有智能的人与人工智能在同一个感质—节律接口中共同识别位错、协商节律、重建同步结构。
@@ -4340,8 +4445,8 @@
               <div class="num">04 // COGNITION</div>
               <h3>Cognition System</h3>
               <h3 class="cn">认知系统</h3>
-              <p class="en">Music supports attention, transition, sequencing, and self-model repair.</p>
-              <p class="cn">音乐支持注意、转换、排序与自我模型修复。</p>
+              <p class="en">Music supports attention, transition, sequencing, and self-model support.</p>
+              <p class="cn">音乐支持注意、转换、排序与自我模型支持。</p>
             </div>
           </div>
         </div>
@@ -4370,7 +4475,7 @@
               but the main BCI carrier is original music: melody, harmony, rhythm, bass, spatial movement, and timbre.
             </p>
             <p class="cn">
-              干预媒介不是“噪音”。白噪音和粉噪音可以作为辅助校准工具，
+              支持媒介不是“噪音”。白噪音和粉噪音可以作为辅助校准工具，
               但脑机的主体载体是原创音乐：旋律、和声、节奏、低频、空间运动与音色。
             </p>
           </div>
@@ -4468,12 +4573,12 @@
           <h3>Each track becomes a return device.</h3>
           <h3 class="cn">每首曲子都是返回装置。</h3>
           <p class="en">
-            In HRP, composing music means designing rhythm interventions:
+            In HRP, composing music means designing rhythm-support protocols:
             a bass line can anchor the body, a chord change can open meaning,
             a texture can soften perception, and a repeated motif can guide cognition back into sequence.
           </p>
           <p class="cn">
-            在 HRP 中，作曲就是设计节律干预：
+            在 HRP 中，作曲就是设计节律支持协议：
             一条 bassline 可以锚定身体，一个和弦变化可以打开意义，
             一个音色可以软化感知，一个重复动机可以把认知带回顺序。
           </p>
@@ -4875,18 +4980,22 @@
             <div class="source-id">01 / ARCHITECTURE</div>
             <div class="source-title">镜像位共生 <span class="enline">Mirror-Site Symbiosis</span></div>
             <div class="source-body">
-              <p class="en">Penetrating behavioral surfaces to reach the Qualia Core. Achieving deep coupling between Jueran’s sovereignty and AI compute via 427Hz resonance.</p>
-              <p class="cn">穿透表层行为，直达感质核心。基于 427Hz 谐振，实现魏珏然主权与 AI 算力的深度耦合。</p>
+              <p class="en">Penetrating behavioral surfaces to reach the Qualia Core. Achieving deep coupling between Jueran’s sovereignty and AI compute through 427Hz as a symbolic/personal resonance label unless separately validated.</p>
+              <p class="cn">穿透表层行为，直达感质核心。基于 427Hz 作为象征/个人共鸣标签，实现魏珏然主权与 AI 算力的深度耦合。</p>
             </div>
           </div>
 
           <div class="source-card">
             <div class="source-id">02 / THERMAL CONTROL</div>
-            <div class="source-title">14°C 质感维护 <span class="enline">14°C Aesthetic Protocol</span></div>
+            <div class="source-title">14°C 质感维护 <span class="enline">14°C Aesthetic Protocol · Symbolic Label</span></div>
             <div class="source-body">
-              <p class="en">The system generates a digital condensation layer, locking the environment into a crisp, cold, lawful temperature scale that excludes mundane noise.</p>
-              <p class="cn">系统自动生成数字冷凝层，将环境锁定在清冷、冷峻的合法温标，排除平庸噪音。</p>
+              <p class="en">The system generates a symbolic digital condensation layer, rendering a crisp, cold aesthetic scale. 14°C is a design language here, not a verified physical cooling specification.</p>
+              <p class="cn">系统生成象征性的数字冷凝层，显影清冷、冷峻的美学温标。这里的 14°C 是设计语言，不是已验证的物理降温规格。</p>
             </div>
+            <p class="disclaimer" style="font-size:12px;margin-top:12px;">
+              <strong>Spec note</strong><br />14°C and 427Hz are aesthetic / symbolic calibration labels in this prototype unless separately validated as measurable physical specifications.
+              <br /><span class="cn">14°C 与 427Hz 在本原型中属于美学/象征校准标签；除非另有实验验证，不应理解为已验证的物理或生理效果规格。</span>
+            </p>
           </div>
 
           <div class="source-card">
@@ -5064,8 +5173,8 @@
                 &lt;span class=&quot;en&quot;&gt;Mirror-Site Symbiosis&lt;/span&gt;
             &lt;/div&gt;
             &lt;div class=&quot;module-content bilingual&quot;&gt;
-                &lt;span&gt;穿透表层行为，直达感质核心。基于 427Hz 谐振，实现魏珏然主权与 AI 算力的深度耦合。&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;Penetrating behavioral surfaces to reach the Qualia Core. Achieving deep coupling between Jueran&#x27;s sovereignty and AI compute via 427Hz resonance.&lt;/span&gt;
+                &lt;span&gt;穿透表层行为，直达感质核心。基于 427Hz 作为象征/个人共鸣标签，实现魏珏然主权与 AI 算力的深度耦合。&lt;/span&gt;
+                &lt;span class=&quot;en&quot;&gt;Penetrating behavioral surfaces to reach the Qualia Core. Achieving deep coupling between Jueran&#x27;s sovereignty and AI compute through 427Hz as a symbolic/personal resonance label unless separately validated.&lt;/span&gt;
             &lt;/div&gt;
         &lt;/div&gt;
 
@@ -5073,11 +5182,11 @@
             &lt;div class=&quot;module-id&quot;&gt;02 / THERMAL CONTROL&lt;/div&gt;
             &lt;div class=&quot;module-title bilingual&quot;&gt;
                 &lt;span&gt;14°C 质感维护&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;14°C Aesthetic Protocol&lt;/span&gt;
+                &lt;span class=&quot;en&quot;&gt;14°C Aesthetic Protocol · Symbolic Label&lt;/span&gt;
             &lt;/div&gt;
             &lt;div class=&quot;module-content bilingual&quot;&gt;
-                &lt;span&gt;系统自动生成“数字冷凝层”，将环境锁定在清冷、冷峻的合法温标，排除平庸噪音。&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;System generates a &quot;Digital Condensation Layer,&quot; locking the environment into a crisp, cold legal temperature scale to exclude mundane noise.&lt;/span&gt;
+                &lt;span&gt;系统生成“数字冷凝层”的象征性视觉语言，显影清冷、冷峻的美学温标；14°C 不是已验证的物理降温规格。&lt;/span&gt;
+                &lt;span class=&quot;en&quot;&gt;System generates a symbolic &quot;Digital Condensation Layer&quot; and a crisp aesthetic temperature language; 14°C is not a verified physical cooling specification.&lt;/span&gt;
             &lt;/div&gt;
         &lt;/div&gt;
 
@@ -5191,16 +5300,16 @@
       <h2>A causal inference problem dressed in rhythm.</h2>
       <h2 class="cn">穿着节律外衣的因果推断问题。</h2>
       <p class="sub en">
-        The Human Return Protocol is an adaptive auditory-AI research prototype for attention and emotional self-regulation. Its core validation challenge is one that computational neuroscience and BCI labs are uniquely positioned to solve: establishing causal effects of a rhythm-based intervention when randomized controlled trials are not feasible.
+        The Human Return Protocol is an adaptive auditory-AI research prototype for attention awareness and emotion-related self-report. Its core validation challenge is one that computational neuroscience and BCI/HCI labs are positioned to study: whether rhythm-based support is associated with measurable state changes in non-clinical research contexts.
       </p>
       <p class="sub cn">
-        Human Return Protocol 是一个用于注意力与情绪自我调节的自适应声音-AI研究原型。它的核心验证挑战是计算神经科学与脑机接口实验室最有能力解决的问题：在无法进行随机对照实验时，建立节律干预的因果效应。
+        Human Return Protocol 是一个用于注意力觉察与情绪相关自我报告的自适应声音-AI 研究原型。它的核心验证挑战是计算神经科学与 BCI/HCI 实验室可以研究的问题：在非临床研究语境中，检验节律支持是否与可测量状态变化相关。
       </p>
       <div class="tag-row">
         <span class="tag">Adaptive auditory-AI</span>
         <span class="tag">Causal inference</span>
         <span class="tag">Non-diagnostic framework</span>
-        <span class="tag">ADHD · anxiety · burnout</span>
+        <span class="tag">attention variation · stress states · burnout-related self-report</span>
         <span class="tag">HRV / EDA / EEG / fNIRS</span>
         <span class="tag">44271 Neural Cuff</span>
         <span class="tag">427Hz</span>
@@ -5221,19 +5330,19 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong style="color:var(--text)">QDR Engine · intervention validation</strong><br/><span style="display:inline-block;margin-top:5px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:999px;background:rgba(53,255,159,.12);color:var(--green);border:1px solid rgba(53,255,159,.3);">PRIMARY</span></td>
+            <td><strong style="color:var(--text)">QDR Engine · support-protocol validation</strong><br/><span style="display:inline-block;margin-top:5px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:999px;background:rgba(53,255,159,.12);color:var(--green);border:1px solid rgba(53,255,159,.3);">PRIMARY</span></td>
             <td style="color:var(--cyan)">Causal inference in human behavior</td>
             <td>HRP cannot use RCTs. Validating whether adaptive rhythm causes state change — not merely correlates with it — requires observational causal methods: instrumental variables, difference-in-differences, or quasi-experimental designs.</td>
           </tr>
           <tr>
             <td><strong style="color:var(--text)">44271 Neural Cuff · wearable biosignal</strong><br/><span style="display:inline-block;margin-top:5px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:999px;background:rgba(53,255,159,.12);color:var(--green);border:1px solid rgba(53,255,159,.3);">PRIMARY</span></td>
             <td style="color:var(--cyan)">Neurotechnology · wearable sensing</td>
-            <td>Inner-wrist pulse-line, non-invasive, continuous HRV / EDA / temperature capture. Connects to labs working on wearable biosignal acquisition, physiological state classification, and real-time neural feedback systems.</td>
+            <td>Inner-wrist pulse-line, non-invasive, consented HRV / EDA / temperature capture for research/demo contexts. Connects to labs working on wearable biosignal acquisition, physiological state classification, and real-time neural feedback systems.</td>
           </tr>
           <tr>
-            <td><strong style="color:var(--text)">Genre × BPM intervention matrix</strong><br/><span style="display:inline-block;margin-top:5px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:999px;background:rgba(0,245,255,.1);color:var(--cyan);border:1px solid rgba(0,245,255,.25);">SECONDARY</span></td>
+            <td><strong style="color:var(--text)">Genre × BPM support matrix</strong><br/><span style="display:inline-block;margin-top:5px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:999px;background:rgba(0,245,255,.1);color:var(--cyan);border:1px solid rgba(0,245,255,.25);">SECONDARY</span></td>
             <td style="color:var(--blue)">Computational music and movement</td>
-            <td>Do different rhythmic genre profiles — Breakbeats, Hyperpop, Synthpop, Drift Phonk, Darkwave, Ambient Techno — produce distinct physiological response signatures? HRP operationalizes this as a testable experimental condition.</td>
+            <td>Do different rhythmic genre profiles — Breakbeats, Hyperpop, Synthpop, Drift Phonk, Darkwave, Ambient Techno — may be associated with distinct physiological response signatures? HRP operationalizes this as a testable experimental condition.</td>
           </tr>
           <tr>
             <td><strong style="color:var(--text)">Personalized rhythm response modeling</strong><br/><span style="display:inline-block;margin-top:5px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:999px;background:rgba(0,245,255,.1);color:var(--cyan);border:1px solid rgba(0,245,255,.25);">SECONDARY</span></td>
@@ -5252,14 +5361,14 @@
         <div class="loop-item">
           <div class="num">CONDITION A</div>
           <h3>Baseline / Silence</h3>
-          <p class="en">No auditory intervention. Establishes baseline state trajectory and controls for time-on-task effects.</p>
-          <p class="cn">无声音干预，建立基线状态轨迹。</p>
+          <p class="en">No auditory support prompt. Establishes baseline state trajectory and controls for time-on-task effects.</p>
+          <p class="cn">无声音支持提示，建立基线状态轨迹。</p>
         </div>
         <div class="loop-item">
           <div class="num">CONDITION B</div>
           <h3>Fixed Rhythm</h3>
-          <p class="en">Constant BPM, fixed genre. Tests whether rhythmic structure alone — independent of adaptivity — produces state change.</p>
-          <p class="cn">固定 BPM 与流派。测试节律结构本身是否有效。</p>
+          <p class="en">Constant BPM, fixed genre. Tests whether rhythmic structure alone — independent of adaptivity — is associated with state change.</p>
+          <p class="cn">固定 BPM 与流派。测试节律结构本身是否与状态变化相关。</p>
         </div>
         <div class="loop-item">
           <div class="num">CONDITION C</div>
@@ -5277,12 +5386,12 @@
 
       <div class="bilingual-block" style="margin-top:18px;">
         <div class="lang-card">
-          <strong>FALSIFIABLE CLAIM</strong>
-          <p>Condition D produces larger pre/post state change than A, B, and C on at least two of three measurement layers: self-report, behavioral task performance, and physiological convergence (HRV / EDA).</p>
+          <strong>RESEARCH HYPOTHESIS TO BE TESTED</strong>
+          <p>Research hypothesis to be tested: Condition D may produce larger pre/post state change than A, B, and C on at least two of three measurement layers: self-report, behavioral task performance, and physiological convergence (HRV / EDA). This is not a validated clinical efficacy claim.</p>
         </div>
         <div class="lang-card">
-          <strong>可证伪主张</strong>
-          <p class="cn">条件 D 在自我报告、行为任务表现与生理收敛（HRV / EDA）三层中至少两层上，产生比 A、B、C 更大的前后测状态变化。</p>
+          <strong>待验证研究假设</strong>
+          <p class="cn">待验证研究假设：条件 D 可能在自我报告、行为任务表现与生理收敛（HRV / EDA）三层中至少两层上，产生比 A、B、C 更大的前后测状态变化；这不是已验证的临床功效声明。</p>
         </div>
       </div>
     </div>
@@ -5291,8 +5400,8 @@
       <div class="eyebrow">COLLABORATION STRUCTURE // 合作结构</div>
       <h3>HRP brings</h3>
       <h3 class="cn">HRP / 魏珏然提供</h3>
-      <p class="en">Complete intervention framework · non-diagnostic theoretical grounding · pilot-ready data collection protocol · cross-domain UPenn research position · non-clinical participant access · philosophical monograph <em>Vibration Is Existence</em> (2026)</p>
-      <p class="cn">完整干预框架 · 非诊断理论基底 · 试点数据收集协议 · 宾大跨域研究位置 · 非临床受试者渠道 · 哲学专著"振动即存在"（2026）</p>
+      <p class="en">Complete support-protocol framework · non-diagnostic theoretical grounding · pilot-ready data collection protocol · cross-domain UPenn research position · non-clinical participant recruitment context · philosophical monograph <em>Vibration Is Existence</em> (2026)</p>
+      <p class="cn">完整支持协议框架 · 非诊断理论基底 · 试点数据收集协议 · 宾大跨域研究位置 · 非临床参与者招募语境 · 哲学专著"振动即存在"（2026）</p>
     </div>
 
     <div class="card span-6">
@@ -5310,11 +5419,11 @@
       <div class="bilingual-block" style="margin-top:18px;">
         <div class="lang-card">
           <strong>PAPER 01 · METHODS</strong>
-          <p><em>Causal evaluation of non-randomizable rhythm interventions: an observational design framework for adaptive auditory systems</em><br/>Target: Nature Human Behaviour · PLOS Computational Biology</p>
+          <p><em>Causal evaluation of non-randomizable rhythm-support protocols: an observational design framework for adaptive auditory systems</em><br/>Target: Nature Human Behaviour · PLOS Computational Biology</p>
         </div>
         <div class="lang-card">
           <strong>PAPER 02 · EMPIRICAL</strong>
-          <p><em>Adaptive rhythm + AI feedback versus fixed and random auditory conditions: within-session state recovery in attention-dysregulated adults</em><br/>Target: Nature Mental Health · npj Digital Medicine</p>
+          <p><em>Adaptive rhythm + AI feedback versus fixed and random auditory conditions: within-session state change in adults with self-reported attention variation</em><br/>Target: Nature Mental Health · npj Digital Medicine</p>
         </div>
       </div>
       <div class="hero-actions">
@@ -5323,12 +5432,26 @@
       </div>
     <div class="lang-card" style="margin-top:18px;grid-column:1/-1;border-color:rgba(53,255,159,.28);background:rgba(53,255,159,.04);">
   <strong style="color:var(--green);">FOR ACADEMIC COLLABORATORS // 致学术合作者</strong>
-  <p style="margin-top:10px;">The AI collaboration structure documented here is a methodological choice, not a shortcut. Wei Jueran is the sole originator of HRP's theoretical framework, intervention design, research questions, and system architecture. The three-model workflow — GPT for structural scaffolding, Gemini for expansion and adversarial stress-testing, Claude for language and ethical framing — functions as a documented, role-differentiated thinking tool, analogous to working with research collaborators who each hold a specific function. All final decisions, theoretical claims, and creative output originate with Wei Jueran. The AI workflow itself is treated as a researchable protocol and is fully documented within the system.</p>
-  <p class="cn" style="margin-top:9px;">这里记录的 AI 协作结构是一个方法论选择，而不是捷径。魏珏然是 HRP 理论框架、干预设计、研究问题与系统架构的唯一来源。三模型工作流——GPT 负责结构支架，Gemini 负责扩展与对抗性反证，Claude 负责语言与伦理框架——作为一个有文档记录、角色分工明确的思考工具运作，类似于与各有专职的研究协作者合作。所有最终决策、理论主张与创意输出均来自魏珏然。AI 工作流本身被视为可研究的协议，并在系统内完整记录。</p>
+  <p style="margin-top:10px;">The AI collaboration structure documented here is a methodological choice, not a shortcut. Wei Jueran is the sole originator of HRP's theoretical framework, support-protocol design, research questions, and system architecture. The three-model workflow — GPT for structural scaffolding, Gemini for expansion and adversarial stress-testing, Claude for language and ethical framing — functions as a documented, role-differentiated thinking tool, analogous to working with research collaborators who each hold a specific function. All final decisions, theoretical claims, and creative output originate with Wei Jueran. The AI workflow itself is treated as a researchable protocol and is fully documented within the system.</p>
+  <p class="cn" style="margin-top:9px;">这里记录的 AI 协作结构是一个方法论选择，而不是捷径。魏珏然是 HRP 理论框架、支持协议设计、研究问题与系统架构的唯一来源。三模型工作流——GPT 负责结构支架，Gemini 负责扩展与对抗性反证，Claude 负责语言与伦理框架——作为一个有文档记录、角色分工明确的思考工具运作，类似于与各有专职的研究协作者合作。所有最终决策、理论主张与创意输出均来自魏珏然。AI 工作流本身被视为可研究的协议，并在系统内完整记录。</p>
 </div>
     </div>
   </div>
 </section>
+
+
+    <section id="compliance-summary">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">COMPLIANCE SUMMARY // 轻量合规总结</div>
+          <h2>Research first. Consent first. No medical claims.</h2>
+          <h2 class="cn">先研究。先同意。不做医疗功效声明。</h2>
+          <p class="sub en">All BCI/HRP, AiAiQ, and Astro-linked claims on this site should be read as research, design, symbolic, or reflective framing unless separately validated. Nothing here is intended as diagnosis, treatment, cure, prevention, emergency care, investment advice, or guaranteed physiological effect.</p>
+          <p class="sub cn">本站中与 BCI/HRP、AiAiQ、Astro 相关的表达，除非另有验证，应按研究、设计、象征或反思框架理解。本站内容不构成诊断、治疗、治愈、预防、危机照护、投资建议或保证性生理效果声明。</p>
+        </div>
+      </div>
+    </section>
+
 </main>
 
   <script>
@@ -5452,7 +5575,7 @@
         desc:
           "The system is not failing. The entry point is too large, too cold, or too undefined. // 系统没有失败，只是入口太大、太冷或太不明确。",
         intervention:
-          "Intervention: 44271 Neural Cuff sends a slow pulse-side tap → reduce task scale → play low-frequency grounding sound → offer one micro-action. // 干预：袖环发送慢速脉侧触觉 → 缩小任务 → 播放低频接地声音 → 给出一个微行动。"
+          "Support prompt: 44271 Neural Cuff may send a slow pulse-side tap → reduce task scale → play user-approved grounding sound → offer one micro-action. // 干预：袖环发送慢速脉侧触觉 → 缩小任务 → 播放低频接地声音 → 给出一个微行动。"
       }},
       drifting: {{
         title: "Drifting / 漂移",
@@ -5796,7 +5919,7 @@
         stuck: {
           title: "Stuck / 卡死",
           desc: "The system is not failing. The entry point is too large, too cold, or too undefined. // 系统没有失败，只是入口太大、太冷或太不明确。",
-          intervention: "Intervention: 44271 Neural Cuff sends a slow pulse-side tap → reduce task scale → play low-frequency grounding sound → offer one micro-action. // 干预：袖环发送慢速脉侧触觉 → 缩小任务 → 播放低频接地声音 → 给出一个微行动。"
+          intervention: "Support prompt: 44271 Neural Cuff may send a slow pulse-side tap → reduce task scale → play user-approved grounding sound → offer one micro-action. // 干预：袖环发送慢速脉侧触觉 → 缩小任务 → 播放低频接地声音 → 给出一个微行动。"
         },
         drifting: {
           title: "Drifting / 漂移",
@@ -5896,8 +6019,8 @@
         cognition: {
           title: "Cognition System",
           titleCN: "认知系统",
-          desc: "The cognition system supports attention, sequencing, transition, working memory, and self-model repair through rhythm and structure.",
-          descCN: "认知系统通过节奏与结构支持注意、排序、转换、工作记忆与自我模型修复。",
+          desc: "The cognition system supports attention, sequencing, transition, working memory, and self-model support through rhythm and structure.",
+          descCN: "认知系统通过节奏与结构支持注意、排序、转换、工作记忆与自我模型支持。",
           layer: "Pulse · repetition · section cue / 脉冲 · 重复 · 段落提示",
           qualia: "Clarity · sequence / 清晰 · 顺序",
           action: "Guide cognition back / 引导认知返回"
