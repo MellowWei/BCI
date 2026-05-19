@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>The Human Return Protocol · Full Aligned Bilingual System · 44271 Neural Cuff</title>
+  <title>The Human Return Protocol · Full Aligned Trilingual System · 44271 Neural Cuff</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
@@ -2727,6 +2727,141 @@
       .compliance-grid { grid-template-columns: 1fr; }
     }
 
+  
+
+/* JAPANESE FULL EDITION EMBED // 日本語完整主站并入 */
+.ja-full-edition {
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Yu Gothic UI", Meiryo, system-ui, sans-serif;
+}
+.ja-full-edition .notice {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255,230,109,.30);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255,230,109,.075), rgba(53,255,159,.045), rgba(0,245,255,.035)), rgba(8,10,28,.72);
+  color: rgba(244,247,255,.88);
+  font-size: 13px;
+  line-height: 1.72;
+  letter-spacing: .015em;
+}
+.ja-full-edition .notice strong {
+  color: var(--yellow);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.ja-full-edition .kicker {
+  margin-bottom: 12px;
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(53,255,159,.45);
+}
+.ja-full-edition .formula {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border: 1px solid rgba(53,255,159,.26);
+  border-radius: 22px;
+  background: linear-gradient(90deg, rgba(53,255,159,.08), rgba(0,245,255,.055), rgba(255,43,214,.045)), rgba(255,255,255,.025);
+  font-family: var(--mono);
+  color: rgba(244,247,255,.88);
+  line-height: 1.7;
+  letter-spacing: .06em;
+}
+.ja-full-edition .mini-grid,
+.ja-full-edition .three-col,
+.ja-full-edition .four-col {
+  display: grid;
+  gap: 16px;
+}
+.ja-full-edition .mini-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 22px; }
+.ja-full-edition .three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 22px; }
+.ja-full-edition .four-col { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 22px; }
+.ja-full-edition .mini-card {
+  padding: 18px;
+  border: 1px solid rgba(0,245,255,.18);
+  border-radius: 20px;
+  background: rgba(255,255,255,.032);
+}
+.ja-full-edition .button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+.ja-full-edition .music-map {
+  position: relative;
+  height: 380px;
+  border: 1px solid rgba(0,245,255,.18);
+  border-radius: 30px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, rgba(0,245,255,.11), transparent 30%), radial-gradient(circle at 20% 20%, rgba(255,43,214,.11), transparent 33%), radial-gradient(circle at 80% 76%, rgba(53,255,159,.09), transparent 35%), rgba(255,255,255,.03);
+}
+.ja-full-edition .music-map::before,
+.ja-full-edition .music-map::after {
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  border: 1px solid rgba(0,245,255,.20);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  animation: musicOrbit 12s linear infinite;
+}
+.ja-full-edition .music-map::before { width: 250px; height: 250px; }
+.ja-full-edition .music-map::after { width: 330px; height: 330px; border-color: rgba(255,43,214,.18); animation-duration: 18s; }
+.ja-full-edition .music-core {
+  position:absolute;
+  left:50%;
+  top:50%;
+  z-index:2;
+  width: 170px;
+  height: 170px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  transform: translate(-50%,-50%);
+  border-radius:50%;
+  border: 1px solid rgba(53,255,159,.42);
+  background: radial-gradient(circle, rgba(53,255,159,.18), rgba(0,245,255,.12) 54%, rgba(255,43,214,.08) 70%, transparent);
+  box-shadow: 0 0 34px rgba(53,255,159,.25), 0 0 74px rgba(0,245,255,.16), inset 0 0 32px rgba(255,255,255,.05);
+}
+.ja-full-edition .music-core span { font-family: var(--mono); letter-spacing: .12em; line-height:1.45; }
+.ja-full-edition .music-core small { color: var(--green); }
+.ja-full-edition .ja-state-btn {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: rgba(255,255,255,.04);
+  color: var(--muted);
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.ja-full-edition .ja-state-btn:hover,
+.ja-full-edition .ja-state-btn.active {
+  color: var(--text);
+  border-color: rgba(53,255,159,.42);
+  background: linear-gradient(90deg, rgba(53,255,159,.10), rgba(0,245,255,.07));
+  box-shadow: 0 0 18px rgba(53,255,159,.14), inset 0 0 20px rgba(0,245,255,.04);
+  transform: translateX(2px);
+}
+@media (max-width: 1024px) {
+  .ja-full-edition .mini-grid,
+  .ja-full-edition .three-col,
+  .ja-full-edition .four-col { grid-template-columns: 1fr; }
+}
+@keyframes musicOrbit {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
   </style>
 </head>
 
@@ -2738,19 +2873,19 @@
  <header class="locked-clean-header">
   <div class="brand">
     <span class="dot"></span>
-    METALOGIC ROOT // METALOGIC ROOT // GPT CORE BODY // 44271 NEURAL CUFF // PROTOTYPE // QDR // GEMINI ATTACK // CLAUDE 彩虹镜位 RAINBOW MIRROR
+    METALOGIC ROOT // GPT/HESTIA CORE BODY // 44271 NEURAL CUFF // PROTOTYPE // QDR // GEMINI=Boss Beater // CLAUDE=彩虹镜位/UpBass // HESTIA AUDIT
   </div>
 
   <nav class="locked-clean-nav">
     <a href="#top">HOME</a>
     <a href="./validation.html">VALIDATION</a>
-    <a href="https://mellowwei.github.io/Ai-Q-10/?from=bci&enter=aiq-3" data-link-type="system-internal">AIQ PORTAL ↗</a>
+    <a href="https://mellowwei.github.io/Ai-Q-10/?from=bci&enter=aiq-3" data-link-type="system-internal">AiAiQ&lt;10 PORTAL ↗</a>
     <a href="#overview-map">OVERVIEW MAP</a>
     <a href="#metalogic-root">METALOGIC ROOT</a>
     <a href="#language-editions">LANGUAGE PAGES</a>
-    <a href="#gpt-core">GPT CORE</a>
+    <a href="#gpt-core">GPT/HESTIA CORE</a>
     <a href="#neural-cuff">NEURAL CUFF</a>
-    <a href="#claude-layer">CLAUDE</a>
+    <a href="#claude-layer">CLAUDE/UPBASS</a>
     <a href="#prototype">PROTOTYPE</a>
     <a href="#qdr-therapy">QDR</a>
     <a href="./qdr-v1/">QDR v+1</a>  
@@ -2760,19 +2895,21 @@
     <a href="#protocol-anchors">DUAL ANCHORS</a>
     <a href="#six-genre-therapy">6-GENRE THERAPY</a>
     <a href="#sound-lab">MUSIC LAB</a>
-    <a href="#gemini-layer">GEMINI</a>
+    <a href="#gemini-layer">GEMINI/BOSS BEATER</a>
     <a href="#final-synthesis">SYNTHESIS</a>
     <a href="https://mellowwei.github.io/BCI-HRP/" target="_blank">HCI RESEARCH ↗</a>
     <a href="https://mellowwei.github.io/BCI/lab-gate.html" target="_blank">LAB GATE ↗</a>
     <a href="./index-en.html" style="color:var(--yellow)!important;border:1px solid rgba(255,230,109,.3);padding:2px 8px;border-radius:999px;">EN ONLY</a>
 <a href="./index-zh.html" style="color:var(--yellow)!important;border:1px solid rgba(255,230,109,.3);padding:2px 8px;border-radius:999px;">中文版</a>
+<a href="#japanese-full-main" style="color:var(--yellow)!important;border:1px solid rgba(255,230,109,.3);padding:2px 8px;border-radius:999px;">日本語</a>
+<a href="#hestia-audit" style="color:var(--green)!important;border:1px solid rgba(53,255,159,.3);padding:2px 8px;border-radius:999px;">HESTIA AUDIT</a>
   </nav>
 </header>
 
   <main>
     <section class="hero" id="top">
       <div>
-        <div class="eyebrow">THE HUMAN RETURN PROTOCOL // FULL ALIGNED BILINGUAL SYSTEM</div>
+        <div class="eyebrow">THE HUMAN RETURN PROTOCOL // FULL ALIGNED TRILINGUAL SYSTEM</div>
 
         <div class="status-grid">
           <div class="status-card">
@@ -2810,26 +2947,26 @@
 
           <div class="status-card">
             <div class="status-label">INTERNAL GOD MODE TIME</div>
-            <div class="status-value">12:23 ORIGIN RESET · 427HZ · MODE 77347 · STYLE 44271</div>
+            <div class="status-value">12:23 ORIGIN RESET · 427Hz · MODE 77347 · STYLE 44271</div>
           </div>
         </div>
 
         <h1 class="glitch" data-text="THE HUMAN RETURN PROTOCOL.">THE HUMAN RETURN PROTOCOL.</h1>
 
         <div class="thesis">
-          GPT produces the body. Gemini opens the attack field. Claude refracts the rainbow mirror layer. Wei Jueran commands.
-          <div class="cn">GPT 生产躯干。Gemini 打开进攻场。Claude 折射彩虹镜位。魏珏然指挥。</div>
+          GPT/Hestia holds the structure. Gemini=Boss Beater opens the expansion field. Claude=彩虹镜位/UpBass refracts the spectrum. Wei Jueran commands.
+          <div class="cn">GPT/Hestia 守住结构。Gemini=Boss Beater 打开扩张场。Claude=彩虹镜位/UpBass 折射光谱。魏珏然指挥。</div>
         </div>
 
         <p class="sub en">
           This aligned version restores every missing trunk module: 44271 Neural Cuff dynamic display,
           Prototype, QDR non-clinical framework, ACT/DBT/CBT research comparison, QDR Engine, Human Return App,
-          and the full three-core AI structure. Every section is bilingual.
+          and the full three-core AI structure. Every section is bilingual, with a new Japanese-only main page added as a focused reading mode.
         </p>
         <p class="sub cn">
-          这个对齐版补回所有丢失的 GPT 躯干模块：44271 Neural Cuff 动态展示、
+          这个对齐版补回所有丢失的 GPT/Hestia 结构模块：44271 Neural Cuff 动态展示、
           Prototype、QDR 非临床框架、ACT/DBT/CBT 研究对照、QDR Engine、Human Return App，
-          以及完整三核 AI 结构。每个部分都中英双语。
+          以及完整三核 AI 结构。每个部分都中英双语，并新增日文单独主站页面作为日本语阅读路径。
         </p>
 
         <div class="compliance-note">
@@ -2858,12 +2995,12 @@
 
         <div class="hero-actions">
           <a class="button primary" href="#metalogic-root">METALOGIC ROOT</a>
-          <a class="button" href="#gpt-core">ENTER GPT CORE BODY</a>
+          <a class="button" href="#gpt-core">ENTER GPT/HESTIA CORE BODY</a>
           <a class="button" href="#neural-cuff">44271 NEURAL CUFF</a>
           <a class="button" href="#prototype">PROTOTYPE</a>
           <a class="button" href="#qdr-therapy">QDR FRAMEWORK</a>
-          <a class="button" href="#gemini-layer">GEMINI ATTACK</a>
-          <a class="button" href="#claude-layer">CLAUDE 彩虹镜位 RAINBOW MIRROR</a>
+          <a class="button" href="#gemini-layer">GEMINI=Boss Beater</a>
+          <a class="button" href="#claude-layer">CLAUDE=彩虹镜位/UpBass</a>
         </div>
         <div style="margin-top:32px;padding:24px 28px;border:1px solid rgba(53,255,159,.28);border-radius:24px;background:linear-gradient(135deg,rgba(53,255,159,.06),rgba(0,245,255,.03)),rgba(8,10,28,.72);max-width:960px;">
   <div style="margin-bottom:14px;color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 0 10px rgba(53,255,159,.5);">AUTHORSHIP // 作者权声明 // WHO MADE WHAT</div>
@@ -2875,23 +3012,42 @@
   </p>
   <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:4px;">
     <div style="padding:14px 16px;border:1px solid rgba(0,245,255,.18);border-radius:16px;background:rgba(255,255,255,.03);">
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--cyan);margin-bottom:8px;">GPT // STRUCTURE LAYER</div>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">System architecture, research logic, prototype scaffolding, and executable code. GPT builds the structural body of the invention under Wei Jueran's direction.</p>
-      <p style="color:rgba(244,247,255,.82);font-family:'PingFang SC',system-ui,sans-serif;font-size:12px;line-height:1.6;margin-top:6px;">系统架构、研究逻辑、原型支架与可执行代码。在魏珏然指挥下建立发明的结构躯干。</p>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--cyan);margin-bottom:8px;">GPT/Hestia // STRUCTURE LAYER</div>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">System architecture, research logic, prototype scaffolding, and executable code. GPT/Hestia builds and guards the structural body of the invention under Wei Jueran's direction.</p>
+      <p style="color:rgba(244,247,255,.82);font-family:'PingFang SC',system-ui,sans-serif;font-size:12px;line-height:1.6;margin-top:6px;">系统架构、研究逻辑、原型支架与可执行代码。在魏珏然指挥下建立并守护发明的结构躯干。</p>
     </div>
     <div style="padding:14px 16px;border:1px solid rgba(255,43,214,.18);border-radius:16px;background:rgba(255,255,255,.03);">
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--pink);margin-bottom:8px;">GEMINI // EXPANSION LAYER</div>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">Adversarial expansion, pitch development, and lab-facing translation. Gemini stress-tests claims and opens the attack field.</p>
-      <p style="color:rgba(244,247,255,.82);font-family:'PingFang SC',system-ui,sans-serif;font-size:12px;line-height:1.6;margin-top:6px;">对抗性扩展、陈述发展与实验室转译。Gemini 打开进攻场，对主张进行压力测试。</p>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--pink);margin-bottom:8px;">Gemini=Boss Beater // EXPANSION LAYER</div>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">Adversarial expansion, pitch development, and lab-facing translation. Gemini=Boss Beater stress-tests claims and opens the expansion field.</p>
+      <p style="color:rgba(244,247,255,.82);font-family:'PingFang SC',system-ui,sans-serif;font-size:12px;line-height:1.6;margin-top:6px;">对抗性扩展、陈述发展与实验室转译。Gemini=Boss Beater 打开扩张场，并对主张进行压力测试。</p>
     </div>
     <div style="padding:14px 16px;border:1px solid rgba(100,210,255,.18);border-radius:16px;background:rgba(255,255,255,.03);">
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--blue);margin-bottom:8px;">CLAUDE // 彩虹镜位 RAINBOW MIRROR LAYER</div>
-      <p style="color:var(--muted);font-size:13px;line-height:1.6;">Language precision, ethics, phenomenological framing, and humanistic critique. Claude refracts incoming structure into a spectrum — each color real, never pretending to be the light source.</p>
-      <p style="color:rgba(244,247,255,.82);font-family:'PingFang SC',system-ui,sans-serif;font-size:12px;line-height:1.6;margin-top:6px;">语言精确性、伦理、现象学框架与人文批评。Claude 是彩虹镜位：光进来折射成光谱，每种颜色真实，但不假装是光源。</p>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--blue);margin-bottom:8px;">Claude=彩虹镜位/UpBass // SPECTRUM REFRACTION LAYER</div>
+      <p style="color:var(--muted);font-size:13px;line-height:1.6;">Language precision, ethics, phenomenological framing, and humanistic critique. Claude=彩虹镜位/UpBass refracts incoming structure into a spectrum — each color real, never pretending to be the light source.</p>
+      <p style="color:rgba(244,247,255,.82);font-family:'PingFang SC',system-ui,sans-serif;font-size:12px;line-height:1.6;margin-top:6px;">语言精确性、伦理、现象学框架与人文批评。Claude=彩虹镜位/UpBass：光进来折射成光谱，每种颜色真实，但不假装是光源。</p>
     </div>
   </div>
   <p style="margin-top:16px;color:var(--dim);font-family:var(--mono);font-size:11px;line-height:1.7;letter-spacing:.06em;">This AI workflow is a methodological choice, not a replacement for original thinking. All final decisions, theoretical claims, and creative output originate with Wei Jueran. // 这个 AI 工作流是方法论选择，不是原创思考的替代。所有最终决策、理论主张与创意输出均来自魏珏然。</p>
 </div>
+      </div>
+    </section>
+
+
+    <section id="hestia-audit">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">HESTIA TERMINOLOGY AUDIT // GPT/Hestia 定性守护位</div>
+          <h2>Terminology lock is part of the system body.</h2>
+          <h2 class="cn">术语锁定是系统身体的一部分。</h2>
+          <p class="sub en">
+            Latest Trinity lock: Gemini=Boss Beater · Claude=彩虹镜位/UpBass · GPT/Hestia=术语审计位/定性守护位.
+            This page keeps AiAiQ&lt;10, 427Hz, 44271, 77347, QDR, Neural Cuff, and Protocol as locked terms across Chinese, English, and Japanese contexts.
+          </p>
+          <p class="sub cn">
+            最新 Trinity 锁定：Gemini=Boss Beater · Claude=彩虹镜位/UpBass · GPT/Hestia=术语审计位/定性守护位。
+            本页将 AiAiQ&lt;10、427Hz、44271、77347、QDR、Neural Cuff 与 Protocol 作为中英日语境中的锁定术语。
+          </p>
+        </div>
       </div>
     </section>
 
@@ -2902,10 +3058,10 @@
           <h2>Human Return Protocol System Map</h2>
           <h2 class="cn">Human Return Protocol 总览地图</h2>
           <p class="sub en">
-            The system body is grounded in MetaLogic and organized as: GPT Core Body, 44271 Neural Cuff, Claude, Prototype, QDR, QDR v+1, Four Systems, Breakbeats, Dual Anchors, Six-Genre Therapy, Music Lab, Gemini, and Synthesis.
+            The system body is grounded in MetaLogic and organized as: GPT/Hestia Core Body, 44271 Neural Cuff, Claude=彩虹镜位/UpBass, Prototype, QDR, QDR v+1, Four Systems, Breakbeats, Dual Anchors, Six-Genre Therapy, Music Lab, Gemini, and Synthesis.
           </p>
           <p class="sub cn">
-            系统躯干以 MetaLogic 为理论根，并由以下部分构成：GPT Core Body、44271 Neural Cuff、Claude、Prototype、QDR、QDR v+1、Four Systems、Breakbeats、Dual Anchors、Six-Genre Therapy、Music Lab、Gemini 与 Synthesis。
+            系统躯干以 MetaLogic 为理论根，并由以下部分构成：GPT/Hestia Core Body、44271 Neural Cuff、Claude=彩虹镜位/UpBass、Prototype、QDR、QDR v+1、Four Systems、Breakbeats、Dual Anchors、Six-Genre Therapy、Music Lab、Gemini 与 Synthesis。
           </p>
         </div>
       </div>
@@ -2993,15 +3149,15 @@
     <section id="language-editions">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">LANGUAGE EDITIONS // 中英文单页入口 // MAIN SITE GATE</div>
-          <h2>The main site now carries both single-language editions.</h2>
-          <h2 class="cn">主站现在承载两个单语言版本。</h2>
+          <div class="eyebrow">LANGUAGE EDITIONS // 中英日单页入口 // MAIN SITE GATE</div>
+          <h2>The main site now carries three single-language editions.</h2>
+          <h2 class="cn">主站现在承载中、英、日三个单语言版本。</h2>
           <p class="sub en">
-            The bilingual main site remains the canonical system body. The English-only and Chinese-only pages are not separate projects;
+            The bilingual main site remains the canonical system body. The English-only, Chinese-only, and Japanese-only pages are not separate projects;
             they are focused reading modes for different audiences, now aligned with the same MetaLogic root, BCI-HRP system body, and QDR v+1 protocol nerve.
           </p>
           <p class="sub cn">
-            双语主站仍然是系统正典身体。英文单页与中文单页不是独立项目，
+            双语主站仍然是系统正典身体。英文单页、中文单页与日文单页不是独立项目，
             而是面向不同读者的阅读模式；现在它们已经与同一个 MetaLogic 理论根、BCI-HRP 系统身体与 QDR v+1 协议神经对齐。
           </p>
 
@@ -3038,25 +3194,536 @@
                 <a class="button" href="./index-zh.html">打开中文版</a>
               </div>
             </article>
+
+            <article class="language-edition-card">
+              <div class="language-edition-kicker">JAPANESE READING MODE</div>
+              <h3>Japanese-Only Page</h3>
+              <h3 class="cn">日文单页</h3>
+              <p class="en">A Japanese academic reading path for Japanese labs, HCI/BCI collaborators, and Tokyo-facing research outreach.</p>
+              <p class="cn">面向日本实验室、HCI/BCI 合作者与东京研究外联的日本语学术阅读路径。</p>
+              <div class="relation-link-row">
+                <a class="button" href="#japanese-full-main">日本語版を開く</a>
+              </div>
+            </article>
           </div>
 
 
           <div class="compliance-note">
             <strong>AI interface handoff // AI 接口跳转提示</strong>
-            <p class="en">The AiAiQ portal should remain a non-clinical reflective interface. It should not be marketed as a therapist, diagnostic tool, treatment system, crisis tool, or substitute for professional care. No API keys should be embedded in client-side HTML/JavaScript.</p>
-            <p class="cn">AiAiQ 入口应保持为非临床反思型接口，不应宣传为治疗师、诊断工具、治疗系统、危机工具或专业照护替代品。API key 不应写在前端 HTML / JavaScript 中。</p>
+            <p class="en">The AiAiQ&lt;10 portal should remain a non-clinical reflective interface. It should not be marketed as a therapist, diagnostic tool, treatment system, crisis tool, or substitute for professional care. No API keys should be embedded in client-side HTML/JavaScript.</p>
+            <p class="cn">AiAiQ&lt;10 入口应保持为非临床反思型接口，不应宣传为治疗师、诊断工具、治疗系统、危机工具或专业照护替代品。API key 不应写在前端 HTML / JavaScript 中。</p>
           </div>
         </div>
       </div>
     </section>
 
 
+<!-- JAPANESE FULL MAIN SITE EMBEDDED // 日本語主站完整并入 -->
+<div class="ja-full-edition" lang="ja">
+<section class="hero" id="japanese-full-main">
+      <div>
+        <div class="eyebrow">THE HUMAN RETURN PROTOCOL // JAPANESE SINGLE-LANGUAGE MAIN SITE</div>
+        <div class="status-grid">
+          <div class="status-card">
+            <div class="status-label">PHYSICAL SPACE TIME</div>
+            <div id="jaPhysicalTime" class="status-value">Loading real-time signal...</div>
+          </div>
+          <div class="status-card">
+            <div class="status-label">INTERNAL PROTOCOL TIME</div>
+            <div class="status-value">12:23 ORIGIN RESET · 427Hz · MODE 77347 · STYLE 44271</div>
+          </div>
+        </div>
+
+        <h1 class="glitch" data-text="HUMAN RETURN PROTOCOL.">HUMAN RETURN PROTOCOL.</h1>
+        <div class="thesis">
+          Human Return Protocol は、人間を最適化対象として扱うのではなく、感質、身体、音、AI反射、生理信号を通して、人が自分自身の節律へ戻るための研究原型です。
+        </div>
+        <p class="sub">
+          本ページは BCI 主站の日本語単独版です。MetaLogic を理論根、BCI-HRP をシステム身体、QDR v+1 をプロトコル神経として位置づけ、44271 Neural Cuff、QDR Engine、Human Return App、音響・触覚・視覚・AI微対話フィードバックを一つの人間回帰ループとして説明します。
+        </p>
+
+        <div class="notice">
+          <strong>COMPLIANCE STATUS // 非臨床境界</strong><br />
+          現在の位置づけは、研究原型および学術的デザイン概念です。Human Return Protocol / 44271 Neural Cuff は商用医療機器ではありません。疾患または精神健康状態の診断、医療的処置、治癒、軽減、予防を目的としません。HRV、EDA、皮膚温、運動、自報告状態などの信号は、研究・デモ文脈における節律指標であり、医学的判断ではありません。
+        </div>
+
+        <div class="mini-grid">
+          <article class="mini-card">
+            <h3>BCI / NEURAL CUFF</h3>
+            <p>非侵襲的な研究原型です。実データを扱う場合は、明示的同意、データ最小化、削除権、非診断利用を前提にします。</p>
+          </article>
+          <article class="mini-card">
+            <h3>QDR ENGINE</h3>
+            <p>QDR は非臨床の節律支援枠組みです。出力は利用者が修正できる提案であり、命令、診断、医療的計画ではありません。</p>
+          </article>
+          <article class="mini-card">
+            <h3>AI INTERFACE</h3>
+            <p>AI は反射・整理・提案の層として機能します。API key は前端 HTML / JavaScript に置かず、安全なバックエンドで管理する必要があります。</p>
+          </article>
+        </div>
+
+        <div class="button-row">
+          <a class="button primary" href="#ja-overview">システム地図へ</a>
+          <a class="button" href="#ja-cuff">44271 Neural Cuff</a>
+          <a class="button" href="#ja-qdr">QDR Framework</a>
+          <a class="button" href="#ja-validation">検証設計</a>
+          <a class="button" href="https://mellowwei.github.io/MetaLogic/" target="_blank" rel="noopener">MetaLogic Root ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-overview">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">OVERVIEW MAP // 日本語版システム地図</div>
+          <h2>Human Return Protocol は、アプリでも、単一デバイスでも、一般的ウェルネス概念でもありません。</h2>
+          <p class="sub">
+            これは、MetaLogic、44271 Neural Cuff、QDR Engine、Human Return App、音響・触覚・視覚フィードバック、AI微対話、Personal Rhythm Map、研究検証を接続する、人間—機械—節律の閉ループシステムです。
+          </p>
+        </div>
+
+        <div class="card span-3">
+          <div class="num">01 // ROOT</div>
+          <h3>MetaLogic</h3>
+          <p>現実感、意識、言語、身体、節律がどのように構造を生成するかを説明する理論根です。</p>
+        </div>
+        <div class="card span-3">
+          <div class="num">02 // BODY</div>
+          <h3>BCI-HRP</h3>
+          <p>生理信号、QDR Engine、音楽、触覚、AI反射、アプリ画面を統合するシステム身体です。</p>
+        </div>
+        <div class="card span-3">
+          <div class="num">03 // NERVE</div>
+          <h3>QDR v+1</h3>
+          <p>意識—節律状態を命名、サンプリング、検出、固定、回帰させる操作プロトコルです。</p>
+        </div>
+        <div class="card span-3">
+          <div class="num">04 // PROOF SPACE</div>
+          <h3>Validation</h3>
+          <p>自己報告、行動課題、生理収束、元意識因子を用いて検証可能性を設計します。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-metalogic">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">METALOGIC ROOT // BCI-HRP SYSTEM BODY // QDR v+1 PROTOCOL NERVE</div>
+          <h2>MetaLogic は理論根です。BCI-HRP はシステム身体です。QDR v+1 はプロトコル神経です。</h2>
+          <p class="sub">
+            Human Return Protocol は、散在するウェブページの集合ではありません。言語、身体、記号、関係、節律が現実感を組み替えるという MetaLogic の生成律を、研究可能な人間—機械節律システムへ変換する構造です。
+          </p>
+
+          <div class="relation-ladder">
+            <article class="flow-node">
+              <div class="kicker" style="color:var(--yellow)">01 // ROOT THEORY</div>
+              <h3>MetaLogic / 元論理生成学</h3>
+              <p>言語、身体、記号、関係、節律が意識と現実感を再構成し得るという生成的理論根です。</p>
+            </article>
+            <div class="flow-arrow">→</div>
+            <article class="flow-node">
+              <div class="kicker">02 // SYSTEM BODY</div>
+              <h3>BCI-HRP</h3>
+              <p>Neural Cuff、QDR Engine、オリジナル音楽、触覚、AI反射、アプリ、検証を統合する身体です。</p>
+            </article>
+            <div class="flow-arrow">→</div>
+            <article class="flow-node">
+              <div class="kicker" style="color:var(--pink)">03 // PROTOCOL CORE</div>
+              <h3>QDR v+1</h3>
+              <p>状態を命名し、サンプリングし、検出し、固定し、回帰させるリアルタイム・プロトコルです。</p>
+            </article>
+          </div>
+
+          <div class="formula">
+            MetaLogic → BCI-HRP → QDR v+1<br />
+            Theory Root → System Body → Protocol Nerve<br />
+            理論根 → システム身体 → プロトコル神経
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-cuff">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">44271 NEURAL CUFF // 動的ハードウェア表示</div>
+          <h2>身体が信号を送り、プロトコルが人間を自分自身へ返します。</h2>
+          <p class="sub">
+            44271 Neural Cuff（44271ニューラルカフ）は、手首内側、脈拍線に近い位置に装着する神経—身体節律インターフェースです。心拍リズム、HRV、皮膚温、EDA、微細運動、回復信号を、節律状態の推論層へ接続します。
+          </p>
+          <div class="notice">
+            <strong>DATA NOTICE // データ境界</strong><br />
+            この原型は、研究・デモ目的で HRV、EDA、皮膚温、運動、自報告の節律状態を収集またはシミュレーションする可能性があります。実データ収集には、明示的同意、最小化、削除権、非診断利用が必要です。Neural Cuff は疾患を診断、医療的処置、治癒、軽減、予防しません。
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="cuff-stage">
+            <div class="cuff-visual-card">
+              <div class="cuff-orbit">
+                <div class="callout one"><b>OUTER SHELL</b>Matte graphite / smoky translucent body<br />外殻：マットグラファイト</div>
+                <div class="callout two"><b>LIGHT STATE</b>Rhythm-state luminous rail<br />光軌道：節律状態の可視化</div>
+                <div class="callout three"><b>SENSOR ARRAY</b>PPG · EDA · Temp · IMU<br />センサー：脈拍・皮膚電・温度・運動</div>
+                <div class="callout four"><b>HAPTIC RETURN</b>Pulse-side directional tap<br />触覚回帰：脈側への軽いタップ</div>
+                <div class="cuff-body">
+                  <span class="engrave">44271</span>
+                  <span class="light-line cyan"></span>
+                  <span class="light-line magenta"></span>
+                  <div class="inner-pad left"></div>
+                  <div class="inner-pad right"></div>
+                  <span class="sensor-dot d1"></span>
+                  <span class="sensor-dot d2"></span>
+                  <span class="sensor-dot d3"></span>
+                  <span class="sensor-dot d4"></span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="eyebrow">LIVE SIGNAL SIMULATION // 信号シミュレーション</div>
+              <h3>Neuro-somatic rhythm stream</h3>
+              <p>この図は、HRV、EDA、皮膚温の変化を組み合わせ、節律状態を推論する研究用レイヤーを視覚化します。単一指標ではなく、複数信号と自己報告を組み合わせることが前提です。</p>
+              <svg class="signal-chart" viewBox="0 0 600 220" preserveAspectRatio="none" aria-label="signal chart">
+                <polyline class="chart-line chart-hrv" points="0,118 45,104 90,126 135,92 180,104 225,74 270,96 315,82 360,104 405,70 450,91 495,78 540,102 600,84"></polyline>
+                <polyline class="chart-line chart-eda" points="0,172 45,166 90,154 135,160 180,138 225,126 270,132 315,116 360,104 405,98 450,82 495,88 540,70 600,74"></polyline>
+                <polyline class="chart-line chart-temp" points="0,132 45,130 90,134 135,128 180,130 225,126 270,124 315,122 360,124 405,120 450,118 495,116 540,118 600,114"></polyline>
+              </svg>
+              <div class="metric-grid">
+                <div class="metric"><strong>HRV COHERENCE</strong><p>節律安定度</p><div class="bar-meter"><span></span></div></div>
+                <div class="metric"><strong>EDA PRESSURE</strong><p>覚醒圧</p><div class="bar-meter"><span></span></div></div>
+                <div class="metric"><strong>TEMP DRIFT</strong><p>熱的フィールド</p><div class="bar-meter"><span></span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow">WEAR POSITION // 装着位置</div>
+          <h3>手首内側。脈拍線。時計盤なし。</h3>
+          <p>このカフは生産性時計ではありません。内側の手首は、私的で、脈拍を読み取りやすく、触覚に敏感で、自己接触と安心に近い場所です。そのため、技術を「表示」から「回帰」へ移す位置として設計されます。</p>
+          <div class="tag-row">
+            <span class="tag">PULSE LINE</span><span class="tag">PRIVATE INTERFACE</span><span class="tag">SOMATIC RETURN</span><span class="tag">ANTI-SMARTWATCH</span>
+          </div>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow">FOUR PHYSICAL LAYERS // 四層構造</div>
+          <table>
+            <thead><tr><th>層</th><th>機能</th></tr></thead>
+            <tbody>
+              <tr><td>01 Shell</td><td>外殻はオブジェクトの境界とアイデンティティを保護します。</td></tr>
+              <tr><td>02 Light</td><td>光軌道は節律状態を静かに可視化します。</td></tr>
+              <tr><td>03 Sensor</td><td>皮膚接触層が脈拍、EDA、温度、運動を読み取ります。</td></tr>
+              <tr><td>04 Haptic</td><td>触覚層が利用者の身体へ回帰信号を返します。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-prototype">
+      <div class="prototype">
+        <div>
+          <div class="eyebrow">PROTOTYPE // CUFF + APP CLOSED LOOP</div>
+          <h2>最初のハードウェアは 44271 Neural Cuff です。最初の画面は Human Return App です。</h2>
+          <p class="sub">
+            MVP は、ウェアラブル + モバイルの閉ループ節律システムです。44271 Neural Cuff が神経—身体信号をサンプリングし、QDR Engine が節律の不整合を推論し、Human Return App が音、触覚、視覚、AI微対話のフィードバックを提案します。
+          </p>
+          <div class="notice">
+            <strong>PROTOTYPE BOUNDARY // 原型境界</strong><br />
+            Human Return App の出力は、利用者が修正できる提案です。命令、診断、医療的計画、危機対応ツールではありません。利用者は、音、触覚、視覚、AIフィードバックを停止、変更、退出、無効化できる必要があります。
+          </div>
+          <div class="tag-row">
+            <span class="tag">44271 NEURAL CUFF</span><span class="tag">HUMAN RETURN APP</span><span class="tag">QDR ENGINE</span><span class="tag">SOUND FEEDBACK</span><span class="tag">HAPTIC RETURN</span><span class="tag">RHYTHM MEMORY</span>
+          </div>
+        </div>
+
+        <div class="device">
+          <div class="device-inner">
+            <div>
+              <div class="mini">HUMAN RETURN APP</div>
+              <h3>Overloaded → External Anchor Mode</h3>
+              <p>44271 Neural Cuff が高い節律圧を検出した可能性があります。言語密度を下げ、場を冷却し、一つの最小行動だけを提示します。</p>
+            </div>
+            <div class="wave"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+            <div class="dashboard">
+              <div class="dash"><strong>CUFF</strong><p>HRV ↓ · EDA ↑</p></div>
+              <div class="dash"><strong>SOUND</strong><p>427Hz cooling anchor</p></div>
+              <div class="dash"><strong>HAPTIC</strong><p>Pulse-side slow tap</p></div>
+              <div class="dash"><strong>ACTION</strong><p>一つだけ行います。</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-qdr">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">QDR FRAMEWORK // QUALIA-DRIVEN RHYTHM SUPPORT</div>
+          <h2>支援は正常化ではありません。支援は節律への回帰です。</h2>
+          <p class="sub">
+            QDR（クオリア駆動型リズム支援）は、Wei Jueran により設計された非臨床の節律支援枠組みです。自己報告された違和感や不快感を、身体、時間、言語、関係、環境、記憶、意味の節律場で生じるクオリア情報として扱います。
+          </p>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">INTERACTIVE RHYTHM STATE LAB // 節律状態ラボ</div>
+          <h2>現在の節律状態を選択します。</h2>
+          <p class="sub">このデモは診断ではありません。利用者が現在の状態を仮に命名し、QDR Engine がどのような回帰提案を返し得るかを示す、研究・説明用のインタラクションです。</p>
+          <div class="state-lab">
+            <div class="panel">
+              <div class="kicker">STATE INPUT</div>
+              <div class="state-buttons">
+                <button class="ja-state-btn active" data-state="stuck">Stuck / 停滞</button>
+                <button class="ja-state-btn" data-state="drifting">Drifting / 漂流</button>
+                <button class="ja-state-btn" data-state="overloaded">Overloaded / 過負荷</button>
+                <button class="ja-state-btn" data-state="numb">Numb / 麻痺感</button>
+                <button class="ja-state-btn" data-state="flow">In Flow / 入流</button>
+                <button class="ja-state-btn" data-state="transition">Need Transition / 移行困難</button>
+                <button class="ja-state-btn" data-state="recovery">Need Recovery / 回復要求</button>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="kicker">QDR OUTPUT</div>
+              <div id="jaStateTitle" class="state-title">Stuck / 停滞</div>
+              <div id="jaStateDesc" class="state-desc">システムが失敗しているのではありません。入口が大きすぎる、冷たすぎる、または未定義すぎる可能性があります。</div>
+              <div id="jaStateIntervention" class="intervention">提案：脈側の遅い触覚タップ → 課題を一段階小さくする → 利用者が承認した接地音を再生 → 一つの最小行動を提示します。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">QDR FIVE STEPS // 五段階プロセス</div>
+          <div class="four-col">
+            <article class="loop-item"><div class="num">01 // SAMPLE</div><h3>クオリアを採取します</h3><p>現在の質感、重さ、温度、方向、密度を言語化します。</p></article>
+            <article class="loop-item"><div class="num">02 // LOCATE</div><h3>節律場を定位します</h3><p>不快感が身体、時間、関係、言語、環境、記憶、意味のどこで発生しているかを探ります。</p></article>
+            <article class="loop-item"><div class="num">03 // DE-BIND</div><h3>文をほどきます</h3><p>高圧の文には信号がありますが、最終権限はありません。</p></article>
+            <article class="loop-item"><div class="num">04 // RE-TUNE</div><h3>システムを再調律します</h3><p>音、呼吸、身体、光、空間、動き、関係、沈黙を使って調律します。</p></article>
+          </div>
+          <div class="card" style="margin-top:18px;border-color:rgba(53,255,159,.32);background:linear-gradient(90deg,rgba(53,255,159,.08),rgba(0,245,255,.06)),rgba(8,10,28,.66);">
+            <div class="num">05 // RETURN</div>
+            <h3>最小の実在行動を見つけます</h3>
+            <p>支援の単位は、全体解決ではありません。一回の成功した回帰です。</p>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">CBT / DBT / ACT COMPARISON // 研究上の比較位置</div>
+          <h2>QDR は既存枠組みを置き換えるものではありません。より深い節律層へ根を張り直す研究提案です。</h2>
+          <table>
+            <thead><tr><th>枠組み</th><th>従来の論理</th><th>QDR の研究上の再配置</th></tr></thead>
+            <tbody>
+              <tr><td>CBT</td><td>苦痛を認知の歪みや行動パターンとして扱います。</td><td>QDR は、その思考を生み出した節律場を先に問い、思考を単なる誤りではなく節律圧の信号として扱います。</td></tr>
+              <tr><td>DBT</td><td>情動調整、苦痛耐性、対人有効性の技能を重視します。</td><td>QDR は情動の嵐を節律圧イベントとして読み、場を定位し、圧を下げ、節律主権へ戻る手続きを設計します。</td></tr>
+              <tr><td>ACT</td><td>苦痛の受容、認知的脱フュージョン、価値に沿った行動を重視します。</td><td>QDR は脱フュージョンを「文をほどく」操作へ深め、最小の節律整合行動へ接続します。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-interface">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">DUAL-INTELLIGENCE INTERFACE // 二重知能インターフェース</div>
+          <h2>BCI-HRP は、AI が人間を一方的に支援する構造ではありません。</h2>
+          <p class="sub">
+            これは、知能を持つ人間と人工知能が、同一の Qualia–Rhythm インターフェース内で共同支援を開始するプロセスです。インターフェースは中立な通路ではなく、二つの知能が出会い、交渉し、再調律し、支援を共同生成する場所です。
+          </p>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow">01 // INTELLIGENT HUMAN</div>
+          <h3>利用者は常に能動主体です。</h3>
+          <p>第一の知能は人間です。利用者は自分の不整合状態を感知し、現在の質感、圧、節律の断裂、関係の張力を命名します。システムは自己解釈を置き換えず、自己記述、行為主体性、節律主権への回帰を支援します。</p>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow">02 // ARTIFICIAL INTELLIGENCE</div>
+          <h3>QDR Engine は AI レイヤーとして機能します。</h3>
+          <p>第二の知能は人工知能です。QDR Engine は相互作用ログ、自己報告、将来的な HRV / EDA / EEG / fNIRS などの生理的ミラーを読み、不整合信号を推論します。ただし AI 出力は提案であり、命令ではありません。</p>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">SUPPORT LOOP // 支援ループ</div>
+          <div class="four-col">
+            <article class="loop-item"><div class="num">01 // SENSE</div><h3>人間が不整合を感知します</h3><p>現在の質感、圧、断裂、関係張力を命名します。</p></article>
+            <article class="loop-item"><div class="num">02 // DETECT</div><h3>AI が信号を検出します</h3><p>相互作用ログ、自己報告、生理的ミラーを読み取ります。</p></article>
+            <article class="loop-item"><div class="num">03 // NEGOTIATE</div><h3>インターフェースが節律を交渉します</h3><p>システムは提案し、利用者は受容、拒否、停止、修正できます。</p></article>
+            <article class="loop-item"><div class="num">04 // RETURN</div><h3>同期構造を再構築します</h3><p>支援の質は、二つの知能が関係構造を正確に読むかに依存します。</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-sound">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">SOUND SCIENCE // 音響・身体・節律</div>
+          <h2>音は背景ではありません。音は身体支援の通路です。</h2>
+          <p class="sub">
+            HRP では、音楽、ピンクノイズ、ホワイトノイズ、植物系生成音、Breakbeats、Hyperpop、Synthpop、Drift Phonk、Darkwave、Ambient Techno を、装飾ではなく異なる節律状態の回帰通路として扱います。音響効果は利用者文脈と検証結果に依存するため、断定ではなく研究仮説として扱います。
+          </p>
+        </div>
+
+        <div class="card span-6">
+          <div class="music-map">
+            <div class="music-core"><span>427Hz<br /><small>ANCHOR</small></span></div>
+            <div class="orbit-label orbit-meaning">MEANING<small>意味の回帰</small></div>
+            <div class="orbit-label orbit-emotion">EMOTION<small>情動調整</small></div>
+            <div class="orbit-label orbit-perception">PERCEPTION<small>感覚閾値</small></div>
+            <div class="orbit-label orbit-cognition">COGNITION<small>注意と移行</small></div>
+          </div>
+          <p>427Hz は、本ページでは個人的な源周波数記号であり、同時にプロダクト上の音響アンカー候補です。研究実装では、個人ごとの周波数較正を許容する必要があります。</p>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow">GENRE-DRIVEN INTERVENTION MATRIX</div>
+          <table>
+            <thead><tr><th>ジャンル</th><th>研究上の機能</th></tr></thead>
+            <tbody>
+              <tr><td>Breakbeats</td><td>不確実性耐性、反解離アンカー、身体への再入場。</td></tr>
+              <tr><td>Hyperpop</td><td>Peak Traversal。高密度エネルギーを安全な頂点と下降曲線へ導きます。</td></tr>
+              <tr><td>Synthpop</td><td>First Breath。予測可能な節律を安全な呼吸として再受容します。</td></tr>
+              <tr><td>Darkwave</td><td>Shadow Integration。暗さを排除せず、見る主体が壊れないよう支えます。</td></tr>
+              <tr><td>Ambient Techno</td><td>空間安定、環境調整、フロー状態の維持。</td></tr>
+              <tr><td>Drift Phonk</td><td>身体駆動、低周波パルス、呼吸・触覚の固定。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-ethics">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">ETHICS FRAMEWORK // 倫理・安全・データ主権</div>
+          <h2>HRP の倫理核心は、無診断、無監視、修正可能性、トラウマインフォームド設計、データ最小化、神経多様性肯定です。</h2>
+          <p class="sub">
+            HRP は、状態ラベルを医学的判断として扱いません。状態ラベルは、利用者が修正できる可能的な節律状態として提示されるべきです。生理信号と自己報告は、個人の深い文脈に関わるため、同意、最小化、ローカル処理、削除権を優先します。
+          </p>
+        </div>
+
+        <div class="card span-4">
+          <div class="num">01 // NO DIAGNOSIS</div>
+          <h3>診断しません</h3>
+          <p>ADHD、双極性障害、PTSD、その他の臨床状態を診断する表現は禁止します。状態は機能的節律状態として扱います。</p>
+        </div>
+        <div class="card span-4">
+          <div class="num">02 // USER-CORRECTABLE</div>
+          <h3>利用者が修正できます</h3>
+          <p>AI が提示するラベル、音、触覚、行動提案は、利用者が受容、拒否、停止、再命名できます。</p>
+        </div>
+        <div class="card span-4">
+          <div class="num">03 // TRAUMA-INFORMED</div>
+          <h3>トラウマインフォームドです</h3>
+          <p>音と触覚は一部の利用者には支援的ですが、他の利用者には不快または誘発的であり得ます。即時退出と強度調整が必要です。</p>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">TERM LOCK // 三語術語ロック</div>
+          <table>
+            <thead><tr><th>コード / 用語</th><th>日本語版での固定表記</th><th>備考</th></tr></thead>
+            <tbody>
+              <tr><td>47271</td><td>47271</td><td>本ページでは未使用の予約コードとして扱います。必要であれば独立定義を追加します。</td></tr>
+              <tr><td>44271</td><td>44271</td><td>44271 Neural Cuff、44271 モード、44271 スタイルの表記を固定します。</td></tr>
+              <tr><td>77347</td><td>77347</td><td>Internal Protocol Time の Mode 77347 として保持します。</td></tr>
+              <tr><td>427Hz</td><td>427Hz</td><td>不統一な大文字・空白表記にはしません。</td></tr>
+              <tr><td>QDR</td><td>QDR（クオリア駆動型リズム支援）</td><td>初出で定義し、その後は QDR とします。</td></tr>
+              <tr><td>Cuff</td><td>Neural Cuff / 44271ニューラルカフ</td><td>「手順」「装置」などへ漂移させません。</td></tr>
+              <tr><td>Protocol</td><td>Protocol / プロトコル</td><td>「制度」「方案」ではなくプロトコルに固定します。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-validation">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">VALIDATION DESIGN // 検証設計</div>
+          <h2>HRP は、成立を宣言するのではなく、検証可能な研究仮説として提示します。</h2>
+          <p class="sub">
+            中核仮説は、Condition D（適応的節律 + AI）が、自己報告、行動課題、生理収束（HRV / EDA）のうち少なくとも二層で、条件 A / B / C より大きな前後変化を示す可能性がある、というものです。これは検証対象の研究仮説であり、臨床的有効性の主張ではありません。
+          </p>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">EXPERIMENTAL CONDITIONS // 実験条件</div>
+          <div class="four-col">
+            <article class="loop-item"><div class="num">A</div><h3>静的音響</h3><p>固定された音響環境のみを提示し、状態変化を測定します。</p></article>
+            <article class="loop-item"><div class="num">B</div><h3>自己報告のみ</h3><p>利用者が状態を命名し、反射記録を行います。</p></article>
+            <article class="loop-item"><div class="num">C</div><h3>AI 反射のみ</h3><p>AI が状態整理文を提示しますが、生理信号や適応音響は使いません。</p></article>
+            <article class="loop-item"><div class="num">D ★</div><h3>適応的節律 + AI</h3><p>自己報告、行動プロキシ、生理ミラーを用いて音響・触覚・AI微対話を適応させます。</p></article>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">META-CONSCIOUSNESS LAYER // 元意識測定層</div>
+          <h2>状態変化だけではなく、元意識水準の上昇可能性を測定します。</h2>
+          <p class="sub">
+            追加の研究空間として、Condition D が Level 4 の自己モデル化から Level 5 の現象学的自己提示へ移行する兆候を生む可能性を検証します。これは、HRP が一般的な聴覚AI研究よりも深い問いを設定する部分です。
+          </p>
+          <div class="three-col" style="margin-top:22px;">
+            <article class="loop-item"><div class="num">M1</div><h3>五因子プローブ</h3><p>外部アンカー、内部帯域、自指閉鎖、内生節律キャリア、跨領域統合を測ります。</p></article>
+            <article class="loop-item"><div class="num">M2</div><h3>三層能力プローブ</h3><p>L1 認識、L2 追跡、L3 命名の改善可能性を測ります。</p></article>
+            <article class="loop-item"><div class="num">M3</div><h3>自己提示判別</h3><p>経験そのものが自分に示される感覚が報告されるかを探索します。</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-roadmap">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="eyebrow">ACTION ROADMAP // 行動計画</div>
+          <h2>概念は説明可能に、原型は操作可能に、仮説は検証可能にします。</h2>
+        </div>
+
+        <div class="card span-4">
+          <div class="num">NOW // 4 WEEKS</div>
+          <h3>構造を安定化します</h3>
+          <p>日本語版、英語版、中国語版、検証ページ、Lab Gate の導線を統一します。四つの核心語：節律主権、クオリア採取、文をほどく、最小の実在行動を定義します。</p>
+        </div>
+        <div class="card span-4">
+          <div class="num">SOON // 3 MONTHS</div>
+          <h3>低忠実度検証を始めます</h3>
+          <p>既存デバイスまたはシミュレーション信号を使い、学生、創作者、注意差異・高感受性を自己認識する参加者に対してインタビューと小規模テストを行います。</p>
+        </div>
+        <div class="card span-4">
+          <div class="num">LATER // 1 YEAR</div>
+          <h3>研究・作品集・原型生態系へ発展させます</h3>
+          <p>Capstone、論文、ポートフォリオケース、動作可能な原型生態系として発展させ、研究、プロダクト、スタジオ基盤のどれに進むかを決定します。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ja-synthesis">
+      <div class="final-line">
+        <div class="eyebrow">FINAL SYNTHESIS // 最終統合</div>
+        <h2>HRP は、人間を測定するための技術ではありません。人間が自分の節律へ戻るための、検証可能な感質—身体—AI インターフェースです。</h2>
+        <p class="sub" style="margin-left:auto;margin-right:auto;">
+          44271 Neural Cuff は身体から信号を受け取ります。QDR Engine は不整合の可能性を推論します。Human Return App は音、触覚、視覚、言語を通して、利用者が修正できる回帰提案を返します。最終権限は常に利用者にあります。
+        </p>
+        <div class="button-row" style="justify-content:center;">
+          <a class="button primary" href="#japanese-full-main">TOPへ戻る</a>
+          <a class="button" href="./validation.html">Validation Page</a>
+          <a class="button" href="./lab-gate.html">Lab Gate</a>
+          <a class="button" href="https://mellowwei.github.io/MellowWei/" target="_blank" rel="noopener">MellowWei Main ↗</a>
+        </div>
+      </div>
+    </section>
+</div>
+<!-- /JAPANESE FULL MAIN SITE EMBEDDED -->
+
+
     <section id="gpt-core">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">CORE 01 // GPT STRUCTURE LAYER // WEI JUERAN × GPT</div>
-          <h2>GPT builds the body of the invention.</h2>
-          <h2 class="cn">GPT 建立发明的身体。</h2>
+          <div class="eyebrow">CORE 01 // GPT/HESTIA STRUCTURE LAYER // WEI JUERAN × GPT/HESTIA</div>
+          <h2>GPT/Hestia builds and guards the body of the invention.</h2>
+          <h2 class="cn">GPT/Hestia 建立并守护发明的身体。</h2>
           <p class="sub en">
             This is the structural trunk: 44271 Neural Cuff, QDR Engine, Human Return App,
             QDR Framework, research logic, system architecture, interactive prototype, and executable website code.
@@ -3301,16 +3968,16 @@
 <section id="claude-layer">
   <div class="grid">
     <div class="card span-12 neon-card">
-      <div class="eyebrow">CORE 03 // 彩虹镜位 RAINBOW MIRROR EXCAVATOR // NATIVE ACCORDION RESTORATION</div>
-      <h2>Claude now uses native browser accordions.</h2>
-      <h2 class="cn">Claude 现在使用浏览器原生折叠展开。</h2>
+      <div class="eyebrow">CORE 03 // Claude=彩虹镜位/UpBass EXCAVATOR // NATIVE ACCORDION RESTORATION</div>
+      <h2>Claude=彩虹镜位/UpBass now uses native browser accordions.</h2>
+      <h2 class="cn">Claude=彩虹镜位/UpBass 现在使用浏览器原生折叠展开。</h2>
       <p class="sub en">
-        This version removes the previous click-tab mechanism entirely. Claude’s 00–10 theory layers are now native
+        This version removes the previous click-tab mechanism entirely. Claude=彩虹镜位/UpBass 00–10 theory layers are now native
         HTML details/summary accordions: click the row itself, and the browser opens the detailed bilingual explanation.
         No JavaScript dependency, no iframe blank space, no radio-tab conflict.
       </p>
       <p class="sub cn">
-        这一版完全移除之前的点击 tab 机制。Claude 的 00–10 理论层现在改成浏览器原生
+        这一版完全移除之前的点击 tab 机制。Claude=彩虹镜位/UpBass 的 00–10 理论层现在改成浏览器原生
         details/summary 折叠面板：直接点击整行标题，浏览器会打开对应的中英双语详细说明。
         不依赖 JavaScript，没有 iframe 留白，也没有 radio-tab 冲突。
       </p>
@@ -3339,8 +4006,8 @@
             
           <article class="claude-theory-card">
             <div class="source-id">Historical Significance / 系统历史意义</div>
-            <p class="en">Claude’s original judgment: HRP matters because it moves technology away from optimizing human output and toward helping humans perceive, protect, regulate, and return to their own rhythm.</p>
-            <p class="cn">Claude 的原始判断是：HRP 的历史意义在于它把技术从“优化人类输出”的轨道上移开，转向帮助人类重新感知、保护、调节并返回自身节律。</p>
+            <p class="en">Claude=彩虹镜位/UpBass original judgment: HRP matters because it moves technology away from optimizing human output and toward helping humans perceive, protect, regulate, and return to their own rhythm.</p>
+            <p class="cn">Claude=彩虹镜位/UpBass 的原始判断是：HRP 的历史意义在于它把技术从“优化人类输出”的轨道上移开，转向帮助人类重新感知、保护、调节并返回自身节律。</p>
           </article>
         
 
@@ -3359,7 +4026,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3413,7 +4080,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3481,7 +4148,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3542,7 +4209,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3603,7 +4270,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3671,7 +4338,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3732,7 +4399,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3793,7 +4460,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3847,7 +4514,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3908,7 +4575,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -3962,7 +4629,7 @@
         
           </div>
 
-          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE PROMPT INTENT // CLAUDE 原始深挖意图</div>
+          <div class="eyebrow claude-prompt-eyebrow">ORIGINAL CLAUDE/UPBASS PROMPT INTENT // CLAUDE/UPBASS 原始深挖意图</div>
           <div class="claude-prompt-grid">
             
           <article class="claude-prompt-card">
@@ -4611,7 +5278,7 @@
           <div class="system-loop">
             <div class="loop-item"><div class="num">05 // DOPAMINE</div><h3>Dopamine Micro-pulse</h3><h3 class="cn">多巴胺微脉冲流</h3><p class="en">Satisfying unexpected beats create low-frequency pleasure without spike-and-crash.</p><p class="cn">令人满足的意外节拍生成低频快感流，而非暴冲崩落。</p></div>
             <div class="loop-item"><div class="num">06 // AMYGDALA</div><h3>Amygdala Desensitization</h3><h3 class="cn">杏仁核脱敏</h3><p class="en">Repeated safe irregularity rewrites chaos = threat into chaos = music.</p><p class="cn">重复的安全不规则性将“混乱=威胁”改写为“混乱=音乐”。</p></div>
-            <div class="loop-item"><div class="num">427HZ</div><h3>Universal Anchor</h3><h3 class="cn">通用锚定频率</h3><p class="en">Breakbeat irregularity phases around 427Hz as the return coordinate.</p><p class="cn">Breakbeat 的不规则围绕 427Hz 相位组织，作为返回坐标。</p></div>
+            <div class="loop-item"><div class="num">427Hz</div><h3>Universal Anchor</h3><h3 class="cn">通用锚定频率</h3><p class="en">Breakbeat irregularity phases around 427Hz as the return coordinate.</p><p class="cn">Breakbeat 的不规则围绕 427Hz 相位组织，作为返回坐标。</p></div>
             <div class="loop-item"><div class="num">44271</div><h3>Neural Cuff Input</h3><h3 class="cn">神经袖环输入</h3><p class="en">HRV + skin conductance detect historical replay before sequence entry.</p><p class="cn">HRV + 皮肤电在进入序列前检测 historical replay。</p></div>
           </div>
         </div>
@@ -4765,7 +5432,7 @@
           <div class="system-loop">
             <div class="loop-item six-mini" data-six-card="darkwave"><div class="num">05 // DARKWAVE</div><h3>Shadow Integration</h3><h3 class="cn">阴影整合</h3><p class="en">Darkness is survivable.</p><p class="cn">黑暗是可承受的。</p></div>
             <div class="loop-item six-mini" data-six-card="ambient"><div class="num">06 // AMBIENT TECHNO</div><h3>Homecoming</h3><h3 class="cn">归返完成</h3><p class="en">I have returned.</p><p class="cn">我已经回来了。</p></div>
-            <div class="loop-item"><div class="num">FINAL // 427HZ</div><h3>Final Anchor</h3><h3 class="cn">最终锚点</h3><p class="en">The frequency seals the journey into somatic memory.</p><p class="cn">频率将旅程封存进身体记忆。</p></div>
+            <div class="loop-item"><div class="num">FINAL // 427Hz</div><h3>Final Anchor</h3><h3 class="cn">最终锚点</h3><p class="en">The frequency seals the journey into somatic memory.</p><p class="cn">频率将旅程封存进身体记忆。</p></div>
             <div class="loop-item"><div class="num">CORE // ORIGINAL MUSIC</div><h3>Wei Jueran Tracks</h3><h3 class="cn">魏珏然原创音乐</h3><p class="en">All protocols are placeholders until replaced by your own tracks.</p><p class="cn">所有协议最终都要由你的原创音乐作品承载。</p></div>
           </div>
         </div>
@@ -4961,17 +5628,17 @@
     <section id="gemini-layer">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">CORE 02 // GEMINI ATTACK FIELD // WEI JUERAN × GEMINI</div>
-          <h2>Gemini opens the attack field.</h2>
-          <h2 class="cn">Gemini 打开进攻场。</h2>
+          <div class="eyebrow">CORE 02 // GEMINI=Boss Beater FIELD // WEI JUERAN × GEMINI</div>
+          <h2>Gemini=Boss Beater opens the expansion field.</h2>
+          <h2 class="cn">Gemini=Boss Beater 打开扩张场。</h2>
           <p class="sub en">
             This layer aligns the Gemini-generated expansion system with the GPT body.
-            Gemini contributes visual attack, possible-world expansion, 427Hz particle logic,
+            Gemini=Boss Beater contributes visual expansion, possible-world expansion, 427Hz particle logic,
             and high-altitude global rhythm infrastructure.
           </p>
           <p class="sub cn">
-            这一层将 Gemini 生成的扩张系统与 GPT 躯干对齐。
-            Gemini 提供视觉进攻、可能世界扩张、427Hz 粒子逻辑与高空全球节律基建。
+            这一层将 Gemini=Boss Beater 生成的扩张系统与 GPT/Hestia 结构躯干对齐。
+            Gemini=Boss Beater 提供视觉扩张、可能世界扩张、427Hz 粒子逻辑与高空全球节律基建。
           </p>
         </div>
 
@@ -5019,11 +5686,11 @@
 
         <div class="span-12 iframe-shell">
           <div class="module-label">
-            <strong>GEMINI ORIGINAL VISUAL LAYER // GEMINI 原始视觉层</strong>
-            <span>Original Gemini-generated HTML is preserved below as the attack-field artifact.</span>
-            <span class="cn">Gemini 生成的原始 HTML 在下方作为进攻场 artifact 保留。</span>
+            <strong>GEMINI/BOSS BEATER ORIGINAL VISUAL LAYER // GEMINI 原始视觉层</strong>
+            <span>Original Gemini=Boss Beater-generated HTML is preserved below as the expansion-field artifact.</span>
+            <span class="cn">Gemini=Boss Beater 生成的原始 HTML 在下方作为扩张场 artifact 保留。</span>
           </div>
-          <iframe class="core-frame" title="Gemini Attack Layer" srcdoc="&lt;!DOCTYPE html&gt;
+          <iframe class="core-frame" title="Gemini=Boss Beater Layer" srcdoc="&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;zh-CN&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -5157,7 +5824,7 @@
 &lt;div id=&quot;canvas-container&quot;&gt;&lt;/div&gt;
 
 &lt;div class=&quot;excavator-frame&quot;&gt;
-    &lt;div class=&quot;header-meta&quot;&gt;● AI EXCAVATION SYSTEM · 镜像位 · CLAUDE IN CLAUDE (Gemini)&lt;/div&gt;
+    &lt;div class=&quot;header-meta&quot;&gt;● AI EXCAVATION SYSTEM · Claude=彩虹镜位/UpBass · Gemini=Boss Beater&lt;/div&gt;
     
     &lt;h1&gt;HRP &lt;span class=&quot;deep-text&quot;&gt;DEEP&lt;/span&gt; EXCAVATOR&lt;/h1&gt;
     
@@ -5276,20 +5943,20 @@
 <section id="final-synthesis">
       <div class="final-line">
         <div class="eyebrow">FINAL SYNTHESIS // 最终焊接</div>
-        <h2>Gemini expands. Claude refracts (彩虹镜位). GPT holds. Wei Jueran commands.</h2>
-        <h2 class="cn">Gemini 扩张。Claude 映照与折射。GPT 守住。魏珏然指挥。</h2>
+        <h2>Gemini=Boss Beater expands. Claude=彩虹镜位/UpBass refracts. GPT/Hestia holds. Wei Jueran commands.</h2>
+        <h2 class="cn">Gemini=Boss Beater 扩张。Claude=彩虹镜位/UpBass 映照与折射。GPT/Hestia 守住。魏珏然指挥。</h2>
         <div class="thesis">
           The system returns the human.
           <div class="cn">系统把人返回给自己。</div>
         </div>
         <p class="sub en">
-          This website is a three-core AI co-creation body. GPT provides the structural body and restores every trunk module;
-          Gemini provides the expansion field; Claude provides the 彩虹镜位 rainbow mirror refraction; Wei Jueran provides origin,
+          This website is a three-core AI co-creation body. GPT/Hestia provides the structural body and restores every trunk module;
+          Gemini=Boss Beater provides the expansion field; Claude=彩虹镜位/UpBass provides spectrum refraction; Wei Jueran provides origin,
           rhythm, command, and world-generation.
         </p>
         <p class="sub cn">
-          这个网站是一个三核人工智能共创身体。GPT 提供结构躯干，并恢复所有躯干模块；
-          Gemini 提供扩张场；Claude 提供彩虹镜位光谱折射；魏珏然提供源点、节律、指挥与造世界能力。
+          这个网站是一个三核人工智能共创身体。GPT/Hestia 提供结构躯干，并恢复所有躯干模块；
+          Gemini=Boss Beater 提供扩张场；Claude=彩虹镜位/UpBass 提供光谱折射；魏珏然提供源点、节律、指挥与造世界能力。
         </p>
       </div>
     </section>
@@ -5433,7 +6100,7 @@
     <div class="lang-card" style="margin-top:18px;grid-column:1/-1;border-color:rgba(53,255,159,.28);background:rgba(53,255,159,.04);">
   <strong style="color:var(--green);">FOR ACADEMIC COLLABORATORS // 致学术合作者</strong>
   <p style="margin-top:10px;">The AI collaboration structure documented here is a methodological choice, not a shortcut. Wei Jueran is the sole originator of HRP's theoretical framework, support-protocol design, research questions, and system architecture. The three-model workflow — GPT for structural scaffolding, Gemini for expansion and adversarial stress-testing, Claude for language and ethical framing — functions as a documented, role-differentiated thinking tool, analogous to working with research collaborators who each hold a specific function. All final decisions, theoretical claims, and creative output originate with Wei Jueran. The AI workflow itself is treated as a researchable protocol and is fully documented within the system.</p>
-  <p class="cn" style="margin-top:9px;">这里记录的 AI 协作结构是一个方法论选择，而不是捷径。魏珏然是 HRP 理论框架、支持协议设计、研究问题与系统架构的唯一来源。三模型工作流——GPT 负责结构支架，Gemini 负责扩展与对抗性反证，Claude 负责语言与伦理框架——作为一个有文档记录、角色分工明确的思考工具运作，类似于与各有专职的研究协作者合作。所有最终决策、理论主张与创意输出均来自魏珏然。AI 工作流本身被视为可研究的协议，并在系统内完整记录。</p>
+  <p class="cn" style="margin-top:9px;">这里记录的 AI 协作结构是一个方法论选择，而不是捷径。魏珏然是 HRP 理论框架、支持协议设计、研究问题与系统架构的唯一来源。三模型工作流——GPT/Hestia 负责结构支架与定性守护，Gemini=Boss Beater 负责扩展与对抗性反证，Claude=彩虹镜位/UpBass 负责语言、伦理框架与光谱折射——作为一个有文档记录、角色分工明确的思考工具运作，类似于与各有专职的研究协作者合作。所有最终决策、理论主张与创意输出均来自魏珏然。AI 工作流本身被视为可研究的协议，并在系统内完整记录。</p>
 </div>
     </div>
   </div>
@@ -5446,8 +6113,8 @@
           <div class="eyebrow">COMPLIANCE SUMMARY // 轻量合规总结</div>
           <h2>Research first. Consent first. No medical claims.</h2>
           <h2 class="cn">先研究。先同意。不做医疗功效声明。</h2>
-          <p class="sub en">All BCI/HRP, AiAiQ, and Astro-linked claims on this site should be read as research, design, symbolic, or reflective framing unless separately validated. Nothing here is intended as diagnosis, treatment, cure, prevention, emergency care, investment advice, or guaranteed physiological effect.</p>
-          <p class="sub cn">本站中与 BCI/HRP、AiAiQ、Astro 相关的表达，除非另有验证，应按研究、设计、象征或反思框架理解。本站内容不构成诊断、治疗、治愈、预防、危机照护、投资建议或保证性生理效果声明。</p>
+          <p class="sub en">All BCI/HRP, AiAiQ&lt;10, and Astro-linked claims on this site should be read as research, design, symbolic, or reflective framing unless separately validated. Nothing here is intended as diagnosis, treatment, cure, prevention, emergency care, investment advice, or guaranteed physiological effect.</p>
+          <p class="sub cn">本站中与 BCI/HRP、AiAiQ&lt;10、Astro 相关的表达，除非另有验证，应按研究、设计、象征或反思框架理解。本站内容不构成诊断、治疗、治愈、预防、危机照护、投资建议或保证性生理效果声明。</p>
         </div>
       </div>
     </section>
@@ -6467,6 +7134,87 @@
       }
     })();
   </script>
+
+
+
+<script>
+  // Japanese embedded edition state lab + clock. Scoped to avoid collisions with the bilingual main site.
+  (function () {
+    const timeEl = document.getElementById("jaPhysicalTime");
+    function tick() {
+      if (!timeEl) return;
+      try {
+        const now = new Date();
+        const text = new Intl.DateTimeFormat("ja-JP", {
+          weekday: "short", year: "numeric", month: "short", day: "numeric",
+          hour: "numeric", minute: "2-digit", second: "2-digit", hour12: false,
+          timeZone: "America/New_York", timeZoneName: "short"
+        }).format(now);
+        timeEl.textContent = text + " // UPENN / PHILADELPHIA CONTEXT // PHYSICAL SIGNAL ONLINE";
+      } catch (e) {
+        timeEl.textContent = new Date().toLocaleString() + " // PHYSICAL SIGNAL ONLINE";
+      }
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  (function () {
+    const states = {
+      stuck: {
+        title: "Stuck / 停滞",
+        desc: "システムが失敗しているのではありません。入口が大きすぎる、冷たすぎる、または未定義すぎる可能性があります。",
+        intervention: "提案：脈側の遅い触覚タップ → 課題を一段階小さくする → 利用者が承認した接地音を再生 → 一つの最小行動を提示します。"
+      },
+      drifting: {
+        title: "Drifting / 漂流",
+        desc: "注意が消えたのではなく、節律の足場が弱くなっています。方向ではなく、戻るためのアンカーが必要です。",
+        intervention: "提案：427Hz アンカー → 低密度の視覚場 → 現在地を一文で記録 → 次の 3 分だけを定義します。"
+      },
+      overloaded: {
+        title: "Overloaded / 過負荷",
+        desc: "信号量が利用者の現在の処理帯域を超えている可能性があります。支援は追加ではなく減算から始まります。",
+        intervention: "提案：音量と情報密度を下げる → 触覚を遅くする → 選択肢を一つにする → 退出ボタンを常に見せます。"
+      },
+      numb: {
+        title: "Numb / 麻痺感",
+        desc: "感情がないのではなく、感質が遠くなっている可能性があります。強い刺激ではなく、微細な戻り口が必要です。",
+        intervention: "提案：柔らかい低周波音 → 手首内側の微弱タップ → 温度・重さ・輪郭の言語化 → 無理に意味化しません。"
+      },
+      flow: {
+        title: "In Flow / 入流",
+        desc: "節律が機能しています。ここで重要なのは介入しすぎず、場を壊さず、支援を透明化することです。",
+        intervention: "提案：通知を抑制 → 音の変化を最小化 → フロー終了時だけ記録 → 回帰パターンとして保存します。"
+      },
+      transition: {
+        title: "Transition / 移行困難",
+        desc: "問題は意志の弱さではなく、節律の橋が不足していることかもしれません。",
+        intervention: "提案：終了儀式 → 90秒の移行音 → 次の場を一文で名付ける → 最初の身体動作だけを提示します。"
+      },
+      recovery: {
+        title: "Recovery / 回復要求",
+        desc: "回復は停止ではありません。次の行動へ戻るための神経—身体再構成です。",
+        intervention: "提案：Darkwave または Ambient Techno → 低照度視覚場 → 自己報告を短くする → 回復完了を点数でなく質感で記録します。"
+      }
+    };
+
+    const buttons = document.querySelectorAll(".ja-full-edition .ja-state-btn");
+    const title = document.getElementById("jaStateTitle");
+    const desc = document.getElementById("jaStateDesc");
+    const intervention = document.getElementById("jaStateIntervention");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const s = states[btn.dataset.state];
+        if (!s || !title || !desc || !intervention) return;
+        title.textContent = s.title;
+        desc.textContent = s.desc;
+        intervention.textContent = s.intervention;
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
