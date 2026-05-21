@@ -268,6 +268,8 @@ p+p{margin-top:10px;}
 /* GENRE CHIPS */
 .genre-chip{padding:10px 16px;border:1px solid rgba(0,245,255,.2);border-radius:14px;font-family:var(--mono);font-size:12px;color:var(--cyan);}
 .genre-chip span{color:var(--muted);}
+.genre-chip.anchor{border-color:rgba(141,92,255,.32);color:var(--purple);}
+.genre-chip.activation{border-color:rgba(255,184,48,.32);color:var(--amber);}
 
 /* RESPONSIVE */
 @media(max-width:900px){
@@ -305,6 +307,8 @@ p+p{margin-top:10px;}
     <a href="./index.html">← MAIN SITE</a>
     <a href="https://mellowwei.github.io/BCI-HRP/" target="_blank">HCI RESEARCH ↗</a>
     <a href="./validation.html">VALIDATION</a>
+    <a href="./validation.html#audio-demo">HEAR STIMULI ↗</a>
+    <a href="./validation.html#sony-csl">SONY CSL TARGET ↗</a>
     <a href="#top" class="active-link">GATE HOME</a>
     <a href="#intersection">INTERSECTION</a>
     <a href="#research">RESEARCH Q</a>
@@ -319,7 +323,7 @@ p+p{margin-top:10px;}
 
 <main>
 
-<!-- ── HERO ── -->
+<!-- HERO -->
 <section id="top">
   <div>
     <div class="eyebrow">LABORATORY COLLABORATION GATE // 实验室合作入口 // UPENN · 2026</div>
@@ -327,11 +331,11 @@ p+p{margin-top:10px;}
     <div class="status-grid">
       <div class="status-card">
         <div class="status-label">COLLABORATION STATUS</div>
-        <div class="status-value">SEEKING VALIDATION PARTNERS // PHYSIOLOGICAL + NEURAL LAYER // NORTH AMERICA · EAST ASIA</div>
+        <div class="status-value">SEEKING VALIDATION PARTNERS // PHYSIOLOGICAL + NEURAL LAYER // PRIMARY FIRST-CONTACT: SONY CSL TOKYO · FURUYA LAB</div>
       </div>
       <div class="status-card">
         <div class="status-label">SYSTEM READINESS</div>
-        <div class="status-value">ARCHITECTURE COMPLETE // PILOT DESIGN READY // DATA PROTOCOL DEFINED</div>
+        <div class="status-value">ARCHITECTURE COMPLETE // PILOT DESIGN READY // DATA PROTOCOL DEFINED // STIMULI PLAYABLE</div>
       </div>
     </div>
 
@@ -347,8 +351,10 @@ p+p{margin-top:10px;}
     <div class="hero-actions">
       <a class="button primary" href="#intersection">INTERSECTION ANALYSIS</a>
       <a class="button primary" href="#pilot">PILOT DESIGN</a>
+      <a class="button primary" href="./validation.html#audio-demo">HEAR STIMULI ↗</a>
       <a class="button" href="#exchange">COLLABORATION STRUCTURE</a>
       <a class="button" href="./validation.html">VALIDATION DOCS</a>
+      <a class="button" href="./validation.html#sony-csl">SONY CSL TARGET ↗</a>
       <a class="button" href="./index.html">FULL SYSTEM</a>
     </div>
 
@@ -360,12 +366,13 @@ p+p{margin-top:10px;}
       <span class="tag">HRV / EDA / EEG / fNIRS</span>
       <span class="tag">44271 Neural Cuff</span>
       <span class="tag">427Hz</span>
+      <span class="tag">7 playable stimuli</span>
       <span class="tag">UPenn · Learning Sciences + HCI</span>
     </div>
   </div>
 </section>
 
-<!-- ── INTERSECTION ── -->
+<!-- INTERSECTION -->
 <section id="intersection">
   <div class="grid">
     <div class="card span-12 neon-card">
@@ -395,9 +402,9 @@ p+p{margin-top:10px;}
             <td>Inner-wrist pulse-line placement, non-invasive, continuous HRV / EDA / skin temperature capture. The hardware acquisition layer of the HRP closed feedback loop. Connects directly to labs working on wearable biosignal acquisition, physiological state classification, and real-time neural feedback systems.</td>
           </tr>
           <tr>
-            <td>Genre × BPM intervention matrix<br/><span class="strength mid">SECONDARY</span></td>
-            <td style="color:var(--blue)">Computational analysis of music and movement</td>
-            <td>Do different rhythmic genre profiles — defined by BPM range, beat salience, syncopation depth, spectral density — produce distinct physiological response signatures? HRP operationalizes this as a testable experimental condition, building on computational kinematics and auditory neuroscience literature.</td>
+            <td>Genre × BPM intervention matrix · 7 playable stimuli<br/><span class="strength mid">SECONDARY</span></td>
+            <td style="color:var(--blue)">Computational analysis of music and movement · sensorimotor coupling</td>
+            <td>Do different rhythmic genre profiles — defined by BPM range, beat salience, syncopation depth, spectral density — produce distinct physiological response signatures? HRP operationalizes this as a testable experimental condition. The seven stimulus profiles are <a href="./validation.html#audio-demo" style="color:var(--green);">directly playable</a> for reviewer audition. Connects to Sony CSL Tokyo (Furuya Lab) work on music performance and sensorimotor coupling.</td>
           </tr>
           <tr>
             <td>Personalized rhythm response modeling<br/><span class="strength mid">SECONDARY</span></td>
@@ -410,7 +417,7 @@ p+p{margin-top:10px;}
   </div>
 </section>
 
-<!-- ── RESEARCH QUESTION ── -->
+<!-- RESEARCH QUESTION -->
 <section id="research">
   <div class="grid">
     <div class="card span-12 neon-card">
@@ -452,7 +459,7 @@ p+p{margin-top:10px;}
   </div>
 </section>
 
-<!-- ── PILOT ── -->
+<!-- PILOT -->
 <section id="pilot">
   <div class="grid">
     <div class="card span-12 neon-card">
@@ -484,7 +491,7 @@ p+p{margin-top:10px;}
         <div class="condition-row highlight">
           <div class="cond-label">D ★</div>
           <div class="cond-name">Adaptive Rhythm + AI Feedback</div>
-          <div class="cond-desc">Rhythm parameters adjusted in real-time based on self-report state sampling and behavioral proxies. AI provides reflective micro-dialogue. The core HRP condition under test.</div>
+          <div class="cond-desc">Rhythm parameters adjusted in real-time based on self-report state sampling and behavioral proxies. AI provides reflective micro-dialogue. The core HRP condition under test. Stimulus pool draws from the seven playable genre profiles.</div>
         </div>
       </div>
     </div>
@@ -525,7 +532,7 @@ p+p{margin-top:10px;}
   </div>
 </section>
 
-<!-- ── EXCHANGE ── -->
+<!-- EXCHANGE -->
 <section id="exchange">
   <div class="grid">
     <div class="card span-12 neon-card">
@@ -541,6 +548,7 @@ p+p{margin-top:10px;}
         <div class="exchange-side hrp">
           <div class="exchange-label">HRP / WEI JUERAN BRINGS // HRP / 魏珏然提供</div>
           <div class="exchange-item">Complete intervention framework: adaptive rhythm + AI closed-loop architecture, fully documented at mellowwei.github.io/BCI</div>
+          <div class="exchange-item">Seven playable stimulus profiles via procedural Web Audio — reviewable directly at <a href="./validation.html#audio-demo" style="color:var(--green);">validation.html#audio-demo</a></div>
           <div class="exchange-item">Non-diagnostic theoretical grounding: rhythm sovereignty as a non-clinical outcome framework, distinct from symptom reduction models</div>
           <div class="exchange-item">Pilot-ready protocol: four conditions, three measurement layers, CSV schema, IRB-ready participant framing for non-clinical populations</div>
           <div class="exchange-item">Cross-domain research position: Learning Sciences + HCI + Sound Studies + AI Interaction at UPenn</div>
@@ -561,7 +569,7 @@ p+p{margin-top:10px;}
   </div>
 </section>
 
-<!-- ── PAPERS ── -->
+<!-- PAPERS -->
 <section id="papers">
   <div class="grid">
     <div class="card span-12 neon-card">
@@ -575,14 +583,14 @@ p+p{margin-top:10px;}
       <div class="paper-card">
         <div class="paper-number">PAPER 01 · METHODS</div>
         <div class="paper-title">Causal evaluation of non-randomizable rhythm interventions: an observational design framework for adaptive auditory systems</div>
-        <div class="paper-venue">Target: Nature Human Behaviour · PLOS Computational Biology · Journal of Neuroscience Methods</div>
+        <div class="paper-venue">Target venues: Nature Human Behaviour · PLOS Computational Biology · Journal of Neuroscience Methods</div>
         <p>Addresses the core methodological problem: how to establish causal claims about rhythm-based interventions without RCTs. Uses HRP pilot data as the primary case study. The contribution is the causal design framework itself — generalizable to all non-randomizable behavioral interventions in digital health, HCI, and computational psychiatry.</p>
         <p class="cn">解决核心方法论问题：如何在没有随机对照实验的情况下建立关于节律干预的因果主张。以 HRP 试点数据为案例研究。贡献是因果设计框架本身——可推广到数字健康、HCI 和计算精神病学中所有不可随机化的行为干预。</p>
       </div>
       <div class="paper-card">
         <div class="paper-number">PAPER 02 · EMPIRICAL</div>
         <div class="paper-title">Adaptive rhythm + AI feedback versus fixed and random auditory conditions: within-session state recovery in attention-dysregulated adults</div>
-        <div class="paper-venue">Target: Nature Mental Health · npj Digital Medicine · Frontiers in Human Neuroscience</div>
+        <div class="paper-venue">Target venues: Nature Mental Health · npj Digital Medicine · Frontiers in Human Neuroscience</div>
         <p>The primary empirical result from the four-condition pilot. Reports self-report, behavioral, and physiological convergence data across conditions. Key novelty: the first study to test adaptive vs. non-adaptive rhythm conditions using a non-diagnostic, rhythm-sovereignty outcome framework — measuring state recovery rather than symptom reduction as the primary dependent variable.</p>
         <p class="cn">四条件试点的主要实证结果。关键原创性：第一个使用非诊断性、节律主权结果框架测试自适应与非自适应节律条件的研究——以状态恢复而非症状减少作为主要因变量。</p>
       </div>
@@ -590,7 +598,7 @@ p+p{margin-top:10px;}
   </div>
 </section>
 
-<!-- ── SYSTEM ── -->
+<!-- SYSTEM -->
 <section id="system">
   <div class="grid">
     <div class="card span-12 neon-card">
@@ -636,19 +644,25 @@ p+p{margin-top:10px;}
     </div>
 
     <div class="card span-12">
-      <div class="eyebrow">FIVE GENRE INTERVENTION PROTOCOLS // 五个流派干预协议</div>
-      <p style="margin-bottom:18px;">Each genre profile operationalizes a distinct regulatory function. BPM ranges, beat salience profiles, and the 427Hz carrier frequency are specified per protocol. Genre is the independent variable; regulatory function is the theoretical mapping; physiological response is the dependent variable under test.</p>
-      <p class="cn" style="margin-bottom:18px;">每个流派配置文件操作化一个独特的调节功能。每个协议都有指定的 BPM 范围、节拍显著性配置文件和 427Hz 载波频率。流派是自变量；调节功能是理论映射；生理响应是被测的因变量。</p>
+      <div class="eyebrow">SEVEN STIMULUS PROTOCOLS // 七种刺激协议</div>
+      <p style="margin-bottom:8px;">Each profile operationalizes a distinct regulatory function. BPM ranges, beat salience profiles, and the 427Hz carrier frequency are specified per protocol. Genre is the independent variable; regulatory function is the theoretical mapping; physiological response is the dependent variable under test. All seven are directly playable in the validation page for reviewer audition.</p>
+      <p class="cn" style="margin-bottom:18px;">每种剖面操作化一个独特的调节功能。每个协议都有指定的 BPM 范围、节拍显著性配置与 427Hz 载波频率。流派是自变量；调节功能是理论映射；生理响应是被测的因变量。七种都可在 validation 页面直接试听。</p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;">
-        <span class="genre-chip">Drift Phonk → <span>embodied grounding / 具身接地</span></span>
+        <span class="genre-chip activation">Breakbeats → <span>activation / threshold ignition / 激活点火</span></span>
         <span class="genre-chip">Hyperpop → <span>cognitive momentum / 认知动能</span></span>
         <span class="genre-chip">Synthpop → <span>meaning return / 意义返回</span></span>
+        <span class="genre-chip">Drift Phonk → <span>embodied grounding / 具身接地</span></span>
         <span class="genre-chip">Darkwave → <span>emotional co-regulation / 情绪共调</span></span>
         <span class="genre-chip">Ambient Techno → <span>flow-state maintenance / 心流维持</span></span>
+        <span class="genre-chip anchor">427Hz Anchor → <span>carrier coherence / 载波相干</span></span>
+      </div>
+      <div style="margin-top:22px;">
+        <a class="button primary" href="./validation.html#audio-demo">→ HEAR ALL SEVEN STIMULI ↗</a>
       </div>
     </div>
   </div>
 </section>
+
 <section id="ai-workflow">
   <div class="grid">
     <div class="card span-12 neon-card">
@@ -696,19 +710,21 @@ p+p{margin-top:10px;}
     </div>
   </div>
 </section>
-  
-<!-- ── CONTACT ── -->
+
+<!-- CONTACT -->
 <section id="contact">
   <div class="cta-wrap">
     <div class="eyebrow green">COLLABORATION INQUIRY // 合作探询</div>
     <h2 style="max-width:760px;">A brief conversation to determine fit.</h2>
     <h2 class="cn" style="font-size:clamp(22px,3vw,44px);">一次简短的对话，判断是否匹配。</h2>
-    <p class="sub" style="max-width:680px;">The research question is specified. The pilot design is ready. The causal inference gap is real and addressable. If your lab works in computational neuroscience, adaptive systems, causal inference in human behavior, or wearable neurotechnology — there may be a research question here worth pursuing together.</p>
-    <p class="sub cn" style="font-size:16px;margin-top:10px;max-width:680px;">研究问题已确定。试点设计已就绪。因果推断缺口是真实且可解决的。如果你的实验室从事计算神经科学、自适应系统、人类行为因果推断或可穿戴神经技术——这里可能有一个值得一起追求的研究问题。</p>
+    <p class="sub" style="max-width:680px;">The research question is specified. The pilot design is ready. The causal inference gap is real and addressable. The seven stimulus profiles are playable. If your lab works in computational neuroscience, adaptive systems, causal inference in human behavior, wearable neurotechnology, or sensorimotor coupling and music performance — there may be a research question here worth pursuing together.</p>
+    <p class="sub cn" style="font-size:16px;margin-top:10px;max-width:680px;">研究问题已确定。试点设计已就绪。因果推断缺口是真实且可解决的。七种刺激剖面可直接试听。如果你的实验室从事计算神经科学、自适应系统、人类行为因果推断、可穿戴神经技术，或感觉运动耦合与音乐表现研究——这里可能有一个值得一起追求的研究问题。</p>
 
     <div class="hero-actions">
+      <a class="button primary" href="./validation.html#audio-demo">→ HEAR THE SEVEN STIMULI ↗</a>
+      <a class="button primary" href="./validation.html#sony-csl">→ SONY CSL TOKYO TARGET ↗</a>
       <a class="button primary" href="./validation.html">→ FULL VALIDATION DOCUMENTATION</a>
-      <a class="button primary" href="./index.html">→ FULL SYSTEM SITE</a>
+      <a class="button" href="./index.html">→ FULL SYSTEM SITE</a>
       <a class="button" href="https://mellowwei.github.io/Ai-Q-10/" target="_blank" rel="noopener">→ AIQ PORTAL ↗</a>
     </div>
 
@@ -725,7 +741,8 @@ p+p{margin-top:10px;}
   </div>
   <p style="font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.1em;line-height:1.9;">
     BCI-HRP · Human Return Protocol · <a href="https://mellowwei.github.io/BCI/" style="color:var(--cyan);text-decoration:none;">mellowwei.github.io/BCI</a><br/>
-    HCI Design Research · <a href="https://mellowwei.github.io/BCI-HRP/" style="color:var(--cyan);text-decoration:none;">mellowwei.github.io/BCI-HRP</a>
+    HCI Design Research · <a href="https://mellowwei.github.io/BCI-HRP/" style="color:var(--cyan);text-decoration:none;">mellowwei.github.io/BCI-HRP</a><br/>
+    Validation / Boundary · <a href="./validation.html" style="color:var(--cyan);text-decoration:none;">validation.html</a> · Stimulus audition · <a href="./validation.html#audio-demo" style="color:var(--green);text-decoration:none;">validation.html#audio-demo</a>
   </p>
 </div>
   </div>
