@@ -8,6 +8,25 @@
 .audio-mode-btn:hover{color:var(--text);transform:translateX(3px);border-color:rgba(53,255,159,.42);background:linear-gradient(90deg,rgba(53,255,159,.09),rgba(0,245,255,.06))}
 .audio-mode-btn.playing{border-color:rgba(255,43,214,.55);background:linear-gradient(90deg,rgba(255,43,214,.12),rgba(53,255,159,.09));color:var(--text);box-shadow:0 0 18px rgba(255,43,214,.25)}
 .audio-mode-btn.playing::before{content:"▶ ";color:var(--green);font-size:10px;letter-spacing:.1em}
+.audio-mode-btn .param-fn{display:block;margin-top:5px;font-size:11px;font-family:var(--mono);color:var(--dim);letter-spacing:.04em;line-height:1.45}
+.audio-mode-btn .param-eng{display:block;margin-top:3px;font-size:10px;font-family:var(--mono);color:var(--cyan);letter-spacing:.04em;line-height:1.5;opacity:.78}
+.audio-mode-btn .param-eng.anchor{color:var(--purple);opacity:.86}
+.audio-mode-btn.playing .param-eng{color:var(--green);opacity:1}
+.audio-mode-btn.playing .param-eng.anchor{color:var(--purple);opacity:1}
+.audio-mode-btn.playing .param-fn{color:var(--text)}
+.param-disclosure{margin-top:24px;padding:22px 24px;border:1px solid rgba(141,92,255,.22);border-radius:20px;background:linear-gradient(180deg,rgba(141,92,255,.05),rgba(0,245,255,.03)),rgba(8,10,28,.55)}
+.param-disclosure-eyebrow{margin-bottom:14px;color:var(--purple);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 0 10px rgba(141,92,255,.55)}
+.param-disclosure p{font-size:14px;line-height:1.65;color:var(--muted);margin-bottom:10px}
+.param-disclosure p strong{color:var(--text)}
+.param-disclosure em{color:var(--cyan);font-style:normal;font-family:var(--mono);font-size:13px}
+.param-table-wrap{margin-top:18px;overflow-x:auto;border:1px solid rgba(141,92,255,.16);border-radius:14px}
+.param-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;min-width:680px}
+.param-table th,.param-table td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid rgba(141,92,255,.14);letter-spacing:.04em;line-height:1.5}
+.param-table th{color:var(--purple);background:rgba(141,92,255,.06);font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-size:10px}
+.param-table td{color:var(--muted)}
+.param-table td:first-child{color:var(--text);font-weight:600}
+.param-table tbody tr:last-child td{border-bottom:none}
+.param-table tbody tr:hover{background:rgba(0,245,255,.03)}
 .audio-stop-btn{width:100%;margin-top:10px;padding:12px 16px;border:1px solid rgba(255,77,109,.45);border-radius:16px;background:linear-gradient(90deg,rgba(255,77,109,.10),rgba(255,43,214,.07));color:var(--text);text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s}
 .audio-stop-btn:hover:not(:disabled){transform:translateY(-1px);border-color:rgba(255,77,109,.85);box-shadow:0 0 18px rgba(255,77,109,.35)}
 .audio-stop-btn:disabled{opacity:.4;cursor:not-allowed}
@@ -204,7 +223,57 @@
 
 <section id="pilot"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">PILOT STUDY PROTOCOL // 试点实验协议 // パイロット研究</div><h2>Four-condition pilot study.</h2><h2 class="cn">四条件 pilot 实验。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>The first study compares baseline, fixed rhythm, random rhythm, and adaptive rhythm + AiAiQ&lt;10 feedback, with AiQ愛&lt;3 and AiQ愛&lt;7 logged as distinct AI modes.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">第一轮实验比较基线、固定节律、随机节律，以及自适应节律 + AiAiQ&lt;10 反馈；其中 AiQ愛&lt;3 与 AiQ愛&lt;7 作为不同 AI 模式单独记录。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">最初の研究では、ベースライン、固定リズム、ランダムリズム、適応型リズム + AiAiQ&lt;10 フィードバックを比較し、AiQ愛&lt;3 と AiQ愛&lt;7 を異なる AI モードとして記録します。</p></div></div><table class="table"><thead><tr><th>Condition</th><th>中文</th><th>Purpose / 目的</th></tr></thead><tbody><tr><td>A. Baseline / Silence</td><td>基线 / 静音或环境声</td><td>Baseline comparison / 作为基线对照</td></tr><tr><td>B. Fixed Rhythm</td><td>固定节律</td><td>Tests whether rhythm alone helps / 测试节律本身是否有效</td></tr><tr><td>C. Random Rhythm</td><td>随机节律</td><td>Controls for novelty and sound exposure / 控制新奇性与声音暴露</td></tr><tr><td>D. Adaptive Rhythm + AiAiQ&lt;10</td><td>自适应节律 + AiAiQ&lt;10</td><td>Tests adaptive-loop hypothesis / 测试自适应闭环假设</td></tr></tbody></table></div><div class="card span-6"><h3>Measurement Plan</h3><h3 class="cn">测量计划</h3><p>Self-report: focus, emotion, body tension, inner noise, task readiness, return-to-self.</p><p class="cn">主观指标：注意力、情绪、身体紧绷、内在噪音、任务准备度、返回自己评分。</p><p>Behavior: reaction time, accuracy, missed trials, interruption count.</p><p class="cn">行为指标：反应时间、准确率、漏答次数、中断次数。</p></div><div class="card span-6"><h3>Future Measures</h3><h3 class="cn">未来测量</h3><p>Physiology: HRV, heart rate, EDA, breathing. Neural: EEG alpha/theta/beta, fNIRS prefrontal oxygenation.</p><p class="cn">生理：HRV、心率、皮肤电、呼吸。神经：EEG alpha/theta/beta，fNIRS 前额叶氧合。</p></div></div></section>
 
-<section id="audio-demo"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">AUDITORY PROTOCOL AUDITION // 声音协议试听 // 聴覚プロトコル試聴</div><h2>What the seven sound conditions actually sound like.</h2><h2 class="cn">七个声音条件实际听起来是什么样的。</h2><h2 class="jp">7 つの音響条件は実際にどのように聞こえるか。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>The pilot compares baseline, fixed rhythm, random rhythm, and adaptive rhythm + AiAiQ&lt;10. The seven genre profiles below are the operational building blocks of those conditions. All audio is procedurally synthesized via Web Audio API — no external files, no pre-recorded music. Click any genre to audition. Click again to stop. Acoustic feature analysis welcome.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">pilot 实验比较基线、固定节律、随机节律与自适应节律 + AiAiQ&lt;10。下方七个类型剖面是这些条件的操作积木。所有音频由 Web Audio API 程序合成——零外部文件、零预录音乐。点击任意类型试听，再次点击停止。欢迎声学特征分析。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">パイロット研究は、ベースライン、固定リズム、ランダムリズム、適応型リズム + AiAiQ&lt;10 を比較します。下記の 7 ジャンルプロファイルは、それらの条件の操作的構成要素です。すべての音響は Web Audio API によりプロシージャル合成され、外部ファイルや事前録音は使用しません。クリックで試聴、再クリックで停止。音響特徴解析を歓迎します。</p></div></div><div class="audio-demo-grid"><button class="audio-mode-btn" data-music="breakbeats">Breakbeats · 碎拍<small style="display:block;color:var(--dim);margin-top:4px;font-size:11px;font-family:var(--mono)">BPM 132–150 · irregular · anti-dissociation</small></button><button class="audio-mode-btn" data-music="hyperpop">Hyperpop · 超流行<small style="display:block;color:var(--dim);margin-top:4px;font-size:11px;font-family:var(--mono)">BPM 150–175 · dense · peak traversal</small></button><button class="audio-mode-btn" data-music="synthpop">Synthpop · 合成流行<small style="display:block;color:var(--dim);margin-top:4px;font-size:11px;font-family:var(--mono)">BPM 95–125 · stable 4/4 · first breath</small></button><button class="audio-mode-btn" data-music="driftphonk">Drift Phonk · 漂移 Phonk<small style="display:block;color:var(--dim);margin-top:4px;font-size:11px;font-family:var(--mono)">BPM 120–160 · heavy sub · embodiment</small></button><button class="audio-mode-btn" data-music="darkwave">Darkwave · 暗潮<small style="display:block;color:var(--dim);margin-top:4px;font-size:11px;font-family:var(--mono)">BPM 70–110 · minor · controlled descent</small></button><button class="audio-mode-btn" data-music="ambient">Ambient Techno · 氛围科技舞曲<small style="display:block;color:var(--dim);margin-top:4px;font-size:11px;font-family:var(--mono)">BPM 105–130 · minimal · sustained focus</small></button><button class="audio-mode-btn" data-music="anchor427" style="grid-column:1/-1">427Hz Anchor · 427Hz 锚点<small style="display:block;color:var(--dim);margin-top:4px;font-size:11px;font-family:var(--mono)">continuous · post-session stabilization · transition closure</small></button></div><button class="audio-stop-btn" id="audioStopBtn" type="button" disabled>■ STOP ALL SOUND</button><div class="audio-hint">PROCEDURAL WEB AUDIO · NO EXTERNAL FILES · LOW VOLUME RECOMMENDED</div></div></div></section>
+<section id="audio-demo"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">AUDITORY PROTOCOL AUDITION // 声音协议试听 // 聴覚プロトコル試聴</div><h2>What the seven sound conditions actually sound like.</h2><h2 class="cn">七个声音条件实际听起来是什么样的。</h2><h2 class="jp">7 つの音響条件は実際にどのように聞こえるか。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>The pilot compares baseline, fixed rhythm, random rhythm, and adaptive rhythm + AiAiQ&lt;10. The seven genre profiles below are the operational building blocks of those conditions. All audio is procedurally synthesized via Web Audio API — no external files, no pre-recorded music. Click any genre to audition. Click again to stop. Acoustic feature analysis welcome.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">pilot 实验比较基线、固定节律、随机节律与自适应节律 + AiAiQ&lt;10。下方七个类型剖面是这些条件的操作积木。所有音频由 Web Audio API 程序合成——零外部文件、零预录音乐。点击任意类型试听，再次点击停止。欢迎声学特征分析。</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">パイロット研究は、ベースライン、固定リズム、ランダムリズム、適応型リズム + AiAiQ&lt;10 を比較します。下記の 7 ジャンルプロファイルは、それらの条件の操作的構成要素です。すべての音響は Web Audio API によりプロシージャル合成され、外部ファイルや事前録音は使用しません。クリックで試聴、再クリックで停止。音響特徴解析を歓迎します。</p></div></div><div class="audio-demo-grid">
+<button class="audio-mode-btn" data-music="breakbeats">Breakbeats · 碎拍 · ブレイクビーツ
+<small class="param-fn">target BPM 132–150 · irregular · anti-dissociation</small>
+<small class="param-eng">synth: 145 ms step · 90–1400 Hz · 4·3·5·7 polyrhythm · kick on s%4=0, snare on s%4=2</small>
+</button>
+<button class="audio-mode-btn" data-music="hyperpop">Hyperpop · 超流行 · ハイパーポップ
+<small class="param-fn">target BPM 150–175 · dense · peak traversal</small>
+<small class="param-eng">synth: 120 ms step · 64–1700 Hz · square waves [427/640/854/1280] + sub 64 Hz</small>
+</button>
+<button class="audio-mode-btn" data-music="synthpop">Synthpop · 合成流行 · シンセポップ
+<small class="param-fn">target BPM 95–125 · stable 4/4 · first breath</small>
+<small class="param-eng">synth: 520 ms beat · 110–640 Hz · triangle chord [427/540/640] + bass 110/220 Hz</small>
+</button>
+<button class="audio-mode-btn" data-music="driftphonk">Drift Phonk · 漂移 Phonk · ドリフト Phonk
+<small class="param-fn">target BPM 120–160 · heavy sub · embodiment</small>
+<small class="param-eng">synth: 160 ms step · 53–800 Hz · sub 53.375 Hz (= 427/8) on s%2=0 + cowbell 800/600 Hz</small>
+</button>
+<button class="audio-mode-btn" data-music="darkwave">Darkwave · 暗潮 · ダークウェイブ
+<small class="param-fn">target BPM 70–110 · minor · controlled descent</small>
+<small class="param-eng">synth: 700 ms beat · 55–427 Hz · sawtooth pad [106.75/213.5/427] + low 55 Hz</small>
+</button>
+<button class="audio-mode-btn" data-music="ambient">Ambient Techno · 氛围科技舞曲 · アンビエント・テクノ
+<small class="param-fn">target BPM 105–130 · minimal · sustained focus</small>
+<small class="param-eng">synth: drone · pure sines [106.75 / 213.5 / 427 Hz] · 0.16 Hz LFO tremolo (6.25 s cycle)</small>
+</button>
+<button class="audio-mode-btn" data-music="anchor427" style="grid-column:1/-1">427Hz Anchor · 427Hz 锚点 · 427Hz アンカー
+<small class="param-fn">continuous · post-session stabilization · transition closure</small>
+<small class="param-eng anchor">synth: pure sine harmonic stack · 427 Hz (f) · 213.5 Hz (f/2) · 106.75 Hz (f/4) · zero modulation</small>
+</button>
+</div>
+
+<div class="param-disclosure">
+<div class="param-disclosure-eyebrow">OPERATIONALIZATION DISCLOSURE // 操作化披露 // 操作化開示</div>
+<p><strong style="color:var(--text);">Two parameter layers shown per button.</strong> The grey line is the <em>target intervention band</em> (the BPM / character range a curated production-grade stimulus would fall within at pilot time). The cyan line is the <em>actual procedural synthesis</em> running right now in this browser — step interval, frequency range, oscillator type, and conditional pulse rules — so the lab can perform acoustic feature analysis directly against what is heard. The two layers are deliberately separated to keep audition transparent and prevent the demo synth from being mistaken for the deliverable stimulus library.</p>
+<p class="cn"><strong style="color:var(--text);">每个按钮显示两层参数。</strong>灰色行是<em>目标干预带</em>（pilot 阶段精心制作的刺激素材会落入的 BPM / 特征范围）；青色行是<em>当前正在浏览器中实际运行的程序化合成</em>——步进间隔、频谱范围、振荡器类型、条件脉冲规则——便于实验室直接对所听到的内容做声学特征分析。两层刻意分开，避免把 demo 合成误认作交付级刺激库。</p>
+<p class="jp"><strong style="color:var(--text);">各ボタンに 2 層のパラメータを表示。</strong>グレー行は<em>目標介入帯</em>（パイロット時にキュレーション済み制作レベル刺激が収まる BPM / 特性帯）、シアン行は<em>このブラウザで現在実行中の手続き型合成</em>——ステップ間隔、周波数帯、発振器タイプ、条件付きパルス規則。両層を意図的に分離し、デモ合成と納品レベルの刺激ライブラリの混同を防ぎます。</p>
+<div class="param-table-wrap">
+<table class="param-table">
+<thead><tr><th>Profile</th><th>Step / Beat</th><th>Spectral Range</th><th>Oscillator</th><th>Salience Pattern</th><th>Regulatory Function</th></tr></thead>
+<tbody>
+<tr><td>Breakbeats</td><td>145 ms / step</td><td>90–1400 Hz</td><td>sine + triangle + square + sawtooth</td><td>polyrhythmic (4·3·5·7 overlay)</td><td>anti-dissociation · activation</td></tr>
+<tr><td>Hyperpop</td><td>120 ms / step</td><td>64–1700 Hz</td><td>square + sine sub</td><td>dense, every-step lead</td><td>peak traversal · cognitive momentum</td></tr>
+<tr><td>Synthpop</td><td>520 ms / beat</td><td>110–640 Hz</td><td>triangle + sine</td><td>stable 4/4 chord cycle</td><td>first breath · meaning return</td></tr>
+<tr><td>Drift Phonk</td><td>160 ms / step</td><td>53–800 Hz</td><td>sine sub + square cowbell</td><td>2-cycle sub + 4-cycle accent</td><td>embodied grounding · somatic anchor</td></tr>
+<tr><td>Darkwave</td><td>700 ms / beat</td><td>55–427 Hz</td><td>sawtooth pad + sine sub</td><td>slow pad rotation + low pulse</td><td>controlled descent · co-regulation</td></tr>
+<tr><td>Ambient Techno</td><td>continuous + 0.16 Hz LFO</td><td>106.75–427 Hz</td><td>pure sine + LFO on master gain</td><td>drone with 6.25 s tremolo</td><td>flow maintenance · sustained focus</td></tr>
+<tr><td>427Hz Anchor</td><td>continuous · no modulation</td><td>106.75 / 213.5 / 427 Hz only</td><td>pure sine harmonics</td><td>octave-quartile stack</td><td>session closure · baseline coherence</td></tr>
+</tbody>
+</table>
+</div>
+</div><button class="audio-stop-btn" id="audioStopBtn" type="button" disabled>■ STOP ALL SOUND</button><div class="audio-hint">PROCEDURAL WEB AUDIO · NO EXTERNAL FILES · LOW VOLUME RECOMMENDED</div></div></div></section>
 
 <section id="experiment-validation"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">EXPERIMENTAL VALIDATION // 实验验证 // 実験的検証</div><h2>From concept to falsifiable system.</h2><h2 class="cn">从概念系统进入可证伪系统。</h2><h2 class="jp">概念から反証可能なシステムへ。</h2><div class="bilingual-block trilingual"><div class="lang-card"><strong>ENGLISH</strong><p>The experiment asks whether adaptive rhythm + AI feedback produces stronger session-related improvement than fixed rhythm, random rhythm, or baseline sound.</p></div><div class="lang-card"><strong>中文</strong><p class="cn">实验问题是：自适应节律 + AI 反馈是否比固定节律、随机节律或基线声音产生更强的 session-related 改善？</p></div><div class="lang-card"><strong>日本語</strong><p class="jp">研究質問は、適応型リズム + AI フィードバックが、固定リズム、ランダムリズム、またはベースライン音より強い session-related improvement を示すかどうかです。</p></div></div><div class="matrix"><div class="pill"><div class="num">01</div><h3>Feasibility</h3><h3 class="cn">可行性</h3><p>Users can complete sessions safely.</p><p class="cn">用户能安全完成 session。</p></div><div class="pill"><div class="num">02</div><h3>Signal</h3><h3 class="cn">信号</h3><p>Adaptive condition shows pre-post movement.</p><p class="cn">自适应条件出现前后测变化。</p></div><div class="pill"><div class="num">03</div><h3>Specificity</h3><h3 class="cn">特异性</h3><p>Adaptive outperforms fixed/random.</p><p class="cn">自适应优于固定/随机。</p></div><div class="pill"><div class="num">04</div><h3>Convergence</h3><h3 class="cn">收敛</h3><p>Self-report, behavior, physiology align.</p><p class="cn">主观、行为、生理指标方向相容。</p></div></div></div><div class="card span-12"><div class="eyebrow">DATA STRUCTURE // 数据结构</div><h3>Minimum CSV Schema</h3><h3 class="cn">最小 CSV 字段</h3><pre>participant_id, condition, pre_focus, pre_emotion, pre_body_tension, pre_inner_noise, pre_task_readiness, post_focus, post_emotion, post_body_tension, post_inner_noise, post_task_readiness, return_to_self_score, task_accuracy, reaction_time, missed_trials, user_note</pre><p class="cn">这个字段结构让 HRP 从概念网站进入可记录、可导出、可比较、可分析的研究原型。</p></div></div></section>
 
