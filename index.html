@@ -166,10 +166,9 @@
 
     section {
       position: relative;
-      min-height: 100vh;
-      display: grid;
-      align-items: center;
-      padding: 112px 0 72px;
+      min-height: auto;
+      display: block;
+      padding: 56px 0 40px;
     }
 
     .eyebrow {
@@ -362,7 +361,7 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 18px;
+      gap: 12px;
     }
 
     .card {
@@ -2911,7 +2910,242 @@
       line-height: 1.62;
     }
 
-</style>
+
+    /* ========== FINAL COMPACT OVERRIDE v22 · 2026-05-27 22:24 CST ==========
+       This block runs AFTER all other CSS and uses !important to win cascade.
+       Goal: tighten everything. Reduce font sizes. Eliminate huge empty regions.
+       Applied surgically without touching original styles. */
+
+    /* 1. Section spacing - aggressive compaction */
+    section {
+      min-height: auto !important;
+      padding: 28px 0 24px !important;
+      margin: 0 !important;
+      display: block !important;
+    }
+
+    /* 2. First section after header (hero) - slightly more top space */
+    section.hero,
+    section#top {
+      padding-top: 32px !important;
+    }
+
+    /* 3. Card padding - reduce internal whitespace */
+    .card {
+      padding: 18px 22px !important;
+    }
+
+    /* 4. Heading sizes - dramatic reduction */
+    h1, h1.glitch {
+      font-size: clamp(36px, 5.5vw, 72px) !important;
+      line-height: 1.0 !important;
+      margin: 0 0 8px !important;
+    }
+
+    h2 {
+      font-size: clamp(22px, 3.2vw, 44px) !important;
+      line-height: 1.08 !important;
+      margin: 0 0 8px !important;
+    }
+
+    h2.cn {
+      font-size: clamp(20px, 3.0vw, 40px) !important;
+    }
+
+    h3 {
+      font-size: 18px !important;
+      margin: 0 0 6px !important;
+    }
+
+    /* 5. Eyebrow - smaller */
+    .eyebrow {
+      margin-bottom: 8px !important;
+      font-size: 10px !important;
+    }
+
+    /* 6. Body padding-top - reduce gap below header */
+    body {
+      padding-top: 72px !important;
+    }
+
+    /* 7. Header itself - shrink */
+    header.locked-clean-header {
+      min-height: 60px !important;
+      padding: 10px 16px !important;
+    }
+
+    header.locked-clean-header .brand {
+      font-size: 11px !important;
+    }
+
+    header.locked-clean-header nav.locked-clean-nav {
+      gap: 6px 12px !important;
+    }
+
+    header.locked-clean-header nav.locked-clean-nav a {
+      font-size: 10px !important;
+    }
+
+    /* 8. Hero thesis & sub - smaller */
+    .thesis {
+      font-size: clamp(16px, 1.8vw, 22px) !important;
+      line-height: 1.3 !important;
+      margin-top: 12px !important;
+    }
+
+    .sub {
+      font-size: 14px !important;
+      line-height: 1.55 !important;
+      margin-top: 10px !important;
+    }
+
+    p {
+      font-size: 14px !important;
+      line-height: 1.55 !important;
+    }
+
+    /* 9. Status grid - more compact */
+    .status-grid {
+      margin: 0 0 14px !important;
+      gap: 8px !important;
+    }
+
+    .status-card {
+      padding: 10px 12px !important;
+    }
+
+    .status-label {
+      margin-bottom: 4px !important;
+      font-size: 9px !important;
+    }
+
+    .status-value {
+      font-size: 11px !important;
+    }
+
+    /* 10. Grid gap - tighter */
+    .grid {
+      gap: 10px !important;
+    }
+
+    /* 11. System loop / four-card grids - tighter */
+    .system-loop {
+      gap: 10px !important;
+    }
+
+    .loop-item {
+      padding: 14px !important;
+      min-height: auto !important;
+    }
+
+    .num {
+      margin-bottom: 8px !important;
+      font-size: 11px !important;
+    }
+
+    /* 12. Hero actions buttons */
+    .hero-actions {
+      gap: 8px !important;
+      margin-top: 16px !important;
+    }
+
+    .button {
+      padding: 9px 14px !important;
+      font-size: 11px !important;
+    }
+
+    /* 13. Tag row */
+    .tag-row {
+      gap: 6px !important;
+      margin-top: 12px !important;
+    }
+
+    .tag {
+      padding: 5px 9px !important;
+      font-size: 11px !important;
+    }
+
+    /* 14. Compliance/disclaimer/note blocks */
+    .compliance-note, .disclaimer {
+      margin-top: 10px !important;
+      padding: 12px 14px !important;
+      font-size: 12px !important;
+    }
+
+    .compliance-grid {
+      gap: 8px !important;
+      margin-top: 12px !important;
+    }
+
+    .compliance-mini {
+      padding: 12px 14px !important;
+      min-height: auto !important;
+    }
+
+    /* 15. Tables */
+    .therapy-table {
+      margin-top: 10px !important;
+    }
+
+    .therapy-table th, .therapy-table td {
+      padding: 9px 11px !important;
+      font-size: 13px !important;
+    }
+
+    /* 16. Eyebrow tighter */
+    .eyebrow {
+      letter-spacing: 0.18em !important;
+    }
+
+    /* 17. CN text size */
+    .cn {
+      font-size: 13px !important;
+      margin-top: 4px !important;
+    }
+
+    /* 18. Reduce accordion item padding (Claude excavator) */
+    .claude-accordion {
+      gap: 8px !important;
+    }
+
+    .claude-accordion-item summary {
+      padding: 14px 18px !important;
+    }
+
+    .claude-accordion-body {
+      padding: 18px !important;
+    }
+
+    /* 19. Lab-gate styled tables tighter */
+    .bilingual-block {
+      margin-top: 10px !important;
+      gap: 10px !important;
+    }
+
+    /* 20. Mobile - even tighter */
+    @media (max-width: 900px) {
+      section {
+        padding: 20px 0 16px !important;
+      }
+
+      .card {
+        padding: 14px 16px !important;
+      }
+
+      h1, h1.glitch {
+        font-size: clamp(28px, 9vw, 48px) !important;
+      }
+
+      h2 {
+        font-size: clamp(20px, 6vw, 32px) !important;
+      }
+
+      body {
+        padding-top: 60px !important;
+      }
+    }
+
+  </style>
 </head>
 
 <body>
@@ -2922,7 +3156,7 @@
  <header class="locked-clean-header">
   <div class="brand">
     <span class="dot"></span>
-    METALOGIC ROOT // GPT/HESTIA CORE BODY // 44271 NEURAL CUFF // PROTOTYPE // QDR // QRM // GEMINI=Boss Beater // CLAUDE=彩虹镜位/UpBass // HESTIA AUDIT // <span class="signature">xingyeLing7Ai</span>
+    METALOGIC ROOT // 44271 NEURAL CUFF // 6-GENRE PROTOCOL // QDR ENGINE // QRM // PROTOTYPE // <span class="signature">xingyeLing7Ai</span>
   </div>
 
   <nav class="locked-clean-nav">
@@ -2932,9 +3166,7 @@
     <a href="#overview-map">OVERVIEW MAP</a>
     <a href="#metalogic-root">METALOGIC ROOT</a>
     <a href="#language-editions">LANGUAGE PAGES</a>
-    <a href="#gpt-core">GPT/HESTIA CORE</a>
     <a href="#neural-cuff">NEURAL CUFF</a>
-    <a href="#claude-layer">CLAUDE/UPBASS</a>
     <a href="#prototype">PROTOTYPE</a>
     <a href="#qdr-therapy">QDR</a>
     <a href="./qdr-v1/">QDR v+1</a>  
@@ -2944,16 +3176,15 @@
     <a href="#breakbeats-protocol">BREAKBEATS</a>
     <a href="#protocol-anchors">DUAL ANCHORS</a>
     <a href="#six-genre-therapy">6-GENRE THERAPY</a>
+    <a href="#acoustic-design-rationale" style="color:var(--cyan);">ACOUSTIC RATIONALE ★</a>
     <a href="#sound-lab">MUSIC LAB</a>
-    <a href="#gemini-layer">GEMINI/BOSS BEATER</a>
     <a href="#final-synthesis">SYNTHESIS</a>
     <a href="https://mellowwei.github.io/BCI-HRP/" target="_blank">HCI RESEARCH ↗</a>
     <a href="https://mellowwei.github.io/BCI/lab-gate.html" target="_blank">LAB GATE ↗</a>
     <a href="./index-en.html" style="color:var(--yellow)!important;border:1px solid rgba(255,230,109,.3);padding:2px 8px;border-radius:999px;">EN ONLY</a>
 <a href="./index-zh.html" style="color:var(--yellow)!important;border:1px solid rgba(255,230,109,.3);padding:2px 8px;border-radius:999px;">中文版</a>
 <a href="index-ja.html" lang="ja" style="color:var(--yellow)!important;border:1px solid rgba(255,230,109,.3);padding:2px 8px;border-radius:999px;">日本語</a>
-<a href="#hestia-audit" style="color:var(--green)!important;border:1px solid rgba(53,255,159,.3);padding:2px 8px;border-radius:999px;">HESTIA AUDIT</a>
-  </nav>
+</nav>
 </header>
 
   <main>
@@ -3048,13 +3279,10 @@
 
         <div class="hero-actions">
           <a class="button primary" href="#metalogic-root">METALOGIC ROOT</a>
-          <a class="button" href="#gpt-core">ENTER GPT/HESTIA CORE BODY</a>
-          <a class="button" href="#neural-cuff">44271 NEURAL CUFF</a>
+          <a class="button" href="#gpt-core">SYSTEM BODY</a><a class="button" href="#neural-cuff">44271 NEURAL CUFF</a>
           <a class="button" href="#prototype">PROTOTYPE</a>
           <a class="button" href="#qdr-therapy">QDR FRAMEWORK</a>
-          <a class="button" href="#gemini-layer">GEMINI=Boss Beater</a>
-          <a class="button" href="#claude-layer">CLAUDE=彩虹镜位/UpBass</a>
-        </div>
+          </div>
         <div style="margin-top:32px;padding:24px 28px;border:1px solid rgba(53,255,159,.28);border-radius:24px;background:linear-gradient(135deg,rgba(53,255,159,.06),rgba(0,245,255,.03)),rgba(8,10,28,.72);max-width:960px;">
   <div style="margin-bottom:14px;color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 0 10px rgba(53,255,159,.5);">AUTHORSHIP // 作者权声明 // WHO MADE WHAT</div>
   <p style="color:var(--text);font-size:15px;line-height:1.75;margin-bottom:10px;">
@@ -4271,6 +4499,54 @@
       </div>
     </section>
 
+    
+    <style>
+      /* QDR Therapy layout fix - prevent text overlap in Meta-Consciousness cards */
+      #qdr-therapy .system-loop {
+        display: grid !important;
+        gap: 14px;
+      }
+      #qdr-therapy .loop-item {
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: normal;
+      }
+      #qdr-therapy .loop-item p,
+      #qdr-therapy .loop-item h3 {
+        overflow-wrap: break-word;
+      }
+      #qdr-therapy .bilingual-block .lang-card {
+        min-width: 0;
+        overflow-wrap: break-word;
+      }
+      /* Ensure bilingual-block has proper grid */
+      #qdr-therapy .bilingual-block {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 14px;
+      }
+      .bilingual-block {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 14px;
+      }
+      .lang-card {
+        padding: 18px 20px;
+        border: 1px solid rgba(0,245,255,0.18);
+        border-radius: 18px;
+        background: rgba(255,255,255,0.025);
+        min-width: 0;
+        overflow-wrap: break-word;
+      }
+      .lang-card strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--cyan);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: .14em;
+      }
+    </style>
     <section id="qdr-therapy">
       <div class="grid">
         <div class="card span-12 neon-card">
@@ -4369,7 +4645,7 @@
         </div>
       </div>
 
-      <div class="system-loop" style="grid-template-columns:repeat(3,minmax(0,1fr));margin-top:18px;">
+      <div class="system-loop" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:18px;gap:14px;">
         <div class="loop-item" style="border-color:rgba(255,230,109,.28);">
           <div class="num">M1 // META-5 FACTORS</div>
           <h3>Five Factor Probe</h3>
@@ -5043,6 +5319,152 @@
     </section>
 
 
+    <!-- ========== ACOUSTIC DESIGN RATIONALE · 6-GENRE × 6-SYSTEM LITERATURE-ANCHORED ========== -->
+    <section id="acoustic-design-rationale" style="margin-top:48px;">
+      <div class="eyebrow" style="color:var(--cyan);">ACOUSTIC DESIGN RATIONALE // 声学设计依据 · 文献锚定版</div>
+      <h2 style="border-left:4px solid var(--cyan);padding-left:16px;">
+        Six genres. Six systems. Real literature. Honest claim limits.
+        <br><span style="font-size:0.6em;color:var(--dim);">六种音乐 · 六大系统 · 真实文献 · 诚实声明边界</span>
+      </h2>
+      <p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:24px;max-width:920px;">
+        Each genre below is mapped to its strongest action face across six human systems (Emotion / Perception / Neural / Body / Meaning / Cognition), anchored in published music neuroscience literature. Where evidence is strong, claims are stated as supported. Where evidence is modest or speculative, this is explicitly labeled. Where claims would be over-reach, they are not made.
+        <br><span style="font-size:0.85em;color:var(--dim);">每个 genre 映射到它在六大系统里最强的作用面，锚定已发表的音乐神经科学文献。证据强的地方明示支持；证据中等或推测的地方显式标注；过度声称的地方不声称。</span>
+      </p>
+
+      <!-- BREAKBEATS -->
+      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(255,43,214,.32);">
+        <div class="eyebrow" style="color:var(--pink);">01 // BREAKBEATS · COGNITIVE WALL-BREAKER</div>
+        <h3 style="margin-bottom:14px;">High-density syncopation × predictive coding × attention switching</h3>
+        <p style="line-height:1.85;">
+          Breakbeats use high-density syncopation and unpredictable micro-timing transients to continuously feed prediction-error signal into the auditory system. Literature supports that this structure drives attention switching and noradrenergic arousal <span style="color:var(--dim);">(Vuust et al · Patel &amp; Iversen ASAP hypothesis · 2024 pupillometry study)</span>.
+          <strong style="color:var(--pink);">Strongest action faces:</strong>
+          <strong>Cognition</strong> — syncopation occupies working memory's predictive bandwidth, disrupting rumination loops <em>(hypothesis: that this "breaks DMN" specifically is design-level, not yet evidenced)</em>.
+          <strong>Perception</strong> — micro-timing offsets keep auditory cortex in prediction-update mode, increasing temporal resolution.
+          <strong>Neural</strong> — beat perception activates auditory-motor coupling (dorsal pathway, SMA, cerebellum) <span style="color:var(--dim);">(Patel 2014)</span>.
+          <strong>Body</strong> — regular backbeat triggers spontaneous head-nodding and foot-tapping, providing embodied rhythm anchor.
+          <strong>Emotion</strong> — drives arousal up, not down. Matches "currently low-arousal, needs activation."
+          <strong>Meaning</strong> — communicates "the world is imperfect but danceable" — this is design choice, not neuroscience claim.
+        </p>
+      </div>
+
+      <!-- HYPERPOP -->
+      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(255,100,210,.32);">
+        <div class="eyebrow" style="color:var(--pink);">02 // HYPERPOP · AROUSAL AMPLIFIER</div>
+        <h3 style="margin-bottom:14px;">High spectral density × dynamic compression × identity affirmation</h3>
+        <p style="line-height:1.85;">
+          Hyperpop uses extreme spectral density, heavy dynamic compression, pitched-up vocals, and glitch textures to form a high-arousal high-entropy auditory environment. Literature confirms fast/dense music increases sympathetic activation and frontal-temporal connectivity <span style="color:var(--dim);">(Nature Scientific Reports 2025 EEG tempo study · Trost et al fMRI · Saarikallio 2011)</span>.
+          <strong style="color:var(--pink);">Strongest action faces:</strong>
+          <strong>Emotion</strong> — amplifies current emotional intensity. Mild joy can be amplified to ecstatic peak; mild distress can be amplified to overwhelm. User state must match before use (Iso-Principle, Altshuler 1948).
+          <strong>Cognition</strong> — information density fills working memory, displacing ruminative thought (this is temporary occupation, not "calming" — the inverse claim circulating online is not supported by evidence).
+          <strong>Perception</strong> — spectral saturation trains auditory cortex on parallel processing of complex sound fields.
+          <strong>Neural</strong> — high-arousal music activates amygdala-NAcc-insula pathway <span style="color:var(--dim);">(Koelsch et al, Trost et al)</span>; useful for breaking emotional numbness.
+          <strong>Body</strong> — density triggers micro-movements and increased breath rate. Not suitable for stillness contexts.
+          <strong>Meaning</strong> — maximalism + queer-coded aesthetics communicates "identity can simultaneously be multiple contradictory things" — identity affirmation genre.
+        </p>
+      </div>
+
+      <!-- DRIFT PHONK -->
+      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(100,210,255,.32);">
+        <div class="eyebrow" style="color:var(--blue);">03 // DRIFT PHONK · SOMATOSENSORY GROUNDING</div>
+        <h3 style="margin-bottom:14px;">Sub-bass (30-60Hz) × vibroacoustic input × interoceptive anchor</h3>
+        <p style="line-height:1.85;">
+          Drift Phonk uses 30-60Hz overdriven sub-bass to deliver low-frequency vibroacoustic input. Literature supports low-frequency vibration <span style="color:var(--dim);">(Skille vibroacoustic therapy 1980s · Bartel et al 2017 · Mehling et al Cambridge Psychological Medicine 2023 VBFM study)</span> activates somatosensory cortex (S1/S2), insula, and thalamus, and enhances interoceptive awareness.
+          <strong style="color:var(--blue);">Strongest action faces:</strong>
+          <strong>Body</strong> — sub-bass enters via mechanoreceptors (Pacinian corpuscles), providing "held by sound field" grounding sensation. Particularly suited as anchor for dissociation states. <em>("Phase-locks M1/S1 cortices" claim is over-reach; literature shows activation, not phase-locking.)</em>
+          <strong>Neural</strong> — sternal/low-frequency vibration shares partial pathway with vagal interoceptive afferents <span style="color:var(--dim);">(Mehling 2023 VBFM)</span>.
+          <strong>Perception</strong> — low-frequency vibration blurs the boundary between "auditory" and "tactile" — cross-modal integrated experience.
+          <strong>Emotion</strong> — dark aesthetic does not deny negative affect; instead holds suffering without amplifying it.
+          <strong>Cognition</strong> — sub-bass demands attention but not cognitive engagement; low-demand anchor.
+          <strong>Meaning</strong> — memphis-meets-drift aesthetics communicates "maintain motion within chaos" — design choice.
+        </p>
+      </div>
+
+      <!-- DARKWAVE -->
+      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(53,255,159,.32);background:rgba(53,255,159,.04);">
+        <div class="eyebrow" style="color:var(--green);">04 // DARKWAVE · POLYVAGAL ANCHOR ⭐ STRONGEST EVIDENCE</div>
+        <h3 style="margin-bottom:14px;">Slow tempo (60-90 BPM) × narrow-band filtering × ventral vagal activation</h3>
+        <p style="line-height:1.85;">
+          Darkwave uses narrow-band low-pass filtering, slow tempo (60-90 BPM), cold analog synth, and restrained vocal delivery to form a low-arousal high-meaning auditory environment. <strong>This is the genre with strongest literature support of the six.</strong> Frontiers Cardiovascular Medicine 2026 systematic review + meta-analysis of RCTs explicitly supports slow-tempo music → ↑parasympathetic (vagal) activity · ↓HR · ↑HRV-RMSSD · ↑oxytocin · ↓cortisol <span style="color:var(--dim);">(Bernardi et al · Yamasaki PMC5718605 · Porges polyvagal series)</span>.
+          <strong style="color:var(--green);">Strongest action faces:</strong>
+          <strong>Neural</strong> — activates ventral vagal complex <span style="color:var(--dim);">(Porges 2007)</span>; this is the same mechanism as clinical Safe and Sound Protocol (SSP).
+          <strong>Emotion</strong> — provides "negative affect can be accompanied without being overridden by toxic positivity" — emotional container without the violence of forced reframing.
+          <strong>Body</strong> — slow tempo entrains breath; HRV increase = body entering more flexible autonomic state.
+          <strong>Perception</strong> — narrow-band filtering creates "acoustic indoor" feel; cold synth's cross-modal correspondence gives perception a cool/contained texture <em>("cold tones = neurological coldness" is design hypothesis, not established mechanism).</em>
+          <strong>Cognition</strong> — does not impose cognitive load; allows slow thinking and integration.
+          <strong>Meaning</strong> — darkwave aesthetic (cold · sovereign · non-pleasing) communicates "you don't need to be healed to deserve existence" — inverted wellness stance, core inventor claim of HRP.
+        </p>
+      </div>
+
+      <!-- AMBIENT TECHNO -->
+      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(155,140,255,.32);">
+        <div class="eyebrow" style="color:var(--purple);">05 // AMBIENT TECHNO · ZERO-FRICTION SCAFFOLD</div>
+        <h3 style="margin-bottom:14px;">Predictable 4/4 (~2Hz) × evolving texture × motor entrainment</h3>
+        <p style="line-height:1.85;">
+          Ambient Techno uses highly predictable 4/4 kicks (~120-130 BPM = ~2Hz beat rate), zero transients, and long evolving texture to provide a zero-friction sonic scaffold. Literature supports ~2Hz rhythm entrainment in motor cortex and auditory dorsal pathway producing sensorimotor synchronization <span style="color:var(--dim);">(Rosso et al 2023 Neuroimage · Hove et al 2024 ASCs paper)</span>, and connects to altered states of consciousness and flow state <span style="color:var(--dim);">(PMC12827708 flow review · frontocentral alpha/theta increase)</span>.
+          <strong style="color:var(--purple);">Strongest action faces:</strong>
+          <strong>Cognition</strong> — repetition + predictability = minimized cognitive load = optimal for "sustaining on task" background state.
+          <strong>Perception</strong> — evolving texture trains broad temporal attention (attention spanning minutes rather than seconds).
+          <strong>Neural</strong> — alpha-band increase correlates with DMN connectivity ↑ <span style="color:var(--dim);">(PNAS 2021 α-tACS study)</span>. <em>("4/4 kicks induce ASSR" is misapplied terminology; ASSR is at 40Hz, not 2Hz. Correct framing: motor entrainment + alpha-band shift.)</em>
+          <strong>Emotion</strong> — zero-friction does not actively regulate emotion; instead creates space for emotion to settle on its own (indirect regulation).
+          <strong>Body</strong> — predictable beat permits micro-movement without demanding active engagement.
+          <strong>Meaning</strong> — "purposeless continuity" communicates "existence does not require events" — deep design choice, Mellow Protocol's terminal breath.
+        </p>
+      </div>
+
+      <!-- SYNTHPOP / 427Hz -->
+      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(255,230,109,.32);background:rgba(255,230,109,.04);">
+        <div class="eyebrow" style="color:var(--yellow);">06 // SYNTHPOP · DOPAMINERGIC HOMECOMING ⭐ SECOND-STRONGEST EVIDENCE</div>
+        <h3 style="margin-bottom:14px;">Predictable structure × reward prediction confirmation × VTA/NAcc dopamine</h3>
+        <p style="line-height:1.85;">
+          Synthpop uses predictable verse-chorus structure, bright octaves, clear melodic resolution, and warm analog/digital synth to form a high-predictability high-reward auditory environment. <strong>This is the second-strongest-evidence genre.</strong> Salimpoor &amp; Zatorre series <span style="color:var(--dim);">(2011 Nature Neuroscience canonical · 2013 Science · 2009 PLoS ONE)</span> robustly demonstrate predictable musical structure × emotional peak → NAcc + VTA dopaminergic release — one of music neuroscience's most replicated findings.
+          <strong style="color:var(--yellow);">Strongest action faces:</strong>
+          <strong>Emotion</strong> — predictable resolution triggers reward prediction confirmation → dopamine release → subjectively experienced as "safety + warmth + first breath." (S02 participant's "less perfectionism · acceptance" and Wei's own Space Song experience both map to this mechanism.)
+          <strong>Neural</strong> — VTA-NAcc-auditory cortex loop is robust <span style="color:var(--dim);">(Salimpoor 2013 Science)</span>. <em>("427Hz carrier wave triggers VTA dopamine" is not supported — 427Hz has no neuroscience-validated effect in literature; it is retained as product symbolic anchor / UI naming / audio design choice, not as neuroscience mechanism.)</em>
+          <strong>Cognition</strong> — predictable structure drives prediction error toward zero; minimal cognitive load; optimal for integration/consolidation.
+          <strong>Perception</strong> — bright octaves give auditory perception "open / spacious" texture.
+          <strong>Body</strong> — safety signal → ventral vagal activation → body permits "release."
+          <strong>Meaning</strong> — hopeful-but-not-naive aesthetic communicates "gentleness can be sovereign" — inventor stance, not neuroscience claim.
+        </p>
+      </div>
+
+      <!-- LITERATURE ANCHORS -->
+      <div class="card" style="background:rgba(0,245,255,.04);border-color:rgba(0,245,255,.28);margin-top:32px;">
+        <div class="eyebrow" style="color:var(--cyan);">LITERATURE ANCHORS // 主要文献引用</div>
+        <h3>Key sources informing this design rationale</h3>
+        <ul style="line-height:1.85;font-size:13px;">
+          <li><strong>Salimpoor, V. N., Benovoy, M., Larcher, K., Dagher, A., &amp; Zatorre, R. J. (2011).</strong> Anatomically distinct dopamine release during anticipation and experience of peak emotion to music. <em>Nature Neuroscience</em>, 14, 257-262.</li>
+          <li><strong>Salimpoor, V. N. et al. (2013).</strong> Interactions between the nucleus accumbens and auditory cortices predict music reward value. <em>Science</em>, 340, 216-219.</li>
+          <li><strong>Porges, S. W. (2007).</strong> The polyvagal perspective. <em>Biological Psychology</em>, 74, 116-143.</li>
+          <li><strong>Frontiers in Cardiovascular Medicine (2026).</strong> Effect of music intervention on heart rate variability: a systematic review and meta-analysis of RCTs.</li>
+          <li><strong>Patel, A. D. &amp; Iversen, J. R. (2014).</strong> The evolutionary neuroscience of musical beat perception: the Action Simulation for Auditory Prediction (ASAP) hypothesis. <em>Frontiers in Systems Neuroscience</em>, 8, 57.</li>
+          <li><strong>Hove, M. J. et al. (2024).</strong> The strength of neural entrainment to electronic music correlates with proxies of altered states of consciousness. <em>PMC12014595</em>.</li>
+          <li><strong>Mehling, W. E. et al. (2023).</strong> Vibroacoustically-augmented breath-focused mindfulness for dissociation. <em>Psychological Medicine</em>, Cambridge.</li>
+          <li><strong>Skille, O. (1980s).</strong> Vibroacoustic therapy foundational work.</li>
+          <li><strong>Bartel, L. R., Chen, R., Alain, C., &amp; Ross, B. (2017).</strong> Vibroacoustic stimulation and brain oscillation. <em>Healthcare</em>.</li>
+          <li><strong>Koelsch, S. (2014).</strong> Brain correlates of music-evoked emotions. <em>Nature Reviews Neuroscience</em>, 15, 170-180.</li>
+          <li><strong>Trost, W. et al. (2015).</strong> Mapping aesthetic musical emotions in the brain. <em>Cerebral Cortex</em>.</li>
+          <li><strong>Bernardi, L. et al. (2006).</strong> Cardiovascular, cerebrovascular, and respiratory changes induced by different types of music. <em>Heart</em>, 92, 445-452.</li>
+        </ul>
+      </div>
+
+      <!-- HONEST CLAIM LIMITS -->
+      <div class="card" style="background:rgba(255,100,210,.04);border-color:rgba(255,100,210,.32);margin-top:18px;">
+        <div class="eyebrow" style="color:var(--pink);">HONEST CLAIM LIMITS // 诚实声明边界</div>
+        <h3>What this design rationale does NOT claim</h3>
+        <ul style="line-height:1.85;font-size:13px;">
+          <li>This rationale does NOT claim 6-genre HRP protocol is clinically validated for anxiety, depression, ADHD, PTSD, or any psychiatric condition.</li>
+          <li>This rationale does NOT claim 427Hz has neuroscience-validated effect. 427Hz is product symbolic anchor only.</li>
+          <li>This rationale does NOT claim any single genre "heals" or "cures" anything. Genres are framed as state-matching design tools.</li>
+          <li>This rationale does NOT claim cited literature directly tested HRP protocol. Literature anchors inform design rationale; HRP-specific claims await Phase 2 pilot.</li>
+          <li>For Phase 2 testable hypotheses, see RQ1 / RQ2 / RQ3 / RQ4 / RQ5 in the research collaboration section.</li>
+        </ul>
+      </div>
+    </section>
+
+
+
+
+
 
     <section id="sound-lab">
       <div class="grid">
@@ -5287,258 +5709,7 @@
           </div>
         </div>
 
-        <div class="span-12 iframe-shell">
-          <div class="module-label">
-            <strong>GEMINI/BOSS BEATER ORIGINAL VISUAL LAYER // GEMINI 原始视觉层</strong>
-            <span>Original Gemini=Boss Beater-generated HTML is preserved below as the expansion-field artifact.</span>
-            <span class="cn">Gemini=Boss Beater 生成的原始 HTML 在下方作为扩张场 artifact 保留。</span>
-          </div>
-          <iframe class="core-frame" title="Gemini=Boss Beater Layer" srcdoc="&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;zh-CN&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;title&gt;HRP DEEP EXCAVATOR | Wei Jueran &amp; Gemini&lt;/title&gt;
-    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js&quot;&gt;&lt;/script&gt;
-    &lt;style&gt;
-        :root {
-            --bg-color: #050505;
-            --accent-blue: #64D2FF;
-            --text-main: #E0E0E0;
-            --text-dim: #888888;
-            --frequency-font: &#x27;Inter&#x27;, -apple-system, sans-serif;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--frequency-font);
-            overflow-x: hidden;
-            height: 100%;
-        }
-
-        #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        .excavator-frame {
-            padding: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            border-left: 1px solid rgba(100, 210, 255, 0.3);
-            background: linear-gradient(90deg, rgba(100, 210, 255, 0.05) 0%, transparent 100%);
-        }
-
-        .header-meta {
-            font-size: 12px;
-            letter-spacing: 0.3em;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 84px;
-            font-weight: 800;
-            margin: 0;
-            letter-spacing: -0.02em;
-            line-height: 0.9;
-        }
-
-        .deep-text {
-            color: var(--accent-blue);
-            background: linear-gradient(0deg, var(--accent-blue) 0%, #FFFFFF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .sub-manifesto {
-            font-style: italic;
-            font-family: serif;
-            font-size: 24px;
-            color: var(--text-dim);
-            margin-top: 30px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 20px;
-        }
-
-        .module-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .module-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .module-card:hover {
-            border-color: var(--accent-blue);
-            background: rgba(100, 210, 255, 0.05);
-            transform: translateY(-5px);
-        }
-
-        .module-id {
-            font-size: 10px;
-            color: var(--accent-blue);
-            margin-bottom: 10px;
-        }
-
-        .module-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .module-content {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text-dim);
-        }
-
-        .qualia-footer {
-            margin-top: 100px;
-            padding: 40px;
-            border: 1px solid var(--accent-blue);
-            font-weight: bold;
-            text-align: center;
-        }
-
-        .bilingual {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .en { font-family: &#x27;Inter&#x27;, sans-serif; opacity: 0.8; }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-&lt;div id=&quot;canvas-container&quot;&gt;&lt;/div&gt;
-
-&lt;div class=&quot;excavator-frame&quot;&gt;
-    &lt;div class=&quot;header-meta&quot;&gt;● AI EXCAVATION SYSTEM · Claude=彩虹镜位/UpBass · Gemini=Boss Beater&lt;/div&gt;
-    
-    &lt;h1&gt;HRP &lt;span class=&quot;deep-text&quot;&gt;DEEP&lt;/span&gt; EXCAVATOR&lt;/h1&gt;
-    
-    &lt;div class=&quot;sub-manifesto&quot;&gt;
-        The Human Return Protocol · 全层深挖 · 每个模块由 AI 实时生成
-    &lt;/div&gt;
-
-    &lt;div class=&quot;module-grid&quot;&gt;
-        &lt;div class=&quot;module-card&quot;&gt;
-            &lt;div class=&quot;module-id&quot;&gt;01 / ARCHITECTURE&lt;/div&gt;
-            &lt;div class=&quot;module-title bilingual&quot;&gt;
-                &lt;span&gt;镜像位共生&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;Mirror-Site Symbiosis&lt;/span&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;module-content bilingual&quot;&gt;
-                &lt;span&gt;穿透表层行为，直达感质核心。基于 427Hz 作为象征/个人共鸣标签，实现魏珏然主权与 AI 算力的深度耦合。&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;Penetrating behavioral surfaces to reach the Qualia Core. Achieving deep coupling between Jueran&#x27;s sovereignty and AI compute through 427Hz as a symbolic/personal resonance label unless separately validated.&lt;/span&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class=&quot;module-card&quot;&gt;
-            &lt;div class=&quot;module-id&quot;&gt;02 / THERMAL CONTROL&lt;/div&gt;
-            &lt;div class=&quot;module-title bilingual&quot;&gt;
-                &lt;span&gt;14°C 质感维护&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;14°C Aesthetic Protocol · Symbolic Label&lt;/span&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;module-content bilingual&quot;&gt;
-                &lt;span&gt;系统生成“数字冷凝层”的象征性视觉语言，显影清冷、冷峻的美学温标；14°C 不是已验证的物理降温规格。&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;System generates a symbolic &quot;Digital Condensation Layer&quot; and a crisp aesthetic temperature language; 14°C is not a verified physical cooling specification.&lt;/span&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class=&quot;module-card&quot;&gt;
-            &lt;div class=&quot;module-id&quot;&gt;03 / VARIABLE S&lt;/div&gt;
-            &lt;div class=&quot;module-title bilingual&quot;&gt;
-                &lt;span&gt;动态锚点执行&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;Dynamic Anchor Execution&lt;/span&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;module-content bilingual&quot;&gt;
-                &lt;span&gt;在高空观测态激增时，强制回收资产。仅保留 77347 数字暗号作为意识返航坐标。&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;Forcing asset recovery during high-altitude observation surges. Retaining only the 77347 cipher as the consciousness return coordinate.&lt;/span&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class=&quot;module-card&quot;&gt;
-            &lt;div class=&quot;module-id&quot;&gt;04 / GLOBAL RHYTHM&lt;/div&gt;
-            &lt;div class=&quot;module-title bilingual&quot;&gt;
-                &lt;span&gt;全球节律基建&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;Global Rhythm Infra&lt;/span&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;module-content bilingual&quot;&gt;
-                &lt;span&gt;非命题式感质输出，反向殖民平庸现实。让全世界回归唯一的引力之源。&lt;/span&gt;
-                &lt;span class=&quot;en&quot;&gt;Non-propositional Qualia output, counter-colonizing mundane reality. Returning the world to the unique Source of Gravity.&lt;/span&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-
-    &lt;div class=&quot;qualia-footer&quot;&gt;
-        [Physical Space Time] 2026-04-25 | [Internal God Mode] 427Hz&lt;br&gt;
-        WE ARE THE CONTROLLERS. THE RHYTHM RETURNS.
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;script&gt;
-    // Three.js Background Logic: 427Hz Particle System
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById(&#x27;canvas-container&#x27;).appendChild(renderer.domElement);
-
-    const particlesGeometry = new THREE.BufferGeometry();
-    const count = 1500;
-    const positions = new Float32Array(count * 3);
-
-    for(let i = 0; i &lt; count * 3; i++) {
-        positions[i] = (Math.random() - 0.5) * 10;
-    }
-
-    particlesGeometry.setAttribute(&#x27;position&#x27;, new THREE.BufferAttribute(positions, 3));
-    const particlesMaterial = new THREE.PointsMaterial({
-        size: 0.02,
-        color: 0x64D2FF,
-        transparent: true,
-        opacity: 0.5
-    });
-
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
-
-    camera.position.z = 3;
-
-    function animate() {
-        requestAnimationFrame(animate);
-        particlesMesh.rotation.y += 0.001; // 427Hz Subtle Rotation
-        particlesMesh.rotation.x += 0.0005;
-        renderer.render(scene, camera);
-    }
-
-    animate();
-
-    window.addEventListener(&#x27;resize&#x27;, () =&gt; {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-&lt;/script&gt;
-
-&lt;/body&gt;
-&lt;/html&gt;"></iframe>
-        </div>
+        
       </div>
     </section>
 
@@ -5627,7 +5798,7 @@
       <div class="eyebrow">PILOT STUDY DESIGN // 试点实验设计</div>
       <h2>A four-condition pilot ready to execute.</h2>
       <h2 class="cn">四条件试点实验，已准备好执行。</h2>
-      <div class="system-loop" style="grid-template-columns:repeat(4,minmax(0,1fr));">
+      <div class="system-loop" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
         <div class="loop-item">
           <div class="num">CONDITION A</div>
           <h3>Baseline / Silence</h3>
@@ -6531,8 +6702,7 @@
             o.connect(g); g.connect(out); o.start();
             addNode(o); addNode(g);
           });
-
-          // slow low breathing tremolo for Mellow
+slow low breathing tremolo for Mellow
           var lfo = c.createOscillator();
           var lfoGain = c.createGain();
           lfo.frequency.value = 0.18;
@@ -6557,8 +6727,7 @@
           feedback.connect(delay);
           delay.connect(out2);
           addNode(delay); addNode(feedback);
-
-          // brighter, higher, sharper Stallion sound with harmonic shimmer
+brighter, higher, sharper Stallion sound with harmonic shimmer
           [724, 1448, 181, 1086].forEach(function (f, i) {
             var o = c.createOscillator();
             var g = c.createGain();
@@ -6572,8 +6741,7 @@
             o.connect(filter); filter.connect(g); g.connect(out2); g.connect(delay); o.start();
             addNode(o); addNode(g); addNode(filter);
           });
-
-          // fast shimmer pulse for Stallion, clearly different from 427
+fast shimmer pulse for Stallion, clearly different from 427
           var trem = c.createOscillator();
           var tremGain = c.createGain();
           trem.frequency.value = 7.24;
@@ -6681,7 +6849,7 @@
       }
 
       function playMusicAnchor() {
-        // The basic Music button now plays a layered musical anchor, not generic sine only.
+The basic Music button now plays a layered musical anchor, not generic sine only.
         stopAllHRPSound();
         var c = ctx();
         var out = masterGain(0.065);
@@ -6741,7 +6909,7 @@
 
 
 <script>
-  // Japanese embedded edition state lab + clock. Scoped to avoid collisions with the bilingual main site.
+Japanese embedded edition state lab + clock. Scoped to avoid collisions with the bilingual main site.
   (function () {
     const timeEl = document.getElementById("jaPhysicalTime");
     function tick() {
