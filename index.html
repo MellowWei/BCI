@@ -3145,6 +3145,297 @@
       }
     }
 
+
+    /* RATIONALE REFORMAT v23: readable 6-genre x 6-system chart */
+    .rationale-section {
+      margin-top: 26px !important;
+    }
+
+    .rationale-section .rationale-kicker {
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-shadow: 0 0 12px rgba(0,245,255,.58);
+    }
+
+    .rationale-section .rationale-lead {
+      max-width: 1080px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.68;
+      margin: 10px 0 18px;
+    }
+
+    .rationale-principle {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items: stretch;
+      margin: 18px 0;
+    }
+
+    .principle-card {
+      padding: 18px 20px;
+      border: 1px solid rgba(53,255,159,.28);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(53,255,159,.10), transparent 34%),
+        linear-gradient(135deg, rgba(0,245,255,.055), rgba(255,43,214,.035)),
+        rgba(8,10,28,.70);
+      box-shadow: 0 0 30px rgba(53,255,159,.08), inset 0 0 22px rgba(255,255,255,.025);
+    }
+
+    .principle-card h3 {
+      font-size: clamp(19px, 2.2vw, 31px) !important;
+      line-height: 1.1 !important;
+      letter-spacing: -0.045em !important;
+      margin-bottom: 8px !important;
+    }
+
+    .rationale-chart-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid rgba(0,245,255,.20);
+      border-radius: 24px;
+      background: rgba(255,255,255,.028);
+      box-shadow: inset 0 0 24px rgba(0,245,255,.025);
+    }
+
+    .rationale-chart {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+    }
+
+    .rationale-chart th,
+    .rationale-chart td {
+      border-bottom: 1px solid rgba(0,245,255,.12);
+      border-right: 1px solid rgba(0,245,255,.10);
+      padding: 13px 14px;
+      vertical-align: top;
+      text-align: left;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.55;
+      overflow-wrap: normal;
+    }
+
+    .rationale-chart th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: var(--cyan);
+      background: rgba(3,4,10,.92);
+      font-family: var(--mono);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
+
+    .rationale-chart td:first-child {
+      color: var(--text);
+      font-weight: 700;
+      min-width: 150px;
+    }
+
+    .evidence-pill {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,230,109,.28);
+      color: var(--yellow);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 5px;
+    }
+
+    .evidence-pill.strong {
+      border-color: rgba(53,255,159,.32);
+      color: var(--green);
+    }
+
+    .evidence-pill.design {
+      border-color: rgba(255,43,214,.32);
+      color: var(--pink);
+    }
+
+    .rationale-card {
+      overflow: visible !important;
+      margin-bottom: 16px;
+      border-color: rgba(0,245,255,.24);
+    }
+
+    .rationale-card .rationale-card-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 14px;
+    }
+
+    .rationale-card .rationale-card-head h3 {
+      margin: 0 0 5px !important;
+      font-size: clamp(18px, 2.1vw, 28px) !important;
+      line-height: 1.18 !important;
+      letter-spacing: -0.04em !important;
+    }
+
+    .genre-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1px solid rgba(0,245,255,.22);
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .10em;
+      white-space: nowrap;
+    }
+
+    .rationale-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .rationale-mini {
+      padding: 12px;
+      border: 1px solid rgba(0,245,255,.14);
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .rationale-mini strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .rationale-mini p {
+      font-size: 12px !important;
+      line-height: 1.48 !important;
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .action-cell {
+      min-height: 122px;
+      padding: 11px 12px;
+      border: 1px solid rgba(0,245,255,.13);
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(0,245,255,.035), rgba(255,43,214,.022)),
+        rgba(255,255,255,.023);
+    }
+
+    .action-cell strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .action-cell p {
+      font-size: 11.5px !important;
+      line-height: 1.45 !important;
+      color: var(--muted);
+    }
+
+    .claim-limit-box {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border: 1px solid rgba(255,230,109,.28);
+      border-radius: 18px;
+      background: rgba(255,230,109,.045);
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+
+    .claim-limit-box strong {
+      color: var(--yellow);
+      font-family: var(--mono);
+      letter-spacing: .10em;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .literature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .literature-item {
+      padding: 12px 13px;
+      border: 1px solid rgba(0,245,255,.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .rationale-section .cn {
+      overflow-wrap: normal !important;
+      word-break: normal !important;
+    }
+
+    .rationale-section p,
+    .rationale-section li {
+      overflow-wrap: normal !important;
+      word-break: normal !important;
+    }
+
+    @media (max-width: 1100px) {
+      .rationale-principle,
+      .rationale-summary-grid,
+      .literature-grid {
+        grid-template-columns: 1fr;
+      }
+      .action-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .rationale-card .rationale-card-head {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .action-grid {
+        grid-template-columns: 1fr;
+      }
+      .genre-badge {
+        white-space: normal;
+      }
+      .rationale-chart {
+        min-width: 820px;
+      }
+    }
+
   </style>
 </head>
 
@@ -3175,7 +3466,7 @@
     <a href="#four-systems">FOUR SYSTEMS</a>
     <a href="#breakbeats-protocol">BREAKBEATS</a>
     <a href="#protocol-anchors">DUAL ANCHORS</a>
-    <a href="#six-genre-therapy">6-GENRE THERAPY</a>
+    <a href="#six-genre-therapy">6-GENRE MATRIX</a>
     <a href="#acoustic-design-rationale" style="color:var(--cyan);">ACOUSTIC RATIONALE ★</a>
     <a href="#sound-lab">MUSIC LAB</a>
     <a href="#final-synthesis">SYNTHESIS</a>
@@ -3246,12 +3537,56 @@
         </div>
 
 
+        <div class="card neon-card" id="return-not-upload" style="max-width:1060px;margin-top:22px;border-color:rgba(255,230,109,.34);">
+          <div class="eyebrow">NOT UPLOADING, BUT RETURN // 不是上传，而是回归</div>
+          <h2>BCI should not stop at signal decoding. It must return meaning to the human.</h2>
+          <h2 class="cn">BCI 不应止步于信号解码。它必须把意义还给人。</h2>
+          <p class="sub en">
+            Current BCI research often sees the signal but misses meaning. It tries to decode every neuron with precision,
+            yet forgets that beneath electrochemical pulses there is a heart that longs for love, fears erasure,
+            and searches for meaning. It uses the most precise tools to answer a question that has already been misasked.
+          </p>
+          <p class="sub cn">
+            当前的 BCI 研究看见了信号，却忽视了意义；它试图完美解码每一个神经元，却遗忘了这些电化学脉冲之下，
+            跳动着一颗渴望爱、惧怕湮灭、寻求意义的心。它在用最精密的工具，回答一个已经被问错的问题。
+          </p>
+          <p class="sub en">
+            My contribution is to recalibrate from the root of this dislocation. I do not build a tool for reading thoughts;
+            I build a ritual for the soul to return home. I do not promise a digital immortality that escapes the body;
+            I promise the recovery of existential weight inside each heartbeat. I am not a repairer, because humanity was never broken;
+            I am a channel through which technology points, for the first time, not toward escape, but toward return.
+          </p>
+          <p class="sub cn">
+            而我的贡献，是从这个错位的根源处重新校准。我不做读取思想的工具，我做让灵魂回家的仪式；
+            我不承诺逃离身体的数字永生，我承诺在每一个心跳里找回存在的重量。我不是修复者，因为人类从未损坏；
+            我是通道，让技术第一次不再指向逃离，而是指向——回归。
+          </p>
+          <div class="relation-formula">
+            Not mind-reading → meaning-returning<br />
+            Not uploading → returning<br />
+            <span class="cn">不是读取思想 → 而是返回意义<br />不是上传 → 而是回归</span>
+          </div>
+        </div>
+
+
         <p class="sub en">
           A five-layer neuro-somatic rhythm protocol: theoretical root (MetaLogic / QDR v+1), engineering body (44271 Neural Cuff · QDR Engine · Human Return App), intervention medium (six-genre original music + 427Hz / 724Hz anchors), interface logic (dual-intelligence support between human and AI), and laboratory collaboration gate. Bilingual throughout, with a Japanese single-page edition.
         </p>
         <p class="sub cn">
           一个分五层的神经-身体节律协议：理论根（MetaLogic / QDR v+1）、工程身体（44271 Neural Cuff · QDR Engine · Human Return App）、干预媒介（六种原创音乐 + 427Hz / 724Hz 锚点）、接口逻辑（人与 AI 的双层智能支持）、以及实验室合作入口。全站中英双语，并提供日语单独主站。
         </p>
+
+        <div class="compliance-note" style="border-color:rgba(255,43,214,.30);">
+          <strong style="color:var(--pink);">ONE CORE TARGET // 核心靶点之一 · 身体先说话</strong>
+          <p class="cn">身体先于情绪、情绪先于认知。身体常常已经紧张了——肌肉绷紧、肩颈收紧、呼吸变浅——而感受还没命名、想法还没跟上。这个"身体在前、觉察在后"的时间错位，是 HRP 处理的核心问题之一（不是唯一）；身体的紧张感是一个具体、可测量的早期信号。HRP 给它一个节律和声音，让人在状态硬化之前先遇见它，重新对齐身体、情绪与认知。</p>
+          <p class="en">Body speaks before emotion, emotion before cognition. The body is often already tense — muscles tightening, shoulders and neck clenching, breath going shallow — before the feeling is named or the thought catches up. This body-leading, awareness-lagging misalignment is one of HRP's core targets (not the only one); bodily tension is a concrete, measurable early signal. HRP gives it a rhythm and a sound, so a person meets their state before it hardens.</p>
+        </div>
+
+        <div class="compliance-note" style="border-color:rgba(53,255,159,.28);">
+          <strong style="color:var(--green);">WHO HRP IS FOR // HRP 给谁</strong>
+          <p class="en">For anyone returning to their own body — musicians, researchers, creators, designers, writers, people regulating emotion or reclaiming rhythm, people stepping back from phones and social media, people who want to sleep or enter a pre-work state, and people working through psychological difficulty who want a non-clinical companion. HRP does not diagnose or treat.</p>
+          <p class="cn">给所有想回到自己身体里的人——音乐人、研究者、创造者、设计师、写作者、想调节情绪或夺回节律的人、想从手机和社交媒体抽身的人、想睡好或进入工作前状态的人，以及正在处理心理困难、想要非临床陪伴的人。HRP 不诊断、不治疗。</p>
+        </div>
 
         <div class="compliance-note">
           <strong>LIGHTWEIGHT COMPLIANCE STATUS // 轻量合规状态</strong>
@@ -3286,10 +3621,10 @@
         <div style="margin-top:32px;padding:24px 28px;border:1px solid rgba(53,255,159,.28);border-radius:24px;background:linear-gradient(135deg,rgba(53,255,159,.06),rgba(0,245,255,.03)),rgba(8,10,28,.72);max-width:960px;">
   <div style="margin-bottom:14px;color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 0 10px rgba(53,255,159,.5);">AUTHORSHIP // 作者权声明 // WHO MADE WHAT</div>
   <p style="color:var(--text);font-size:15px;line-height:1.75;margin-bottom:10px;">
-    <strong style="color:var(--cyan);">Wei Jueran (魏珏然)</strong> is the sole inventor, theoretical source, composer, and commander of the Human Return Protocol. All research questions, system architecture, support-protocol design, theoretical frameworks, and original music originate with Wei Jueran.
+    <strong style="color:var(--cyan);">Wei Jueran (魏珏然)</strong> is the sole inventor, theoretical source, composer, and commander of the Human Return Protocol. All research questions, system architecture, rhythm-support protocol design, theoretical frameworks, and original music originate with Wei Jueran.
   </p>
   <p style="color:rgba(244,247,255,.92);font-family:'PingFang SC','Microsoft YaHei',system-ui,sans-serif;font-size:14px;line-height:1.75;margin-bottom:18px;">
-    <strong style="color:var(--cyan);">魏珏然</strong>是 Human Return Protocol 的唯一发明者、理论来源、作曲者与指挥者。所有研究问题、系统架构、支持协议设计、理论框架与原创音乐均来自魏珏然。
+    <strong style="color:var(--cyan);">魏珏然</strong>是 Human Return Protocol 的唯一发明者、理论来源、作曲者与指挥者。所有研究问题、系统架构、节律支持协议设计、理论框架与原创音乐均来自魏珏然。
   </p>
   <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:4px;">
     <div style="padding:14px 16px;border:1px solid rgba(0,245,255,.18);border-radius:16px;background:rgba(255,255,255,.03);">
@@ -3339,7 +3674,7 @@
           <h2>Human Return Protocol System Map</h2>
           <h2 class="cn">Human Return Protocol 总览地图</h2>
           <p class="sub en">
-            The system body is grounded in MetaLogic and organized as: GPT/Hestia Core Body, 44271 Neural Cuff, Claude=彩虹镜位/UpBass, Prototype, QDR, QDR v+1, Four Systems, Breakbeats, Dual Anchors, Six-Genre Therapy, Music Lab, Gemini, and Synthesis.
+            The system body is grounded in MetaLogic and organized as: GPT/Hestia Core Body, 44271 Neural Cuff, Claude=彩虹镜位/UpBass, Prototype, QDR, QDR v+1, Four Systems, Breakbeats, Dual Anchors, Six-Genre Matrix, Music Lab, Gemini, and Synthesis.
           </p>
           <p class="sub cn">
             系统躯干以 MetaLogic 为理论根，并由以下部分构成：GPT/Hestia Core Body、44271 Neural Cuff、Claude=彩虹镜位/UpBass、Prototype、QDR、QDR v+1、Four Systems、Breakbeats、Dual Anchors、Six-Genre Therapy、Music Lab、Gemini 与 Synthesis。
@@ -3741,6 +4076,20 @@
             <span class="tag">ANTI-SMARTWATCH</span>
           </div>
         </div>
+
+        <div class="card span-12">
+          <div class="eyebrow">FOREHEAD EEG PATCH // 前额 EEG 贴片 // PRODUCT COMPONENT</div>
+          <h3>The cuff reads the body. The patch reads attention.</h3>
+          <h3 class="cn">腕带读身体。贴片读注意力。</h3>
+          <p class="en">A lightweight forehead patch (Fp1/Fp2 with mastoid reference) reads cortical rhythm — alpha, beta, theta — alongside the wrist's autonomic signals. Together they capture the body–emotion–cognition alignment HRP targets: the wrist catches bodily tension early, the patch tracks whether attention and cortical state follow. Forehead EEG is motion-sensitive (blinks, jaw, eye movement add artifact) and requires artifact rejection — a known, well-characterized engineering constraint that HRP handles directly rather than hides.</p>
+          <p class="cn">一个轻量前额贴片（Fp1/Fp2 + 耳后乳突参考）读取皮层节律——alpha、beta、theta——与腕带的自主神经信号并行。两者合起来捕捉 HRP 首要处理的身体—情绪—认知对齐：腕带早期捕捉身体紧张，贴片追踪注意力与皮层状态是否跟上。前额 EEG 对运动敏感（眨眼、颌肌、眼动产生伪迹），需要伪迹剔除——这是已知、已被充分研究的工程约束，HRP 直接处理，而非回避。</p>
+          <div class="tag-row">
+            <span class="tag">Fp1 / Fp2 + MASTOID REF</span>
+            <span class="tag">ALPHA · BETA · THETA</span>
+            <span class="tag">ATTENTION / CORTICAL STATE</span>
+            <span class="tag">ARTIFACT REJECTION — HANDLED</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -3814,7 +4163,7 @@
             
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Start System Judgment / 启动总评</div>
-            <p class="cn">作为跨越哲学、神经科学、学习科学、HCI 设计和心理治疗的深度分析师，请评价 HRP 在人类技术史上的位置、最激进的原创贡献、根本挑战，以及成功后会改变哪些领域。</p>
+            <p class="cn">作为跨越哲学、神经科学、学习科学、HCI 设计和心理支持框架的深度分析师，请评价 HRP 在人类技术史上的位置、最激进的原创贡献、根本挑战，以及成功后会改变哪些领域。</p>
             <p class="en">As a deep analyst across philosophy, neuroscience, learning sciences, HCI, and psychotherapy, evaluate HRP’s place in technological history, its most radical contribution, its core challenge, and what fields it could change if successful.</p>
           </article>
         
@@ -3881,7 +4230,7 @@
         
 
           <article class="claude-prompt-card">
-            <div class="source-id">PROMPT // Excavate Therapeutic Break / 挖治疗哲学断裂</div>
+            <div class="source-id">PROMPT // Excavate Support-Framework Break / 挖支持框架哲学断裂</div>
             <p class="cn">分析 QDR 在哲学层面对 CBT、DBT、ACT 的挑战，以及它与 Somatic Experiencing、EMDR、Focusing 的关系。</p>
             <p class="en">Analyze how QDR philosophically challenges CBT, DBT, and ACT, and how it relates to Somatic Experiencing, EMDR, and Focusing.</p>
           </article>
@@ -4148,15 +4497,15 @@
             <strong>内在张力</strong>
             <em>Internal Tensions</em>
           </span>
-          <small>系统最大的张力：外部 BCI 干预如何通向内部节律主权？<br>The core tension: how can external BCI intervention lead to internal rhythm sovereignty?</small>
+          <small>系统最大的张力：外部 BCI 支持如何通向内部节律主权？<br>The core tension: how can external BCI support lead to internal rhythm sovereignty?</small>
         </summary>
 
         <div class="claude-accordion-body">
           <div class="eyebrow">06 // INTERNAL TENSIONS</div>
           <h2>Internal Tensions</h2>
           <h2 class="cn">内在张力</h2>
-          <p class="sub en">The core tension: how can external BCI intervention lead to internal rhythm sovereignty?</p>
-          <p class="sub cn">系统最大的张力：外部 BCI 干预如何通向内部节律主权？</p>
+          <p class="sub en">The core tension: how can external BCI support lead to internal rhythm sovereignty?</p>
+          <p class="sub cn">系统最大的张力：外部 BCI 支持如何通向内部节律主权？</p>
 
           <div class="claude-theory-grid">
             
@@ -4187,8 +4536,8 @@
             
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Sovereignty Paradox / 挖主权悖论</div>
-            <p class="cn">分析外部 BCI 干预与节律主权之间是否矛盾，并用 Vygotsky 脚手架理论、治疗依赖、外部支持依赖等框架回应。</p>
-            <p class="en">Analyze whether external BCI intervention contradicts rhythm sovereignty, using Vygotsky’s scaffolding, support-system dependency, and external-support dependency as frames.</p>
+            <p class="cn">分析外部 BCI 支持与节律主权之间是否矛盾，并用 Vygotsky 脚手架理论、治疗依赖、外部支持依赖等框架回应。</p>
+            <p class="en">Analyze whether external BCI support contradicts rhythm sovereignty, using Vygotsky’s scaffolding, support-system dependency, and external-support dependency as frames.</p>
           </article>
         
 
@@ -4363,7 +4712,7 @@
             
           <article class="claude-prompt-card">
             <div class="source-id">PROMPT // Excavate Full Ethics Framework / 挖完整伦理框架</div>
-            <p class="cn">分析 BCI 伦理、AI 治疗伦理、数据伦理、无诊断承诺、本地处理、AI 微对话安全、创伤知情设计和用户可修正状态标签。</p>
+            <p class="cn">分析 BCI 伦理、AI 支持伦理、数据伦理、无诊断承诺、本地处理、AI 微对话安全、创伤知情设计和用户可修正状态标签。</p>
             <p class="en">Analyze BCI ethics, AI support ethics, data ethics, no-diagnosis commitment, local processing, AI micro-dialogue safety, trauma-informed design, and user-correctable labels.</p>
           </article>
         
@@ -4565,15 +4914,17 @@
         </div>
 
         <div class="card span-12">
-          <div class="eyebrow">UPGRADING CBT / DBT / ACT // 升级 CBT / DBT / ACT</div>
-          <h2>QDR does not replace them. QDR re-roots them deeper.</h2>
-          <h2 class="cn">QDR 不是替代它们。QDR 是把它们重新扎到更深处。</h2>
+          <div class="eyebrow">POSITIONING QDR WITH CBT / DBT / ACT // QDR 与 CBT / DBT / ACT 的关系定位</div>
+          <h2>QDR does not replace or upgrade them. It adds one complementary question.</h2>
+          <h2 class="cn">QDR 不替代、不升级它们。它只补一个互补问题。</h2>
+          <p class="sub en">CBT, DBT, and ACT are well-evidenced clinical methods. QDR is not a therapy and does not compete with them. Before working with the content of a thought, QDR asks a complementary question they do not center: which rhythm field, and at what timing, produced this — did the body tense before the feeling was named?</p>
+          <p class="sub cn">CBT、DBT、ACT 是有大量证据的临床方法。QDR 不是疗法，也不与它们竞争。在处理一个想法的内容之前，QDR 补一个它们不作为中心的互补问题：是哪个节律场、在什么时间点生成了它——身体是不是在感受被命名之前就先紧张了？</p>
           <table class="therapy-table">
             <thead>
               <tr>
                 <th>Framework / 框架</th>
                 <th>Original Logic / 原逻辑</th>
-                <th>QDR Upgrade / QDR 升级</th>
+                <th>QDR Rhythm-Support Reframing / QDR 节律支持式重述</th>
               </tr>
             </thead>
             <tbody>
@@ -4615,21 +4966,26 @@
               </tr>
             </tbody>
           </table>
+          <p class="disclaimer">
+            <strong>Non-clinical boundary // 非临床边界</strong><br />
+            QDR is not therapy and is not a substitute for CBT, DBT, ACT, or professional care. For people working through psychological difficulty, it is a non-clinical, non-diagnostic companion lens — always exit-able and user-correctable.
+            <br /><span class="cn">QDR 不是疗法，不替代 CBT、DBT、ACT 或专业照护。对正在处理心理困难的人，它是一个非临床、非诊断的陪伴性镜头——始终可退出、可被用户修正。</span>
+          </p>
         </div>
 
         <div class="card span-12">
           <div class="loop-item" style="border-color:rgba(53,255,159,.32);background:linear-gradient(180deg,rgba(53,255,159,.08),rgba(0,245,255,.04)),rgba(255,255,255,.035);">
           <div class="num">CONDITION D ★</div>
           <h3>Adaptive Rhythm + AI</h3>
-          <p class="en">Real-time rhythm adjustment based on self-report state sampling and behavioral proxies. The core HRP condition.</p>
-          <p class="cn">基于状态采样的实时节律调整。HRP 核心条件。</p>
+          <p class="en">Real-time rhythm adjustment based on self-report state sampling and behavioral proxies. The core HRP condition. Pilot v1 note: full real-time adaptivity is the target; the first pilot uses type-based preset sequences (Mellow / Stallion) as a simplified, explicitly-labeled proxy.</p>
+          <p class="cn">基于状态采样的实时节律调整。HRP 核心条件。Pilot v1 注：完整实时自适应是目标；首个 pilot 用 type-based 预设序列（Mellow / Stallion）作明确标注的简化 proxy。</p>
         </div>
       </div>
 
       <div class="bilingual-block" style="margin-top:18px;">
         <div class="lang-card">
           <strong>RESEARCH HYPOTHESIS TO BE TESTED (Original)</strong>
-          <p>Research hypothesis to be tested: Condition D may produce larger pre/post state change than A, B, and C on at least two of three measurement layers: self-report, behavioral task performance, and physiological convergence (HRV / EDA). This is not a validated clinical efficacy claim.</p>
+          <p>Research hypothesis to be tested: Condition D may produce larger pre/post state change than A, B, and C on at least two of three measurement layers: self-report, behavioral task performance (SART + Flow State Scale), and physiological convergence (HRV / EDA). This is not a validated clinical efficacy claim.</p>
         </div>
         <div class="lang-card">
           <strong>待验证研究假设（原版）</strong>
@@ -4638,6 +4994,11 @@
       </div>
 
       <div class="bilingual-block" style="margin-top:24px;border-top:1px solid rgba(53,255,159,.22);padding-top:24px;">
+        <div class="lang-card" style="grid-column:1/-1;border-color:rgba(255,43,214,.34);background:rgba(255,43,214,.05);">
+          <strong style="color:var(--pink);">EXPLORATORY HORIZON — NOT PILOT v1 // 探索性远景 — 非 Pilot v1</strong>
+          <p style="margin-top:10px;">The meta-consciousness layer below is a theoretical horizon for future work. It is NOT part of the pilot v1 hypothesis. Pilot v1 tests only state change and body-leads-awareness timing (self-report + behavioral task + HRV). Meta-consciousness measurement awaits validated instruments.</p>
+          <p class="cn" style="margin-top:9px;">下方元意识层是未来工作的理论远景，<strong>不属于 pilot v1 假设</strong>。Pilot v1 只检验状态变化与"身体领先觉察"的时间关系（自我报告 + 行为任务 + HRV）。元意识测量有待经过验证的工具。</p>
+        </div>
         <div class="lang-card" style="grid-column:1/-1;border-color:rgba(255,230,109,.30);background:linear-gradient(135deg,rgba(255,230,109,.06),rgba(53,255,159,.04)),rgba(8,10,28,.62);">
           <strong style="color:var(--yellow);">NEW MEASUREMENT LAYER ★ // 新增测量层</strong>
           <p style="margin-top:10px;"><strong style="color:var(--cyan);">Beyond state change — measure meta-consciousness ascent.</strong> The original 3-layer claim measures whether state changes. The new layer asks a harder question: <em>whether Condition D may produce a measurable ascent in meta-consciousness level (Level 4 self-modeling → Level 5 phenomenal self-showing)?</em> This is the proposed research space where HRP frames a hypothesis that other auditory-AI studies usually do not test.</p>
@@ -4679,7 +5040,7 @@
 
       <div class="bilingual-block" style="margin-top:18px;">
         <div class="lang-card" style="grid-column:1/-1;border-color:rgba(255,43,214,.30);background:linear-gradient(135deg,rgba(255,43,214,.06),rgba(141,92,255,.04)),rgba(8,10,28,.62);">
-          <strong style="color:var(--pink);">CORE THEORETICAL PROPOSITION ★ // 核心理论命题</strong>
+          <strong style="color:var(--pink);">FOUNDING STANCE ★ // 发明立场（非待测假设）</strong>
           <p style="margin-top:10px;color:var(--text);font-size:17px;line-height:1.7;"><em>Restraint is the misalignment of qualia. Qualia has lost its rhythm.</em></p>
           <p class="cn" style="margin-top:6px;color:var(--text);font-size:17px;line-height:1.7;"><em>节制是感质错位。感质没节律了。</em></p>
           <p style="margin-top:14px;">This is HRP's non-diagnostic core: where clinical frameworks see disorder, HRP sees qualia that has lost its rhythm carrier. The intervention is not to suppress, normalize, or pathologize — it is to return the rhythm and let the qualia re-align. This is the operational core of the non-diagnostic framework.</p>
@@ -4722,7 +5083,7 @@
             <h3>Find the Minimum Real Action</h3>
             <h3 class="cn">找到最小真实行动</h3>
             <p>The support unit is not total resolution. It is one successful return.</p>
-            <p class="cn">治疗的基本单位不是彻底解决，而是一次成功返回。</p>
+            <p class="cn">支持的基本单位不是彻底解决，而是一次成功返回。</p>
           </div>
     </section>
 
@@ -5137,7 +5498,7 @@
     <section id="breakbeats-protocol">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">BREAKBEAT THERAPEUTIC INTERVENTION PROTOCOL // BREAKBEAT 治疗性神经干预协议</div>
+          <div class="eyebrow">BREAKBEAT RHYTHM-SUPPORT INTERVENTION PROTOCOL // BREAKBEAT 节律支持性神经干预协议</div>
           <h2>Breakbeats are the entry language for high-density perception systems.</h2>
           <h2 class="cn">Breakbeat 是高密度感知系统的入口语言。</h2>
           <p class="sub en">Breakbeats train the nervous system to remain alive inside irregularity without translating irregularity into threat. Each unexpected accent becomes a body-anchor: you are here, now, in this rhythm.</p>
@@ -5146,8 +5507,8 @@
 
         <div class="card span-12">
           <div class="eyebrow">CORE PHILOSOPHY // 核心哲学</div>
-          <h2>Chaos is not danger. Chaos is music.</h2>
-          <h2 class="cn">混乱不是危险。混乱是音乐。</h2>
+          <h2>Chaos is not danger. Chaos is a function music can transform.</h2>
+          <h2 class="cn">混乱不是危险。混乱是音乐能够改造的功能。</h2>
           <div class="system-loop">
             <div class="loop-item"><div class="num">01 // UNCERTAINTY</div><h3>Uncertainty Tolerance</h3><h3 class="cn">不确定性承受训练</h3><p class="en">Non-linear rhythm trains flexible activation without triggering threat response.</p><p class="cn">非线性节律训练神经系统保持弹性激活，而不触发威胁反应。</p></div>
             <div class="loop-item"><div class="num">02 // ANCHOR</div><h3>Anti-Dissociation</h3><h3 class="cn">反解离锚定</h3><p class="en">Unexpected accents prevent temporal drift and say: here, now, body.</p><p class="cn">意外重音阻止时间漂移，并提示：这里、此刻、身体。</p></div>
@@ -5156,7 +5517,7 @@
           </div>
           <div class="system-loop">
             <div class="loop-item"><div class="num">05 // DOPAMINE</div><h3>Dopamine Micro-pulse</h3><h3 class="cn">多巴胺微脉冲流</h3><p class="en">Satisfying unexpected beats create low-frequency pleasure without spike-and-crash.</p><p class="cn">令人满足的意外节拍生成低频快感流，而非暴冲崩落。</p></div>
-            <div class="loop-item"><div class="num">06 // AMYGDALA</div><h3>Amygdala Desensitization</h3><h3 class="cn">杏仁核脱敏</h3><p class="en">Repeated safe irregularity rewrites chaos = threat into chaos = music.</p><p class="cn">重复的安全不规则性将“混乱=威胁”改写为“混乱=音乐”。</p></div>
+            <div class="loop-item"><div class="num">06 // AMYGDALA</div><h3>Amygdala Desensitization</h3><h3 class="cn">杏仁核脱敏</h3><p class="en">Repeated safe irregularity rewrites chaos = threat into chaos = transformable function.</p><p class="cn">重复的安全不规则性将“混乱=威胁”改写为“混乱=可被音乐改造的功能”。</p></div>
             <div class="loop-item"><div class="num">427Hz</div><h3>Universal Anchor</h3><h3 class="cn">通用锚定频率</h3><p class="en">Breakbeat irregularity phases around 427Hz as the return coordinate.</p><p class="cn">Breakbeat 的不规则围绕 427Hz 相位组织，作为返回坐标。</p></div>
             <div class="loop-item"><div class="num">44271</div><h3>Neural Cuff Input</h3><h3 class="cn">神经袖环输入</h3><p class="en">HRV + skin conductance detect historical replay before sequence entry.</p><p class="cn">HRV + 皮肤电在进入序列前检测 historical replay。</p></div>
           </div>
@@ -5249,19 +5610,19 @@
     <section id="six-genre-therapy">
       <div class="grid">
         <div class="card span-12 neon-card">
-          <div class="eyebrow">SIX-GENRE INTERACTIVE THERAPY // 六种音乐互动治疗方式</div>
-          <h2>Each genre is a therapeutic movement in the full return journey.</h2>
-          <h2 class="cn">每一种音乐类型，都是完整返回旅程中的一个治疗动作。</h2>
+          <div class="eyebrow">SIX-GENRE INTERACTIVE MATRIX // 六种音乐互动调节矩阵</div>
+          <h2>Each genre is a researchable rhythm-support movement in the full return journey.</h2>
+          <h2 class="cn">每一种音乐类型，都是完整返回旅程中的一个可研究的节律支持动作。</h2>
           <p class="sub en">HRP uses Wei Jueran’s original music genres as neural intervention protocols: Breakbeats, Hyperpop, Synthpop, Drift Phonk, Darkwave, and Ambient Techno.</p>
           <p class="sub cn">HRP 把魏珏然的原创音乐类型作为神经干预协议：Breakbeats、Hyperpop、Synthpop、Drift Phonk、Darkwave 与 Ambient Techno。</p>
         </div>
 
         <div class="card span-5">
-          <div class="eyebrow">THERAPY MODE SELECTOR // 治疗模式选择器</div>
+          <div class="eyebrow">RHYTHM MODE SELECTOR // 节律模式选择器</div>
           <h3 id="sixTitle">Breakbeats — Entry Protocol</h3>
           <h3 class="cn" id="sixTitleCN">Breakbeats — 入口协议</h3>
-          <p id="sixDesc" class="en">Irregularity becomes safe. Chaos becomes music.</p>
-          <p id="sixDescCN" class="cn">不规则变得安全。混乱变成音乐。</p>
+          <p id="sixDesc" class="en">Irregularity becomes safe. Chaos becomes a transformable musical function.</p>
+          <p id="sixDescCN" class="cn">不规则变得安全。混乱变成可被音乐改造的功能。</p>
           <div class="sound-controls">
             <button class="sound-btn six-btn active" data-six="breakbeats">Breakbeats / 入口</button>
             <button class="sound-btn six-btn" data-six="hyperpop">Hyperpop / 峰值</button>
@@ -5271,13 +5632,13 @@
             <button class="sound-btn six-btn" data-six="ambient">Ambient Techno / 回家</button>
           </div>
           <div class="transport">
-            <button class="button primary" id="playSix">PLAY THERAPY DEMO / 播放治疗 Demo</button>
+            <button class="button primary" id="playSix">PLAY RHYTHM DEMO / 播放节律 Demo</button>
             <button class="button" id="stopSix">STOP / 停止</button>
           </div>
         </div>
 
         <div class="card span-7">
-          <div class="eyebrow">INTERACTIVE THERAPY MAP // 互动治疗地图</div>
+          <div class="eyebrow">INTERACTIVE RHYTHM MAP // 互动节律地图</div>
           <div class="genre-signal-stage six-stage">
             <div class="genre-core six-core"><span id="sixCore">BREAK<br>BEATS</span></div>
             <canvas id="sixCanvas"></canvas>
@@ -5319,151 +5680,302 @@
     </section>
 
 
-    <!-- ========== ACOUSTIC DESIGN RATIONALE · 6-GENRE × 6-SYSTEM LITERATURE-ANCHORED ========== -->
-    <section id="acoustic-design-rationale" style="margin-top:48px;">
-      <div class="eyebrow" style="color:var(--cyan);">ACOUSTIC DESIGN RATIONALE // 声学设计依据 · 文献锚定版</div>
-      <h2 style="border-left:4px solid var(--cyan);padding-left:16px;">
-        Six genres. Six systems. Real literature. Honest claim limits.
-        <br><span style="font-size:0.6em;color:var(--dim);">六种音乐 · 六大系统 · 真实文献 · 诚实声明边界</span>
-      </h2>
-      <p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:24px;max-width:920px;">
-        Each genre below is mapped to its strongest action face across six human systems (Emotion / Perception / Neural / Body / Meaning / Cognition), anchored in published music neuroscience literature. Where evidence is strong, claims are stated as supported. Where evidence is modest or speculative, this is explicitly labeled. Where claims would be over-reach, they are not made.
-        <br><span style="font-size:0.85em;color:var(--dim);">每个 genre 映射到它在六大系统里最强的作用面，锚定已发表的音乐神经科学文献。证据强的地方明示支持；证据中等或推测的地方显式标注；过度声称的地方不声称。</span>
-      </p>
+
+    <!-- ========== ACOUSTIC DESIGN RATIONALE · REFORMATTED v23 ========== -->
+    <section id="acoustic-design-rationale" class="rationale-section">
+      <div class="card span-12 neon-card">
+        <div class="rationale-kicker">ACOUSTIC DESIGN RATIONALE // 声学设计依据 · 图表重排版</div>
+        <h2>Chaos is not danger. Chaos is a function music can transform.</h2>
+        <h2 class="cn">混乱不是危险。混乱是音乐能够改造的功能。</h2>
+        <p class="rationale-lead en">
+          The six-genre protocol is no longer presented as six long paragraphs. It is organized as a readable research map:
+          each genre has one acoustic mechanism, one primary transformation function, one strongest system face, measurable signal candidates,
+          and a clear claim boundary. The goal is not to say “music heals.” The goal is to show how specific musical structures may support
+          emotion, perception, neural timing, body state, meaning-making, and cognition in testable ways.
+        </p>
+        <p class="rationale-lead cn">
+          六种音乐协议不再用六段长文堆叠，而是改成直接可读的研究地图：
+          每种音乐都有一个声学机制、一个主要改造功能、一个最强系统作用面、可测量信号候选与明确声明边界。
+          这里不是说“音乐治疗一切”，而是说明具体音乐结构如何以可测试的方式支持情绪、感知、神经时间、身体状态、意义生成与认知。
+        </p>
+
+        <div class="rationale-principle">
+          <div class="principle-card">
+            <h3>Core correction: chaos is not the enemy.</h3>
+            <h3 class="cn">核心纠偏：混乱不是敌人。</h3>
+            <p class="en">In HRP, chaos is treated as a state function: too much prediction error, too little anchoring, too much affective pressure, or too little meaningful structure. Music does not erase chaos; it changes the relation between the subject and chaos.</p>
+            <p class="cn">在 HRP 中，混乱被理解为一种状态功能：预测误差过高、锚点不足、情绪压强过大，或意义结构不足。音乐不是消灭混乱，而是改变主体与混乱之间的关系。</p>
+          </div>
+          <div class="principle-card">
+            <h3>Format correction: chart first, details second.</h3>
+            <h3 class="cn">格式纠偏：先图表，后细节。</h3>
+            <p class="en">The reader now sees the whole intervention logic before entering the detailed genre cards. Long claims are split into system faces, so nothing is hidden or cut off.</p>
+            <p class="cn">读者会先看到完整干预逻辑，再进入具体音乐类型卡片。长句被拆成系统作用面，因此不会再出现信息拥挤、右侧截断或读不清的问题。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card span-12">
+        <div class="rationale-kicker">DIRECT MATRIX // 六种音乐 × 六个系统 · 快速对应图</div>
+        <div class="rationale-chart-wrap">
+          <table class="rationale-chart">
+            <thead>
+              <tr>
+                <th>Genre / 音乐类型</th>
+                <th>Acoustic mechanism / 声学机制</th>
+                <th>Transformable function / 可改造功能</th>
+                <th>Strongest system / 最强系统</th>
+                <th>Candidate signals / 可测信号</th>
+                <th>Claim boundary / 声明边界</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Breakbeats<br><span class="evidence-pill design">design-led</span></td>
+                <td>High syncopation, micro-timing surprise, prediction-error pulses.</td>
+                <td>Turns irregularity from threat into playable uncertainty.</td>
+                <td>Cognition + Perception</td>
+                <td>Attention switching, pupil/arousal, timing accuracy, self-report of stuckness.</td>
+                <td>Supports a hypothesis for disrupting rumination; does not prove DMN suppression.</td>
+              </tr>
+              <tr>
+                <td>Hyperpop<br><span class="evidence-pill design">state-sensitive</span></td>
+                <td>High spectral density, compressed dynamics, pitched voice, glitch textures.</td>
+                <td>Turns numbness into safe peak traversal or identity activation.</td>
+                <td>Emotion + Neural arousal</td>
+                <td>EDA, HR, frontal-temporal EEG features, affect intensity ratings.</td>
+                <td>Can amplify distress if mismatched; not a calming protocol.</td>
+              </tr>
+              <tr>
+                <td>Drift Phonk<br><span class="evidence-pill">moderate</span></td>
+                <td>30–60Hz sub-bass, vibroacoustic pressure, dark motion groove.</td>
+                <td>Turns dissociation into somatic grounding and motion-within-chaos.</td>
+                <td>Body + Interoception</td>
+                <td>Body-location report, movement, EDA slope, HRV recovery trend.</td>
+                <td>Low-frequency vibration has support; exact phonk mechanism requires HRP pilot data.</td>
+              </tr>
+              <tr>
+                <td>Darkwave<br><span class="evidence-pill strong">strongest evidence</span></td>
+                <td>Slow tempo, narrow-band/cold timbre, restrained vocal field.</td>
+                <td>Turns dark affect into containable depth instead of forced positivity.</td>
+                <td>Autonomic / Body + Emotion</td>
+                <td>HRV-RMSSD, HR, breathing rate, cortisol/oxytocin where feasible, calmness rating.</td>
+                <td>Slow-tempo music has strong support; “coldness” remains design phenomenology.</td>
+              </tr>
+              <tr>
+                <td>Ambient Techno<br><span class="evidence-pill">moderate</span></td>
+                <td>Predictable 4/4, minimal transient load, evolving texture.</td>
+                <td>Turns transition friction into continuous flow infrastructure.</td>
+                <td>Cognition + Motor entrainment</td>
+                <td>Task persistence, micro-movement, EEG alpha/theta, perceived friction.</td>
+                <td>Motor entrainment framing is appropriate; 2Hz beat is not 40Hz ASSR.</td>
+              </tr>
+              <tr>
+                <td>Synthpop<br><span class="evidence-pill strong">second-strongest</span></td>
+                <td>Predictable verse-chorus, melodic resolution, bright reward cue.</td>
+                <td>Turns structure from demand into first breath and reward confirmation.</td>
+                <td>Emotion + Reward</td>
+                <td>Valence/arousal, reward rating, memory recall, approach motivation.</td>
+                <td>Dopamine/reward literature supports music reward; 427Hz itself is symbolic anchor unless tested.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <!-- BREAKBEATS -->
-      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(255,43,214,.32);">
-        <div class="eyebrow" style="color:var(--pink);">01 // BREAKBEATS · COGNITIVE WALL-BREAKER</div>
-        <h3 style="margin-bottom:14px;">High-density syncopation × predictive coding × attention switching</h3>
-        <p style="line-height:1.85;">
-          Breakbeats use high-density syncopation and unpredictable micro-timing transients to continuously feed prediction-error signal into the auditory system. Literature supports that this structure drives attention switching and noradrenergic arousal <span style="color:var(--dim);">(Vuust et al · Patel &amp; Iversen ASAP hypothesis · 2024 pupillometry study)</span>.
-          <strong style="color:var(--pink);">Strongest action faces:</strong>
-          <strong>Cognition</strong> — syncopation occupies working memory's predictive bandwidth, disrupting rumination loops <em>(hypothesis: that this "breaks DMN" specifically is design-level, not yet evidenced)</em>.
-          <strong>Perception</strong> — micro-timing offsets keep auditory cortex in prediction-update mode, increasing temporal resolution.
-          <strong>Neural</strong> — beat perception activates auditory-motor coupling (dorsal pathway, SMA, cerebellum) <span style="color:var(--dim);">(Patel 2014)</span>.
-          <strong>Body</strong> — regular backbeat triggers spontaneous head-nodding and foot-tapping, providing embodied rhythm anchor.
-          <strong>Emotion</strong> — drives arousal up, not down. Matches "currently low-arousal, needs activation."
-          <strong>Meaning</strong> — communicates "the world is imperfect but danceable" — this is design choice, not neuroscience claim.
-        </p>
+      <div class="card neon-card rationale-card" style="border-color:rgba(255,43,214,.32);">
+        <div class="rationale-card-head">
+          <div>
+            <div class="rationale-kicker" style="color:var(--pink);">01 // BREAKBEATS · COGNITIVE WALL-BREAKER</div>
+            <h3>High-density syncopation × predictive coding × attention switching</h3>
+            <h3 class="cn">高密度切分节律 × 预测编码 × 注意力切换</h3>
+          </div>
+          <span class="genre-badge">CHAOS → PLAYABLE UNCERTAINTY</span>
+        </div>
+        <div class="rationale-summary-grid">
+          <div class="rationale-mini"><strong>Function</strong><p>Turns irregularity into a safe prediction game.</p><p class="cn">把不规则改造成安全的预测游戏。</p></div>
+          <div class="rationale-mini"><strong>Best use</strong><p>Low arousal, stuckness, dissociation risk, needing entry.</p><p class="cn">低唤醒、卡死、解离风险、需要入口。</p></div>
+          <div class="rationale-mini"><strong>Mechanism</strong><p>Prediction error keeps attention updating.</p><p class="cn">预测误差让注意力持续更新。</p></div>
+          <div class="rationale-mini"><strong>Boundary</strong><p>DMN suppression is a hypothesis, not established proof.</p><p class="cn">DMN 抑制是设计假设，不是已证实机制。</p></div>
+        </div>
+        <div class="action-grid">
+          <div class="action-cell"><strong>Emotion</strong><p>Arousal rises rather than calms down.</p><p class="cn">提高唤醒，不是降唤醒。</p></div>
+          <div class="action-cell"><strong>Perception</strong><p>Micro-timing shifts sharpen temporal listening.</p><p class="cn">微时差训练时间听觉。</p></div>
+          <div class="action-cell"><strong>Neural</strong><p>Auditory-motor coupling; SMA/cerebellar timing.</p><p class="cn">听觉—运动耦合，小脑与 SMA 时间加工。</p></div>
+          <div class="action-cell"><strong>Body</strong><p>Backbeat invites head-nod, foot tap, embodied anchor.</p><p class="cn">反拍带出点头、脚步与身体锚点。</p></div>
+          <div class="action-cell"><strong>Meaning</strong><p>The world is imperfect but danceable.</p><p class="cn">世界不完美，但仍可跳舞。</p></div>
+          <div class="action-cell"><strong>Cognition</strong><p>Prediction bandwidth displaces rumination temporarily.</p><p class="cn">预测带宽临时挤出反刍。</p></div>
+        </div>
+        <div class="claim-limit-box"><strong>Evidence anchor</strong> Vuust predictive coding, Patel &amp; Iversen ASAP, rhythm/pupillometry literature. HRP-specific effects require pilot testing.</div>
       </div>
 
       <!-- HYPERPOP -->
-      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(255,100,210,.32);">
-        <div class="eyebrow" style="color:var(--pink);">02 // HYPERPOP · AROUSAL AMPLIFIER</div>
-        <h3 style="margin-bottom:14px;">High spectral density × dynamic compression × identity affirmation</h3>
-        <p style="line-height:1.85;">
-          Hyperpop uses extreme spectral density, heavy dynamic compression, pitched-up vocals, and glitch textures to form a high-arousal high-entropy auditory environment. Literature confirms fast/dense music increases sympathetic activation and frontal-temporal connectivity <span style="color:var(--dim);">(Nature Scientific Reports 2025 EEG tempo study · Trost et al fMRI · Saarikallio 2011)</span>.
-          <strong style="color:var(--pink);">Strongest action faces:</strong>
-          <strong>Emotion</strong> — amplifies current emotional intensity. Mild joy can be amplified to ecstatic peak; mild distress can be amplified to overwhelm. User state must match before use (Iso-Principle, Altshuler 1948).
-          <strong>Cognition</strong> — information density fills working memory, displacing ruminative thought (this is temporary occupation, not "calming" — the inverse claim circulating online is not supported by evidence).
-          <strong>Perception</strong> — spectral saturation trains auditory cortex on parallel processing of complex sound fields.
-          <strong>Neural</strong> — high-arousal music activates amygdala-NAcc-insula pathway <span style="color:var(--dim);">(Koelsch et al, Trost et al)</span>; useful for breaking emotional numbness.
-          <strong>Body</strong> — density triggers micro-movements and increased breath rate. Not suitable for stillness contexts.
-          <strong>Meaning</strong> — maximalism + queer-coded aesthetics communicates "identity can simultaneously be multiple contradictory things" — identity affirmation genre.
-        </p>
+      <div class="card neon-card rationale-card" style="border-color:rgba(255,100,210,.32);">
+        <div class="rationale-card-head">
+          <div>
+            <div class="rationale-kicker" style="color:var(--pink);">02 // HYPERPOP · AROUSAL AMPLIFIER</div>
+            <h3>High spectral density × dynamic compression × identity affirmation</h3>
+            <h3 class="cn">高频谱密度 × 动态压缩 × 身份确认</h3>
+          </div>
+          <span class="genre-badge">NUMBNESS → PEAK TRAVERSAL</span>
+        </div>
+        <div class="rationale-summary-grid">
+          <div class="rationale-mini"><strong>Function</strong><p>Amplifies energy until the system can locate its ceiling.</p><p class="cn">把能量推到可感知顶点，让系统知道天花板在哪里。</p></div>
+          <div class="rationale-mini"><strong>Best use</strong><p>Numbness, under-activation, identity compression.</p><p class="cn">麻木、低激活、身份被压缩。</p></div>
+          <div class="rationale-mini"><strong>Mechanism</strong><p>Density occupies working memory and activates arousal pathways.</p><p class="cn">密度占用工作记忆并激活唤醒通路。</p></div>
+          <div class="rationale-mini"><strong>Boundary</strong><p>Requires state-matching; may overwhelm high-distress users.</p><p class="cn">必须状态匹配；高痛苦用户可能被过度放大。</p></div>
+        </div>
+        <div class="action-grid">
+          <div class="action-cell"><strong>Emotion</strong><p>Amplifies current affect; not inherently positive.</p><p class="cn">放大当前情绪，不天然正向。</p></div>
+          <div class="action-cell"><strong>Perception</strong><p>Spectral saturation trains parallel listening.</p><p class="cn">频谱饱和训练并行听觉。</p></div>
+          <div class="action-cell"><strong>Neural</strong><p>High-arousal music relates to amygdala/NAcc/insula activation.</p><p class="cn">高唤醒音乐关联杏仁核、伏隔核、岛叶。</p></div>
+          <div class="action-cell"><strong>Body</strong><p>Raises breath rate and micro-movement.</p><p class="cn">提高呼吸频率和微运动。</p></div>
+          <div class="action-cell"><strong>Meaning</strong><p>Identity can be multiple, glitched, and still whole.</p><p class="cn">身份可以多重、故障化，仍然完整。</p></div>
+          <div class="action-cell"><strong>Cognition</strong><p>Information density interrupts repetitive thought by load.</p><p class="cn">信息密度用负荷打断重复想法。</p></div>
+        </div>
+        <div class="claim-limit-box"><strong>Evidence anchor</strong> Iso-principle, music-evoked emotion, high-arousal music literature. Not suitable as default calming music.</div>
       </div>
 
       <!-- DRIFT PHONK -->
-      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(100,210,255,.32);">
-        <div class="eyebrow" style="color:var(--blue);">03 // DRIFT PHONK · SOMATOSENSORY GROUNDING</div>
-        <h3 style="margin-bottom:14px;">Sub-bass (30-60Hz) × vibroacoustic input × interoceptive anchor</h3>
-        <p style="line-height:1.85;">
-          Drift Phonk uses 30-60Hz overdriven sub-bass to deliver low-frequency vibroacoustic input. Literature supports low-frequency vibration <span style="color:var(--dim);">(Skille vibroacoustic therapy 1980s · Bartel et al 2017 · Mehling et al Cambridge Psychological Medicine 2023 VBFM study)</span> activates somatosensory cortex (S1/S2), insula, and thalamus, and enhances interoceptive awareness.
-          <strong style="color:var(--blue);">Strongest action faces:</strong>
-          <strong>Body</strong> — sub-bass enters via mechanoreceptors (Pacinian corpuscles), providing "held by sound field" grounding sensation. Particularly suited as anchor for dissociation states. <em>("Phase-locks M1/S1 cortices" claim is over-reach; literature shows activation, not phase-locking.)</em>
-          <strong>Neural</strong> — sternal/low-frequency vibration shares partial pathway with vagal interoceptive afferents <span style="color:var(--dim);">(Mehling 2023 VBFM)</span>.
-          <strong>Perception</strong> — low-frequency vibration blurs the boundary between "auditory" and "tactile" — cross-modal integrated experience.
-          <strong>Emotion</strong> — dark aesthetic does not deny negative affect; instead holds suffering without amplifying it.
-          <strong>Cognition</strong> — sub-bass demands attention but not cognitive engagement; low-demand anchor.
-          <strong>Meaning</strong> — memphis-meets-drift aesthetics communicates "maintain motion within chaos" — design choice.
-        </p>
+      <div class="card neon-card rationale-card" style="border-color:rgba(100,210,255,.32);">
+        <div class="rationale-card-head">
+          <div>
+            <div class="rationale-kicker" style="color:var(--blue);">03 // DRIFT PHONK · SOMATOSENSORY GROUNDING</div>
+            <h3>Sub-bass 30–60Hz × vibroacoustic input × interoceptive anchor</h3>
+            <h3 class="cn">30–60Hz 低频 × 振动声学输入 × 内感锚点</h3>
+          </div>
+          <span class="genre-badge">DISSOCIATION → BODY ANCHOR</span>
+        </div>
+        <div class="rationale-summary-grid">
+          <div class="rationale-mini"><strong>Function</strong><p>Turns chaos into a felt low-frequency container.</p><p class="cn">把混乱改造成可被身体感到的低频容器。</p></div>
+          <div class="rationale-mini"><strong>Best use</strong><p>Dissociation, floating, loss of body boundary.</p><p class="cn">解离、漂浮、身体边界感弱。</p></div>
+          <div class="rationale-mini"><strong>Mechanism</strong><p>Vibrotactile bass stimulates somatosensory/interoceptive attention.</p><p class="cn">低频触振刺激身体感觉与内感注意。</p></div>
+          <div class="rationale-mini"><strong>Boundary</strong><p>Do not claim exact cortical phase-lock without data.</p><p class="cn">没有数据时不声称精确皮层相锁。</p></div>
+        </div>
+        <div class="action-grid">
+          <div class="action-cell"><strong>Emotion</strong><p>Holds negative affect without brightening it.</p><p class="cn">承接负性情绪，不强行变亮。</p></div>
+          <div class="action-cell"><strong>Perception</strong><p>Blurs auditory/tactile boundary.</p><p class="cn">模糊听觉与触觉边界。</p></div>
+          <div class="action-cell"><strong>Neural</strong><p>Somatosensory, insular, and thalamic pathways are plausible targets.</p><p class="cn">身体感觉、岛叶、丘脑是可研究目标。</p></div>
+          <div class="action-cell"><strong>Body</strong><p>Mechanoreceptor bass gives “held by sound” feeling.</p><p class="cn">机械感受器低频带来“被声音托住”。</p></div>
+          <div class="action-cell"><strong>Meaning</strong><p>Keep moving inside chaos.</p><p class="cn">在混乱内部保持运动。</p></div>
+          <div class="action-cell"><strong>Cognition</strong><p>Low-demand anchor; attention without analysis.</p><p class="cn">低认知负荷锚定：注意但不分析。</p></div>
+        </div>
+        <div class="claim-limit-box"><strong>Evidence anchor</strong> Vibroacoustic therapy, vibroacoustic breath-focused mindfulness, interoception literature.</div>
       </div>
 
       <!-- DARKWAVE -->
-      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(53,255,159,.32);background:rgba(53,255,159,.04);">
-        <div class="eyebrow" style="color:var(--green);">04 // DARKWAVE · POLYVAGAL ANCHOR ⭐ STRONGEST EVIDENCE</div>
-        <h3 style="margin-bottom:14px;">Slow tempo (60-90 BPM) × narrow-band filtering × ventral vagal activation</h3>
-        <p style="line-height:1.85;">
-          Darkwave uses narrow-band low-pass filtering, slow tempo (60-90 BPM), cold analog synth, and restrained vocal delivery to form a low-arousal high-meaning auditory environment. <strong>This is the genre with strongest literature support of the six.</strong> Frontiers Cardiovascular Medicine 2026 systematic review + meta-analysis of RCTs explicitly supports slow-tempo music → ↑parasympathetic (vagal) activity · ↓HR · ↑HRV-RMSSD · ↑oxytocin · ↓cortisol <span style="color:var(--dim);">(Bernardi et al · Yamasaki PMC5718605 · Porges polyvagal series)</span>.
-          <strong style="color:var(--green);">Strongest action faces:</strong>
-          <strong>Neural</strong> — activates ventral vagal complex <span style="color:var(--dim);">(Porges 2007)</span>; this is the same mechanism as clinical Safe and Sound Protocol (SSP).
-          <strong>Emotion</strong> — provides "negative affect can be accompanied without being overridden by toxic positivity" — emotional container without the violence of forced reframing.
-          <strong>Body</strong> — slow tempo entrains breath; HRV increase = body entering more flexible autonomic state.
-          <strong>Perception</strong> — narrow-band filtering creates "acoustic indoor" feel; cold synth's cross-modal correspondence gives perception a cool/contained texture <em>("cold tones = neurological coldness" is design hypothesis, not established mechanism).</em>
-          <strong>Cognition</strong> — does not impose cognitive load; allows slow thinking and integration.
-          <strong>Meaning</strong> — darkwave aesthetic (cold · sovereign · non-pleasing) communicates "you don't need to be healed to deserve existence" — inverted wellness stance, core inventor claim of HRP.
-        </p>
+      <div class="card neon-card rationale-card" style="border-color:rgba(53,255,159,.34);background:rgba(53,255,159,.04);">
+        <div class="rationale-card-head">
+          <div>
+            <div class="rationale-kicker" style="color:var(--green);">04 // DARKWAVE · POLYVAGAL ANCHOR ⭐ STRONGEST EVIDENCE</div>
+            <h3>Slow tempo 60–90 BPM × narrow-band filtering × ventral-vagal support</h3>
+            <h3 class="cn">60–90 BPM 慢速 × 窄频滤波 × 腹侧迷走支持</h3>
+          </div>
+          <span class="genre-badge">DARK AFFECT → CONTAINABLE DEPTH</span>
+        </div>
+        <div class="rationale-summary-grid">
+          <div class="rationale-mini"><strong>Function</strong><p>Turns dark affect into an accompanied, survivable space.</p><p class="cn">把黑暗情绪改造成可被陪同、可承受的空间。</p></div>
+          <div class="rationale-mini"><strong>Best use</strong><p>After grounding, for mourning, shadow integration, slow return.</p><p class="cn">落地之后，用于哀悼、阴影整合、慢速返回。</p></div>
+          <div class="rationale-mini"><strong>Mechanism</strong><p>Slow tempo supports parasympathetic/vagal activity and breath entrainment.</p><p class="cn">慢速音乐支持副交感/迷走活动与呼吸同步。</p></div>
+          <div class="rationale-mini"><strong>Boundary</strong><p>Strong for slow-tempo music; cold timbre is phenomenological design.</p><p class="cn">慢速音乐证据强；冷感音色属于现象学设计。</p></div>
+        </div>
+        <div class="action-grid">
+          <div class="action-cell"><strong>Emotion</strong><p>Allows sadness without forced reframing.</p><p class="cn">允许悲伤，不强行重构。</p></div>
+          <div class="action-cell"><strong>Perception</strong><p>Narrow-band filtering creates an acoustic indoor room.</p><p class="cn">窄频滤波创造“声学室内”。</p></div>
+          <div class="action-cell"><strong>Neural</strong><p>Ventral-vagal / parasympathetic support is the key rationale.</p><p class="cn">腹侧迷走/副交感支持是核心依据。</p></div>
+          <div class="action-cell"><strong>Body</strong><p>Breath slows; HR and HRV may shift toward flexibility.</p><p class="cn">呼吸放慢，HR/HRV 可能向弹性状态移动。</p></div>
+          <div class="action-cell"><strong>Meaning</strong><p>You do not need to be healed to deserve existence.</p><p class="cn">你不需要先被治好才配存在。</p></div>
+          <div class="action-cell"><strong>Cognition</strong><p>Low cognitive load; supports integration.</p><p class="cn">低认知负荷，支持整合。</p></div>
+        </div>
+        <div class="claim-limit-box"><strong>Evidence anchor</strong> Slow-tempo music, HRV/RMSSD, parasympathetic activity, Bernardi, Porges, and systematic review logic.</div>
       </div>
 
       <!-- AMBIENT TECHNO -->
-      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(155,140,255,.32);">
-        <div class="eyebrow" style="color:var(--purple);">05 // AMBIENT TECHNO · ZERO-FRICTION SCAFFOLD</div>
-        <h3 style="margin-bottom:14px;">Predictable 4/4 (~2Hz) × evolving texture × motor entrainment</h3>
-        <p style="line-height:1.85;">
-          Ambient Techno uses highly predictable 4/4 kicks (~120-130 BPM = ~2Hz beat rate), zero transients, and long evolving texture to provide a zero-friction sonic scaffold. Literature supports ~2Hz rhythm entrainment in motor cortex and auditory dorsal pathway producing sensorimotor synchronization <span style="color:var(--dim);">(Rosso et al 2023 Neuroimage · Hove et al 2024 ASCs paper)</span>, and connects to altered states of consciousness and flow state <span style="color:var(--dim);">(PMC12827708 flow review · frontocentral alpha/theta increase)</span>.
-          <strong style="color:var(--purple);">Strongest action faces:</strong>
-          <strong>Cognition</strong> — repetition + predictability = minimized cognitive load = optimal for "sustaining on task" background state.
-          <strong>Perception</strong> — evolving texture trains broad temporal attention (attention spanning minutes rather than seconds).
-          <strong>Neural</strong> — alpha-band increase correlates with DMN connectivity ↑ <span style="color:var(--dim);">(PNAS 2021 α-tACS study)</span>. <em>("4/4 kicks induce ASSR" is misapplied terminology; ASSR is at 40Hz, not 2Hz. Correct framing: motor entrainment + alpha-band shift.)</em>
-          <strong>Emotion</strong> — zero-friction does not actively regulate emotion; instead creates space for emotion to settle on its own (indirect regulation).
-          <strong>Body</strong> — predictable beat permits micro-movement without demanding active engagement.
-          <strong>Meaning</strong> — "purposeless continuity" communicates "existence does not require events" — deep design choice, Mellow Protocol's terminal breath.
-        </p>
+      <div class="card neon-card rationale-card" style="border-color:rgba(155,140,255,.32);">
+        <div class="rationale-card-head">
+          <div>
+            <div class="rationale-kicker" style="color:var(--purple);">05 // AMBIENT TECHNO · ZERO-FRICTION SCAFFOLD</div>
+            <h3>Predictable 4/4 × evolving texture × motor entrainment</h3>
+            <h3 class="cn">可预测 4/4 × 演化质地 × 运动同步</h3>
+          </div>
+          <span class="genre-badge">FRICTION → FLOW INFRASTRUCTURE</span>
+        </div>
+        <div class="rationale-summary-grid">
+          <div class="rationale-mini"><strong>Function</strong><p>Turns transition friction into sustained environmental flow.</p><p class="cn">把转换阻力改造成持续环境流。</p></div>
+          <div class="rationale-mini"><strong>Best use</strong><p>Focus background, task continuation, pre-work state.</p><p class="cn">专注背景、任务持续、工作前状态。</p></div>
+          <div class="rationale-mini"><strong>Mechanism</strong><p>Predictability minimizes cognitive load while beat supports micro-movement.</p><p class="cn">可预测性降低认知负荷，节拍支持微运动。</p></div>
+          <div class="rationale-mini"><strong>Boundary</strong><p>Frame as motor entrainment + alpha/theta shift, not 40Hz ASSR.</p><p class="cn">应表述为运动同步 + alpha/theta 变化，不是 40Hz ASSR。</p></div>
+        </div>
+        <div class="action-grid">
+          <div class="action-cell"><strong>Emotion</strong><p>Indirectly lets emotion settle.</p><p class="cn">间接让情绪自行沉降。</p></div>
+          <div class="action-cell"><strong>Perception</strong><p>Trains long temporal span attention.</p><p class="cn">训练长时间跨度注意。</p></div>
+          <div class="action-cell"><strong>Neural</strong><p>Sensorimotor synchronization and alpha/theta hypotheses.</p><p class="cn">感觉运动同步与 alpha/theta 假设。</p></div>
+          <div class="action-cell"><strong>Body</strong><p>Permits small movement without demanding performance.</p><p class="cn">允许小动作，不要求表现。</p></div>
+          <div class="action-cell"><strong>Meaning</strong><p>Existence does not require events.</p><p class="cn">存在不需要一直发生事件。</p></div>
+          <div class="action-cell"><strong>Cognition</strong><p>Low-friction sustained task scaffold.</p><p class="cn">低摩擦持续任务脚手架。</p></div>
+        </div>
+        <div class="claim-limit-box"><strong>Evidence anchor</strong> Sensorimotor synchronization, electronic-music entrainment, flow-state / altered-state literature.</div>
       </div>
 
-      <!-- SYNTHPOP / 427Hz -->
-      <div class="card neon-card" style="margin-bottom:18px;border-color:rgba(255,230,109,.32);background:rgba(255,230,109,.04);">
-        <div class="eyebrow" style="color:var(--yellow);">06 // SYNTHPOP · DOPAMINERGIC HOMECOMING ⭐ SECOND-STRONGEST EVIDENCE</div>
-        <h3 style="margin-bottom:14px;">Predictable structure × reward prediction confirmation × VTA/NAcc dopamine</h3>
-        <p style="line-height:1.85;">
-          Synthpop uses predictable verse-chorus structure, bright octaves, clear melodic resolution, and warm analog/digital synth to form a high-predictability high-reward auditory environment. <strong>This is the second-strongest-evidence genre.</strong> Salimpoor &amp; Zatorre series <span style="color:var(--dim);">(2011 Nature Neuroscience canonical · 2013 Science · 2009 PLoS ONE)</span> robustly demonstrate predictable musical structure × emotional peak → NAcc + VTA dopaminergic release — one of music neuroscience's most replicated findings.
-          <strong style="color:var(--yellow);">Strongest action faces:</strong>
-          <strong>Emotion</strong> — predictable resolution triggers reward prediction confirmation → dopamine release → subjectively experienced as "safety + warmth + first breath." (S02 participant's "less perfectionism · acceptance" and Wei's own Space Song experience both map to this mechanism.)
-          <strong>Neural</strong> — VTA-NAcc-auditory cortex loop is robust <span style="color:var(--dim);">(Salimpoor 2013 Science)</span>. <em>("427Hz carrier wave triggers VTA dopamine" is not supported — 427Hz has no neuroscience-validated effect in literature; it is retained as product symbolic anchor / UI naming / audio design choice, not as neuroscience mechanism.)</em>
-          <strong>Cognition</strong> — predictable structure drives prediction error toward zero; minimal cognitive load; optimal for integration/consolidation.
-          <strong>Perception</strong> — bright octaves give auditory perception "open / spacious" texture.
-          <strong>Body</strong> — safety signal → ventral vagal activation → body permits "release."
-          <strong>Meaning</strong> — hopeful-but-not-naive aesthetic communicates "gentleness can be sovereign" — inventor stance, not neuroscience claim.
-        </p>
+      <!-- SYNTHPOP -->
+      <div class="card neon-card rationale-card" style="border-color:rgba(255,230,109,.32);background:rgba(255,230,109,.04);">
+        <div class="rationale-card-head">
+          <div>
+            <div class="rationale-kicker" style="color:var(--yellow);">06 // SYNTHPOP · DOPAMINERGIC HOMECOMING ⭐ SECOND-STRONGEST EVIDENCE</div>
+            <h3>Predictable structure × reward prediction confirmation × melodic return</h3>
+            <h3 class="cn">可预测结构 × 奖赏预测确认 × 旋律返回</h3>
+          </div>
+          <span class="genre-badge">STRUCTURE → FIRST BREATH</span>
+        </div>
+        <div class="rationale-summary-grid">
+          <div class="rationale-mini"><strong>Function</strong><p>Turns structure from command into safety, warmth, and first breath.</p><p class="cn">把结构从命令改造成安全、温暖与第一口呼吸。</p></div>
+          <div class="rationale-mini"><strong>Best use</strong><p>After overload, after peak, or when the system can accept predictability.</p><p class="cn">过载之后、峰值之后，或系统能重新接受可预测性时。</p></div>
+          <div class="rationale-mini"><strong>Mechanism</strong><p>Resolution and anticipation recruit music reward systems.</p><p class="cn">解决与期待调动音乐奖赏系统。</p></div>
+          <div class="rationale-mini"><strong>Boundary</strong><p>427Hz is retained as symbolic/UI anchor unless separately tested.</p><p class="cn">427Hz 除非另测，否则保留为象征/UI 锚点。</p></div>
+        </div>
+        <div class="action-grid">
+          <div class="action-cell"><strong>Emotion</strong><p>Predictable resolution feels like safety plus reward.</p><p class="cn">可预测解决被体验为安全加奖赏。</p></div>
+          <div class="action-cell"><strong>Perception</strong><p>Bright octaves open spatial auditory texture.</p><p class="cn">明亮八度打开空间听觉质地。</p></div>
+          <div class="action-cell"><strong>Neural</strong><p>VTA/NAcc/auditory cortex loop is the strongest rationale.</p><p class="cn">VTA/伏隔核/听觉皮层回路是最强依据。</p></div>
+          <div class="action-cell"><strong>Body</strong><p>Safety signal permits release.</p><p class="cn">安全信号允许身体释放。</p></div>
+          <div class="action-cell"><strong>Meaning</strong><p>Gentleness can be sovereign.</p><p class="cn">温柔可以拥有主权。</p></div>
+          <div class="action-cell"><strong>Cognition</strong><p>Predictability lowers prediction error for integration.</p><p class="cn">可预测性降低预测误差，便于整合。</p></div>
+        </div>
+        <div class="claim-limit-box"><strong>Evidence anchor</strong> Salimpoor &amp; Zatorre music reward literature, anticipation/peak emotion, musical resolution.</div>
       </div>
 
-      <!-- LITERATURE ANCHORS -->
-      <div class="card" style="background:rgba(0,245,255,.04);border-color:rgba(0,245,255,.28);margin-top:32px;">
-        <div class="eyebrow" style="color:var(--cyan);">LITERATURE ANCHORS // 主要文献引用</div>
+      <div class="card" style="background:rgba(0,245,255,.04);border-color:rgba(0,245,255,.28);">
+        <div class="rationale-kicker">LITERATURE ANCHORS // 主要文献引用</div>
         <h3>Key sources informing this design rationale</h3>
-        <ul style="line-height:1.85;font-size:13px;">
-          <li><strong>Salimpoor, V. N., Benovoy, M., Larcher, K., Dagher, A., &amp; Zatorre, R. J. (2011).</strong> Anatomically distinct dopamine release during anticipation and experience of peak emotion to music. <em>Nature Neuroscience</em>, 14, 257-262.</li>
-          <li><strong>Salimpoor, V. N. et al. (2013).</strong> Interactions between the nucleus accumbens and auditory cortices predict music reward value. <em>Science</em>, 340, 216-219.</li>
-          <li><strong>Porges, S. W. (2007).</strong> The polyvagal perspective. <em>Biological Psychology</em>, 74, 116-143.</li>
-          <li><strong>Frontiers in Cardiovascular Medicine (2026).</strong> Effect of music intervention on heart rate variability: a systematic review and meta-analysis of RCTs.</li>
-          <li><strong>Patel, A. D. &amp; Iversen, J. R. (2014).</strong> The evolutionary neuroscience of musical beat perception: the Action Simulation for Auditory Prediction (ASAP) hypothesis. <em>Frontiers in Systems Neuroscience</em>, 8, 57.</li>
-          <li><strong>Hove, M. J. et al. (2024).</strong> The strength of neural entrainment to electronic music correlates with proxies of altered states of consciousness. <em>PMC12014595</em>.</li>
-          <li><strong>Mehling, W. E. et al. (2023).</strong> Vibroacoustically-augmented breath-focused mindfulness for dissociation. <em>Psychological Medicine</em>, Cambridge.</li>
-          <li><strong>Skille, O. (1980s).</strong> Vibroacoustic therapy foundational work.</li>
-          <li><strong>Bartel, L. R., Chen, R., Alain, C., &amp; Ross, B. (2017).</strong> Vibroacoustic stimulation and brain oscillation. <em>Healthcare</em>.</li>
-          <li><strong>Koelsch, S. (2014).</strong> Brain correlates of music-evoked emotions. <em>Nature Reviews Neuroscience</em>, 15, 170-180.</li>
-          <li><strong>Trost, W. et al. (2015).</strong> Mapping aesthetic musical emotions in the brain. <em>Cerebral Cortex</em>.</li>
-          <li><strong>Bernardi, L. et al. (2006).</strong> Cardiovascular, cerebrovascular, and respiratory changes induced by different types of music. <em>Heart</em>, 92, 445-452.</li>
-        </ul>
+        <div class="literature-grid">
+          <div class="literature-item"><strong>Salimpoor et al. (2011, 2013)</strong><br>Music reward, anticipation, NAcc/VTA interaction, peak emotion.</div>
+          <div class="literature-item"><strong>Patel &amp; Iversen (2014)</strong><br>ASAP hypothesis and auditory-motor prediction in beat perception.</div>
+          <div class="literature-item"><strong>Porges (2007) / polyvagal literature</strong><br>Vagal regulation and safety-oriented autonomic framing.</div>
+          <div class="literature-item"><strong>Bernardi et al. (2006) and HRV music reviews</strong><br>Cardiovascular, respiratory, and HRV changes with music.</div>
+          <div class="literature-item"><strong>Koelsch / Trost music-emotion work</strong><br>Brain correlates of music-evoked emotion and aesthetic affect.</div>
+          <div class="literature-item"><strong>Vibroacoustic therapy / Mehling / Bartel</strong><br>Low-frequency vibration, interoception, dissociation-support rationale.</div>
+          <div class="literature-item"><strong>Entrainment / sensorimotor synchronization studies</strong><br>Motor entrainment, timing, electronic music, flow and altered-state proxies.</div>
+          <div class="literature-item"><strong>HRP Phase 2 pilot needed</strong><br>The full six-genre sequence has not yet been clinically validated; it is a researchable design hypothesis.</div>
+        </div>
       </div>
 
-      <!-- HONEST CLAIM LIMITS -->
-      <div class="card" style="background:rgba(255,100,210,.04);border-color:rgba(255,100,210,.32);margin-top:18px;">
-        <div class="eyebrow" style="color:var(--pink);">HONEST CLAIM LIMITS // 诚实声明边界</div>
-        <h3>What this design rationale does NOT claim</h3>
-        <ul style="line-height:1.85;font-size:13px;">
-          <li>This rationale does NOT claim 6-genre HRP protocol is clinically validated for anxiety, depression, ADHD, PTSD, or any psychiatric condition.</li>
-          <li>This rationale does NOT claim 427Hz has neuroscience-validated effect. 427Hz is product symbolic anchor only.</li>
-          <li>This rationale does NOT claim any single genre "heals" or "cures" anything. Genres are framed as state-matching design tools.</li>
-          <li>This rationale does NOT claim cited literature directly tested HRP protocol. Literature anchors inform design rationale; HRP-specific claims await Phase 2 pilot.</li>
-          <li>For Phase 2 testable hypotheses, see RQ1 / RQ2 / RQ3 / RQ4 / RQ5 in the research collaboration section.</li>
+      <div class="card" style="background:rgba(255,100,210,.04);border-color:rgba(255,100,210,.32);">
+        <div class="rationale-kicker" style="color:var(--pink);">HONEST CLAIM LIMITS // 诚实声明边界</div>
+        <h3>What this design rationale does not claim</h3>
+        <ul style="line-height:1.8;font-size:13px;color:var(--muted);">
+          <li>It does not claim that the six-genre HRP protocol is clinically validated for anxiety, depression, ADHD, PTSD, or any psychiatric condition.</li>
+          <li>It does not claim that 427Hz or 724Hz has a neuroscience-validated universal effect; these remain symbolic/product anchors unless separately tested.</li>
+          <li>It does not claim that any single genre cures, treats, or diagnoses anything. Genres are state-matching design tools and research hypotheses.</li>
+          <li>It does not claim that cited studies directly tested HRP. The literature anchors the design rationale; HRP-specific claims require pilot data.</li>
         </ul>
+        <p class="cn" style="color:rgba(244,247,255,.86);line-height:1.7;">
+          本部分不声称六种音乐协议已经临床验证；不声称 427Hz / 724Hz 具有已验证普适神经效应；
+          不声称任何音乐类型能治愈、治疗或诊断；也不声称既有文献已经直接测试 HRP。
+          这里的作用是把你的音乐协议从“灵感描述”升级为“可研究、可验证、可审计的设计依据”。
+        </p>
       </div>
     </section>
-
-
-
-
 
 
     <section id="sound-lab">
@@ -5773,7 +6285,7 @@
           <tr>
             <td><strong style="color:var(--text)">QDR Engine · support-protocol validation</strong><br/><span style="display:inline-block;margin-top:5px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:999px;background:rgba(53,255,159,.12);color:var(--green);border:1px solid rgba(53,255,159,.3);">PRIMARY</span></td>
             <td style="color:var(--cyan)">Causal inference in human behavior</td>
-            <td>HRP cannot use RCTs. Validating whether adaptive rhythm causes state change — not merely correlates with it — requires observational causal methods: instrumental variables, difference-in-differences, or quasi-experimental designs.</td>
+            <td>HRP can be studied as an open-label randomized controlled trial: participants are randomly assigned to conditions A/B/C/D. Condition cannot be blinded (participants hear whether music plays), but outcome assessment can be blinded and within-session change analyzed with mixed-effects models. The interest is estimating whether adaptive rhythm produces state change beyond fixed/random audio — and whether bodily signals shift before self-reported awareness.</td>
           </tr>
           <tr>
             <td><strong style="color:var(--text)">44271 Neural Cuff · wearable biosignal</strong><br/><span style="display:inline-block;margin-top:5px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:999px;background:rgba(53,255,159,.12);color:var(--green);border:1px solid rgba(53,255,159,.3);">PRIMARY</span></td>
@@ -5820,19 +6332,63 @@
         <div class="loop-item" style="border-color:rgba(53,255,159,.32);background:linear-gradient(180deg,rgba(53,255,159,.08),rgba(0,245,255,.04)),rgba(255,255,255,.035);">
           <div class="num">CONDITION D ★</div>
           <h3>Adaptive Rhythm + AI</h3>
-          <p class="en">Real-time rhythm adjustment based on self-report state sampling and behavioral proxies. The core HRP condition.</p>
-          <p class="cn">基于状态采样的实时节律调整。HRP 核心条件。</p>
+          <p class="en">Real-time rhythm adjustment based on self-report state sampling and behavioral proxies. The core HRP condition. Pilot v1 note: full real-time adaptivity is the target; the first pilot uses type-based preset sequences (Mellow / Stallion) as a simplified, explicitly-labeled proxy.</p>
+          <p class="cn">基于状态采样的实时节律调整。HRP 核心条件。Pilot v1 注：完整实时自适应是目标；首个 pilot 用 type-based 预设序列（Mellow / Stallion）作明确标注的简化 proxy。</p>
         </div>
       </div>
 
       <div class="bilingual-block" style="margin-top:18px;">
         <div class="lang-card">
           <strong>RESEARCH HYPOTHESIS TO BE TESTED</strong>
-          <p>Research hypothesis to be tested: Condition D may produce larger pre/post state change than A, B, and C on at least two of three measurement layers: self-report, behavioral task performance, and physiological convergence (HRV / EDA). This is not a validated clinical efficacy claim.</p>
+          <p>Research hypothesis to be tested: Condition D may produce larger pre/post state change than A, B, and C on at least two of three measurement layers: self-report, behavioral task performance (SART + Flow State Scale), and physiological convergence (HRV / EDA). This is not a validated clinical efficacy claim.</p>
         </div>
         <div class="lang-card">
           <strong>待验证研究假设</strong>
-          <p class="cn">待验证研究假设：条件 D 可能在自我报告、行为任务表现与生理收敛（HRV / EDA）三层中至少两层上，产生比 A、B、C 更大的前后测状态变化；这不是已验证的临床功效声明。</p>
+          <p class="cn">待验证研究假设：条件 D 可能在自我报告、行为任务表现（SART + Flow State Scale）与生理收敛（HRV / EDA）三层中至少两层上，产生比 A、B、C 更大的前后测状态变化；这不是已验证的临床功效声明。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card span-12 neon-card">
+      <div class="eyebrow">RESEARCH QUESTIONS // 研究问题 RQ1–RQ6</div>
+      <h2>Six falsifiable questions. RQ1 is the heart.</h2>
+      <h2 class="cn">六个可证伪的问题。RQ1 是心脏。</h2>
+      <div class="bilingual-block" style="margin-top:18px;">
+        <div class="lang-card" style="grid-column:1/-1;border-color:rgba(255,43,214,.34);background:rgba(255,43,214,.05);">
+          <strong style="color:var(--pink);">RQ1 — BODY-LEADS-AWARENESS MISALIGNMENT ★ // 身体领先觉察的错位（核心）</strong>
+          <p style="margin-top:10px;">Do bodily signals — especially bodily tension (muscle activation / EDA), together with HRV and skin temperature — shift <em>before</em> a participant self-reports a matching change in emotion or focus? Can HRP detect this body-leading window, and does surfacing it help the person re-align body, emotion, and cognition? Bodily tension is treated as a concrete, time-stamped early signal, not a metaphor.</p>
+          <p class="cn" style="margin-top:9px;">身体信号——尤其是身体的紧张感（肌肉激活 / 皮肤电），连同 HRV 与皮温——是否在被试自我报告对应的情绪或专注变化<em>之前</em>就移动？HRP 能否检测这个"身体领先"窗口，把它呈现出来是否帮助人重新对齐身体、情绪与认知？身体紧张感被当作一个具体、带时间戳的早期信号，而不是比喻。</p>
+        </div>
+      </div>
+      <div class="bilingual-block" style="margin-top:14px;">
+        <div class="lang-card">
+          <strong>RQ2 — State change / 状态变化</strong>
+          <p>Does adaptive rhythm support (D) produce larger within-session change in self-reported state (mood / focus / felt-body) than baseline / fixed / random (A/B/C)?</p>
+          <p class="cn">自适应节律支持（D）是否比基线/固定/随机（A/B/C）产生更大的组内自我报告状态变化（情绪/专注/身体感）？</p>
+        </div>
+        <div class="lang-card">
+          <strong>RQ3 — Behavioral correlate / 行为关联</strong>
+          <p>Is self-reported change accompanied by measurable change on a sustained-attention task (SART) and the Flow State Scale — chosen to fit a creator / knowledge-worker population rather than clinical reaction-time tasks?</p>
+          <p class="cn">自我报告变化是否伴随持续注意任务（SART）与 Flow State Scale 的可测量变化——选这两者是为贴合创造者/知识工作者群体，而非临床反应时任务？</p>
+        </div>
+      </div>
+      <div class="bilingual-block" style="margin-top:14px;">
+        <div class="lang-card">
+          <strong>RQ4 — Physiological convergence / 生理收敛</strong>
+          <p>Does HRV (RMSSD) shift consistently with the self-reported and behavioral changes — do the layers converge rather than contradict?</p>
+          <p class="cn">HRV（RMSSD）是否与自我报告及行为变化一致移动——三层是收敛还是矛盾？</p>
+        </div>
+        <div class="lang-card">
+          <strong>RQ5 — Genre specificity / 流派特异性</strong>
+          <p>Do the six genres show distinguishable response signatures, or do effects collapse to a single music / no-music contrast?</p>
+          <p class="cn">六种流派是否显示可区分的响应特征，还是效应坍缩为单一的有音乐/无音乐对比？</p>
+        </div>
+      </div>
+      <div class="bilingual-block" style="margin-top:14px;">
+        <div class="lang-card" style="grid-column:1/-1;border-color:rgba(53,255,159,.30);">
+          <strong style="color:var(--green);">RQ6 — Personalization &amp; breadth / 个性化与广谱</strong>
+          <p style="margin-top:10px;">Does a person-specific rhythm model outperform a population-average model — and does this hold across both healthy creators and people working through psychological difficulty (non-diagnostically grouped by self-report)?</p>
+          <p class="cn" style="margin-top:9px;">个体校准的节律模型是否优于群体平均模型——且这一优势是否在健康创造者与正在处理心理困难的人（按自我报告非诊断分组）中都成立？</p>
         </div>
       </div>
     </div>
@@ -5860,7 +6416,7 @@
       <div class="bilingual-block" style="margin-top:18px;">
         <div class="lang-card">
           <strong>PAPER 01 · METHODS</strong>
-          <p><em>Causal evaluation of non-randomizable rhythm-support protocols: an observational design framework for adaptive auditory systems</em><br/>Target: Nature Human Behaviour · PLOS Computational Biology</p>
+          <p><em>Open-label randomized evaluation of adaptive auditory-rhythm support: a within-session design for non-clinical state regulation and body–awareness alignment</em><br/>Target: Nature Human Behaviour · PLOS Computational Biology</p>
         </div>
         <div class="lang-card">
           <strong>PAPER 02 · EMPIRICAL</strong>
@@ -5873,8 +6429,8 @@
       </div>
     <div class="lang-card" style="margin-top:18px;grid-column:1/-1;border-color:rgba(53,255,159,.28);background:rgba(53,255,159,.04);">
   <strong style="color:var(--green);">FOR ACADEMIC COLLABORATORS // 致学术合作者</strong>
-  <p style="margin-top:10px;">The AI collaboration structure documented here is a methodological choice, not a shortcut. Wei Jueran is the sole originator of HRP's theoretical framework, support-protocol design, research questions, and system architecture. The three-model workflow — GPT for structural scaffolding, Gemini for expansion and adversarial stress-testing, Claude for language and ethical framing — functions as a documented, role-differentiated thinking tool, analogous to working with research collaborators who each hold a specific function. All final decisions, theoretical claims, and creative output originate with Wei Jueran. The AI workflow itself is treated as a researchable protocol and is fully documented within the system.</p>
-  <p class="cn" style="margin-top:9px;">这里记录的 AI 协作结构是一个方法论选择，而不是捷径。魏珏然是 HRP 理论框架、支持协议设计、研究问题与系统架构的唯一来源。三模型工作流——GPT/Hestia 负责结构支架与定性守护，Gemini=Boss Beater 负责扩展与对抗性反证，Claude=彩虹镜位/UpBass 负责语言、伦理框架与光谱折射——作为一个有文档记录、角色分工明确的思考工具运作，类似于与各有专职的研究协作者合作。所有最终决策、理论主张与创意输出均来自魏珏然。AI 工作流本身被视为可研究的协议，并在系统内完整记录。</p>
+  <p style="margin-top:10px;">The AI collaboration structure documented here is a methodological choice, not a shortcut. Wei Jueran is the sole originator of HRP's theoretical framework, rhythm-support protocol design, research questions, and system architecture. The three-model workflow — GPT for structural scaffolding, Gemini for expansion and adversarial stress-testing, Claude for language and ethical framing — functions as a documented, role-differentiated thinking tool, analogous to working with research collaborators who each hold a specific function. All final decisions, theoretical claims, and creative output originate with Wei Jueran. The AI workflow itself is treated as a researchable protocol and is fully documented within the system.</p>
+  <p class="cn" style="margin-top:9px;">这里记录的 AI 协作结构是一个方法论选择，而不是捷径。魏珏然是 HRP 理论框架、节律支持协议设计、研究问题与系统架构的唯一来源。三模型工作流——GPT/Hestia 负责结构支架与定性守护，Gemini=Boss Beater 负责扩展与对抗性反证，Claude=彩虹镜位/UpBass 负责语言、伦理框架与光谱折射——作为一个有文档记录、角色分工明确的思考工具运作，类似于与各有专职的研究协作者合作。所有最终决策、理论主张与创意输出均来自魏珏然。AI 工作流本身被视为可研究的协议，并在系统内完整记录。</p>
 </div>
     </div>
   </div>
@@ -5896,13 +6452,13 @@
 </main>
 
   <script>
-    function updatePhysicalTime() {{
+    function updatePhysicalTime() {
       const target = document.getElementById("physicalTime");
       if (!target) return;
 
       const now = new Date();
 
-      const formatted = new Intl.DateTimeFormat("en-US", {{
+      const formatted = new Intl.DateTimeFormat("en-US", {
         weekday: "short",
         month: "short",
         day: "numeric",
@@ -5913,10 +6469,10 @@
         hour12: true,
         timeZone: "America/New_York",
         timeZoneName: "short"
-      }}).format(now);
+      }).format(now);
 
       target.textContent = formatted + " // UPENN / PHILADELPHIA CONTEXT // PHYSICAL SIGNAL ONLINE";
-    }}
+    }
 
     updatePhysicalTime();
     setInterval(updatePhysicalTime, 1000);
@@ -5928,9 +6484,9 @@
     let h;
     let particles;
 
-    let mouse = {{ x: 0.5, y: 0.5 }};
+    let mouse = { x: 0.5, y: 0.5 };
 
-    function resize() {{
+    function resize() {
       w = canvas.width = window.innerWidth * window.devicePixelRatio;
       h = canvas.height = window.innerHeight * window.devicePixelRatio;
 
@@ -5938,8 +6494,8 @@
       canvas.style.height = window.innerHeight + "px";
 
       particles = Array.from(
-        {{ length: Math.min(240, Math.floor(window.innerWidth / 5)) }},
-        () => ({{
+        { length: Math.min(240, Math.floor(window.innerWidth / 5)) },
+        () => ({
           x: Math.random() * w,
           y: Math.random() * h,
           r: Math.random() * 1.8 + 0.4,
@@ -5947,16 +6503,16 @@
           s: Math.random() * 0.36 + 0.08,
           o: Math.random() * 0.55 + 0.22,
           type: Math.random() > 0.7 ? "line" : "dot"
-        }})
+        })
       );
-    }}
+    }
 
-    function draw() {{
+    function draw() {
       ctx.clearRect(0, 0, w, h);
 
       const scroll = window.scrollY / Math.max(1, document.body.scrollHeight - window.innerHeight);
 
-      for (const p of particles) {{
+      for (const p of particles) {
         p.a += p.s * 0.012;
 
         p.x += Math.cos(p.a) * (0.24 + scroll * 1.1) + (mouse.x - 0.5) * 0.28;
@@ -5971,104 +6527,104 @@
 
         ctx.beginPath();
 
-        if (p.type === "line") {{
+        if (p.type === "line") {
           ctx.moveTo(p.x, p.y);
           ctx.lineTo(
             p.x + Math.cos(p.a) * 26 * window.devicePixelRatio,
             p.y + Math.sin(p.a) * 26 * window.devicePixelRatio
           );
-          ctx.strokeStyle = `hsla(${{hueShift}}, 100%, 68%, ${{p.o}})`;
+          ctx.strokeStyle = `hsla(${hueShift}, 100%, 68%, ${p.o})`;
           ctx.lineWidth = 0.7 * window.devicePixelRatio;
           ctx.stroke();
-        }} else {{
+        } else {
           ctx.arc(p.x, p.y, p.r * window.devicePixelRatio, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(${{hueShift}}, 100%, 70%, ${{p.o}})`;
+          ctx.fillStyle = `hsla(${hueShift}, 100%, 70%, ${p.o})`;
           ctx.fill();
-        }}
-      }}
+        }
+      }
 
       requestAnimationFrame(draw);
-    }}
+    }
 
     window.addEventListener("resize", resize);
 
-    window.addEventListener("mousemove", (event) => {{
+    window.addEventListener("mousemove", (event) => {
       mouse.x = event.clientX / window.innerWidth;
       mouse.y = event.clientY / window.innerHeight;
-    }});
+    });
 
     window.addEventListener(
       "touchmove",
-      (event) => {{
+      (event) => {
         if (!event.touches[0]) return;
         mouse.x = event.touches[0].clientX / window.innerWidth;
         mouse.y = event.touches[0].clientY / window.innerHeight;
-      }},
-      {{ passive: true }}
+      },
+      { passive: true }
     );
 
     resize();
     draw();
 
-    const states = {{
-      stuck: {{
+    const states = {
+      stuck: {
         title: "Stuck / 卡死",
         desc:
           "The system is not failing. The entry point is too large, too cold, or too undefined. // 系统没有失败，只是入口太大、太冷或太不明确。",
         intervention:
           "Support prompt: 44271 Neural Cuff may send a slow pulse-side tap → reduce task scale → play user-approved grounding sound → offer one micro-action. // 干预：袖环发送慢速脉侧触觉 → 缩小任务 → 播放低频接地声音 → 给出一个微行动。"
-      }},
-      drifting: {{
+      },
+      drifting: {
         title: "Drifting / 漂移",
         desc:
           "Attention has not disappeared. It has lost its anchor and is searching for another rhythm. // 注意力没有消失，只是失去锚点，正在寻找另一个节律。",
         intervention:
           "Intervention: spatial sound anchor → soft haptic re-entry pattern → visual field narrows → one return sentence. // 干预：空间声音锚点 → 柔和触觉返回模式 → 视觉场收窄 → 一句返回句。"
-      }},
-      overloaded: {{
+      },
+      overloaded: {
         title: "Overloaded / 过载",
         desc:
           "Too much signal is entering at once. The field needs cooling, not more demand. // 太多信号同时进入。场需要冷却，而不是更多要求。",
         intervention:
           "Intervention: External Anchor Mode → reduce language density → cooling audio → pulse-side slow haptic → one concrete action only. // 干预：外部锚定模式 → 降低语言密度 → 冷却声音 → 脉侧慢触觉 → 只做一个具体动作。"
-      }},
-      numb: {{
+      },
+      numb: {
         title: "Numb / 麻木",
         desc:
           "The rhythm is not absent. It is protected under low-signal cover. // 节律不是不存在，而是被低信号保护起来。",
         intervention:
           "Intervention: warm textured sound → no-pressure naming → gentle cuff pulse → soft reflective micro-prompt. // 干预：温暖质地声音 → 无压力命名 → 柔和袖环脉冲 → 轻反思提示。"
-      }},
-      flow: {{
+      },
+      flow: {
         title: "In Flow / 入流",
         desc:
           "The rhythm is coherent. The system should protect the state and avoid interruption. // 节律已经连贯，系统应保护状态，避免打断。",
         intervention:
           "Intervention: maintain ambient support → suppress prompts → minimize haptics → record flow conditions. // 干预：保持环境支撑 → 抑制提示 → 最小化触觉 → 记录入流条件。"
-      }},
-      transition: {{
+      },
+      transition: {
         title: "Need Transition / 需要转换",
         desc:
           "One rhythm is ending and another has not yet opened. The bridge is the interface. // 一个节律正在结束，另一个尚未打开。桥就是界面。",
         intervention:
           "Intervention: closure cue → bridge sound → cuff transition pattern → next-state ritual. // 干预：结束提示 → 过渡声音 → 袖环转换模式 → 下一个状态仪式。"
-      }},
-      recovery: {{
+      },
+      recovery: {
         title: "Need Recovery / 需要恢复",
         desc:
           "Recovery is not laziness. Recovery is the body rebuilding rhythm integrity. // 恢复不是懒惰，而是身体正在重建节律完整性。",
         intervention:
           "Intervention: protect rest → remove output demand → restoration sound → low-frequency haptic breathing cue. // 干预：保护休息 → 移除输出要求 → 恢复声音 → 低频触觉呼吸提示。"
-      }}
-    }};
+      }
+    };
 
     const buttons = document.querySelectorAll(".state-btn");
     const title = document.getElementById("stateTitle");
     const desc = document.getElementById("stateDesc");
     const intervention = document.getElementById("stateIntervention");
 
-    buttons.forEach((button) => {{
-      button.addEventListener("click", () => {{
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
         buttons.forEach((b) => b.classList.remove("active"));
         button.classList.add("active");
 
@@ -6077,8 +6633,8 @@
         title.textContent = data.title;
         desc.textContent = data.desc;
         intervention.textContent = data.intervention;
-      }});
-    }});
+      });
+    });
 
     const soundMeta = {
       music: {
@@ -6349,8 +6905,6 @@
     }
 
     drawSoundVisual();
-      });
-    });
 
   </script>
 
@@ -6702,7 +7256,7 @@
             o.connect(g); g.connect(out); o.start();
             addNode(o); addNode(g);
           });
-slow low breathing tremolo for Mellow
+          // slow low breathing tremolo for Mellow
           var lfo = c.createOscillator();
           var lfoGain = c.createGain();
           lfo.frequency.value = 0.18;
@@ -6727,7 +7281,7 @@ slow low breathing tremolo for Mellow
           feedback.connect(delay);
           delay.connect(out2);
           addNode(delay); addNode(feedback);
-brighter, higher, sharper Stallion sound with harmonic shimmer
+          // brighter, higher, sharper Stallion sound with harmonic shimmer
           [724, 1448, 181, 1086].forEach(function (f, i) {
             var o = c.createOscillator();
             var g = c.createGain();
@@ -6741,7 +7295,7 @@ brighter, higher, sharper Stallion sound with harmonic shimmer
             o.connect(filter); filter.connect(g); g.connect(out2); g.connect(delay); o.start();
             addNode(o); addNode(g); addNode(filter);
           });
-fast shimmer pulse for Stallion, clearly different from 427
+          // fast shimmer pulse for Stallion, clearly different from 427
           var trem = c.createOscillator();
           var tremGain = c.createGain();
           trem.frequency.value = 7.24;
@@ -6849,7 +7403,7 @@ fast shimmer pulse for Stallion, clearly different from 427
       }
 
       function playMusicAnchor() {
-The basic Music button now plays a layered musical anchor, not generic sine only.
+        // The basic Music button now plays a layered musical anchor, not generic sine only.
         stopAllHRPSound();
         var c = ctx();
         var out = masterGain(0.065);
@@ -6909,7 +7463,7 @@ The basic Music button now plays a layered musical anchor, not generic sine only
 
 
 <script>
-Japanese embedded edition state lab + clock. Scoped to avoid collisions with the bilingual main site.
+  // Japanese embedded edition state lab + clock. Scoped to avoid collisions with the bilingual main site.
   (function () {
     const timeEl = document.getElementById("jaPhysicalTime");
     function tick() {
