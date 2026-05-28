@@ -3436,7 +3436,74 @@
       }
     }
 
-  </style>
+  
+
+/* HESTIA PATCH v24: QDR/Meta-Consciousness truncation repair
+   Fixes cropped horizontal cards by forcing long research blocks into readable rows.
+   Does not modify title animation/color or content semantics. */
+#qdr-therapy {
+  overflow: visible !important;
+}
+#qdr-therapy .card,
+#qdr-therapy .loop-item,
+#qdr-therapy .lang-card {
+  overflow: visible !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+#qdr-therapy .bilingual-block {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+#qdr-therapy .bilingual-block > .lang-card {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+}
+#qdr-therapy .system-loop {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+#qdr-therapy .system-loop[style] {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+#qdr-therapy .bilingual-block + .system-loop[style] {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+#qdr-therapy .loop-item p,
+#qdr-therapy .loop-item h3,
+#qdr-therapy .lang-card p,
+#qdr-therapy .lang-card strong {
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  hyphens: auto !important;
+}
+#qdr-therapy .lang-card p {
+  max-width: 100% !important;
+}
+#qdr-therapy .lang-card strong {
+  line-height: 1.42 !important;
+}
+#qdr-therapy .loop-item {
+  min-height: auto !important;
+}
+@media (max-width: 1200px) {
+  #qdr-therapy .system-loop[style],
+  #qdr-therapy .bilingual-block + .system-loop[style] {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 900px) {
+  #qdr-therapy .bilingual-block,
+  #qdr-therapy .system-loop,
+  #qdr-therapy .system-loop[style] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+</style>
 </head>
 
 <body>
@@ -3458,7 +3525,6 @@
     <a href="#metalogic-root">METALOGIC ROOT</a>
     <a href="#language-editions">LANGUAGE PAGES</a>
     <a href="#neural-cuff">NEURAL CUFF</a>
-    <a href="#data-vault">DATA VAULT</a>
     <a href="#prototype">PROTOTYPE</a>
     <a href="#qdr-therapy">QDR</a>
     <a href="./qdr-v1/">QDR v+1</a>  
@@ -3598,8 +3664,8 @@
         <div class="compliance-grid">
           <article class="compliance-mini">
             <h3>BCI Neural Cuff</h3>
-            <p class="en">Non-invasive research prototype. HRV, EDA, skin temperature, motion, and self-report states require explicit consent, minimization, deletion rights, and non-diagnostic use. Optional user-held encrypted storage and user-controlled export are covered in the Data Vault section.</p>
-            <p class="cn">非侵入式研究原型。HRV、皮肤电、皮肤温度、运动与自我报告状态需要明确同意、最小化采集、删除权与非诊断使用。可选的用户持有加密存储与用户自主导出见"数据保险库"区块。</p>
+            <p class="en">Non-invasive research prototype. HRV, EDA, skin temperature, motion, and self-report states require explicit consent, minimization, deletion rights, and non-diagnostic use.</p>
+            <p class="cn">非侵入式研究原型。HRV、皮肤电、皮肤温度、运动与自我报告状态需要明确同意、最小化采集、删除权与非诊断使用。</p>
           </article>
           <article class="compliance-mini">
             <h3>AiAiQ&lt;10</h3>
@@ -4097,94 +4163,6 @@
     
     
 
-
-<section id="data-vault">
-  <div class="grid">
-    <div class="card span-12 neon-card">
-      <div class="eyebrow">DATA VAULT &amp; SAFETY COMPANION // 数据保险库与安全伴侣</div>
-      <h2>The hardware can carry your physiological story. You own it. You carry it. You decide.</h2>
-      <h2 class="cn">硬件可以承载你的生理叙事。你拥有它。你携带它。你决定。</h2>
-      <p class="sub en">
-        The 44271 Neural Cuff and forehead EEG patch can log a continuous record — HRV, cortical rhythm (alpha / beta / theta), skin temperature, motion, respiration, heart rate, and self-reported states with timestamps. For people who want more than a session of music — people working through psychological difficulty — that record becomes something they can hold and carry to their own clinician. This stays inside the sovereignty principle: signals do not outrank the subject, and the device never acts on its own.
-      </p>
-      <p class="sub cn">
-        44271 Neural Cuff 与前额 EEG 贴片可以记录一段连续的轨迹——HRV、皮层节律（alpha / beta / theta）、皮温、运动、呼吸、心率，以及带时间戳的自我报告状态。对于需要的不只是一段音乐的人——正在处理心理困难的人——这段记录变成 TA 可以握住、带去给自己临床医生的东西。这一切都在主体主权原则之内：信号不凌驾于主体，设备永不自主行动。
-      </p>
-      <div class="relation-formula">
-        Not surveillance → carriable record<br />
-        Not autonomous → user-initiated<br />
-        <span class="cn">不是监视 → 而是可携带的记录<br />不是自主 → 而是用户发起</span>
-      </div>
-    </div>
-
-    <div class="card span-12">
-      <div class="eyebrow">TIER 1 — DATA VAULT &amp; CARRY // 数据保险库与携带 · BUILDABLE NOW</div>
-      <h3>Encrypted, user-held, exportable. Research-grade — not diagnostic-grade.</h3>
-      <h3 class="cn">加密、用户持有、可导出。研究级——非诊断级。</h3>
-      <p class="en">
-        Physiological and self-report data is stored encrypted and user-held (on-device plus the user's own storage), under explicit consent, data minimization, and a real deletion right. The user can export a clean summary (PDF / CSV) to bring to their own therapist or physician. The point is ownership and portability: the person carries their own rhythm history into a professional relationship that already has a duty of care.
-      </p>
-      <p class="cn">
-        生理与自我报告数据以加密、用户持有的方式存储（设备端 + 用户自己的存储），基于明确同意、最小化采集与真实的删除权。用户可以导出一份清晰的摘要（PDF / CSV），带去给自己的治疗师或医生。重点是所有权与可携带性：人把自己的节律历史，带进一段本就负有照护义务的专业关系里。
-      </p>
-      <p class="disclaimer">
-        <strong>What this data is / is not // 这份数据是什么、不是什么</strong><br />
-        Wrist and forehead signals are research-grade indicators, not clinical instruments. The device records and presents; it does not interpret, score, or diagnose. Any clinical meaning is determined by a qualified professional, not by HRP.
-        <br /><span class="cn">腕部与前额信号是研究级指标，不是临床仪器。设备只记录与呈现；它不解读、不评分、不诊断。任何临床意义都由合格的专业人士判定，而非由 HRP 判定。</span>
-      </p>
-      <div class="tag-row">
-        <span class="tag">END-TO-END ENCRYPTED</span>
-        <span class="tag">USER-HELD</span>
-        <span class="tag">EXPLICIT CONSENT</span>
-        <span class="tag">DELETION RIGHT</span>
-        <span class="tag">PDF / CSV EXPORT</span>
-      </div>
-    </div>
-
-    <div class="card span-12">
-      <div class="eyebrow">TIER 2 — USER-INITIATED SAFETY COMPANION // 用户发起的安全伴侣 · GATED</div>
-      <h3>The person presses for help. The device packages and asks to confirm. It never decides for them.</h3>
-      <h3 class="cn">人按下求助。设备打包并请求确认。它从不替人决定。</h3>
-      <p class="en">
-        This is not automatic crisis detection. When a person chooses to reach for help, they trigger it: the device assembles a recent rhythm snapshot, surfaces their pre-set trusted contacts and a crisis line, and asks the person to confirm before anything is sent. An opt-in, user-authorized, revocable view can share the same record with a clinician they already work with. Referral to a human crisis line — such as 988 (Suicide &amp; Crisis Lifeline) in the US, or a local equivalent — is offered, never replaced. Every step requires the user's act; the device never sends on its own.
-      </p>
-      <p class="cn">
-        这不是自动危机检测。当一个人选择伸手求助时，由 TA 触发：设备组装一份近期节律快照，呈现 TA 预设的可信联系人与危机热线，并在发送任何东西之前请 TA 确认。一个可选的、用户授权的、可撤销的视图，可以把同一份记录分享给 TA 本就在合作的临床医生。引导至人类危机热线——如美国的 988（自杀与危机生命线）或当地对应资源——只做引导，永不替代。每一步都需要用户的动作；设备永不自主发送。
-      </p>
-      <p class="disclaimer">
-        <strong>Why user-initiated, not automatic // 为什么是用户发起，而非自动</strong><br />
-        No wrist or forehead sensor reliably detects a psychological crisis. An automatic system that misses a real crisis, or that falsely triggers, harms the very people it aims to protect — and a safety feature people over-rely on can displace real human support. User-initiated design keeps the person in authority and keeps HRP outside the autonomous-emergency-device line.
-        <br /><span class="cn">没有腕部或前额传感器能可靠检测心理危机。一个会漏掉真危机、或会误触发的自动系统，伤害的恰是它想保护的人——而一个被过度依赖的安全功能会挤掉真实的人类支持。用户发起的设计把人留在主权位置，也让 HRP 留在"自主急救设备"红线之外。</span>
-      </p>
-      <div class="tag-row">
-        <span class="tag">USER-INITIATED</span>
-        <span class="tag">CONFIRM BEFORE SEND</span>
-        <span class="tag">PRE-SET TRUSTED CONTACTS</span>
-        <span class="tag">CRISIS-LINE REFERRAL</span>
-        <span class="tag">OPT-IN CLINICIAN VIEW</span>
-        <span class="tag">REVOCABLE</span>
-      </div>
-    </div>
-
-    <div class="card span-12">
-      <div class="bilingual-block">
-        <div class="lang-card" style="grid-column:1/-1;border-color:rgba(255,43,214,.34);background:rgba(255,43,214,.05);">
-          <strong style="color:var(--pink);">TIER 3 — EXPLORATORY HORIZON — NOT v1, NOT A PRODUCT CLAIM // 探索性远景 — 非 v1，非产品声明</strong>
-          <p style="margin-top:10px;">Autonomous crisis detection and closed-loop regulation (the device sensing a state and intervening directly) are a stated research direction only. They are NOT part of the current product and NOT claimed to work. Reaching them would require: clinical validation, a deliberate regulatory pathway (e.g. FDA Software-as-a-Medical-Device), IRB oversight, and a design that always announces itself, is always interruptible, and defaults to summoning humans rather than overriding the person. Until those gates are passed, HRP stays non-autonomous and non-medical.</p>
-          <p class="cn" style="margin-top:9px;">自主危机检测与闭环调节（设备感知状态并直接介入）仅是一个声明中的研究方向。它们<strong>不属于当前产品，也不声称有效</strong>。要达到它们需要：临床验证、一条审慎的监管通道（如 FDA 软件即医疗器械）、IRB 监督，以及一个永远先告知、永远可打断、默认"召唤人类"而非凌驾用户的设计。在通过这些门槛之前，HRP 保持非自主、非医疗。</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card span-12">
-      <div class="compliance-note">
-        <strong>DATA &amp; SAFETY COMPLIANCE // 数据与安全合规</strong>
-        <p class="en">HRP is not a medical device, not an autonomous emergency or crisis-detection system, and not a substitute for professional care. Data storage and export are user-owned and consent-based; the device records research-grade signals and does not diagnose, treat, or decide. Safety-companion actions are user-initiated and user-confirmed. Crisis support is referred to qualified humans and crisis lines, never replaced by the device.</p>
-        <p class="cn">HRP 不是医疗器械，不是自主急救或危机检测系统，也不替代专业照护。数据存储与导出由用户拥有、基于同意；设备记录研究级信号，不诊断、不治疗、不替人决定。安全伴侣的动作由用户发起、用户确认。危机支持引导至合格的人类与危机热线，永不由设备替代。</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="claude-layer">
   <div class="grid">
@@ -4984,7 +4962,133 @@
         font-size: 11px;
         letter-spacing: .14em;
       }
-    </style>
+    
+
+/* HESTIA PATCH v25: final QDR row repair + hero title spacing
+   Built on v24_no_truncation. Keeps content intact. Does not change title colors or glitch animation. */
+#top h1.glitch,
+#top h1.glitch::before,
+#top h1.glitch::after {
+  letter-spacing: -0.035em !important;
+  word-spacing: 0.16em !important;
+  white-space: normal !important;
+}
+
+/* Protect the QDR section from narrow-column collapse. */
+#qdr-therapy,
+#qdr-therapy * {
+  box-sizing: border-box !important;
+}
+
+#qdr-therapy {
+  overflow: visible !important;
+}
+
+#qdr-therapy > .grid {
+  display: grid !important;
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+#qdr-therapy .span-12,
+#qdr-therapy .card.span-12,
+#qdr-therapy .bilingual-block,
+#qdr-therapy .system-loop,
+#qdr-therapy .therapy-table,
+#qdr-therapy .disclaimer {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+#qdr-therapy .card,
+#qdr-therapy .loop-item,
+#qdr-therapy .lang-card,
+#qdr-therapy .bilingual-block,
+#qdr-therapy .system-loop {
+  overflow: visible !important;
+  min-width: 0 !important;
+}
+
+/* Bilingual blocks: two readable columns when short, full-width rows when marked grid-column:1/-1. */
+#qdr-therapy .bilingual-block {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)) !important;
+  align-items: stretch !important;
+  gap: 14px !important;
+}
+
+#qdr-therapy .bilingual-block > .lang-card[style*="grid-column:1/-1"],
+#qdr-therapy .bilingual-block > .lang-card[style*="grid-column: 1 / -1"],
+#qdr-therapy .bilingual-block > .lang-card[style*="grid-column: 1/-1"] {
+  grid-column: 1 / -1 !important;
+}
+
+/* All QDR system-loop cards use responsive rows, never thin vertical strips. */
+#qdr-therapy .system-loop,
+#qdr-therapy .system-loop[style],
+#qdr-therapy .bilingual-block + .system-loop,
+#qdr-therapy .bilingual-block + .system-loop[style] {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)) !important;
+  gap: 14px !important;
+  align-items: stretch !important;
+}
+
+#qdr-therapy .loop-item {
+  min-height: auto !important;
+  padding: 18px 20px !important;
+}
+
+#qdr-therapy .loop-item h3,
+#qdr-therapy .loop-item p,
+#qdr-therapy .lang-card h3,
+#qdr-therapy .lang-card p,
+#qdr-therapy .lang-card strong,
+#qdr-therapy .num {
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  hyphens: none !important;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+}
+
+#qdr-therapy .num,
+#qdr-therapy .lang-card strong {
+  line-height: 1.45 !important;
+}
+
+/* Restore readable table behavior without compressing the whole page. */
+#qdr-therapy .therapy-table {
+  table-layout: auto !important;
+  display: table !important;
+  overflow: visible !important;
+}
+
+#qdr-therapy .therapy-table th,
+#qdr-therapy .therapy-table td {
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+@media (max-width: 900px) {
+  #qdr-therapy .bilingual-block,
+  #qdr-therapy .system-loop,
+  #qdr-therapy .system-loop[style] {
+    grid-template-columns: 1fr !important;
+  }
+  #top h1.glitch,
+  #top h1.glitch::before,
+  #top h1.glitch::after {
+    letter-spacing: -0.045em !important;
+    word-spacing: 0.09em !important;
+  }
+}
+
+</style>
     <section id="qdr-therapy">
       <div class="grid">
         <div class="card span-12 neon-card">
