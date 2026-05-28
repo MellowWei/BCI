@@ -3436,7 +3436,74 @@
       }
     }
 
-  </style>
+  
+
+/* HESTIA PATCH v24: QDR/Meta-Consciousness truncation repair
+   Fixes cropped horizontal cards by forcing long research blocks into readable rows.
+   Does not modify title animation/color or content semantics. */
+#qdr-therapy {
+  overflow: visible !important;
+}
+#qdr-therapy .card,
+#qdr-therapy .loop-item,
+#qdr-therapy .lang-card {
+  overflow: visible !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+#qdr-therapy .bilingual-block {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+#qdr-therapy .bilingual-block > .lang-card {
+  grid-column: 1 / -1 !important;
+  width: 100% !important;
+}
+#qdr-therapy .system-loop {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+#qdr-therapy .system-loop[style] {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+#qdr-therapy .bilingual-block + .system-loop[style] {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+#qdr-therapy .loop-item p,
+#qdr-therapy .loop-item h3,
+#qdr-therapy .lang-card p,
+#qdr-therapy .lang-card strong {
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  hyphens: auto !important;
+}
+#qdr-therapy .lang-card p {
+  max-width: 100% !important;
+}
+#qdr-therapy .lang-card strong {
+  line-height: 1.42 !important;
+}
+#qdr-therapy .loop-item {
+  min-height: auto !important;
+}
+@media (max-width: 1200px) {
+  #qdr-therapy .system-loop[style],
+  #qdr-therapy .bilingual-block + .system-loop[style] {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 900px) {
+  #qdr-therapy .bilingual-block,
+  #qdr-therapy .system-loop,
+  #qdr-therapy .system-loop[style] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+</style>
 </head>
 
 <body>
