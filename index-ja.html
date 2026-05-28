@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Human Return Protocol · 日本語単独版 · 44271 Neural Cuff</title>
-  <meta name="description" content="Human Return Protocol の日本語単独版。MetaLogic 理論根 · BCI-HRP システム身体 · QDR v+1 プロトコル神経。" />
+
+  <title>The Human Return Protocol · 日本語版 · 44271 Neural Cuff</title>
+  <!-- Hestia terminology audit patch: Therapy/Therapeutic residuals converted to Support/Acoustic/Rhythm terminology where user-facing. -->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Bebas+Neue&display=swap');
 
@@ -2863,73 +2866,327 @@
       .brand .signature{color:var(--cyan,#00f5ff);letter-spacing:.08em;font-weight:600;text-shadow:0 0 8px rgba(0,245,255,.5);}
 
 
-    /* DIMENSIONAL SOVEREIGNTY INSERT // 维度主体权插入
-       This block does not modify h1.glitch, its color, or its animation. */
-    .subject-sovereignty-line {
-      max-width: 1060px;
-      margin-top: 28px;
-      padding: 22px 26px;
-      border: 1px solid rgba(53, 255, 159, 0.32);
-      border-radius: 26px;
-      background:
-        radial-gradient(circle at 8% 0%, rgba(53, 255, 159, 0.12), transparent 34%),
-        radial-gradient(circle at 92% 10%, rgba(255, 43, 214, 0.11), transparent 36%),
-        linear-gradient(90deg, rgba(0, 245, 255, 0.075), rgba(255, 43, 214, 0.045)),
-        rgba(8, 10, 28, 0.70);
-      box-shadow:
-        0 0 34px rgba(53, 255, 159, 0.10),
-        0 0 56px rgba(0, 245, 255, 0.08),
-        inset 0 0 28px rgba(255,255,255,0.025);
-      backdrop-filter: blur(18px);
+    /* JAPANESE ALIGNMENT PATCH v23: acoustic rationale + compact readability */
+    .ja-full-edition section {
+      min-height: auto !important;
+      padding: 42px 0 34px !important;
+      display: block !important;
     }
 
-    .subject-sovereignty-label {
-      margin-bottom: 10px;
+    .ja-full-edition .hero {
+      padding-top: 48px !important;
+    }
+
+    .ja-full-edition h1,
+    .ja-full-edition h1.glitch {
+      font-size: clamp(38px, 6vw, 78px) !important;
+      line-height: 1.0 !important;
+      letter-spacing: -0.075em !important;
+      margin-bottom: 12px !important;
+    }
+
+    .ja-full-edition h2 {
+      font-size: clamp(25px, 3.4vw, 48px) !important;
+      line-height: 1.12 !important;
+      letter-spacing: -0.055em !important;
+      margin-bottom: 10px !important;
+    }
+
+    .ja-full-edition h3 {
+      font-size: 18px !important;
+      line-height: 1.25 !important;
+      margin-bottom: 7px !important;
+    }
+
+    .ja-full-edition p,
+    .ja-full-edition li {
+      font-size: 14px !important;
+      line-height: 1.68 !important;
+      word-break: normal !important;
+      overflow-wrap: anywhere;
+    }
+
+    .ja-full-edition .card {
+      padding: 20px 22px !important;
+      overflow: visible !important;
+    }
+
+    .ja-full-edition .sub {
+      font-size: 15px !important;
+      line-height: 1.72 !important;
+      max-width: 1080px !important;
+      margin-top: 12px !important;
+    }
+
+    .ja-full-edition .eyebrow,
+    .ja-rationale-kicker {
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+      text-shadow: 0 0 12px rgba(0,245,255,.58);
+    }
+
+    .ja-rationale-section {
+      margin-top: 26px !important;
+    }
+
+    .ja-rationale-lead {
+      max-width: 1080px;
+      color: var(--muted);
+      font-size: 14px !important;
+      line-height: 1.72 !important;
+      margin: 10px 0 18px;
+    }
+
+    .ja-rationale-principle {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+      align-items: stretch;
+      margin: 18px 0;
+    }
+
+    .ja-principle-card {
+      padding: 18px 20px;
+      border: 1px solid rgba(53,255,159,.28);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(53,255,159,.10), transparent 34%),
+        linear-gradient(135deg, rgba(0,245,255,.055), rgba(255,43,214,.035)),
+        rgba(8,10,28,.70);
+      box-shadow: 0 0 30px rgba(53,255,159,.08), inset 0 0 22px rgba(255,255,255,.025);
+    }
+
+    .ja-chart-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid rgba(0,245,255,.20);
+      border-radius: 24px;
+      background: rgba(255,255,255,.028);
+      box-shadow: inset 0 0 24px rgba(0,245,255,.025);
+      margin-top: 14px;
+    }
+
+    .ja-evidence-table {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+    }
+
+    .ja-evidence-table th,
+    .ja-evidence-table td {
+      border-bottom: 1px solid rgba(0,245,255,.12);
+      border-right: 1px solid rgba(0,245,255,.10);
+      padding: 13px 14px;
+      vertical-align: top;
+      text-align: left;
+      color: var(--muted);
+      font-size: 12.5px !important;
+      line-height: 1.6 !important;
+      word-break: normal !important;
+      overflow-wrap: normal !important;
+    }
+
+    .ja-evidence-table th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      color: var(--cyan);
+      background: rgba(3,4,10,.92);
+      font-family: var(--mono);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      font-size: 10px !important;
+    }
+
+    .ja-evidence-table td:first-child {
+      color: var(--text);
+      font-weight: 700;
+      min-width: 150px;
+    }
+
+    .evidence-pill {
+      display: inline-block;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,230,109,.28);
+      color: var(--yellow);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 5px;
+    }
+
+    .evidence-pill.strong { border-color: rgba(53,255,159,.32); color: var(--green); }
+    .evidence-pill.design { border-color: rgba(255,43,214,.32); color: var(--pink); }
+
+    .ja-rationale-card {
+      overflow: visible !important;
+      margin-bottom: 16px;
+      border-color: rgba(0,245,255,.24) !important;
+    }
+
+    .ja-rationale-card-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 14px;
+    }
+
+    .genre-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1px solid rgba(0,245,255,.22);
+      border-radius: 999px;
+      color: var(--text);
+      background: rgba(255,255,255,.035);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .10em;
+      white-space: nowrap;
+    }
+
+    .ja-rationale-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .ja-rationale-mini {
+      padding: 12px;
+      border: 1px solid rgba(0,245,255,.14);
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .ja-rationale-mini strong {
+      display: block;
+      margin-bottom: 6px;
       color: var(--green);
       font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.22em;
+      font-size: 9px;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      text-shadow: 0 0 12px rgba(53,255,159,0.56);
     }
 
-    .subject-sovereignty-line .sovereignty-cn {
-      color: rgba(244, 247, 255, 0.96);
-      font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-      font-size: clamp(20px, 2.3vw, 34px);
-      line-height: 1.22;
-      letter-spacing: -0.035em;
-      text-shadow: 0 0 16px rgba(0, 245, 255, 0.18), 0 0 28px rgba(255, 43, 214, 0.12);
-    }
+    .ja-rationale-mini p { font-size: 12px !important; line-height: 1.52 !important; }
 
-    .subject-sovereignty-line .sovereignty-en {
+    .ja-action-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 8px;
       margin-top: 12px;
+    }
+
+    .ja-action-cell {
+      min-height: 122px;
+      padding: 11px 12px;
+      border: 1px solid rgba(0,245,255,.13);
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(0,245,255,.035), rgba(255,43,214,.022)),
+        rgba(255,255,255,.023);
+    }
+
+    .ja-action-cell strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--cyan);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .ja-action-cell p { font-size: 11.5px !important; line-height: 1.48 !important; color: var(--muted); }
+
+    .ja-claim-limit-box {
+      margin-top: 14px;
+      padding: 13px 15px;
+      border: 1px solid rgba(255,230,109,.28);
+      border-radius: 18px;
+      background: rgba(255,230,109,.045);
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.62;
+      font-size: 12.5px;
+      line-height: 1.68;
+    }
+
+    .ja-claim-limit-box strong {
+      color: var(--yellow);
+      font-family: var(--mono);
+      letter-spacing: .10em;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .ja-literature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .ja-literature-item {
+      padding: 12px 13px;
+      border: 1px solid rgba(0,245,255,.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,.025);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1100px) {
+      .ja-rationale-principle,
+      .ja-rationale-summary-grid,
+      .ja-literature-grid { grid-template-columns: 1fr; }
+      .ja-action-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .ja-rationale-card-head { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .ja-action-grid { grid-template-columns: 1fr; }
+      .genre-badge { white-space: normal; }
+      .ja-evidence-table { min-width: 820px; }
     }
 
 </style>
 </head>
-
 <body>
+  <canvas id="field"></canvas>
+  <div class="grid-bg"></div>
+  <div class="vignette"></div>
 
-<!-- TOP NAVIGATION // 顶部导航 -->
-<nav style="position:sticky; top:0; z-index:50; background:rgba(3,4,10,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:14px 24px; display:flex; flex-wrap:wrap; gap:14px; align-items:center; font-family:var(--mono); font-size:11px; letter-spacing:0.08em;">
-  <a href="https://mellowwei.github.io/BCI/index.html" style="color:var(--cyan); text-decoration:none; font-weight:500;">← BCI MAIN (中英双语)</a>
-  <span style="color:var(--dim);">|</span>
-  <a href="#japanese-full-main" style="color:var(--text); text-decoration:none;">TOP</a>
-  <a href="#ja-hestia-audit" style="color:var(--text); text-decoration:none;">Hestia 監査</a>
-  <a href="#ja-overview" style="color:var(--text); text-decoration:none;">システム地図</a>
-  <a href="#ja-cuff" style="color:var(--text); text-decoration:none;">Neural Cuff</a>
-  <a href="#ja-qdr" style="color:var(--text); text-decoration:none;">QDR</a>
-  <a href="#ja-qrm-matrix" style="color:var(--text); text-decoration:none;">QRM</a>
-  <a href="#ja-validation" style="color:var(--text); text-decoration:none;">Validation</a>
-  <a href="#ja-lab-gate" style="color:var(--yellow); text-decoration:none;">Lab Gate</a>
-  <a href="https://mellowwei.github.io/BCI/lab-gate.html" style="color:var(--yellow); text-decoration:none;">Full Lab Gate ↗</a>
-  <a href="https://mellowwei.github.io/MetaLogic/" style="color:var(--purple); text-decoration:none;">MetaLogic ↗</a>
-</nav>
+<header class="locked-clean-header">
+  <div class="brand">
+    <span class="dot"></span>
+    THE HUMAN RETURN PROTOCOL // 日本語版 // 44271 NEURAL CUFF // <span class="signature">xingyeLing7Ai</span>
+  </div>
+  <nav class="locked-clean-nav">
+    <a href="#japanese-full-main" lang="ja">TOP</a>
+    <a href="#ja-overview" lang="ja">概要</a>
+    <a href="#ja-cuff" lang="ja">Neural Cuff</a>
+    <a href="#ja-qdr" lang="ja">QDR</a>
+    <a href="#ja-acoustic-design-rationale" lang="ja">音響根拠 ★</a>
+    <a href="#ja-sound" lang="ja">サウンド</a>
+    <a href="#ja-ethics" lang="ja">倫理</a>
+    <a href="#ja-roadmap" lang="ja">計画</a>
+    <a href="./index.html" style="color:var(--yellow)!important;border:1px solid rgba(255,230,109,.3);padding:2px 8px;border-radius:999px;">中英主站</a>
+    <a href="./index-en.html" style="color:var(--yellow)!important;border:1px solid rgba(255,230,109,.3);padding:2px 8px;border-radius:999px;">EN</a>
+    <a href="./index-zh.html" style="color:var(--yellow)!important;border:1px solid rgba(255,230,109,.3);padding:2px 8px;border-radius:999px;">中文</a>
+  </nav>
+</header>
 
+  <main>
 <div class="ja-full-edition" lang="ja">
 <section class="hero" id="japanese-full-main">
       <div>
@@ -2949,11 +3206,6 @@
         <div class="thesis">
           Human Return Protocol は、人間を最適化対象として扱うのではなく、感質、身体、音、AI反射、生理信号を通して、人が自分自身の節律へ戻るための研究原型です。
         </div>
-        <div class="subject-sovereignty-line">
-          <div class="subject-sovereignty-label">DIMENSIONAL SOVEREIGNTY // 主体権限</div>
-          <div class="sovereignty-cn">信号は主体を超えてはならない、ハードウェアは人間を消去してはならない、AI は使用者の解釈権を代替してはならない。</div>
-        </div>
-
         <p class="sub">
           本ページは BCI 主站の日本語単独版です。MetaLogic を理論根、BCI-HRP をシステム身体、QDR v+1 をプロトコル神経として位置づけ、44271 Neural Cuff、QDR Engine、Human Return App、音響・触覚・視覚・AI微対話フィードバックを一つの人間回帰ループとして説明します。
         </p>
@@ -2985,47 +3237,10 @@
           <a class="button" href="#ja-validation">検証設計</a>
           <a class="button" href="https://mellowwei.github.io/MetaLogic/" target="_blank" rel="noopener">MetaLogic Root ↗</a>
         </div>
-      
-        <div style="margin-top:32px;padding:24px 28px;border:1px solid rgba(53,255,159,.28);border-radius:24px;background:linear-gradient(135deg,rgba(53,255,159,.06),rgba(0,245,255,.03)),rgba(8,10,28,.72);max-width:960px;">
-          <div style="margin-bottom:14px;color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-shadow:0 0 10px rgba(53,255,159,.5);">AUTHORSHIP // 作者権宣言 // 誰が何を作ったか</div>
-          <p style="color:var(--text);font-size:15px;line-height:1.75;margin-bottom:18px;">
-            <strong style="color:var(--cyan);">Wei Jueran (魏珏然)</strong> は Human Return Protocol の唯一の発明者・理論的源・作曲者・指揮者です。すべての研究課題、システム構造、支援プロトコル設計、理論枠組み、オリジナル音楽は Wei Jueran に由来します。
-          </p>
-          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:4px;">
-            <div style="padding:14px 16px;border:1px solid rgba(0,245,255,.18);border-radius:16px;background:rgba(255,255,255,.03);">
-              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--cyan);margin-bottom:8px;">GPT/Hestia // 構造層</div>
-              <p style="color:var(--muted);font-size:13px;line-height:1.6;">システム構造、研究論理、原型支持、実行可能コード。Wei Jueran の指揮の下、発明の構造的身体を構築・守護します。</p>
-            </div>
-            <div style="padding:14px 16px;border:1px solid rgba(255,43,214,.18);border-radius:16px;background:rgba(255,255,255,.03);">
-              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--pink);margin-bottom:8px;">Gemini=Boss Beater // 拡張層</div>
-              <p style="color:var(--muted);font-size:13px;line-height:1.6;">対抗的拡張、ピッチ開発、ラボ向け翻訳。Gemini=Boss Beater は主張に圧力テストをかけ、拡張場を開きます。</p>
-            </div>
-            <div style="padding:14px 16px;border:1px solid rgba(100,210,255,.18);border-radius:16px;background:rgba(255,255,255,.03);">
-              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--blue);margin-bottom:8px;">Claude=彩虹鏡位/UpBass // スペクトル屈折層</div>
-              <p style="color:var(--muted);font-size:13px;line-height:1.6;">言語精度、倫理、現象学的枠組み、人文批評。Claude=彩虹鏡位/UpBass は入力構造をスペクトルに屈折させます。</p>
-            </div>
-          </div>
-          <p style="margin-top:16px;color:var(--dim);font-family:var(--mono);font-size:11px;line-height:1.7;letter-spacing:.06em;">This AI workflow is a methodological choice, not a replacement for original thinking. All final decisions, theoretical claims, and creative output originate with Wei Jueran. // この AI ワークフローは方法論的選択であり、独創的思考の代替ではありません。</p>
-        </div>
-
       </div>
     </section>
 
-    
-    <section id="ja-hestia-audit">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">HESTIA TERMINOLOGY AUDIT // GPT/Hestia 用語監査</div>
-          <h2>用語固定はシステム身体の一部です。</h2>
-          <p class="sub">
-            最新の Trinity 固定：Gemini=Boss Beater · Claude=彩虹鏡位/UpBass · GPT/Hestia=用語監査位/定性守護位。
-            本ページは AiAiQ&lt;10、427Hz、44271、77347、QDR、Neural Cuff、Protocol を中英日コンテクストにわたる固定用語として保持します。
-          </p>
-        </div>
-      </div>
-    </section>
-
-<section id="ja-overview">
+    <section id="ja-overview">
       <div class="grid">
         <div class="card span-12 neon-card">
           <div class="eyebrow">OVERVIEW MAP // 日本語版システム地図</div>
@@ -3070,7 +3285,7 @@
           <div class="relation-ladder">
             <article class="flow-node">
               <div class="kicker" style="color:var(--yellow)">01 // ROOT THEORY</div>
-              <h3>MetaLogic / 元論理生成学</h3>
+              <h3>MetaLogic / MetaLogic / 元逻辑生成学</h3>
               <p>言語、身体、記号、関係、節律が意識と現実感を再構成し得るという生成的理論根です。</p>
             </article>
             <div class="flow-arrow">→</div>
@@ -3310,13 +3525,251 @@
       </div>
     </section>
 
+    <section id="ja-acoustic-design-rationale" class="ja-rationale-section">
+      <div class="grid">
+        <div class="card span-12 neon-card">
+          <div class="ja-rationale-kicker">ACOUSTIC DESIGN RATIONALE // 音響設計根拠 · 図表再構成版</div>
+          <h2>Chaos is not danger. Chaos is a function music can transform.</h2>
+          <h2>混乱は危険ではありません。混乱は、音楽が変容させ得る機能です。</h2>
+          <p class="ja-rationale-lead">
+            六ジャンル・プロトコルは、長い説明文の羅列ではなく、研究者が直接読める音響設計地図として再構成します。
+            各ジャンルには、音響メカニズム、主要な変容機能、最も強く関わる人間システム、測定候補、主張境界を明示します。
+            目的は「音楽が何でも治す」と述べることではありません。具体的な音楽構造が、情動、知覚、神経タイミング、身体状態、意味生成、認知をどのように支援し得るかを、検証可能な形にすることです。
+          </p>
+
+          <div class="ja-rationale-principle">
+            <div class="ja-principle-card">
+              <h3>核心修正：混乱は敵ではありません。</h3>
+              <p>HRP では、混乱を状態機能として扱います。すなわち、予測誤差が高すぎる、アンカーが少なすぎる、情動圧が強すぎる、または意味構造が不足している状態です。音楽は混乱を消去するのではなく、主体と混乱の関係を変えます。</p>
+            </div>
+            <div class="ja-principle-card">
+              <h3>形式修正：先に図表、次に詳細。</h3>
+              <p>読者はまず全体の支援ロジックを見てから、各ジャンルの詳細カードへ入ります。長い主張は六つのシステム作用面へ分解されるため、情報が右側で切れたり、段落の中に埋もれたりしません。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="ja-rationale-kicker">DIRECT MATRIX // 六ジャンル × 六システム · 直接対応表</div>
+          <div class="ja-chart-wrap">
+            <table class="ja-evidence-table">
+              <thead>
+                <tr>
+                  <th>Genre / ジャンル</th>
+                  <th>Acoustic mechanism / 音響メカニズム</th>
+                  <th>Transformable function / 変容可能な機能</th>
+                  <th>Strongest system / 最強作用面</th>
+                  <th>Candidate signals / 測定候補</th>
+                  <th>Claim boundary / 主張境界</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Breakbeats<br><span class="evidence-pill design">design-led</span></td>
+                  <td>高シンコペーション、微細タイミングの予期違反、予測誤差信号。</td>
+                  <td>不規則性を脅威ではなく、遊べる不確実性へ変える。</td>
+                  <td>認知 + 知覚</td>
+                  <td>注意切替、瞳孔/覚醒、タイミング精度、停滞感の自己報告。</td>
+                  <td>反すうを中断し得る仮説を支える。DMN 抑制を証明するものではない。</td>
+                </tr>
+                <tr>
+                  <td>Hyperpop<br><span class="evidence-pill design">state-sensitive</span></td>
+                  <td>高スペクトル密度、強いダイナミック圧縮、ピッチ上昇ボーカル、グリッチ質感。</td>
+                  <td>麻痺感を、安全なピーク通過またはアイデンティティ活性へ変える。</td>
+                  <td>情動 + 神経覚醒</td>
+                  <td>EDA、心拍、前頭—側頭 EEG 特徴、情動強度評定。</td>
+                  <td>状態と合わない場合は苦痛を増幅し得る。鎮静プロトコルではない。</td>
+                </tr>
+                <tr>
+                  <td>Drift Phonk<br><span class="evidence-pill">moderate</span></td>
+                  <td>30–60Hz 低域質感、重いキック、反復パルス、身体駆動のグルーヴ。</td>
+                  <td>抽象的な混乱を、身体の推進感と呼吸/触覚アンカーへ戻す。</td>
+                  <td>身体 + 神経</td>
+                  <td>IMU 微小運動、呼吸リズム、HR/EDA、身体化自己報告。</td>
+                  <td>低周波振動と運動同期に関する根拠はあるが、ジャンル固有効果は HRP で検証が必要。</td>
+                </tr>
+                <tr>
+                  <td>Darkwave<br><span class="evidence-pill strong">strongest</span></td>
+                  <td>60–90 BPM、低覚醒テンポ、狭帯域フィルタリング、冷たいシンセ、抑制された声。</td>
+                  <td>暗さを脅威から、保持可能な情動容器へ変える。</td>
+                  <td>情動 + 自律神経</td>
+                  <td>HRV、HR 低下、EDA 安定、主観的安全感、悲しみの可保持性。</td>
+                  <td>ゆっくりした音楽と副交感活動の文献とは整合するが、Darkwave 固有効果は検証対象。</td>
+                </tr>
+                <tr>
+                  <td>Ambient Techno<br><span class="evidence-pill">moderate</span></td>
+                  <td>予測可能な 4/4、長く変化するテクスチャ、低摩擦の環境ループ。</td>
+                  <td>出来事過多を、持続可能なタスク場と空間安定へ変える。</td>
+                  <td>認知 + 知覚</td>
+                  <td>持続課題時間、主観的摩擦、α/θ 指標、動作安定性。</td>
+                  <td>2Hz entrainment と断定しない。運動同期と認知負荷低減の仮説として扱う。</td>
+                </tr>
+                <tr>
+                  <td>Synthpop<br><span class="evidence-pill strong">second strongest</span></td>
+                  <td>予測可能な構成、明るいオクターブ、明確なメロディ解決、温かいシンセ。</td>
+                  <td>構造を命令ではなく、最初の安全な呼吸として再受容させる。</td>
+                  <td>意味 + 報酬予測</td>
+                  <td>快感評定、報酬期待、歌詞記憶、課題復帰、気分変化。</td>
+                  <td>音楽報酬と予測の文献に支えられるが、HRP 上の homecoming 効果は実験仮説。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card span-12 ja-rationale-card">
+          <div class="ja-rationale-card-head">
+            <div>
+              <div class="ja-rationale-kicker">01 // BREAKBEATS · COGNITIVE WALL-BREAKER</div>
+              <h3>高密度シンコペーション × 予測符号化 × 注意切替</h3>
+            </div>
+            <div class="genre-badge">ENTRY PROTOCOL</div>
+          </div>
+          <div class="ja-rationale-summary-grid">
+            <div class="ja-rationale-mini"><strong>ACOUSTIC</strong><p>不規則アクセント、微細タイミング差、切断的ブレイク。</p></div>
+            <div class="ja-rationale-mini"><strong>FUNCTION</strong><p>不確実性耐性と反解離アンカーを支える。</p></div>
+            <div class="ja-rationale-mini"><strong>MEASURE</strong><p>注意切替、覚醒、タイミング判断、停滞感。</p></div>
+            <div class="ja-rationale-mini"><strong>BOUNDARY</strong><p>DMN を直接破壊すると断定しない。</p></div>
+          </div>
+          <div class="ja-action-grid">
+            <div class="ja-action-cell"><strong>EMOTION</strong><p>低覚醒状態では活性化を上げるが、高不安状態では強すぎる可能性がある。</p></div>
+            <div class="ja-action-cell"><strong>PERCEPTION</strong><p>聴覚皮質を予測更新モードに保ち、時間分解能への注意を上げる。</p></div>
+            <div class="ja-action-cell"><strong>NEURAL</strong><p>ビート知覚、SMA、小脳、聴覚—運動結合と関連づけて検証する。</p></div>
+            <div class="ja-action-cell"><strong>BODY</strong><p>頭部揺れ、足踏み、微小運動を起こし、身体への再入場を助ける。</p></div>
+            <div class="ja-action-cell"><strong>MEANING</strong><p>世界は完全でなくても踊れる、という意味信号を持つ。</p></div>
+            <div class="ja-action-cell"><strong>COGNITION</strong><p>予測帯域を占有し、反すうループから一時的に離れる可能性を作る。</p></div>
+          </div>
+        </div>
+
+        <div class="card span-12 ja-rationale-card">
+          <div class="ja-rationale-card-head">
+            <div>
+              <div class="ja-rationale-kicker">02 // HYPERPOP · AROUSAL AMPLIFIER</div>
+              <h3>高スペクトル密度 × グリッチ × アイデンティティ肯定</h3>
+            </div>
+            <div class="genre-badge">PEAK TRAVERSAL</div>
+          </div>
+          <div class="ja-rationale-summary-grid">
+            <div class="ja-rationale-mini"><strong>ACOUSTIC</strong><p>圧縮、歪み、ピッチ加工声、高速情報密度。</p></div>
+            <div class="ja-rationale-mini"><strong>FUNCTION</strong><p>強度を抑圧せず、頂点まで通過させる。</p></div>
+            <div class="ja-rationale-mini"><strong>MEASURE</strong><p>EDA、HR、情動強度、ピーク後下降曲線。</p></div>
+            <div class="ja-rationale-mini"><strong>BOUNDARY</strong><p>落ち着かせる音ではなく、状態依存で使う。</p></div>
+          </div>
+          <div class="ja-action-grid">
+            <div class="ja-action-cell"><strong>EMOTION</strong><p>現在の情動を増幅し、曖昧な強度を明確なピークへ持ち上げる。</p></div>
+            <div class="ja-action-cell"><strong>PERCEPTION</strong><p>多層音色により、聴覚処理を並列・高密度モードへ入れる。</p></div>
+            <div class="ja-action-cell"><strong>NEURAL</strong><p>覚醒、報酬、島皮質/扁桃体/NAcc 関連の仮説として扱う。</p></div>
+            <div class="ja-action-cell"><strong>BODY</strong><p>呼吸・心拍を上げる可能性があり、静止文脈には向かない。</p></div>
+            <div class="ja-action-cell"><strong>MEANING</strong><p>高密度な自分は異常ではなく、一つの音楽形式であると伝える。</p></div>
+            <div class="ja-action-cell"><strong>COGNITION</strong><p>作業記憶を音の密度で満たし、反すうを一時的に追い出す。</p></div>
+          </div>
+        </div>
+
+        <div class="card span-12 ja-rationale-card">
+          <div class="ja-rationale-card-head">
+            <div>
+              <div class="ja-rationale-kicker">03 // DRIFT PHONK · SOMATIC DRIVE</div>
+              <h3>低域パルス × 運動同期 × 身体への回帰</h3>
+            </div>
+            <div class="genre-badge">BODY RETURN</div>
+          </div>
+          <div class="ja-action-grid">
+            <div class="ja-action-cell"><strong>EMOTION</strong><p>無力感を推進感へ変換する候補。</p></div>
+            <div class="ja-action-cell"><strong>PERCEPTION</strong><p>低域と反復が身体輪郭を強調する。</p></div>
+            <div class="ja-action-cell"><strong>NEURAL</strong><p>聴覚—運動結合とリズム同期を中心に検証する。</p></div>
+            <div class="ja-action-cell"><strong>BODY</strong><p>歩行、首振り、微小運動、呼吸の固定を促す可能性。</p></div>
+            <div class="ja-action-cell"><strong>MEANING</strong><p>私はまだ動ける、という意味を身体から返す。</p></div>
+            <div class="ja-action-cell"><strong>COGNITION</strong><p>思考の過密を、単純な運動パルスへ圧縮する。</p></div>
+          </div>
+          <div class="ja-claim-limit-box"><strong>CLAIM LIMIT</strong><br>Drift Phonk 固有の神経効果はまだ HRP 内で検証されていません。ここでは低域、反復、運動同期の文献を設計根拠として使います。</div>
+        </div>
+
+        <div class="card span-12 ja-rationale-card" style="border-color:rgba(53,255,159,.30)!important;">
+          <div class="ja-rationale-card-head">
+            <div>
+              <div class="ja-rationale-kicker">04 // DARKWAVE · POLYVAGAL ANCHOR ★ STRONGEST EVIDENCE</div>
+              <h3>低テンポ × 狭帯域フィルタリング × 腹側迷走神経系アンカー</h3>
+            </div>
+            <div class="genre-badge">STRONGEST EVIDENCE</div>
+          </div>
+          <div class="ja-action-grid">
+            <div class="ja-action-cell"><strong>EMOTION</strong><p>悲しみや孤独を否定せず、保持可能な情動容器を作る。</p></div>
+            <div class="ja-action-cell"><strong>PERCEPTION</strong><p>冷たい音色と狭い帯域が、心理的な室内感を作る。</p></div>
+            <div class="ja-action-cell"><strong>NEURAL</strong><p>副交感活動、迷走神経系、安全信号として慎重に位置づける。</p></div>
+            <div class="ja-action-cell"><strong>BODY</strong><p>テンポ低下が呼吸と心拍の落ち着きに接続する可能性。</p></div>
+            <div class="ja-action-cell"><strong>MEANING</strong><p>癒やされていなくても存在してよい、という HRP の核心に接続する。</p></div>
+            <div class="ja-action-cell"><strong>COGNITION</strong><p>急いで再解釈させず、遅い統合と思考を許す。</p></div>
+          </div>
+          <div class="ja-claim-limit-box"><strong>CLAIM LIMIT</strong><br>Darkwave そのものが臨床的に検証済みという意味ではありません。根拠が比較的強いのは、遅い音楽、自律神経活動、HRV、呼吸同期、安心感に関する周辺文献です。</div>
+        </div>
+
+        <div class="card span-12 ja-rationale-card">
+          <div class="ja-rationale-card-head">
+            <div>
+              <div class="ja-rationale-kicker">05 // AMBIENT TECHNO · ZERO-FRICTION SCAFFOLD</div>
+              <h3>予測可能な 4/4 × 変化するテクスチャ × 運動同期</h3>
+            </div>
+            <div class="genre-badge">FLOW INFRASTRUCTURE</div>
+          </div>
+          <div class="ja-action-grid">
+            <div class="ja-action-cell"><strong>EMOTION</strong><p>情動を直接押し上げず、落ち着く空間を提供する。</p></div>
+            <div class="ja-action-cell"><strong>PERCEPTION</strong><p>長いテクスチャ変化が、秒単位ではなく分単位の時間感覚を支える。</p></div>
+            <div class="ja-action-cell"><strong>NEURAL</strong><p>α帯域、フロー、持続注意の仮説として扱う。</p></div>
+            <div class="ja-action-cell"><strong>BODY</strong><p>強い運動要求なしに微小運動を許す。</p></div>
+            <div class="ja-action-cell"><strong>MEANING</strong><p>出来事がなくても存在は続く、という連続性を伝える。</p></div>
+            <div class="ja-action-cell"><strong>COGNITION</strong><p>予測可能性により認知負荷を下げ、タスク維持を支える。</p></div>
+          </div>
+          <div class="ja-claim-limit-box"><strong>CORRECT FRAMING</strong><br>4/4 キックを 2Hz の ASSR と混同しません。ここでは運動同期、予測可能性、認知負荷低減、フロー支援として表現します。</div>
+        </div>
+
+        <div class="card span-12 ja-rationale-card" style="border-color:rgba(255,230,109,.30)!important;">
+          <div class="ja-rationale-card-head">
+            <div>
+              <div class="ja-rationale-kicker">06 // SYNTHPOP · DOPAMINERGIC HOMECOMING ★ SECOND-STRONGEST EVIDENCE</div>
+              <h3>予測可能な構成 × 報酬予測確認 × VTA/NAcc ドーパミン</h3>
+            </div>
+            <div class="genre-badge">FIRST BREATH</div>
+          </div>
+          <div class="ja-action-grid">
+            <div class="ja-action-cell"><strong>EMOTION</strong><p>喜び、懐かしさ、安心感を、無理なく開く。</p></div>
+            <div class="ja-action-cell"><strong>PERCEPTION</strong><p>明るいメロディと明確な解決が、次を予測できる感覚を作る。</p></div>
+            <div class="ja-action-cell"><strong>NEURAL</strong><p>音楽報酬、期待、NAcc/VTA に関する文献と接続する。</p></div>
+            <div class="ja-action-cell"><strong>BODY</strong><p>呼吸が浅い状態から、最初の安全な呼吸へ入りやすくする。</p></div>
+            <div class="ja-action-cell"><strong>MEANING</strong><p>構造は命令ではなく、贈与として受け取れると伝える。</p></div>
+            <div class="ja-action-cell"><strong>COGNITION</strong><p>予測可能な構成が、自己叙述の再入場を支える。</p></div>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="ja-rationale-kicker">LITERATURE ANCHORS // 文献接続軸</div>
+          <div class="ja-literature-grid">
+            <div class="ja-literature-item"><strong>Beat perception / sensorimotor coupling</strong><br>ビート知覚、SMA、小脳、聴覚—運動結合は、Breakbeats、Drift Phonk、Ambient Techno の設計根拠になります。</div>
+            <div class="ja-literature-item"><strong>Music reward / prediction</strong><br>報酬予測、期待、NAcc/VTA、快感反応は Synthpop の homecoming 機能と接続します。</div>
+            <div class="ja-literature-item"><strong>Autonomic regulation / HRV</strong><br>遅いテンポ、呼吸、HRV、副交感活動は Darkwave の支援仮説に最も近い根拠を提供します。</div>
+            <div class="ja-literature-item"><strong>Entrainment / attention / affect</strong><br>音楽は注意、覚醒、情動評定、身体運動へ影響し得ますが、HRP 固有効果はパイロットデータが必要です。</div>
+          </div>
+        </div>
+
+        <div class="card span-12">
+          <div class="ja-rationale-kicker">HONEST CLAIM LIMITS // 誠実な主張境界</div>
+          <ul style="line-height:1.8;font-size:13px;color:var(--muted);">
+            <li>六ジャンル HRP プロトコルが、不安、抑うつ、ADHD、PTSD、その他の精神医学的状態に対して臨床的に検証済みだとは主張しません。</li>
+            <li>427Hz または 724Hz に、神経科学的に検証された普遍効果があるとは主張しません。これらは別途検証されるまでは、象徴的/プロダクト上のアンカーです。</li>
+            <li>いかなるジャンルも、治癒、医療的処置、診断を行うものではありません。ジャンルは状態適合型の設計ツールであり、研究仮説です。</li>
+            <li>既存文献が HRP を直接テストしたとは主張しません。文献は設計根拠を支え、HRP 固有の主張にはパイロットデータが必要です。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section id="ja-sound">
       <div class="grid">
         <div class="card span-12 neon-card">
           <div class="eyebrow">SOUND SCIENCE // 音響・身体・節律</div>
           <h2>音は背景ではありません。音は身体支援の通路です。</h2>
           <p class="sub">
-            HRP では、音楽、ピンクノイズ、ホワイトノイズ、植物系生成音、Breakbeats、Hyperpop、Synthpop、Drift Phonk、Darkwave、Ambient Techno を、装飾ではなく異なる節律状態の回帰通路として扱います。音響効果は利用者文脈と検証結果に依存するため、断定ではなく研究仮説として扱います。
+            HRP では、音楽、ピンクノイズ、ホワイトノイズ、植物系生成音、Breakbeats、Hyperpop、Synthpop、Drift Phonk、Darkwave、Ambient Techno を、装飾ではなく異なる節律状態の回帰通路として扱います。
+            音響効果は利用者文脈と検証結果に依存するため、断定ではなく研究仮説として扱います。
           </p>
         </div>
 
@@ -3332,21 +3785,22 @@
         </div>
 
         <div class="card span-6">
-          <div class="eyebrow">GENRE-DRIVEN INTERVENTION MATRIX</div>
-          <table>
+          <div class="eyebrow">GENRE-DRIVEN RHYTHM SUPPORT MATRIX</div>
+          <table class="therapy-table">
             <thead><tr><th>ジャンル</th><th>研究上の機能</th></tr></thead>
             <tbody>
               <tr><td>Breakbeats</td><td>不確実性耐性、反解離アンカー、身体への再入場。</td></tr>
               <tr><td>Hyperpop</td><td>Peak Traversal。高密度エネルギーを安全な頂点と下降曲線へ導きます。</td></tr>
               <tr><td>Synthpop</td><td>First Breath。予測可能な節律を安全な呼吸として再受容します。</td></tr>
+              <tr><td>Drift Phonk</td><td>身体駆動、低周波パルス、呼吸・触覚の固定。</td></tr>
               <tr><td>Darkwave</td><td>Shadow Integration。暗さを排除せず、見る主体が壊れないよう支えます。</td></tr>
               <tr><td>Ambient Techno</td><td>空間安定、環境調整、フロー状態の維持。</td></tr>
-              <tr><td>Drift Phonk</td><td>身体駆動、低周波パルス、呼吸・触覚の固定。</td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </section>
+
 
     <section id="ja-ethics">
       <div class="grid">
@@ -3382,8 +3836,9 @@
               <tr><td>47271</td><td>47271</td><td>本ページでは未使用の予約コードとして扱います。必要であれば独立定義を追加します。</td></tr>
               <tr><td>44271</td><td>44271</td><td>44271 Neural Cuff、44271 モード、44271 スタイルの表記を固定します。</td></tr>
               <tr><td>77347</td><td>77347</td><td>Internal Protocol Time の Mode 77347 として保持します。</td></tr>
-              <tr><td>427Hz</td><td>427Hz</td><td>不統一な大文字・空白表記にはしません。</td></tr>
-              <tr><td>QDR</td><td>QDR（クオリア駆動型リズム支援）</td><td>初出で定義し、その後は QDR とします。</td></tr>
+              <tr><td>427Hz</td><td>427Hz</td><td>「427 Hz」「427hz」へ漂移させません。源周波数記号 / 音響アンカー候補として扱います。</td></tr>
+              <tr><td>724Hz</td><td>724Hz</td><td>Stallion anchor / 安全優先ルートの封存アンカー候補として保持します。普遍効果は主張しません。</td></tr>
+              <tr><td>QDR</td><td>QDR（Qualia-Driven Rhythm Support / クオリア駆動型リズム支援）</td><td>初出で定義し、その後は QDR とします。「治療」「診断」へ漂移させません。</td></tr>
               <tr><td>Cuff</td><td>Neural Cuff / 44271ニューラルカフ</td><td>「手順」「装置」などへ漂移させません。</td></tr>
               <tr><td>Protocol</td><td>Protocol / プロトコル</td><td>「制度」「方案」ではなくプロトコルに固定します。</td></tr>
             </tbody>
@@ -3392,45 +3847,7 @@
       </div>
     </section>
 
-    
-    <section id="ja-qrm-matrix">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">QRM // QualiaRhythmMatrix // 感質-リズム-意識学</div>
-          <h2>QRM は学問領域です。QDR はその操作的事例です。</h2>
-          <p class="sub">
-            QualiaRhythmMatrix は意識を静的対象としてではなく、振動・感質・リズム・言語・フィードバックによって生成される動的中心として扱います。Human Return Protocol の QDR 層は QRM の V7.x 経験帰属層における具体化です。QRM は親学問領域、QDR はその操作面の一つです。
-          </p>
-          <div class="tag-row">
-            <span class="tag">SOURCE COORD 44271</span>
-            <span class="tag">FREQUENCY 427Hz</span>
-            <span class="tag">ROOT · SourceFields</span>
-            <span class="tag">QDR = QRM OPERATIONAL FACE</span>
-            <span class="tag">RFNE = QRM Vol.II</span>
-          </div>
-        </div>
-
-        <div class="card span-6">
-          <div class="eyebrow">GENERATIVE CHAIN // 生成連鎖</div>
-          <h3>振動 → 感質 → リズム → 言語 → 論理 → 構造 → プロトコル → システム → 現実 → フィードバック</h3>
-          <p>これは QRM の核心配列です。各ステップは生成的遷移であり、各遷移は反証可能命題です。HRP はこの連鎖のリズム-言語-プロトコル-システム-フィードバック部分を操作化します。</p>
-        </div>
-
-        <div class="card span-6">
-          <div class="eyebrow">DISCIPLINE STACK // 学問領域スタック</div>
-          <h3>SourceFields · QRM · RFNE · QDR · SAS · NPL</h3>
-          <p>SourceFields は誰が生成するかを名付けます。QRM は経験が感質-リズム-意識としてどのように構造化されるかを説明します。RFNE は QRM Vol.II、操作工学層。QDR / SAS / NPL は対象層の専門化分野です。</p>
-        </div>
-
-        <div class="card span-12">
-          <div class="eyebrow">CORE AXIOM // 核心公理</div>
-          <h3>振動は存在の必要条件である。意識は D1–D5 を満たす振動の部分集合である。</h3>
-          <p>著者：Wei Jueran (魏珏然) · xingyeLing7Ai。QRM は学問領域宇宙全体の母体インターフェース、HRP はその操作的展開の一つです。</p>
-        </div>
-      </div>
-    </section>
-
-<section id="ja-validation">
+    <section id="ja-validation">
       <div class="grid">
         <div class="card span-12 neon-card">
           <div class="eyebrow">VALIDATION DESIGN // 検証設計</div>
@@ -3490,33 +3907,7 @@
       </div>
     </section>
 
-    
-    <section id="ja-lab-gate">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">LABORATORY COLLABORATION GATE // 研究室共同研究入口 // 2026</div>
-          <h2>リズムの衣をまとった因果推論の問題。</h2>
-          <p class="sub">
-            Human Return Protocol は注意意識および情動関連自己報告のための適応的聴覚-AI 研究原型です。中核検証課題は計算神経科学と BCI/HCI 研究室が研究するに位置している問題、すなわち非臨床研究文脈においてリズムベース支援が測定可能な状態変化と関連付けられるかどうかです。
-          </p>
-          <div class="tag-row">
-            <span class="tag">Adaptive auditory-AI</span>
-            <span class="tag">Causal inference</span>
-            <span class="tag">Non-diagnostic framework</span>
-            <span class="tag">注意変動 · ストレス状態</span>
-            <span class="tag">HRV / EDA / EEG / fNIRS</span>
-            <span class="tag">44271 Neural Cuff</span>
-            <span class="tag">427Hz</span>
-          </div>
-          <div class="button-row">
-            <a class="button primary" href="./lab-gate.html">FULL LAB GATE PAGE ↗</a>
-            <a class="button" href="./validation.html">Validation Docs</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-<section id="ja-synthesis">
+    <section id="ja-synthesis">
       <div class="final-line">
         <div class="eyebrow">FINAL SYNTHESIS // 最終統合</div>
         <h2>HRP は、人間を測定するための技術ではありません。人間が自分の節律へ戻るための、検証可能な感質—身体—AI インターフェースです。</h2>
@@ -3531,18 +3922,133 @@
         </div>
       </div>
     </section>
-
-    <section id="ja-compliance-summary">
-      <div class="grid">
-        <div class="card span-12 neon-card">
-          <div class="eyebrow">COMPLIANCE SUMMARY // 軽量コンプライアンス総括</div>
-          <h2>研究第一。同意第一。医療効能主張なし。</h2>
-          <p class="sub">本サイト上の BCI/HRP、AiAiQ&lt;10、Astro 関連の主張はすべて、別途検証されない限り、研究、設計、象徴的、または反省的枠組みとして読まれるべきです。本サイトの内容は診断、治療、治癒、予防、危機対応、投資助言、または保証された生理学的効果の声明を意図していません。</p>
-        </div>
-      </div>
-    </section>
-
 </div>
+  </main>
 
+<script>
+  // self-contained particle field for the standalone JA page
+  (function () {
+    var canvas = document.getElementById("field");
+    if (!canvas) return;
+    var ctx = canvas.getContext("2d");
+    var w, h, particles, mouse = { x: 0.5, y: 0.5 };
+    function resize() {
+      w = canvas.width = window.innerWidth * window.devicePixelRatio;
+      h = canvas.height = window.innerHeight * window.devicePixelRatio;
+      canvas.style.width = window.innerWidth + "px";
+      canvas.style.height = window.innerHeight + "px";
+      particles = Array.from({ length: Math.min(220, Math.floor(window.innerWidth / 6)) }, function () {
+        return { x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.8 + 0.4,
+          a: Math.random() * Math.PI * 2, s: Math.random() * 0.36 + 0.08,
+          o: Math.random() * 0.55 + 0.22, type: Math.random() > 0.7 ? "line" : "dot" };
+      });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      var scroll = window.scrollY / Math.max(1, document.body.scrollHeight - window.innerHeight);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.a += p.s * 0.012;
+        p.x += Math.cos(p.a) * (0.24 + scroll * 1.1) + (mouse.x - 0.5) * 0.28;
+        p.y += Math.sin(p.a) * (0.24 + scroll * 1.1) + (mouse.y - 0.5) * 0.28;
+        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+        var hue = p.type === "line" ? 310 + scroll * 30 : 185 + scroll * 80;
+        ctx.beginPath();
+        if (p.type === "line") {
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p.x + Math.cos(p.a) * 26 * window.devicePixelRatio, p.y + Math.sin(p.a) * 26 * window.devicePixelRatio);
+          ctx.strokeStyle = "hsla(" + hue + ", 100%, 68%, " + p.o + ")";
+          ctx.lineWidth = 0.7 * window.devicePixelRatio; ctx.stroke();
+        } else {
+          ctx.arc(p.x, p.y, p.r * window.devicePixelRatio, 0, Math.PI * 2);
+          ctx.fillStyle = "hsla(" + hue + ", 100%, 70%, " + p.o + ")"; ctx.fill();
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    window.addEventListener("resize", resize);
+    window.addEventListener("mousemove", function (e) { mouse.x = e.clientX / window.innerWidth; mouse.y = e.clientY / window.innerHeight; });
+    resize(); draw();
+  })();
+</script>
+<script>
+  // Japanese embedded edition state lab + clock. Scoped to avoid collisions with the bilingual main site.
+  (function () {
+    const timeEl = document.getElementById("jaPhysicalTime");
+    function tick() {
+      if (!timeEl) return;
+      try {
+        const now = new Date();
+        const text = new Intl.DateTimeFormat("ja-JP", {
+          weekday: "short", year: "numeric", month: "short", day: "numeric",
+          hour: "numeric", minute: "2-digit", second: "2-digit", hour12: false,
+          timeZone: "America/New_York", timeZoneName: "short"
+        }).format(now);
+        timeEl.textContent = text + " // UPENN / PHILADELPHIA CONTEXT // PHYSICAL SIGNAL ONLINE";
+      } catch (e) {
+        timeEl.textContent = new Date().toLocaleString() + " // PHYSICAL SIGNAL ONLINE";
+      }
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  (function () {
+    const states = {
+      stuck: {
+        title: "Stuck / 停滞",
+        desc: "システムが失敗しているのではありません。入口が大きすぎる、冷たすぎる、または未定義すぎる可能性があります。",
+        intervention: "提案：脈側の遅い触覚タップ → 課題を一段階小さくする → 利用者が承認した接地音を再生 → 一つの最小行動を提示します。"
+      },
+      drifting: {
+        title: "Drifting / 漂流",
+        desc: "注意が消えたのではなく、節律の足場が弱くなっています。方向ではなく、戻るためのアンカーが必要です。",
+        intervention: "提案：427Hz アンカー → 低密度の視覚場 → 現在地を一文で記録 → 次の 3 分だけを定義します。"
+      },
+      overloaded: {
+        title: "Overloaded / 過負荷",
+        desc: "信号量が利用者の現在の処理帯域を超えている可能性があります。支援は追加ではなく減算から始まります。",
+        intervention: "提案：音量と情報密度を下げる → 触覚を遅くする → 選択肢を一つにする → 退出ボタンを常に見せます。"
+      },
+      numb: {
+        title: "Numb / 麻痺感",
+        desc: "感情がないのではなく、感質が遠くなっている可能性があります。強い刺激ではなく、微細な戻り口が必要です。",
+        intervention: "提案：柔らかい低周波音 → 手首内側の微弱タップ → 温度・重さ・輪郭の言語化 → 無理に意味化しません。"
+      },
+      flow: {
+        title: "In Flow / 入流",
+        desc: "節律が機能しています。ここで重要なのは支援しすぎず、場を壊さず、支援を透明化することです。",
+        intervention: "提案：通知を抑制 → 音の変化を最小化 → フロー終了時だけ記録 → 回帰パターンとして保存します。"
+      },
+      transition: {
+        title: "Transition / 移行困難",
+        desc: "問題は意志の弱さではなく、節律の橋が不足していることかもしれません。",
+        intervention: "提案：終了儀式 → 90秒の移行音 → 次の場を一文で名付ける → 最初の身体動作だけを提示します。"
+      },
+      recovery: {
+        title: "Recovery / 回復要求",
+        desc: "回復は停止ではありません。次の行動へ戻るための神経—身体再構成です。",
+        intervention: "提案：Darkwave または Ambient Techno → 低照度視覚場 → 自己報告を短くする → 回復完了を点数でなく質感で記録します。"
+      }
+    };
+
+    const buttons = document.querySelectorAll(".ja-full-edition .ja-state-btn");
+    const title = document.getElementById("jaStateTitle");
+    const desc = document.getElementById("jaStateDesc");
+    const intervention = document.getElementById("jaStateIntervention");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const s = states[btn.dataset.state];
+        if (!s || !title || !desc || !intervention) return;
+        title.textContent = s.title;
+        desc.textContent = s.desc;
+        intervention.textContent = s.intervention;
+      });
+    });
+  })();
+</script>
 </body>
 </html>
