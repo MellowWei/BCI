@@ -251,7 +251,7 @@ p+p{margin-top:10px;}
 .exchange-side.lab .exchange-label{color:var(--cyan);}
 .exchange-arrow{text-align:center;font-family:var(--mono);font-size:28px;color:var(--dim);}
 .exchange-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:14px;line-height:1.55;color:var(--muted);}
-.exchange-item::before{content:"→";font-family:var(--mono);font-size:11px;color:var(--dim);flex-shrink:0;margin-top:2px;}
+.exchange-item::before{content:"\2192";font-family:var(--mono);font-size:11px;color:var(--dim);flex-shrink:0;margin-top:2px;}
 .exchange-side.hrp .exchange-item::before{color:var(--green);}
 .exchange-side.lab .exchange-item::before{color:var(--cyan);}
 
@@ -345,8 +345,8 @@ p+p{margin-top:10px;}
       <div class="cn">穿着节律的外衣。</div>
     </div>
 
-    <p class="sub">The Human Return Protocol is an <strong style="color:var(--text)">adaptive auditory-AI research prototype</strong> for attention and emotional self-regulation. Its core validation challenge is one that computational neuroscience and BCI labs are uniquely positioned to solve: establishing causal effects of a rhythm-based intervention when randomized controlled trials are not feasible.</p>
-    <p class="sub cn" style="font-size:16px;margin-top:10px;">Human Return Protocol 是一个用于注意力与情绪自我调节的自适应声音-AI研究原型。它的核心验证挑战是计算神经科学与脑机接口实验室最有能力解决的问题：在无法进行随机对照实验时，建立节律干预的因果效应。</p>
+    <p class="sub">The Human Return Protocol is an <strong style="color:var(--text)">adaptive auditory-AI research prototype</strong> for attention and emotional self-regulation. Its core validation challenge is one that computational neuroscience and BCI labs are uniquely positioned to solve: establishing clean causal attribution for an adaptive rhythm intervention — an open-label randomized within-subject design where the condition cannot be blinded, where within-session change must be separated from order, novelty, and expectation, and where long-term real-world effects raise a separate observational question.</p>
+    <p class="sub cn" style="font-size:16px;margin-top:10px;">Human Return Protocol 是一个用于注意力与情绪自我调节的自适应声音-AI研究原型。它的核心验证挑战是计算神经科学与脑机接口实验室最有能力解决的问题：为一个自适应节律干预建立干净的因果归因——一个可在被试内随机、但条件无法盲化的 open-label 设计；session 内的变化必须与顺序、新奇性和预期效应分离；而长期真实世界效应则是另一个独立的观察性问题。</p>
 
     <div class="hero-actions">
       <a class="button primary" href="#intersection">INTERSECTION ANALYSIS</a>
@@ -374,7 +374,7 @@ p+p{margin-top:10px;}
         <div class="eyebrow">THE QUESTION // 核心问题</div>
         <h2>Non-invasive neural intervention is methodologically unresolved at its core.</h2>
         <h2 class="cn">非侵入式神经干预在方法论层面仍未解决其核心问题。</h2>
-        <p style="margin-top:18px;">How can such an intervention establish causal effects on subjective experience when it is embedded in daily context and cannot be randomized over time? Most current BCI research operates within an engineering frame that treats this question as deferred. <strong style="color:var(--text)">This project addresses it directly.</strong> Around this question, a building theoretical framework, a falsifiable experimental design, and a prototype intervention system have been constructed. The aim is collaboration that produces a methodologically rigorous validation pathway at the neuroscience–phenomenology boundary.</p>
+        <p style="margin-top:18px;">How can such an intervention establish clean causal attribution for subjective experience — randomizing its within-session conditions while its long-term real-world exposure cannot be randomized over months, and while the condition itself cannot be blinded? Most current BCI research operates within an engineering frame that treats this question as deferred. <strong style="color:var(--text)">This project addresses it directly.</strong> Around this question, a building theoretical framework, a falsifiable experimental design, and a prototype intervention system have been constructed. The aim is collaboration that produces a methodologically rigorous validation pathway at the neuroscience–phenomenology boundary.</p>
         <p class="cn" style="color:rgba(244,247,255,.85);">当干预嵌入日常情境、无法随时间随机化时，它如何证明对主观体验的因果效应？现有 BCI 研究大多在工程框架下运作，将这一问题悬置。<strong style="color:var(--text)">本项目直接处理它。</strong>围绕这一问题，已经搭建了一个建立中的理论框架、一套可证伪的实验设计、以及一个原型干预系统。目标是促成在神经科学与现象学交界处具有方法论严格性的验证路径合作。</p>
       </div>
     </div>
@@ -403,7 +403,7 @@ p+p{margin-top:10px;}
           <tr>
             <td>QDR Engine · intervention effect validation<br/><span class="strength high">PRIMARY</span></td>
             <td style="color:var(--cyan)">Causal inference in human behavior</td>
-            <td>HRP cannot use RCTs. Validating whether adaptive rhythm <em>causes</em> state change — rather than merely correlating with it — requires observational causal methods: instrumental variables, difference-in-differences, or quasi-experimental designs. This is the precise methodological gap that determines whether HRP produces correlational findings or defensible causal evidence.</td>
+            <td>HRP can be run as an open-label randomized within-subject design — conditions A/B/C/D randomized per subject; the condition cannot be blinded, but outcome assessment can. The real challenge is clean causal attribution: separating the adaptive effect from order, novelty, expectation, and regression to the mean using counterbalancing, control conditions, and mixed-effects models — and treating long-term real-world adoption as a separate observational question. This is the precise methodological gap that determines whether HRP produces correlational findings or defensible causal evidence.</td>
           </tr>
           <tr>
             <td>44271 Neural Cuff · wearable biosignal<br/><span class="strength high">PRIMARY</span></td>
@@ -556,7 +556,7 @@ p+p{margin-top:10px;}
         <div class="rq-text" style="font-size:clamp(14px,1.8vw,20px);">自适应声音-AI 干预条件，在自我报告存在注意力或情感失调的非临床成人中，是否比固定节律、随机节律和静音基线产生更强的 session 内注意力与情绪状态恢复？</div>
       </div>
       <p style="margin-top:18px;color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.14em;">H1 · HYPOTHESIS</p>
-      <p style="color:var(--text);">Condition D (adaptive auditory environment + AI reflective scaffolding) will produce statistically significant greater pre/post improvement on <strong style="color:var(--cyan)">at least two of three measurement layers</strong> — self-report state inventory, behavioral sustained-attention task, physiological convergence (HRV-RMSSD and/or EDA tonic level) — compared to Conditions A (silence), B (fixed rhythm), C (random rhythm), with effect sizes meaningful at Cohen's d > 0.4.</p>
+      <p style="color:var(--text);">Condition D (adaptive auditory environment + AI reflective scaffolding) will produce statistically significant greater pre/post improvement on <strong style="color:var(--cyan)">at least two of three measurement layers</strong> — self-report state inventory, behavioral sustained-attention task (SART) and Flow State Scale, physiological convergence (HRV-RMSSD and/or EDA tonic level) — compared to Conditions A (silence), B (fixed rhythm), C (random rhythm), with effect sizes meaningful at Cohen's d > 0.4.</p>
       <p class="cn" style="color:rgba(244,247,255,.85);">条件 D 将在三层测量中至少两层产生统计学显著改善——自评、行为持续注意任务、生理收敛——优于条件 A/B/C，效应量 Cohen's d > 0.4。</p>
       <p style="margin-top:12px;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.14em;">FALSIFIABILITY · 可证伪性</p>
       <p style="color:var(--muted);font-size:14px;">If Condition D does not produce statistically significant improvement over A, B, and C on at least two of three layers, H1 is rejected and the core intervention assumption requires theoretical revision. // 若条件 D 在至少两层未显著优于 A/B/C，H1 被拒绝，干预核心假设需要理论修订。</p>
@@ -575,6 +575,9 @@ p+p{margin-top:10px;}
       <p style="margin-top:18px;color:var(--green);font-family:var(--mono);font-size:11px;letter-spacing:.14em;">H2 · HYPOTHESIS</p>
       <p style="color:var(--text);">In Condition D, subjective state recovery (self-report) will show directional convergence with behavioral measures (sustained-attention task accuracy and reaction time) and at least one physiological measure (HRV-RMSSD or EDA tonic level), with within-subject correlation <strong style="color:var(--cyan)">r > 0.3</strong>.</p>
       <p class="cn" style="color:rgba(244,247,255,.85);">在条件 D 中，主观状态恢复将与行为指标和至少一项生理指标显示方向性收敛，被试内相关系数 r > 0.3。</p>
+      <p style="margin-top:14px;color:var(--pink);font-family:var(--mono);font-size:11px;letter-spacing:.14em;">TEMPORAL PRECEDENCE · HRP CORE · 身体领先觉察</p>
+      <p style="color:var(--text);">A directional sub-hypothesis at the heart of HRP: bodily signals — especially bodily tension (EDA / muscle activation) together with HRV — may shift <em>before</em> the participant self-reports a matching change in emotion or focus. If HRP can detect this body-leading, awareness-lagging window, surfacing it is the mechanism by which the system helps a person re-align body, emotion, and cognition. Bodily tension is treated as a concrete, time-stamped early signal, not a metaphor — a falsifiable lead-lag claim a physiology lab is well-positioned to test.</p>
+      <p class="cn" style="color:rgba(244,247,255,.85);">HRP 核心的方向性子假设：身体信号——尤其是身体紧张感（皮肤电 / 肌肉激活）连同 HRV——可能在被试自我报告对应的情绪或专注变化<em>之前</em>就移动。若 HRP 能检测这个"身体领先、觉察滞后"的窗口，把它呈现出来正是系统帮助人重新对齐身体、情绪与认知的机制。身体紧张感被当作具体、带时间戳的早期信号，而非比喻——一个生理实验室很有能力检验的可证伪的 lead-lag 主张。</p>
       <p style="margin-top:12px;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:.14em;">FALSIFIABILITY · 可证伪性</p>
       <p style="color:var(--muted);font-size:14px;">If self-report improves but behavioral and physiological measures show no directional alignment, H2 is rejected and the intervention may operate through perceived rather than physiologically grounded state change. // 若自我报告改善但行为生理方向不一致，H2 被拒绝，干预可能仅通过主观感知起作用。</p>
     </div>
@@ -612,10 +615,10 @@ p+p{margin-top:10px;}
 
     <div class="card span-12 amber-card">
       <div class="eyebrow amber">THE CAUSAL INFERENCE PROBLEM // 因果推断问题</div>
-      <h3>Why observational causal methods are the only rigorous path.</h3>
-      <h3 class="cn">为什么观察性因果方法是唯一严格的路径。</h3>
-      <p>The intervention is embedded in daily context. Participants cannot be randomly assigned to receive adaptive rhythm for six months of their life. This means the core validation challenge is methodological: how to distinguish the causal effect of the adaptive condition from regression to the mean, novelty effects, expectation, and concurrent environmental variables. Pre/post correlations are insufficient. Observational causal design — instrumental variables, difference-in-differences, synthetic controls, or interrupted time series — is required. This is precisely the domain where collaboration with a computationally oriented neuroscience lab creates publishable value that neither party could reach alone.</p>
-      <p class="cn">干预嵌入在日常情境中。参与者不能被随机分配去"在接下来六个月里接受自适应节律"。这意味着核心验证挑战是方法论性的：如何把自适应条件的因果效应与均值回归、新奇性效应、预期效应和并发环境变量区分开来。前后测相关性是不够的。需要观察性因果设计。这正是双方合作创造双方单独都无法达到的发表价值的精确领域。</p>
+      <h3>Why a randomized within-session design — plus rigorous confound control — is the path.</h3>
+      <h3 class="cn">为什么随机化的 session 内设计 + 严格混淆控制是严格路径。</h3>
+      <p>Within-session conditions can be randomized: each participant receives A/B/C/D in counterbalanced order, which makes this an open-label randomized within-subject design — the condition cannot be blinded, but outcome assessment can. The real challenge is separating the adaptive effect from regression to the mean, novelty, expectation, and order / carryover — handled by control conditions, counterbalancing, and mixed-effects models, not by abandoning randomization. A genuinely non-randomizable question does exist — the long-term effect of real-world daily adoption over months — and it is explicitly out of scope for the pilot; it would later call for observational causal methods. This boundary is precisely where collaboration with a computationally oriented neuroscience lab creates publishable value that neither party could reach alone.</p>
+      <p class="cn">session 内的条件是可以随机化的：每位被试以平衡顺序接受 A/B/C/D，这使它成为一个 open-label 随机被试内设计——条件无法盲化，但结果评估可以盲化。真正的挑战是把自适应效应与均值回归、新奇性、预期效应和顺序/遗留效应分离开来——靠控制条件、平衡设计与混合效应模型处理，而不是放弃随机化。确实存在一个真正不可随机化的问题——真实世界中数月日常采用的长期效应——但它明确不在 pilot 范围内；那才需要观察性因果方法。这条边界正是与计算导向的神经科学实验室合作、创造双方单独无法达到的发表价值的精确领域。</p>
     </div>
   </div>
 </section>
@@ -639,7 +642,7 @@ p+p{margin-top:10px;}
           <li><strong>Order effects not addressed.</strong> Within-subject 4-condition design requires counterbalancing (Latin square or full randomization). Current design does not specify counterbalancing scheme.</li>
           <li><strong>Pre-registration not yet committed.</strong> Given inventor-as-experimenter conflict (see #7), pre-registration on OSF or AsPredicted before Phase 2 launch is essential to prevent garden-of-forking-paths critique.</li>
           <li><strong>Conditions B / C / D not fully operationalized.</strong> "Fixed rhythm" must specify BPM, genre, single-track-vs-sequence. "Random rhythm" must specify randomization domain and BPM-matching constraints. "Adaptive auditory + AI" must specify algorithm, adaptive input signals, and decision rules. Without this, conditions are not replicable.</li>
-          <li><strong>Behavioral attention task not specified.</strong> "Sustained-attention task" must be a specific instrument (e.g., Psychomotor Vigilance Task, Continuous Performance Task, Sustained Attention to Response Task). Different tasks measure different attention subcomponents.</li>
+          <li><strong>Behavioral attention task — now specified.</strong> The behavioral layer is fixed as the Sustained Attention to Response Task (SART) plus the Flow State Scale, chosen to fit a creator / knowledge-worker population rather than clinical reaction-time tasks. Remaining work: finalize SART parameters (trial count, no-go frequency, block length) before Phase 2.</li>
           <li><strong>5-axis self-report scale not validated.</strong> Mood / Focus / Body / [+2] 1–10 scales were designed for this study and have no validation history. Phase 2 must run alongside validated comparison scales (PANAS for affect, STAI for state anxiety, SAM for arousal) and report inter-item consistency.</li>
           <li><strong>Inventor-as-experimenter conflict.</strong> Wei Jueran is system designer, theoretical author, S01 participant, session runner for S02–S08, and data analyzer — a 5-way overlap. Phase 2 requires: independent session experimenter, automated session delivery, or blind data analysis. Phase 1 calibration accepts this overlap because no hypothesis is being tested.</li>
           <li><strong>No explicit limitations acknowledgment in original v3.</strong> This section addresses that gap. Future versions will include detailed limitations per published manuscript draft.</li>
@@ -716,8 +719,8 @@ p+p{margin-top:10px;}
       <div class="num">LAYER 02 // BEHAVIORAL</div>
       <h3>Performance measures</h3>
       <h3 class="cn">行为表现指标</h3>
-      <p>Sustained attention task, reaction time, accuracy rate, missed trials, interruption count. Established paradigms — no novel task development required. Provides objective convergence layer for self-report data.</p>
-      <p class="cn">持续注意任务、反应时、准确率、漏答次数、中断次数。已有成熟范式，无需开发新任务。为自我报告提供客观收敛层。</p>
+      <p>Sustained Attention to Response Task (SART) and the Flow State Scale, with reaction time, accuracy rate, missed trials, and interruption count. Established paradigms — chosen to fit a creator / knowledge-worker population rather than clinical reaction-time tasks. Provides objective convergence layer for self-report data.</p>
+      <p class="cn">持续注意反应任务（SART）与 Flow State Scale，连同反应时、准确率、漏答次数、中断次数。已有成熟范式——选这两者是为贴合创造者/知识工作者群体，而非临床反应时任务。为自我报告提供客观收敛层。</p>
     </div>
     <div class="card span-4">
       <div class="num">LAYER 03 // PHYSIOLOGICAL</div>
@@ -779,7 +782,7 @@ p+p{margin-top:10px;}
         <div class="exchange-arrow">⇄</div>
         <div class="exchange-side lab">
           <div class="exchange-label">COLLABORATING LAB BRINGS // 合作实验室提供</div>
-          <div class="exchange-item">Causal inference methodology: observational causal design for non-randomizable intervention evaluation — the core methodological gap in HRP's current architecture</div>
+          <div class="exchange-item">Causal inference methodology: within-session confound control (counterbalancing, carryover, mixed-effects) and clean causal attribution for an open-label, non-blindable adaptive intervention — the core methodological gap in HRP's current architecture</div>
           <div class="exchange-item">Neural and physiological data analysis: signal processing, individual variability modeling, multi-layer convergence testing</div>
           <div class="exchange-item">Lab-grade instrumentation: EEG, fNIRS, precision HRV/EDA acquisition for Phase 2 validation</div>
           <div class="exchange-item">Publication infrastructure: access to high-impact venues in computational neuroscience, human behavior, and digital health</div>
@@ -811,10 +814,10 @@ p+p{margin-top:10px;}
       </div>
       <div class="paper-card">
         <div class="paper-number">PAPER 02 · METHODS · MAPS TO RQ2</div>
-        <div class="paper-title">Multi-layer convergence in non-randomizable rhythm interventions: an observational design framework for adaptive auditory systems</div>
+        <div class="paper-title">Multi-layer convergence in an open-label adaptive rhythm intervention: a within-subject design framework for non-blindable auditory systems</div>
         <div class="paper-venue">Target venues: PLOS Computational Biology · Journal of Neuroscience Methods · Behavior Research Methods</div>
-        <p>Addresses the core methodological problem: how to validate causal claims about rhythm-based interventions without RCTs. The contribution is the convergence framework itself — three-layer (self-report / behavioral / physiological) directional alignment as evidence-of-effect. Generalizable to all non-randomizable behavioral interventions in digital health, HCI, and computational psychiatry.</p>
-        <p class="cn">解决核心方法论问题：如何在无 RCT 时验证节律干预的因果主张。贡献是收敛框架本身——三层（自评 / 行为 / 生理）方向对齐作为效应证据。可推广到所有不可随机化的行为干预。</p>
+        <p>Addresses the core methodological problem: how to attribute within-session state change to an adaptive, non-blindable intervention. The contribution is the convergence framework itself — three-layer (self-report / behavioral / physiological) directional alignment as evidence-of-effect, inside a counterbalanced randomized within-subject design. Generalizable to other open-label, non-blindable behavioral interventions in digital health, HCI, and computational psychiatry.</p>
+        <p class="cn">解决核心方法论问题：如何把 session 内状态变化归因于一个自适应、不可盲化的干预。贡献是收敛框架本身——三层（自评 / 行为 / 生理）方向对齐作为效应证据，置于一个平衡的随机被试内设计中。可推广到其他 open-label、不可盲化的行为干预。</p>
       </div>
       <div class="paper-card">
         <div class="paper-number">PAPER 03 · THEORY · MAPS TO RQ3</div>
