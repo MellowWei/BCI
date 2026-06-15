@@ -3802,6 +3802,313 @@
 }
 </style>
 
+
+<style id="hrp-v29-prototypes-states">
+  /* V2.9: AI headphone prototype + head patch prototype + Mellow/Stallion density matrix */
+  .prototype-triad-stage {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .hardware-proto-card {
+    position: relative;
+    min-height: 560px;
+    overflow: hidden;
+  }
+
+  .proto-visual {
+    position: relative;
+    height: 330px;
+    margin: 12px 0 18px;
+    border: 1px solid rgba(0,245,255,.18);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(0,245,255,.12), transparent 32%),
+      radial-gradient(circle at 20% 20%, rgba(255,43,214,.12), transparent 34%),
+      radial-gradient(circle at 80% 78%, rgba(53,255,159,.08), transparent 32%),
+      rgba(255,255,255,.026);
+    box-shadow: inset 0 0 28px rgba(0,245,255,.026), 0 0 32px rgba(0,245,255,.055);
+  }
+
+  .ai-headphone-visual .headband {
+    position: absolute;
+    left: 50%;
+    top: 42px;
+    width: 230px;
+    height: 170px;
+    transform: translateX(-50%);
+    border: 9px solid rgba(100,210,255,.58);
+    border-bottom: 0;
+    border-radius: 140px 140px 0 0;
+    box-shadow: 0 0 26px rgba(0,245,255,.25), inset 0 0 16px rgba(255,255,255,.05);
+  }
+
+  .ai-headphone-visual .earcup {
+    position: absolute;
+    top: 165px;
+    width: 92px;
+    height: 118px;
+    border: 1px solid rgba(0,245,255,.36);
+    border-radius: 30px 30px 42px 42px;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,.10), rgba(3,4,10,.76)),
+      radial-gradient(circle at 35% 24%, rgba(0,245,255,.24), transparent 40%);
+    box-shadow: 0 0 28px rgba(0,245,255,.20), inset 0 0 24px rgba(255,255,255,.045);
+  }
+  .ai-headphone-visual .earcup.left { left: calc(50% - 154px); }
+  .ai-headphone-visual .earcup.right { right: calc(50% - 154px); }
+  .ai-headphone-visual .earcup::after {
+    content: "";
+    position: absolute;
+    inset: 18px 16px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,43,214,.30);
+    background: rgba(0,0,0,.25);
+    box-shadow: inset 0 0 22px rgba(255,43,214,.10);
+  }
+
+  .sound-ring {
+    position: absolute;
+    left: 50%;
+    top: 205px;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgba(53,255,159,.32);
+    border-radius: 999px;
+    animation: ringExpand 2.3s ease-out infinite;
+  }
+  .sound-ring.r2 { animation-delay: .55s; border-color: rgba(0,245,255,.28); }
+  .sound-ring.r3 { animation-delay: 1.1s; border-color: rgba(255,43,214,.25); }
+  @keyframes ringExpand {
+    0% { width: 34px; height: 34px; opacity: .96; }
+    100% { width: 286px; height: 286px; opacity: 0; }
+  }
+
+  .ai-headphone-visual .sound-bars {
+    position: absolute;
+    left: 50%;
+    top: 222px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 3;
+  }
+  .ai-headphone-visual .sound-bars span {
+    width: 7px;
+    height: 32px;
+    border-radius: 999px;
+    background: var(--cyan);
+    box-shadow: 0 0 14px rgba(0,245,255,.6);
+    animation: pulseBar 1.1s ease-in-out infinite;
+  }
+  .ai-headphone-visual .sound-bars span:nth-child(2) { height: 55px; background: var(--pink); animation-delay: .12s; }
+  .ai-headphone-visual .sound-bars span:nth-child(3) { height: 78px; background: var(--green); animation-delay: .24s; }
+  .ai-headphone-visual .sound-bars span:nth-child(4) { height: 48px; background: var(--yellow); animation-delay: .36s; }
+  .ai-headphone-visual .sound-bars span:nth-child(5) { height: 66px; background: var(--purple); animation-delay: .48s; }
+
+  .headpatch-visual .head-silhouette {
+    position: absolute;
+    left: 50%;
+    top: 58px;
+    width: 214px;
+    height: 244px;
+    transform: translateX(-50%);
+    border-radius: 48% 48% 38% 38% / 40% 40% 54% 54%;
+    border: 1px solid rgba(100,210,255,.24);
+    background:
+      radial-gradient(circle at 50% 20%, rgba(0,245,255,.18), transparent 28%),
+      linear-gradient(180deg, rgba(255,255,255,.055), rgba(3,4,10,.55));
+    box-shadow: inset 0 0 28px rgba(0,245,255,.05), 0 0 30px rgba(0,245,255,.08);
+  }
+  .forehead-patch {
+    position: absolute;
+    left: 50%;
+    top: 74px;
+    width: 188px;
+    height: 50px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(53,255,159,.42);
+    border-radius: 24px;
+    background:
+      linear-gradient(90deg, rgba(53,255,159,.18), rgba(0,245,255,.10), rgba(255,43,214,.10)),
+      rgba(3,4,10,.72);
+    box-shadow: 0 0 28px rgba(53,255,159,.16), inset 0 0 18px rgba(255,255,255,.05);
+    z-index: 2;
+  }
+  .forehead-patch::before, .forehead-patch::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: var(--green);
+    box-shadow: 0 0 14px rgba(53,255,159,.78);
+  }
+  .forehead-patch::before { left: 42px; }
+  .forehead-patch::after { right: 42px; }
+  .patch-center-dot {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 14px; height: 14px;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    background: var(--cyan);
+    box-shadow: 0 0 16px rgba(0,245,255,.8);
+  }
+  .patch-wave {
+    position: absolute;
+    left: 50%;
+    bottom: 38px;
+    width: min(420px, 88%);
+    height: 115px;
+    transform: translateX(-50%);
+    border: 1px solid rgba(0,245,255,.12);
+    border-radius: 20px;
+    background:
+      linear-gradient(rgba(0,245,255,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,255,.06) 1px, transparent 1px),
+      rgba(255,255,255,.02);
+    background-size: 28px 28px;
+  }
+  .patch-wave svg { width: 100%; height: 100%; }
+  .patch-line { fill:none; stroke-width: 3; filter: drop-shadow(0 0 7px currentColor); }
+  .patch-alpha { color: var(--green); stroke: currentColor; }
+  .patch-theta { color: var(--cyan); stroke: currentColor; }
+  .patch-beta { color: var(--pink); stroke: currentColor; }
+
+  .proto-callout-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .proto-callout-mini {
+    padding: 12px 13px;
+    border: 1px solid rgba(0,245,255,.14);
+    border-radius: 16px;
+    background: rgba(255,255,255,.025);
+  }
+  .proto-callout-mini strong {
+    display: block;
+    color: var(--cyan);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .proto-callout-mini p { font-size: 12px !important; line-height: 1.48 !important; }
+
+  .density-panel {
+    border-color: rgba(255,230,109,.28) !important;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(255,230,109,.08), transparent 32%),
+      linear-gradient(180deg, rgba(0,245,255,.05), rgba(255,43,214,.028)),
+      rgba(8,10,28,.70) !important;
+  }
+  .state-density-board {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .density-controls {
+    display: grid;
+    gap: 8px;
+  }
+  .density-genre-btn {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(0,245,255,.16);
+    border-radius: 14px;
+    background: rgba(255,255,255,.035);
+    color: var(--muted);
+    text-align: left;
+    cursor: pointer;
+    transition: transform .18s ease, border-color .18s ease, color .18s ease, background .18s ease;
+  }
+  .density-genre-btn:hover, .density-genre-btn.active {
+    transform: translateX(3px);
+    color: var(--text);
+    border-color: rgba(53,255,159,.40);
+    background: linear-gradient(90deg, rgba(53,255,159,.08), rgba(0,245,255,.05));
+  }
+  .density-state-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .density-state-card {
+    min-height: 260px;
+    padding: 18px;
+    border: 1px solid rgba(0,245,255,.18);
+    border-radius: 22px;
+    background: rgba(255,255,255,.026);
+  }
+  .density-state-card.mellow-card { border-color: rgba(0,245,255,.34); }
+  .density-state-card.stallion-card { border-color: rgba(255,43,214,.34); }
+  .density-kicker {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .mellow-card .density-kicker { color: var(--cyan); }
+  .stallion-card .density-kicker { color: var(--pink); }
+  .density-specs {
+    display: grid;
+    gap: 7px;
+    margin: 13px 0;
+  }
+  .density-specs div {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 10px;
+    padding: 8px 10px;
+    border: 1px solid rgba(0,245,255,.10);
+    border-radius: 12px;
+    background: rgba(255,255,255,.022);
+    font-size: 12px;
+    line-height: 1.42;
+    color: var(--muted);
+  }
+  .density-specs b { color: var(--green); font-family: var(--mono); font-size: 9px; letter-spacing: .10em; text-transform: uppercase; }
+  .density-meter-wrap { display: grid; gap: 8px; margin-top: 12px; }
+  .density-meter-label { display:flex; justify-content:space-between; gap:8px; color:var(--dim); font-family:var(--mono); font-size:9px; letter-spacing:.07em; }
+  .density-meter { height: 8px; border-radius: 999px; background: rgba(255,255,255,.07); overflow: hidden; }
+  .density-meter span { display:block; height:100%; width: 60%; border-radius:inherit; background: linear-gradient(90deg, var(--cyan), var(--green)); box-shadow: 0 0 12px rgba(0,245,255,.45); }
+  .stallion-card .density-meter span { background: linear-gradient(90deg, var(--pink), var(--purple)); }
+  .density-play-row { display:flex; flex-wrap:wrap; gap: 10px; margin-top: 14px; }
+  .density-audio-note {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,230,109,.24);
+    border-radius: 16px;
+    background: rgba(255,230,109,.035);
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .density-table-wrap { width: 100%; overflow-x: auto; margin-top: 16px; }
+  .density-table { width: 100%; min-width: 980px; border-collapse: collapse; }
+  .density-table th, .density-table td { border:1px solid rgba(0,245,255,.13); padding: 12px 13px; text-align:left; vertical-align:top; color: var(--muted); font-size: 12px; line-height:1.5; }
+  .density-table th { color: var(--cyan); font-family: var(--mono); font-size: 10px; letter-spacing:.10em; text-transform: uppercase; background: rgba(0,245,255,.055); }
+  .density-table td:first-child { color: var(--text); font-weight: 800; }
+
+  @media (max-width: 1000px) {
+    .prototype-triad-stage, .state-density-board, .density-state-grid { grid-template-columns: 1fr; }
+    .hardware-proto-card { min-height: auto; }
+    .proto-callout-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
 </head>
 
 
@@ -3819,9 +4126,11 @@
       <a href="#top">HOME</a>
       <a href="#overview-map">LAB BRIEF</a>
       <a href="#neural-cuff">TRIADIC TECH</a>
+      <a href="#device-prototypes">DEVICE PROTOTYPES</a>
       <a href="#data-vault">DATA ALIGNMENT</a>
       <a href="#lab-gate">VALIDATION</a>
       <a href="#six-genre-therapy">SOUND MECHANISMS</a>
+      <a href="#state-density-matrix">MELLOW / STALLION</a>
       <a href="#prototype">PROTOTYPE</a>
       <a href="#qdr-therapy">QDR</a>
       <a href="#dual-intelligence-interface">INTERPRETIVE AUTHORITY</a>
@@ -3881,6 +4190,73 @@
 <div class="card span-12 wristband-dynamic-example"><div class="eyebrow">WRISTBAND DYNAMIC EXAMPLE // 腕环实例动态图</div><h2>The wristband is the autonomic return witness.</h2><h2 class="cn">腕环是自主神经返回的见证器。</h2><p class="sub en">This restores the earlier dynamic wristband example: a rotating inner-wrist band, pulse-side light rails, sensor dots, haptic-return callouts, and a live signal simulation. It is a visual prototype for how the wrist layer can track HRV, EDA, skin temperature, motion, and recovery curves while the user remains the final interpreter.</p><p class="sub cn">这里恢复之前的腕环动态实例：旋转的内腕式腕环、脉侧光轨、传感器点、触觉返回标注与实时信号模拟。它是腕部层如何记录 HRV、EDA、皮温、运动与恢复曲线的视觉原型；最终解释权仍然属于用户。</p><div class="cuff-stage"><div class="cuff-visual-card"><div class="cuff-orbit"><div class="callout one"><b>OUTER SHELL</b>Matte graphite / smoky translucent body<div class="cn">外壳：哑光石墨 / 烟灰半透明身体</div></div><div class="callout two"><b>LIGHT STATE</b>Rhythm state luminous rail<div class="cn">光轨：节律状态显影</div></div><div class="callout three"><b>SENSOR ARRAY</b>PPG · EDA · Temp · IMU<div class="cn">传感器阵列：心率 · 皮电 · 体温 · 微运动</div></div><div class="callout four"><b>HAPTIC RETURN</b>Pulse-side directional tap<div class="cn">触觉返回：脉侧定向轻敲</div></div><div class="cuff-body"><span class="engrave">44271</span><span class="light-line cyan"></span><span class="light-line magenta"></span><div class="inner-pad left"></div><div class="inner-pad right"></div><span class="sensor-dot d1"></span><span class="sensor-dot d2"></span><span class="sensor-dot d3"></span><span class="sensor-dot d4"></span></div></div></div><div><div class="eyebrow">LIVE SIGNAL SIMULATION // 实时信号模拟</div><h3>Autonomic rhythm stream</h3><h3 class="cn">自主神经节律流</h3><p class="en">The chart visualizes how the wristband can combine HRV coherence, electrodermal arousal, thermal drift, and motion into an event-locked recovery trajectory. It does not diagnose; it shows whether the rhythm is stabilizing, fragmenting, freezing, activating, or returning.</p><p class="cn">这张图展示腕环如何将 HRV 连贯性、皮肤电唤醒、温度漂移与运动信号组合成事件锁定的恢复轨迹。它不诊断，只显示节律是在稳定、碎裂、冻结、激活，还是返回。</p><svg class="signal-chart" viewBox="0 0 600 220" preserveAspectRatio="none" aria-label="wristband signal chart"><polyline class="chart-line chart-hrv" points="0,118 45,104 90,126 135,92 180,104 225,74 270,96 315,82 360,104 405,70 450,91 495,78 540,102 600,84"></polyline><polyline class="chart-line chart-eda" points="0,172 45,166 90,154 135,160 180,138 225,126 270,132 315,116 360,104 405,98 450,82 495,88 540,70 600,74"></polyline><polyline class="chart-line chart-temp" points="0,132 45,130 90,134 135,128 180,130 225,126 270,124 315,122 360,124 405,120 450,118 495,116 540,118 600,114"></polyline></svg><div class="metric-grid"><div class="metric"><strong>HRV COHERENCE</strong><p>Rhythm stability / 节律稳定度</p><div class="bar-meter"><span></span></div></div><div class="metric"><strong>EDA PRESSURE</strong><p>Sympathetic arousal / 交感唤醒压强</p><div class="bar-meter"><span></span></div></div><div class="metric"><strong>TEMP + MOTION</strong><p>Thermal and body drift / 温度与身体漂移</p><div class="bar-meter"><span></span></div></div></div><div class="tag-row"><span class="tag">HRV / RMSSD</span><span class="tag">EDA / SCR</span><span class="tag">SKIN TEMP</span><span class="tag">IMU</span><span class="tag">RESP PROXY</span><span class="tag">RECOVERY CURVE</span></div></div></div></div>
 <div class="card span-12"><div class="hardware-flow"><div class="flow-node"><div class="num">01 // AI HEADPHONES</div><h3>Acoustic intervention layer</h3><p class="cn">生成、选择、空间化并播放声音探针：音乐、呼吸声、自然声、噪声场、低频锚点、人声、记忆线索、静默对照。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">02 // HEAD PATCH</div><h3>Neural-proxy layer</h3><p class="cn">EEG/fNIRS 代理：alpha/theta/beta 趋势、听觉诱发反应、注意/负荷/聆听状态。不是读心。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">03 // WRISTBAND</div><h3>Autonomic + body-rhythm layer</h3><p class="cn">HR/HRV、EDA、皮温、运动、呼吸代理，记录交感/副交感调节与身体返回轨迹。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">04 // AI-QDR</div><h3>Neural-autonomy layer</h3><p class="cn">生成非诊断报告；用户可以 Accept / Edit / Reject / Rename / Delete / Stop。</p></div></div></div><div class="card span-6"><div class="eyebrow">WRISTBAND // 腕环</div><h3>The wristband tracks autonomic dynamics, not a hidden truth.</h3><h3 class="cn">腕环追踪自主神经动态，不追踪隐藏真相。</h3><p class="cn">腕环记录 HRV/RMSSD、EDA/SCR、皮温、运动、呼吸代理，捕捉“身体已经紧了，但语言还没跟上”的时间差。自主神经数据说明的是激活、恢复、冻结、返回的轨迹，不单独等于焦虑、快乐或创伤。</p><div class="tag-row"><span class="tag">HRV</span><span class="tag">EDA</span><span class="tag">TEMP</span><span class="tag">IMU</span><span class="tag">RESP PROXY</span><span class="tag">ANS</span></div></div><div class="card span-6"><div class="eyebrow">HEAD PATCH // 头部贴片</div><h3>Brain data are listening-state proxies.</h3><h3 class="cn">大脑数据是聆听状态代理。</h3><p class="cn">头部贴片可支持 EEG/fNIRS：alpha/theta/beta 变化、事件相关反应、相位锁定估计、前额叶血氧。它不能直接读取意义；它只能帮助检测声音事件之后，注意、负荷、时间预测和神经节律是否变化。</p><div class="tag-row"><span class="tag">EEG</span><span class="tag">fNIRS</span><span class="tag">ALPHA</span><span class="tag">THETA</span><span class="tag">PFC LOAD</span><span class="tag">TIMING</span></div></div></div></section>
 
+    <section id="device-prototypes"><div class="grid">
+      <div class="card span-12 neon-card">
+        <div class="eyebrow">DEVICE PROTOTYPES // AI HEADPHONES + HEAD PATCH // 硬件原型补全</div>
+        <h2>The triad needs three visible bodies: sound output, neural proxy, and autonomic witness.</h2>
+        <h2 class="cn">三件套需要三个可见身体：声音输出、神经代理、自主神经见证。</h2>
+        <p class="sub en">This section completes the hardware imagination: AI headphones deliver adaptive sound probes; the head patch reads listening-state proxies; the wristband records autonomic/body rhythm. The system only becomes BCI - The Human Return Protocol when all three are synchronized with user naming and neural autonomy.</p>
+        <p class="sub cn">这一节补全硬件想象：AI 耳机输出自适应声音探针；头部贴片读取聆听状态代理；腕环记录自主神经与身体节律。只有三者与用户命名和神经自主性同步时，系统才成为 BCI - The Human Return Protocol。</p>
+      </div>
+
+      <div class="prototype-triad-stage span-12">
+        <article class="card hardware-proto-card">
+          <div class="eyebrow">AI HEADPHONES PROTOTYPE // AI 耳机原型</div>
+          <h3>Acoustic intervention layer</h3>
+          <h3 class="cn">声学介入层</h3>
+          <div class="proto-visual ai-headphone-visual" aria-label="AI headphones prototype visual">
+            <span class="sound-ring r1"></span><span class="sound-ring r2"></span><span class="sound-ring r3"></span>
+            <div class="headband"></div>
+            <div class="earcup left"></div><div class="earcup right"></div>
+            <div class="sound-bars"><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <p class="en">The AI headphones are not generic wellness headphones. They are the acoustic intervention layer: they select, spatialize, fade, modulate, and stop sound probes according to consent, state prediction, measured response, and user renaming.</p>
+          <p class="cn">AI 耳机不是普通疗愈耳机，而是声学介入层：它根据用户同意、状态预测、测量反应与用户重命名，选择、空间化、淡入、调制和停止声音探针。</p>
+          <div class="proto-callout-grid">
+            <div class="proto-callout-mini"><strong>OUTPUT</strong><p>music, voice, breath, noise, silence, spatial field<br><span class="cn">音乐、人声、呼吸、噪声、静默、空间声场</span></p></div>
+            <div class="proto-callout-mini"><strong>CONTROL</strong><p>volume, density, intensity, transient edge, exit<br><span class="cn">音量、密度、强度、瞬态边缘、退出</span></p></div>
+            <div class="proto-callout-mini"><strong>RULE</strong><p>never force entrainment; user can stop instantly<br><span class="cn">不强制同步；用户可即时停止</span></p></div>
+          </div>
+          <div class="tag-row"><span class="tag">SOUND PROBE</span><span class="tag">SPATIAL AUDIO</span><span class="tag">DENSITY CONTROL</span><span class="tag">INSTANT STOP</span></div>
+        </article>
+
+        <article class="card hardware-proto-card">
+          <div class="eyebrow">HEAD PATCH PROTOTYPE // 头部贴片原型</div>
+          <h3>Neural/listening-state proxy layer</h3>
+          <h3 class="cn">神经/聆听状态代理层</h3>
+          <div class="proto-visual headpatch-visual" aria-label="head patch prototype visual">
+            <div class="head-silhouette"></div>
+            <div class="forehead-patch"><span class="patch-center-dot"></span></div>
+            <div class="patch-wave">
+              <svg viewBox="0 0 500 120" preserveAspectRatio="none">
+                <polyline class="patch-line patch-alpha" points="0,66 35,58 70,64 105,45 140,54 175,38 210,56 245,48 280,62 315,44 350,54 385,42 420,60 455,50 500,56"></polyline>
+                <polyline class="patch-line patch-theta" points="0,82 40,78 80,88 120,74 160,80 200,68 240,76 280,70 320,78 360,66 400,72 440,68 500,74"></polyline>
+                <polyline class="patch-line patch-beta" points="0,42 25,56 50,36 75,58 100,34 125,55 150,40 175,60 200,38 225,52 250,36 275,58 300,42 325,54 350,36 375,60 400,39 425,52 450,38 475,56 500,44"></polyline>
+              </svg>
+            </div>
+          </div>
+          <p class="en">The head patch does not read thought. It offers neural/listening-state proxies: EEG/fNIRS-compatible timing, attention, workload, auditory response, and rhythm-change indicators that can be event-locked to sound.</p>
+          <p class="cn">头部贴片不读取思想。它提供神经/聆听状态代理：可兼容 EEG/fNIRS 的时间、注意、负荷、听觉反应与节律变化指标，并可与声音事件锁定。</p>
+          <div class="proto-callout-grid">
+            <div class="proto-callout-mini"><strong>EEG</strong><p>alpha / theta / beta trends, auditory event response<br><span class="cn">alpha / theta / beta 趋势，听觉事件反应</span></p></div>
+            <div class="proto-callout-mini"><strong>fNIRS</strong><p>frontal oxygenation and workload proxy<br><span class="cn">前额叶血氧与负荷代理</span></p></div>
+            <div class="proto-callout-mini"><strong>LIMIT</strong><p>not memory reading, not emotion decoding<br><span class="cn">不读记忆，不解码情绪</span></p></div>
+          </div>
+          <div class="tag-row"><span class="tag">Fp1 / Fp2</span><span class="tag">ALPHA · THETA · BETA</span><span class="tag">PFC LOAD</span><span class="tag">ARTIFACT REJECTION</span></div>
+        </article>
+      </div>
+
+      <div class="card span-12">
+        <div class="eyebrow">THREE DEVICE COORDINATION // 三件套协同</div>
+        <table class="therapy-table"><thead><tr><th>Layer</th><th>Device body</th><th>What it controls / records</th><th>Why it matters for rhythm recovery</th></tr></thead><tbody>
+          <tr><td><strong>Acoustic output</strong></td><td>AI headphones</td><td>sound family, volume, density, intensity, spatialization, fade-in/out, silence</td><td>Turns sound into a timed probe rather than passive music.</td></tr>
+          <tr><td><strong>Neural proxy</strong></td><td>Head patch</td><td>listening-state proxies, alpha/theta/beta, workload, auditory timing, optional fNIRS</td><td>Shows whether attention, neural timing, and cortical load shift after sound events.</td></tr>
+          <tr><td><strong>Autonomic/body witness</strong></td><td>Wristband</td><td>HRV/RMSSD, EDA/SCR, skin temperature, motion, respiration proxy</td><td>Shows whether the body activates, freezes, recovers, or returns.</td></tr>
+          <tr><td><strong>Interpretive return</strong></td><td>AI-QDR</td><td>prediction, qualia words, user edits, rejected labels, renamed states</td><td>Prevents signal authoritarianism and returns meaning to the user.</td></tr>
+        </tbody></table>
+      </div>
+    </div></section>
+
     <section id="data-vault"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">BODY–BRAIN–AUTONOMIC DATA ALIGNMENT // 人体表征数据 × 大脑数据 × 自主神经</div><h2>Alignment is synchronization, event-locking, individual calibration, and neural autonomy.</h2><h2 class="cn">对齐是时间同步、事件锁定、个体校准与神经自主性保护。</h2><p class="sub en">BCI - The Human Return Protocol should never say “EDA means anxiety” or “alpha means healing.” It should say: for this user, in this context, after this sound event, these body, autonomic, brain, and self-report patterns tend to move together — and the user remains the final interpreter.</p><p class="sub cn">BCI - The Human Return Protocol 不应说“皮电等于焦虑”或“alpha 等于疗愈”。它应该说：对这个用户，在这个情境中，在这个声音事件之后，这些身体、自主神经、大脑与自我报告模式经常一起变化——而用户仍然是最终解释者。</p></div><div class="card span-12"><div class="eyebrow">SHARED TIMELINE // 共享时间轴</div><table class="therapy-table"><thead><tr><th>Time</th><th>Event</th><th>Aligned data</th><th>Meaning</th></tr></thead><tbody><tr><td>T0</td><td>Baseline</td><td>EEG/fNIRS + HRV/EDA/respiration + movement + self-report</td><td>建立个体当前场。</td></tr><tr><td>T1</td><td>Sound begins</td><td>BPM, volume, spectrum, timbre, spatial field, predictability</td><td>声音是可控探针，不只是音乐。</td></tr><tr><td>T2</td><td>Event marker</td><td>Drop, voice, bass, silence, noise shift, breath cue, memory cue</td><td>前后 5s / 30s / 60s / 3min 对比。</td></tr><tr><td>T3</td><td>Autonomic response</td><td>HRV/RMSSD, EDA/SCR, respiration, skin temperature</td><td>看交感/副交感激活、恢复、冻结、返回曲线。</td></tr><tr><td>T4</td><td>Body response</td><td>IMU, posture, micro-motion, muscle-tension report, breath feel</td><td>看身体是否真的落地、松开、行动或收缩。</td></tr><tr><td>T5</td><td>Neural proxy</td><td>Alpha/theta/beta, ERP-like response, phase-locking estimate, HbO/HbR</td><td>看聆听状态、注意、时间预测、负荷。</td></tr><tr><td>T6</td><td>User naming</td><td>Prediction, affect/body label, meaning note, rename, reject, delete</td><td>解释权与神经自主性回到用户。</td></tr></tbody></table></div><div class="card span-4"><div class="eyebrow">BRAIN DATA // 大脑数据</div><table class="therapy-table"><tbody><tr><td><strong>EEG</strong></td><td>Fast timing, arousal/attention proxies, alpha/theta/beta trends. Not deep meaning.</td></tr><tr><td><strong>fNIRS</strong></td><td>Frontal oxygenation and workload/regulation proxies.</td></tr><tr><td><strong>Lab tools</strong></td><td>fMRI/MEG can validate networks such as insula, ACC, mPFC, hippocampus, auditory–motor circuits.</td></tr></tbody></table></div><div class="card span-4"><div class="eyebrow">AUTONOMIC DATA // 自主神经数据</div><table class="therapy-table"><tbody><tr><td><strong>HRV/RMSSD</strong></td><td>Autonomic flexibility and recovery proxies; not “good/bad” by itself.</td></tr><tr><td><strong>EDA/SCR</strong></td><td>Sympathetic arousal; cannot tell joy vs fear alone.</td></tr><tr><td><strong>Respiration/temp</strong></td><td>Breath-vagal coupling, thermal drift, recovery or stress trend.</td></tr></tbody></table></div><div class="card span-4"><div class="eyebrow">NEURAL AUTONOMY // 神经自主性</div><table class="therapy-table"><tbody><tr><td><strong>Agency</strong></td><td>User chooses the probe, intensity, pause, stop, and replay.</td></tr><tr><td><strong>Interpretation</strong></td><td>User can accept, edit, reject, rename, or delete every AI label.</td></tr><tr><td><strong>Boundary</strong></td><td>System must not coerce entrainment, force exposure, or continue when discomfort rises.</td></tr></tbody></table></div></div></section>
 
     <section id="prototype"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">MVP ROADMAP // 第一阶段可建路线</div><h2>Start buildable. Keep the future interface explicit.</h2><h2 class="cn">从可建版本开始，同时清楚标出未来接口。</h2></div><div class="card span-3"><div class="num">LEVEL 1</div><h3>Software MVP</h3><p class="cn">声音探针、预测、自评、事件标记、非诊断报告。</p></div><div class="card span-3"><div class="num">LEVEL 2</div><h3>Wearable pilot</h3><p class="cn">接入现有腕带/头带，测试同步和可用性。</p></div><div class="card span-3"><div class="num">LEVEL 3</div><h3>Lab validation</h3><p class="cn">EEG/fNIRS/EDA/HRV/呼吸受控实验。</p></div><div class="card span-3"><div class="num">LEVEL 4</div><h3>Product triad</h3><p class="cn">AI 耳机 + 头部贴片 + 腕环。</p></div><div class="card span-12"><div class="eyebrow">SAMPLE SESSION // 样例 Session</div><table class="therapy-table"><tbody><tr><td><strong>Prediction</strong></td><td>User predicts: “This track may make me clearer but slightly sad.”</td><td>用户预测：更清楚，但有点想哭。</td></tr><tr><td><strong>Probe</strong></td><td>AI headphones play a user-approved Return Probe.</td><td>AI 耳机播放用户批准的返回探针。</td></tr><tr><td><strong>Response</strong></td><td>EDA rises at vocal entry; respiration pauses, then deepens; HRV recovery appears.</td><td>皮电上升；呼吸暂停后变深；HRV 出现恢复趋势。</td></tr><tr><td><strong>Rename</strong></td><td>User rejects “calm” and renames the state “soft return.”</td><td>用户拒绝“平静”，改名为“柔软返回”。</td></tr></tbody></table></div></div></section>
@@ -3926,6 +4302,79 @@
   <div class="card span-12"><div class="eyebrow">ACOUSTIC ENTRY PROTOCOL // 声音引入协议</div><table class="therapy-table"><tbody><tr><td><strong>1. Consent + choice</strong></td><td>用户先选择声音家族、强度范围、退出方式。</td></tr><tr><td><strong>2. Baseline</strong></td><td>30–120 秒静息：记录 HRV/EDA/呼吸/运动/神经代理与感质词。</td></tr><tr><td><strong>3. Prediction</strong></td><td>用户预测：这个声音会让我更紧、更松、更清醒、更想哭、更能行动，还是更想停？</td></tr><tr><td><strong>4. Gentle entry</strong></td><td>低音量淡入，标记 bass、人声、drop、glitch、hook、静默等事件点。</td></tr><tr><td><strong>5. Stop-ready</strong></td><td>始终显示 Stop / Ground / Delete。强刺激必须可立即退出。</td></tr><tr><td><strong>6. QDR return</strong></td><td>播放后对齐感质、自主神经、身体、神经代理、意义与用户命名。</td></tr></tbody></table></div>
   <div class="card span-12"><div class="eyebrow">NEURAL AUTONOMY RULE // 神经自主性规则</div><p class="sub cn">任何声音机制只有在用户拥有选择权、音量控制、即时停止、拒绝标签、删除记录和重新命名权时，才属于 BCI - The Human Return Protocol。否则，它就会从“对齐探针”滑向“神经控制”。</p><p class="sub en">A sound mechanism belongs inside BCI - The Human Return Protocol only when the user has choice, volume control, instant stop, label rejection, deletion, and renaming power. Otherwise, it shifts from alignment probe toward neural control.</p></div>
 </div></section>
+
+    <section id="state-density-matrix"><div class="grid">
+      <div class="card span-12 neon-card density-panel">
+        <div class="eyebrow">MELLOW / STALLION DENSITY STATES // 两种声音进入状态</div>
+        <h2>Mellow and Stallion are not diagnoses. They are two acoustic-entry strategies.</h2>
+        <h2 class="cn">Mellow 和 Stallion 不是诊断，而是两种声音进入策略。</h2>
+        <p class="sub en"><strong>Mellow</strong> can enter through higher density and higher sensory saturation when complexity feels like home. <strong>Stallion</strong> needs gradual safety association: low density first, stable pulse first, then intensity is introduced only after the body trusts the rhythm. The protocol adapts density, intensity, transient sharpness, and repetition instead of assuming one sound is universally regulating.</p>
+        <p class="sub cn"><strong>Mellow</strong> 可以通过更高密度、更高感官饱和度进入，因为复杂度对它像“回家”。<strong>Stallion</strong> 需要渐进安全联想：先低密度、先稳定脉冲，只有身体信任节律之后再引入强度。协议调节密度、强度、瞬态锋利度和重复次数，而不是假设某一种声音对所有人都有效。</p>
+      </div>
+
+      <div class="card span-12">
+        <div class="state-density-board">
+          <div class="panel">
+            <div class="terminal-title">GENRE INPUT // 曲风输入</div>
+            <div class="density-controls">
+              <button class="density-genre-btn active" data-v29-genre="synthpop">Synthpop</button>
+              <button class="density-genre-btn" data-v29-genre="hyperpop">Hyperpop</button>
+              <button class="density-genre-btn" data-v29-genre="darkwave">Darkwave</button>
+              <button class="density-genre-btn" data-v29-genre="driftphonk">Drift Phonk</button>
+              <button class="density-genre-btn" data-v29-genre="ambienttechno">Ambient Techno</button>
+              <button class="density-genre-btn" data-v29-genre="breakbeats">Breakbeats</button>
+            </div>
+            <div class="density-audio-note">Audio buttons are illustrative WebAudio sketches, not finished compositions. They demonstrate relative density/intensity only.<br><span class="cn">播放按钮是 WebAudio 草图，不是成品音乐；只展示相对密度与强度差异。</span></div>
+          </div>
+
+          <div>
+            <div class="density-state-grid">
+              <article class="density-state-card mellow-card">
+                <div class="density-kicker">MELLOW // FULL-DENSITY ENTRY</div>
+                <h3 id="v29MellowTitle">Synthpop — layered return</h3>
+                <p id="v29MellowDesc">Layered arps, warm saw pad, bright hook, medium-high sidechain pulse. Complexity works as a safety architecture.</p>
+                <p class="cn" id="v29MellowDescCN">分层琶音、温暖 saw pad、明亮 hook、中高强度 sidechain 脉冲。复杂度本身成为安全结构。</p>
+                <div class="density-specs">
+                  <div><b>BPM</b><span id="v29MellowBpm">115–132</span></div>
+                  <div><b>Density</b><span id="v29MellowDensity">high-layered</span></div>
+                  <div><b>Intensity</b><span id="v29MellowIntensity">medium-high, luminous</span></div>
+                  <div><b>Entry</b><span id="v29MellowEntry">direct hook within 20–40 sec</span></div>
+                </div>
+                <div class="density-meter-wrap"><div class="density-meter-label"><span>DENSITY</span><span id="v29MellowDensityText">82%</span></div><div class="density-meter"><span id="v29MellowDensityBar" style="width:82%"></span></div><div class="density-meter-label"><span>INTENSITY</span><span id="v29MellowIntensityText">72%</span></div><div class="density-meter"><span id="v29MellowIntensityBar" style="width:72%"></span></div></div>
+                <div class="density-play-row"><button class="button primary" id="playV29Mellow">PLAY MELLOW SAMPLE</button></div>
+              </article>
+
+              <article class="density-state-card stallion-card">
+                <div class="density-kicker">STALLION // GRADUAL SAFETY ASSOCIATION</div>
+                <h3 id="v29StallionTitle">Synthpop — low-density trust build</h3>
+                <p id="v29StallionDesc">One soft pad, one pulse, one hook fragment. The system repeats until the body trusts the grid.</p>
+                <p class="cn" id="v29StallionDescCN">一个柔和 pad、一个脉冲、一个 hook 片段。系统重复到身体信任网格为止。</p>
+                <div class="density-specs">
+                  <div><b>BPM</b><span id="v29StallionBpm">88–106</span></div>
+                  <div><b>Density</b><span id="v29StallionDensity">low-sparse</span></div>
+                  <div><b>Intensity</b><span id="v29StallionIntensity">low, rounded transients</span></div>
+                  <div><b>Entry</b><span id="v29StallionEntry">2–4 min safety association</span></div>
+                </div>
+                <div class="density-meter-wrap"><div class="density-meter-label"><span>DENSITY</span><span id="v29StallionDensityText">34%</span></div><div class="density-meter"><span id="v29StallionDensityBar" style="width:34%"></span></div><div class="density-meter-label"><span>INTENSITY</span><span id="v29StallionIntensityText">28%</span></div><div class="density-meter"><span id="v29StallionIntensityBar" style="width:28%"></span></div></div>
+                <div class="density-play-row"><button class="button stallion-anchor" id="playV29Stallion">PLAY STALLION SAMPLE</button><button class="button" id="stopV29Density">STOP</button></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card span-12">
+        <div class="eyebrow">DENSITY / INTENSITY EXAMPLE MATRIX // 密度与强度示例矩阵</div>
+        <div class="density-table-wrap"><table class="density-table"><thead><tr><th>Sound family</th><th>Mellow example</th><th>Stallion example</th><th>What to measure</th></tr></thead><tbody>
+          <tr><td>Synthpop</td><td>115–132 BPM, layered arps, bright hook, warm saw pad, medium-high sidechain pulse.</td><td>88–106 BPM, one soft pad, rounded kick, hook fragment introduced after repeated safe cycles.</td><td>Reward return, HRV recovery, user naming: “safe structure / 回家感”.</td></tr>
+          <tr><td>Hyperpop</td><td>150–170 BPM, dense glitch vocal chops, bright transients, short peak bursts, rapid drop-to-silence exits.</td><td>120–135 BPM, micro-glitch every 8 bars, low high-end, one vocal texture only.</td><td>Arousal peak, boundary reaction, EDA rise + recovery slope, stop readiness.</td></tr>
+          <tr><td>Darkwave</td><td>90–115 BPM, thick dark pad, cold bass, heavy reverb, slow minor hook, emotional containment.</td><td>70–90 BPM, sparse minor pad, soft bass, long attack, no sudden transient.</td><td>Shadow containment, breath depth, self-report from “heavy” to “held”.</td></tr>
+          <tr><td>Drift Phonk</td><td>140–160 BPM feel, 808/sub-bass, cowbell/cut texture, rolling hats, forward body-weight drive.</td><td>100–125 BPM, softened sub, stable pulse, cowbell delayed until trust appears.</td><td>Motor readiness, body weight, motion increase, autonomic activation without overwhelm.</td></tr>
+          <tr><td>Ambient Techno</td><td>120–130 BPM, stable kick, evolving texture, medium spatial density, long-form temporal scaffold.</td><td>80–110 BPM, kick softened or absent, drone + breath pulse, slow filter movement.</td><td>Attention continuity, low-friction work entry, respiratory stabilization.</td></tr>
+          <tr><td>Breakbeats</td><td>150–170 BPM, full syncopation, irregular accents, chopped percussion as aliveness cue.</td><td>118–138 BPM, minimal break, one irregular accent every 4–8 bars, repetition before variation.</td><td>Prediction error tolerance, auditory–motor re-entry, irregularity becoming safe.</td></tr>
+        </tbody></table></div>
+      </div>
+    </div></section>
 
     <section id="academic-music-evidence"><div class="grid">
   <div class="card span-12 neon-card"><div class="eyebrow">RESEARCH SUPPORT // 科学研究支持</div><h2>The evidence supports mechanisms and validation pathways, not universal sound prescriptions.</h2><h2 class="cn">证据支持的是机制与验证路径，不是普适声音处方。</h2><p class="sub en">BCI - The Human Return Protocol should say: these sound families have plausible or documented links to autonomic regulation, attention, movement, memory, reward, sleep timing, and stress response; the triadic system still requires pilot validation.</p><p class="sub cn">BCI - The Human Return Protocol 应该说：这些声音家族与自主神经调节、注意、运动、记忆、奖赏、睡眠时机和压力反应存在合理或已记录的机制联系；三件套协同仍然需要试点验证。</p><div class="academic-evidence-strip"><span class="evidence-title">Evidence families</span><span>Interoception</span><span>ANS / HRV</span><span>EDA arousal</span><span>Slow breathing</span><span>Natural sounds</span><span>Auditory–motor entrainment</span><span>Music reward</span><span>Autobiographical memory</span><span>ASMR / voice</span><span>Sleep acoustic stimulation</span><span>Binaural evidence mixed</span><span>Vibroacoustic developing</span></div></div>
@@ -5113,6 +5562,111 @@
       });
     });
   })();
+</script>
+
+
+
+<script id="hrp-v29-density-audio">
+(function(){
+  var ACtx = window.AudioContext || window.webkitAudioContext;
+  var audioCtx = null;
+  var nodes = [];
+  var timers = [];
+  var activeGenre = "synthpop";
+  function ctx(){ if(!audioCtx) audioCtx = new ACtx(); return audioCtx; }
+  function stop(){
+    timers.forEach(function(t){ clearInterval(t); }); timers = [];
+    nodes.forEach(function(n){ try{ if(n.stop) n.stop(); }catch(e){} try{ if(n.disconnect) n.disconnect(); }catch(e){} }); nodes = [];
+  }
+  function add(n){ nodes.push(n); return n; }
+  function master(level){ var c=ctx(); var g=add(c.createGain()); g.gain.setValueAtTime(0.0001,c.currentTime); g.gain.exponentialRampToValueAtTime(level||0.055,c.currentTime+.12); g.connect(c.destination); return g; }
+  function hit(out, f, type, level, dur, delay){ var c=ctx(); var o=add(c.createOscillator()); var g=add(c.createGain()); o.type=type||"sine"; o.frequency.value=f; var t=c.currentTime+(delay||0); g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(level||0.05,t+.025); g.gain.exponentialRampToValueAtTime(0.0001,t+(dur||.18)); o.connect(g); g.connect(out); o.start(t); o.stop(t+(dur||.18)+.05); }
+  function pad(out, freqs, type, level){ var c=ctx(); freqs.forEach(function(f,i){ var o=add(c.createOscillator()); var g=add(c.createGain()); o.type=type||"sine"; o.frequency.value=f; g.gain.value=(level||.04)/(i+1); o.connect(g); g.connect(out); o.start(); }); }
+
+  var profiles = {
+    synthpop:{
+      mellow:{title:"Synthpop — layered return",desc:"Layered arps, warm saw pad, bright hook, medium-high sidechain pulse. Complexity works as a safety architecture.",cn:"分层琶音、温暖 saw pad、明亮 hook、中高强度 sidechain 脉冲。复杂度本身成为安全结构。",bpm:"115–132",density:"high-layered",intensity:"medium-high, luminous",entry:"direct hook within 20–40 sec",d:82,i:72},
+      stallion:{title:"Synthpop — low-density trust build",desc:"One soft pad, one pulse, one hook fragment. The system repeats until the body trusts the grid.",cn:"一个柔和 pad、一个脉冲、一个 hook 片段。系统重复到身体信任网格为止。",bpm:"88–106",density:"low-sparse",intensity:"low, rounded transients",entry:"2–4 min safety association",d:34,i:28}
+    },
+    hyperpop:{
+      mellow:{title:"Hyperpop — saturation ignition",desc:"Dense glitch vocal shapes, bright transients, short peak bursts, and fast exit points. High intensity is used as a controlled probe, not as coercion.",cn:"密集 glitch 人声、明亮瞬态、短峰值爆发和快速退出点。高强度是受控探针，不是强迫。",bpm:"150–170",density:"very high / chopped",intensity:"high, sharp, short",entry:"peak burst + immediate exit",d:94,i:88},
+      stallion:{title:"Hyperpop — micro-dose edge",desc:"One small glitch texture every few bars, softer high-end, slower pulse. It teaches the body that brightness can be safe.",cn:"每几小节一个小 glitch，削弱高频，放慢脉冲。让身体学习明亮不一定危险。",bpm:"120–135",density:"low-medium",intensity:"low edge, controlled",entry:"micro-glitch after 8-bar trust",d:42,i:38}
+    },
+    darkwave:{
+      mellow:{title:"Darkwave — thick shadow container",desc:"Cold bass, thick pad, minor hook, and heavy reverb hold the shadow without naming it as pathology.",cn:"冷 bass、厚 pad、小调 hook 和重混响承载阴影，但不把它病理化。",bpm:"90–115",density:"medium-thick",intensity:"medium, dark pressure",entry:"slow tension field",d:68,i:62},
+      stallion:{title:"Darkwave — sparse night safety",desc:"Sparse minor pad, soft bass, long attack, no sudden transient. The body meets darkness through safety first.",cn:"稀疏小调 pad、柔 bass、长起音、无突发瞬态。身体先通过安全感接触黑暗。",bpm:"70–90",density:"low",intensity:"low, rounded",entry:"long fade-in",d:30,i:26}
+    },
+    driftphonk:{
+      mellow:{title:"Drift Phonk — full body drive",desc:"808/sub-bass, cowbell texture, rolling hats, and forward speed imagery convert inertia into body weight.",cn:"808/sub-bass、cowbell 质地、滚动 hi-hat 与速度意象，把惯性转成身体重量。",bpm:"140–160 feel",density:"medium-high rhythmic",intensity:"high low-end drive",entry:"sub-bass first",d:78,i:84},
+      stallion:{title:"Drift Phonk — softened engine",desc:"Softened sub, stable pulse, cowbell delayed until trust appears. The drive becomes contained rather than invasive.",cn:"削软 sub、稳定脉冲，cowbell 等身体信任之后再进入。推进感被承载，而不是入侵。",bpm:"100–125",density:"medium-low",intensity:"moderate low-end",entry:"pulse trust before texture",d:45,i:46}
+    },
+    ambienttechno:{
+      mellow:{title:"Ambient Techno — dense temporal scaffold",desc:"Stable kick, evolving texture, medium spatial density, and long-form repetition make time usable again.",cn:"稳定 kick、演化质地、中等空间密度和长时重复，让时间重新变得可用。",bpm:"120–130",density:"medium-high evolving",intensity:"medium, sustained",entry:"continuous pulse",d:70,i:58},
+      stallion:{title:"Ambient Techno — breath-grid entry",desc:"Kick is absent or softened; drone and breath pulse appear first. Time returns before rhythm becomes demanding.",cn:"kick 消失或被削软；drone 与呼吸脉冲先出现。时间先回来，然后节律才加密。",bpm:"80–110",density:"low-evolving",intensity:"low, spacious",entry:"breath pulse before kick",d:32,i:24}
+    },
+    breakbeats:{
+      mellow:{title:"Breakbeats — full-density aliveness",desc:"Full syncopation, irregular accents, chopped percussion. Irregularity is an entry into embodied aliveness.",cn:"完整切分、非规则重音、切片打击乐。不规则成为身体化活感的入口。",bpm:"150–170",density:"very high syncopation",intensity:"high, kinetic",entry:"45–90 sec direct entry",d:92,i:82},
+      stallion:{title:"Breakbeats — gradual safety association",desc:"Minimal break, one irregular accent every 4–8 bars, repetition before variation. The body trusts pulse before disruption.",cn:"极简 break，每 4–8 小节一个不规则重音，先重复后变化。身体先信任脉冲，再接触断裂。",bpm:"118–138",density:"low-medium",intensity:"controlled",entry:"3–6 min + 66 repetitions",d:40,i:36}
+    }
+  };
+
+  function update(kind){
+    var p=profiles[activeGenre]; if(!p) return;
+    ["Mellow","Stallion"].forEach(function(name){
+      var key=name.toLowerCase(); var d=p[key];
+      var prefix="v29"+name;
+      var map={Title:d.title,Desc:d.desc,DescCN:d.cn,Bpm:d.bpm,Density:d.density,Intensity:d.intensity,Entry:d.entry,DensityText:d.d+"%",IntensityText:d.i+"%"};
+      Object.keys(map).forEach(function(k){ var el=document.getElementById(prefix+k); if(el) el.textContent=map[k]; });
+      var db=document.getElementById(prefix+"DensityBar"); if(db) db.style.width=d.d+"%";
+      var ib=document.getElementById(prefix+"IntensityBar"); if(ib) ib.style.width=d.i+"%";
+    });
+  }
+
+  function selectGenre(g){ activeGenre=g; document.querySelectorAll('[data-v29-genre]').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-v29-genre')===g); }); update(); }
+
+  function play(kind){
+    stop();
+    var c=ctx(); if(c.state==='suspended') c.resume();
+    var out=master(kind==='mellow'?0.065:0.038);
+    var g=activeGenre, step=0;
+    if(g==='ambienttechno' && kind==='stallion'){ pad(out,[106.75,213.5,427],'sine',.055); }
+    if(g==='darkwave'){ pad(out, kind==='mellow'?[80,160,320]:[106.75,213.5], 'sawtooth', kind==='mellow'?.045:.025); }
+    if(g==='synthpop'){ pad(out, kind==='mellow'?[213.5,427,540]:[213.5,427], 'triangle', kind==='mellow'?.04:.024); }
+    var interval = kind==='mellow' ? (g==='hyperpop'?110:g==='breakbeats'?135:g==='driftphonk'?145:g==='synthpop'?260:g==='ambienttechno'?240:520) : (g==='hyperpop'?520:g==='breakbeats'?620:g==='driftphonk'?420:g==='synthpop'?720:g==='ambienttechno'?820:900);
+    timers.push(setInterval(function(){
+      step++;
+      if(g==='synthpop'){
+        if(kind==='mellow'){ hit(out,[427,540,640,854][step%4],'triangle',.052,.16); if(step%4===0)hit(out,80,'sine',.08,.08); }
+        else { if(step%2===0)hit(out,427,'sine',.035,.28); if(step%8===0)hit(out,540,'triangle',.026,.24); }
+      } else if(g==='hyperpop'){
+        if(kind==='mellow'){ hit(out,[427,724,1280,1708][step%4],'square',.03,.045); if(step%6===0)hit(out,80,'sine',.08,.06); }
+        else { if(step%4===0)hit(out,724,'triangle',.018,.08); if(step%16===0)hit(out,1280,'square',.012,.035); }
+      } else if(g==='darkwave'){
+        hit(out, kind==='mellow'?(step%3===0?53.4:106.75):106.75, 'sawtooth', kind==='mellow'?.045:.022, kind==='mellow'?.34:.55);
+        if(kind==='mellow' && step%4===0) hit(out,427,'triangle',.026,.45);
+      } else if(g==='driftphonk'){
+        hit(out, kind==='mellow'?53.4:80, 'sine', kind==='mellow'?.11:.055, .11);
+        if(kind==='mellow' && step%3===0)hit(out,724,'square',.022,.055);
+        if(kind==='stallion' && step%8===0)hit(out,427,'triangle',.02,.16);
+      } else if(g==='ambienttechno'){
+        if(kind==='mellow'){ hit(out,80,'sine',.07,.09); if(step%8===0) hit(out,427,'triangle',.025,.22); }
+        else { if(step%4===0) hit(out,213.5,'sine',.022,.38); }
+      } else {
+        if(kind==='mellow'){ hit(out, step%4===0?90:140, 'sine', .09, .055); if(step%3===0)hit(out,427,'triangle',.028,.06); }
+        else { if(step%4===0)hit(out,118,'sine',.045,.08); if(step%16===0)hit(out,427,'triangle',.02,.08); }
+      }
+    }, interval));
+  }
+
+  function bind(){
+    document.querySelectorAll('[data-v29-genre]').forEach(function(b){ b.addEventListener('click', function(){ selectGenre(b.getAttribute('data-v29-genre')); }); });
+    var m=document.getElementById('playV29Mellow'); if(m) m.addEventListener('click', function(){ play('mellow'); });
+    var s=document.getElementById('playV29Stallion'); if(s) s.addEventListener('click', function(){ play('stallion'); });
+    var st=document.getElementById('stopV29Density'); if(st) st.addEventListener('click', stop);
+    update();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', bind); else bind();
+})();
 </script>
 
 </body>
