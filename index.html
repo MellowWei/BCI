@@ -3724,6 +3724,84 @@
 .ch-bound{margin-top:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.03em;color:var(--dim);line-height:1.55;border-left:2px solid rgba(255,184,48,.42);padding-left:9px;}
 @media(max-width:900px){.tri-model{grid-template-columns:1fr;}}
 </style>
+
+
+<style id="hrp-v28-title-and-wristband-lock">
+  /* V2.8: keep the main title on one visual line without changing the glitch identity. */
+  h1.hero-title-nowrap,
+  h1.hero-title-nowrap::before,
+  h1.hero-title-nowrap::after {
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
+  h1.hero-title-nowrap {
+    max-width: 100% !important;
+    width: 100% !important;
+    font-size: clamp(24px, 5.35vw, 68px) !important;
+    line-height: 1.0 !important;
+    letter-spacing: -0.045em !important;
+    word-spacing: 0.12em !important;
+  }
+
+  .wristband-dynamic-example {
+    margin-top: 0 !important;
+  }
+
+  .wristband-dynamic-example .metric-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: 680px) {
+    h1.hero-title-nowrap {
+      font-size: clamp(18px, 5.8vw, 34px) !important;
+      letter-spacing: -0.055em !important;
+      word-spacing: 0.06em !important;
+    }
+  }
+
+  @media (max-width: 420px) {
+    h1.hero-title-nowrap {
+      font-size: clamp(16px, 5.35vw, 28px) !important;
+      letter-spacing: -0.06em !important;
+      word-spacing: 0.04em !important;
+    }
+  }
+
+
+/* V2.8 title lock + wristband dynamic instance patch */
+.hero h1.glitch,
+.hero h1.glitch::before,
+.hero h1.glitch::after {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+.hero h1.glitch {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  font-size: clamp(18px, 5.1vw, 68px) !important;
+  letter-spacing: -0.045em !important;
+  word-spacing: 0.04em !important;
+  line-height: 1.02 !important;
+}
+.wrist-dynamic-instance-card {
+  border-color: rgba(53, 255, 159, 0.28) !important;
+}
+@media (max-width: 900px) {
+  .hero h1.glitch {
+    font-size: clamp(17px, 5.3vw, 44px) !important;
+  }
+}
+@media (max-width: 420px) {
+  .hero h1.glitch {
+    font-size: clamp(15px, 5.1vw, 25px) !important;
+  }
+}
+</style>
+
 </head>
 
 
@@ -3762,7 +3840,7 @@
       <div class="status-card"><div class="status-label">PHYSICAL SPACE TIME</div><div id="physicalTime" class="status-value">Loading real-time signal...</div></div>
       <div class="status-card"><div class="status-label">SYSTEM STATUS</div><div class="status-value">RESEARCH PROTOTYPE · NON-DIAGNOSTIC · USER-OWNED INTERPRETATION</div></div>
     </div>
-    <h1 class="glitch" data-text="BCI - The Human Return Protocol">BCI - The Human Return Protocol</h1>
+    <h1 class="glitch hero-title-nowrap single-line-title" data-text="BCI - The Human Return Protocol">BCI - The Human Return Protocol</h1>
     <div class="thesis">
       The core target is rhythm recovery and qualia alignment — not state induction.
       <div class="cn">核心目标是节律恢复与感质对齐——不是状态诱导。</div>
@@ -3799,7 +3877,9 @@
     <section id="gpt-core"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">CORE LOOP // 核心闭环</div><h2>The system helps the user test their own pattern.</h2><h2 class="cn">系统帮助用户测试自己的模式。</h2></div><div class="card span-12"><div class="hardware-flow"><div class="flow-node"><div class="num">01</div><h3>Predict</h3><p class="cn">用户先预测：这个声音会让我更紧、更松、更清醒、更想哭，还是更能行动？</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">02</div><h3>Probe</h3><p class="cn">AI 耳机播放用户批准的声音探针，并记录精确事件点。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">03</div><h3>Measure</h3><p class="cn">头部贴片与腕环记录神经/身体代理指标。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">04</div><h3>Rename</h3><p class="cn">用户接受、修改、拒绝或重新命名 AI-QDR 报告。</p></div></div></div>
       <div class="card span-12"><div class="eyebrow">INTERACTIVE RHYTHM STATE LAB // 互动节律状态实验室</div><h2>Choose the current rhythm.</h2><h2 class="cn">选择当前节律。</h2><div class="state-lab"><div class="panel terminal-panel"><div class="terminal-title">STATE INPUT</div><div class="state-buttons"><button class="state-btn active" data-state="stuck">Stuck / 卡死</button><button class="state-btn" data-state="drifting">Drifting / 漂移</button><button class="state-btn" data-state="overloaded">Overloaded / 过载</button><button class="state-btn" data-state="numb">Numb / 麻木</button><button class="state-btn" data-state="flow">In Flow / 入流</button><button class="state-btn" data-state="transition">Need Transition / 需要转换</button><button class="state-btn" data-state="recovery">Need Recovery / 需要恢复</button></div></div><div class="panel state-output"><div class="terminal-title">QDR OUTPUT</div><div id="stateTitle" class="state-title">Stuck / 卡死</div><div id="stateDesc" class="state-desc">The system is not failing. The entry point is too large, too cold, or too undefined.</div><div id="stateIntervention" class="intervention">Support prompt: shrink the entry point, reduce stimulus density, choose one sound probe, and take one real micro-action.</div></div></div></div></div></section>
 
-    <section id="neural-cuff"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">TRIADIC COORDINATION THEORY // 三件套协同理论</div><h2>AI headphones output sound. The head patch reads listening-state proxies. The wristband reads body rhythm and autonomic regulation.</h2><h2 class="cn">AI 耳机输出声音。头部贴片读取聆听状态代理。腕环读取身体节律与自主神经调节。</h2><p class="sub en">None of the three devices alone reads emotion, memory, or meaning. Their value is synchronization: sound events, neural proxies, autonomic/body proxies, and user-owned reports are aligned on a shared timeline while preserving neural autonomy.</p><p class="sub cn">任何单一设备都不读取情绪、记忆或意义。它们的价值在于同步：声音事件、神经代理指标、自主神经/身体代理指标与用户拥有的报告被放到同一条时间轴，同时保护神经自主性。</p></div><div class="card span-12"><div class="hardware-flow"><div class="flow-node"><div class="num">01 // AI HEADPHONES</div><h3>Acoustic intervention layer</h3><p class="cn">生成、选择、空间化并播放声音探针：音乐、呼吸声、自然声、噪声场、低频锚点、人声、记忆线索、静默对照。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">02 // HEAD PATCH</div><h3>Neural-proxy layer</h3><p class="cn">EEG/fNIRS 代理：alpha/theta/beta 趋势、听觉诱发反应、注意/负荷/聆听状态。不是读心。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">03 // WRISTBAND</div><h3>Autonomic + body-rhythm layer</h3><p class="cn">HR/HRV、EDA、皮温、运动、呼吸代理，记录交感/副交感调节与身体返回轨迹。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">04 // AI-QDR</div><h3>Neural-autonomy layer</h3><p class="cn">生成非诊断报告；用户可以 Accept / Edit / Reject / Rename / Delete / Stop。</p></div></div></div><div class="card span-6"><div class="eyebrow">WRISTBAND // 腕环</div><h3>The wristband tracks autonomic dynamics, not a hidden truth.</h3><h3 class="cn">腕环追踪自主神经动态，不追踪隐藏真相。</h3><p class="cn">腕环记录 HRV/RMSSD、EDA/SCR、皮温、运动、呼吸代理，捕捉“身体已经紧了，但语言还没跟上”的时间差。自主神经数据说明的是激活、恢复、冻结、返回的轨迹，不单独等于焦虑、快乐或创伤。</p><div class="tag-row"><span class="tag">HRV</span><span class="tag">EDA</span><span class="tag">TEMP</span><span class="tag">IMU</span><span class="tag">RESP PROXY</span><span class="tag">ANS</span></div></div><div class="card span-6"><div class="eyebrow">HEAD PATCH // 头部贴片</div><h3>Brain data are listening-state proxies.</h3><h3 class="cn">大脑数据是聆听状态代理。</h3><p class="cn">头部贴片可支持 EEG/fNIRS：alpha/theta/beta 变化、事件相关反应、相位锁定估计、前额叶血氧。它不能直接读取意义；它只能帮助检测声音事件之后，注意、负荷、时间预测和神经节律是否变化。</p><div class="tag-row"><span class="tag">EEG</span><span class="tag">fNIRS</span><span class="tag">ALPHA</span><span class="tag">THETA</span><span class="tag">PFC LOAD</span><span class="tag">TIMING</span></div></div></div></section>
+    <section id="neural-cuff"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">TRIADIC COORDINATION THEORY // 三件套协同理论</div><h2>AI headphones output sound. The head patch reads listening-state proxies. The wristband reads body rhythm and autonomic regulation.</h2><h2 class="cn">AI 耳机输出声音。头部贴片读取聆听状态代理。腕环读取身体节律与自主神经调节。</h2><p class="sub en">None of the three devices alone reads emotion, memory, or meaning. Their value is synchronization: sound events, neural proxies, autonomic/body proxies, and user-owned reports are aligned on a shared timeline while preserving neural autonomy.</p><p class="sub cn">任何单一设备都不读取情绪、记忆或意义。它们的价值在于同步：声音事件、神经代理指标、自主神经/身体代理指标与用户拥有的报告被放到同一条时间轴，同时保护神经自主性。</p></div>
+<div class="card span-12 wristband-dynamic-example"><div class="eyebrow">WRISTBAND DYNAMIC EXAMPLE // 腕环实例动态图</div><h2>The wristband is the autonomic return witness.</h2><h2 class="cn">腕环是自主神经返回的见证器。</h2><p class="sub en">This restores the earlier dynamic wristband example: a rotating inner-wrist band, pulse-side light rails, sensor dots, haptic-return callouts, and a live signal simulation. It is a visual prototype for how the wrist layer can track HRV, EDA, skin temperature, motion, and recovery curves while the user remains the final interpreter.</p><p class="sub cn">这里恢复之前的腕环动态实例：旋转的内腕式腕环、脉侧光轨、传感器点、触觉返回标注与实时信号模拟。它是腕部层如何记录 HRV、EDA、皮温、运动与恢复曲线的视觉原型；最终解释权仍然属于用户。</p><div class="cuff-stage"><div class="cuff-visual-card"><div class="cuff-orbit"><div class="callout one"><b>OUTER SHELL</b>Matte graphite / smoky translucent body<div class="cn">外壳：哑光石墨 / 烟灰半透明身体</div></div><div class="callout two"><b>LIGHT STATE</b>Rhythm state luminous rail<div class="cn">光轨：节律状态显影</div></div><div class="callout three"><b>SENSOR ARRAY</b>PPG · EDA · Temp · IMU<div class="cn">传感器阵列：心率 · 皮电 · 体温 · 微运动</div></div><div class="callout four"><b>HAPTIC RETURN</b>Pulse-side directional tap<div class="cn">触觉返回：脉侧定向轻敲</div></div><div class="cuff-body"><span class="engrave">44271</span><span class="light-line cyan"></span><span class="light-line magenta"></span><div class="inner-pad left"></div><div class="inner-pad right"></div><span class="sensor-dot d1"></span><span class="sensor-dot d2"></span><span class="sensor-dot d3"></span><span class="sensor-dot d4"></span></div></div></div><div><div class="eyebrow">LIVE SIGNAL SIMULATION // 实时信号模拟</div><h3>Autonomic rhythm stream</h3><h3 class="cn">自主神经节律流</h3><p class="en">The chart visualizes how the wristband can combine HRV coherence, electrodermal arousal, thermal drift, and motion into an event-locked recovery trajectory. It does not diagnose; it shows whether the rhythm is stabilizing, fragmenting, freezing, activating, or returning.</p><p class="cn">这张图展示腕环如何将 HRV 连贯性、皮肤电唤醒、温度漂移与运动信号组合成事件锁定的恢复轨迹。它不诊断，只显示节律是在稳定、碎裂、冻结、激活，还是返回。</p><svg class="signal-chart" viewBox="0 0 600 220" preserveAspectRatio="none" aria-label="wristband signal chart"><polyline class="chart-line chart-hrv" points="0,118 45,104 90,126 135,92 180,104 225,74 270,96 315,82 360,104 405,70 450,91 495,78 540,102 600,84"></polyline><polyline class="chart-line chart-eda" points="0,172 45,166 90,154 135,160 180,138 225,126 270,132 315,116 360,104 405,98 450,82 495,88 540,70 600,74"></polyline><polyline class="chart-line chart-temp" points="0,132 45,130 90,134 135,128 180,130 225,126 270,124 315,122 360,124 405,120 450,118 495,116 540,118 600,114"></polyline></svg><div class="metric-grid"><div class="metric"><strong>HRV COHERENCE</strong><p>Rhythm stability / 节律稳定度</p><div class="bar-meter"><span></span></div></div><div class="metric"><strong>EDA PRESSURE</strong><p>Sympathetic arousal / 交感唤醒压强</p><div class="bar-meter"><span></span></div></div><div class="metric"><strong>TEMP + MOTION</strong><p>Thermal and body drift / 温度与身体漂移</p><div class="bar-meter"><span></span></div></div></div><div class="tag-row"><span class="tag">HRV / RMSSD</span><span class="tag">EDA / SCR</span><span class="tag">SKIN TEMP</span><span class="tag">IMU</span><span class="tag">RESP PROXY</span><span class="tag">RECOVERY CURVE</span></div></div></div></div>
+<div class="card span-12"><div class="hardware-flow"><div class="flow-node"><div class="num">01 // AI HEADPHONES</div><h3>Acoustic intervention layer</h3><p class="cn">生成、选择、空间化并播放声音探针：音乐、呼吸声、自然声、噪声场、低频锚点、人声、记忆线索、静默对照。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">02 // HEAD PATCH</div><h3>Neural-proxy layer</h3><p class="cn">EEG/fNIRS 代理：alpha/theta/beta 趋势、听觉诱发反应、注意/负荷/聆听状态。不是读心。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">03 // WRISTBAND</div><h3>Autonomic + body-rhythm layer</h3><p class="cn">HR/HRV、EDA、皮温、运动、呼吸代理，记录交感/副交感调节与身体返回轨迹。</p></div><div class="flow-arrow">→</div><div class="flow-node"><div class="num">04 // AI-QDR</div><h3>Neural-autonomy layer</h3><p class="cn">生成非诊断报告；用户可以 Accept / Edit / Reject / Rename / Delete / Stop。</p></div></div></div><div class="card span-6"><div class="eyebrow">WRISTBAND // 腕环</div><h3>The wristband tracks autonomic dynamics, not a hidden truth.</h3><h3 class="cn">腕环追踪自主神经动态，不追踪隐藏真相。</h3><p class="cn">腕环记录 HRV/RMSSD、EDA/SCR、皮温、运动、呼吸代理，捕捉“身体已经紧了，但语言还没跟上”的时间差。自主神经数据说明的是激活、恢复、冻结、返回的轨迹，不单独等于焦虑、快乐或创伤。</p><div class="tag-row"><span class="tag">HRV</span><span class="tag">EDA</span><span class="tag">TEMP</span><span class="tag">IMU</span><span class="tag">RESP PROXY</span><span class="tag">ANS</span></div></div><div class="card span-6"><div class="eyebrow">HEAD PATCH // 头部贴片</div><h3>Brain data are listening-state proxies.</h3><h3 class="cn">大脑数据是聆听状态代理。</h3><p class="cn">头部贴片可支持 EEG/fNIRS：alpha/theta/beta 变化、事件相关反应、相位锁定估计、前额叶血氧。它不能直接读取意义；它只能帮助检测声音事件之后，注意、负荷、时间预测和神经节律是否变化。</p><div class="tag-row"><span class="tag">EEG</span><span class="tag">fNIRS</span><span class="tag">ALPHA</span><span class="tag">THETA</span><span class="tag">PFC LOAD</span><span class="tag">TIMING</span></div></div></div></section>
 
     <section id="data-vault"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">BODY–BRAIN–AUTONOMIC DATA ALIGNMENT // 人体表征数据 × 大脑数据 × 自主神经</div><h2>Alignment is synchronization, event-locking, individual calibration, and neural autonomy.</h2><h2 class="cn">对齐是时间同步、事件锁定、个体校准与神经自主性保护。</h2><p class="sub en">BCI - The Human Return Protocol should never say “EDA means anxiety” or “alpha means healing.” It should say: for this user, in this context, after this sound event, these body, autonomic, brain, and self-report patterns tend to move together — and the user remains the final interpreter.</p><p class="sub cn">BCI - The Human Return Protocol 不应说“皮电等于焦虑”或“alpha 等于疗愈”。它应该说：对这个用户，在这个情境中，在这个声音事件之后，这些身体、自主神经、大脑与自我报告模式经常一起变化——而用户仍然是最终解释者。</p></div><div class="card span-12"><div class="eyebrow">SHARED TIMELINE // 共享时间轴</div><table class="therapy-table"><thead><tr><th>Time</th><th>Event</th><th>Aligned data</th><th>Meaning</th></tr></thead><tbody><tr><td>T0</td><td>Baseline</td><td>EEG/fNIRS + HRV/EDA/respiration + movement + self-report</td><td>建立个体当前场。</td></tr><tr><td>T1</td><td>Sound begins</td><td>BPM, volume, spectrum, timbre, spatial field, predictability</td><td>声音是可控探针，不只是音乐。</td></tr><tr><td>T2</td><td>Event marker</td><td>Drop, voice, bass, silence, noise shift, breath cue, memory cue</td><td>前后 5s / 30s / 60s / 3min 对比。</td></tr><tr><td>T3</td><td>Autonomic response</td><td>HRV/RMSSD, EDA/SCR, respiration, skin temperature</td><td>看交感/副交感激活、恢复、冻结、返回曲线。</td></tr><tr><td>T4</td><td>Body response</td><td>IMU, posture, micro-motion, muscle-tension report, breath feel</td><td>看身体是否真的落地、松开、行动或收缩。</td></tr><tr><td>T5</td><td>Neural proxy</td><td>Alpha/theta/beta, ERP-like response, phase-locking estimate, HbO/HbR</td><td>看聆听状态、注意、时间预测、负荷。</td></tr><tr><td>T6</td><td>User naming</td><td>Prediction, affect/body label, meaning note, rename, reject, delete</td><td>解释权与神经自主性回到用户。</td></tr></tbody></table></div><div class="card span-4"><div class="eyebrow">BRAIN DATA // 大脑数据</div><table class="therapy-table"><tbody><tr><td><strong>EEG</strong></td><td>Fast timing, arousal/attention proxies, alpha/theta/beta trends. Not deep meaning.</td></tr><tr><td><strong>fNIRS</strong></td><td>Frontal oxygenation and workload/regulation proxies.</td></tr><tr><td><strong>Lab tools</strong></td><td>fMRI/MEG can validate networks such as insula, ACC, mPFC, hippocampus, auditory–motor circuits.</td></tr></tbody></table></div><div class="card span-4"><div class="eyebrow">AUTONOMIC DATA // 自主神经数据</div><table class="therapy-table"><tbody><tr><td><strong>HRV/RMSSD</strong></td><td>Autonomic flexibility and recovery proxies; not “good/bad” by itself.</td></tr><tr><td><strong>EDA/SCR</strong></td><td>Sympathetic arousal; cannot tell joy vs fear alone.</td></tr><tr><td><strong>Respiration/temp</strong></td><td>Breath-vagal coupling, thermal drift, recovery or stress trend.</td></tr></tbody></table></div><div class="card span-4"><div class="eyebrow">NEURAL AUTONOMY // 神经自主性</div><table class="therapy-table"><tbody><tr><td><strong>Agency</strong></td><td>User chooses the probe, intensity, pause, stop, and replay.</td></tr><tr><td><strong>Interpretation</strong></td><td>User can accept, edit, reject, rename, or delete every AI label.</td></tr><tr><td><strong>Boundary</strong></td><td>System must not coerce entrainment, force exposure, or continue when discomfort rises.</td></tr></tbody></table></div></div></section>
 
