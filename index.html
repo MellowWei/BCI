@@ -4109,10 +4109,67 @@
   }
 </style>
 
+
+
+<style id="pi-audit-ready-v4">
+  /* PI AUDIT READY PATCH v4: preserves the canonical BCI - The Human Return Protocol title while adding methods, feasibility, safety, and collaboration gates. */
+  .pi-gate-card { border-color: rgba(255,230,109,.34) !important; background: radial-gradient(circle at 8% 0%, rgba(255,230,109,.10), transparent 32%), linear-gradient(180deg, rgba(0,245,255,.045), rgba(255,43,214,.025)), rgba(8,10,28,.72) !important; }
+  .pi-grid-2 { display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+  .pi-grid-3 { display:grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+  .pi-mini { padding: 15px 16px; border: 1px solid rgba(0,245,255,.16); border-radius: 18px; background: rgba(255,255,255,.027); }
+  .pi-mini strong, .pi-mini h3 { color: var(--green); font-family: var(--mono); font-size: 10px !important; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 7px !important; display:block; }
+  .pi-mini p, .pi-mini li { font-size: 12.5px !important; line-height: 1.58 !important; color: var(--muted); }
+  .pi-mini ul, .pi-mini ol { margin: 8px 0 0 18px; padding: 0; }
+  .method-table { width:100%; border-collapse: collapse; margin-top: 14px; }
+  .method-table th, .method-table td { border:1px solid rgba(0,245,255,.14); padding: 12px 13px; text-align:left; vertical-align:top; color: var(--muted); font-size: 12px; line-height:1.55; }
+  .method-table th { color: var(--cyan); font-family: var(--mono); font-size: 10px; letter-spacing:.10em; text-transform: uppercase; background: rgba(0,245,255,.055); }
+  .method-table td:first-child { color: var(--text); font-weight: 800; min-width: 160px; }
+  .evidence-ladder { display:grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap:10px; margin-top:16px; }
+  .evidence-step { min-height: 180px; padding: 15px; border:1px solid rgba(0,245,255,.15); border-radius:18px; background: rgba(255,255,255,.025); }
+  .evidence-step .level { color: var(--yellow); font-family: var(--mono); font-size: 10px; letter-spacing:.14em; text-transform: uppercase; margin-bottom: 8px; }
+  .evidence-step h3 { font-size: 16px !important; line-height:1.18 !important; }
+  .evidence-step p { font-size: 12px !important; }
+  .safety-flow { display:grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 8px; margin-top:16px; align-items:stretch; }
+  .safety-node { padding: 13px 12px; border:1px solid rgba(255,230,109,.20); border-radius:16px; background: rgba(255,230,109,.035); }
+  .safety-node b { display:block; color: var(--yellow); font-family: var(--mono); font-size: 9px; letter-spacing:.12em; text-transform: uppercase; margin-bottom: 6px; }
+  .safety-node p { font-size: 11.8px !important; line-height: 1.48 !important; }
+  .redline { border-color: rgba(255,77,109,.35) !important; background: rgba(255,77,109,.045) !important; }
+  .redline b { color: var(--red) !important; }
+  .protocol-badge { display:inline-flex; gap:7px; align-items:center; padding:5px 9px; border:1px solid rgba(53,255,159,.24); border-radius:999px; color:var(--green); font-family:var(--mono); font-size:9px; letter-spacing:.08em; margin:4px 5px 0 0; }
+  .visual-only-banner { margin-top:12px; padding:12px 14px; border:1px solid rgba(255,230,109,.28); border-radius:16px; background: rgba(255,230,109,.045); color: var(--muted); font-size: 12px; line-height:1.55; }
+  .visual-only-banner strong { color: var(--yellow); font-family: var(--mono); font-size: 10px; letter-spacing:.10em; text-transform: uppercase; }
+  @media (max-width: 1100px){ .pi-grid-2,.pi-grid-3,.evidence-ladder,.safety-flow { grid-template-columns: 1fr; } .method-table { display:block; overflow-x:auto; } }
+</style>
+
 </head>
 
 
 <body>
+  <script>
+  /* HRP AUDIO UNLOCK v1 — single shared AudioContext + first-gesture resume.
+     Fixes "no sound on click": the page otherwise spins up ~6 separate
+     AudioContexts (browser caps per page) and never resumes on a user gesture.
+     This shim makes every `new AudioContext()` return one shared, resumed context.
+     It changes no other audio logic. */
+  (function () {
+    var Orig = window.AudioContext || window.webkitAudioContext;
+    if (!Orig) return;
+    var shared = null;
+    function get() {
+      if (!shared) { try { shared = new Orig(); } catch (e) { return null; } }
+      if (shared.state === "suspended") { try { shared.resume(); } catch (e) {} }
+      return shared;
+    }
+    function ACShim() { return get(); }
+    ACShim.prototype = Orig.prototype;
+    window.AudioContext = ACShim;
+    window.webkitAudioContext = ACShim;
+    function unlock() { get(); }
+    ["pointerdown", "touchstart", "mousedown", "keydown", "click"].forEach(function (ev) {
+      window.addEventListener(ev, unlock, { passive: true });
+    });
+  })();
+  </script>
   <canvas id="field"></canvas>
   <div class="grid-bg"></div>
   <div class="vignette"></div>
@@ -4125,12 +4182,16 @@
     <nav class="locked-clean-nav">
       <a href="#top">HOME</a>
       <a href="#overview-map">LAB BRIEF</a>
+      <a href="#pi-audit-gate">PI AUDIT</a>
+      <a href="#method-supplement">METHODS</a>
+      <a href="#tech-feasibility">TECH FEASIBILITY</a>
+      <a href="#safety-flow">SAFETY FLOW</a>
       <a href="#neural-cuff">TRIADIC TECH</a>
       <a href="#device-prototypes">DEVICE PROTOTYPES</a>
       <a href="#data-vault">DATA ALIGNMENT</a>
       <a href="#lab-gate">VALIDATION</a>
       <a href="#six-genre-therapy">SOUND MECHANISMS</a>
-      <a href="#state-density-matrix">MELLOW / STALLION</a>
+      <a href="#state-density-matrix">DENSITY ENTRY</a>
       <a href="#prototype">PROTOTYPE</a>
       <a href="#qdr-therapy">QDR</a>
       <a href="#dual-intelligence-interface">INTERPRETIVE AUTHORITY</a>
@@ -4165,10 +4226,159 @@
       <div class="sovereignty-cn">感质不是噪音；它是身体、神经、意义正在形成的质地。QDR 负责把这种质地与声音事件、自主神经、身体表征和自我命名对齐，但最终解释权始终属于用户。</div>
       <div class="sovereignty-en">Qualia is not noise; it is the felt texture through which body, nervous system, and meaning begin to organize. QDR aligns that texture with sound events, autonomic dynamics, body representation, and user naming — while keeping interpretation with the user.</div>
     </div>
-    <div class="hero-actions"><a class="button primary" href="#overview-map">READ 3-MIN LAB BRIEF</a><a class="button" href="#qdr-therapy">QDR EXPLAINED</a><a class="button" href="#six-genre-therapy">SOUND MECHANISMS</a><a class="button" href="#academic-music-evidence">RESEARCH SUPPORT</a><a class="button" href="#lab-gate">VALIDATION PLAN</a></div>
+    <div class="hero-actions"><a class="button primary" href="#overview-map">READ 3-MIN LAB BRIEF</a><a class="button" href="#pi-audit-gate">PI AUDIT GATE</a><a class="button" href="#method-supplement">METHOD SUPPLEMENT</a><a class="button" href="#qdr-therapy">QDR EXPLAINED</a><a class="button" href="#six-genre-therapy">SOUND MECHANISMS</a><a class="button" href="#academic-music-evidence">RESEARCH SUPPORT</a><a class="button" href="#lab-gate">VALIDATION PLAN</a></div>
     <div class="compliance-note"><strong>Boundary // 边界</strong><p class="en">Current status: research prototype and academic design concept. It does not diagnose, treat, cure, mitigate, or prevent disease; it does not read thoughts, certify memories, override neural autonomy, or claim that any frequency or genre universally regulates the brain.</p><p class="cn">当前状态：研究原型与学术设计概念。它不诊断、不治疗、不治愈、不缓解、不预防疾病；不读心、不认证记忆真实性、不越过神经自主性，也不声称任何频率或曲风能普遍调控大脑。</p></div>
   </div>
 </section>
+
+    <section id="for-research-partners"><div class="grid">
+      <div class="card span-12 neon-card">
+        <div class="eyebrow">FOR RESEARCH PARTNERS // 给研究合作方</div>
+        <h2>The one claim a partner lab is asked to test.</h2>
+        <h2 class="cn">请合作实验室验证的，就一个可证伪的主张。</h2>
+        <p class="sub en">Candidate question for co-design: does a sound-probe + self-prediction + editable naming protocol improve within-person self-calibration, and do autonomic/neural proxies add explanatory value beyond self-report alone? The vision below is the long arc; the first collaboration should narrow, revise, or falsify this question before preregistration.</p>
+        <p class="sub cn">待共同设计的候选问题：声音探针 + 自我预测 + 可编辑命名协议，是否能提升个体内自我校准？自主神经/神经代理是否比仅自评提供额外解释价值？下方愿景是长期弧线；第一步合作应在预注册前缩小、修正或证伪这个问题。</p>
+      </div>
+      <div class="card span-4"><div class="num">PILOT // 试点</div><h3>Small, within-subject, ablated</h3><p class="cn">N=5–12 非临床用户，2–4 周。主要结局：自我预测准确率与命名稳定性。条件：自评 / 声音 / 腕 / 头 / 全套 / 静默对照。个体内重复 + 事件锁定时间序列 + 消融。</p></div>
+      <div class="card span-4"><div class="num">EXCHANGE // 价值交换</div><h3>What each side brings</h3><p class="cn">我带来：原创构念、声音/感质接口、用户解释权机制、反暗示安全框架与原型页面。实验室带来：方法学严谨、IRB/伦理流程、参与者通道、信号处理与统计专长。构念、指标、声音材料和硬件路径均可共同修改。</p></div>
+      <div class="card span-4"><div class="num">ASK // 请求</div><h3>A 15-minute fit call</h3><p class="cn">第一步只是一次 15 分钟的契合对话。硬件三件套是未来（L4）；MVP 是软件 + 现成可穿戴（L1–L2）。资助申请随可行性结果与 live call 展开，不是当前入口。</p></div>
+    </div></section>
+
+
+    <section id="pi-audit-gate"><div class="grid">
+      <div class="card span-12 neon-card pi-gate-card">
+        <div class="eyebrow">PI AUDIT GATE // 页面身份校准</div>
+        <h2>This page is the concept interface. The research plan lives in the method gate below.</h2>
+        <h2 class="cn">这个页面是概念入口；真正的研究计划在下方方法学门槛里。</h2>
+        <p class="sub en">BCI - The Human Return Protocol keeps its canonical title and visual identity. The correction is not to rename the project, but to separate three layers: public concept, pilot protocol, and future hardware vision. A partner PI is not being asked to validate a finished belief system. The lab is invited to co-design, falsify, rename, narrow, or reject constructs before preregistration.</p>
+        <p class="sub cn">BCI - The Human Return Protocol 保留原始标题与视觉身份。真正的修正不是改名，而是把三层分清：公众概念入口、试点研究协议、未来硬件愿景。合作 PI 不是来验证一个已经封闭的信念系统；实验室可以共同设计、证伪、改名、缩小甚至否定构念，再进入预注册。</p>
+        <div class="pi-grid-3">
+          <article class="pi-mini"><h3>What this page is</h3><p>Visual thesis, construct map, pilot entry point, and collaboration invitation.</p><p class="cn">它是视觉论点、构念地图、试点入口与合作邀请。</p></article>
+          <article class="pi-mini"><h3>What it is not</h3><p>Not an IRB-ready protocol, not an engineering specification, not a clinical claim, and not a finished measurement model.</p><p class="cn">它不是可直接提交 IRB 的完整方案，不是工程规格书，不是临床声明，也不是完成版测量模型。</p></article>
+          <article class="pi-mini"><h3>What changed</h3><p>Method, evidence weight, signal limits, safety interaction, AI role, and lab governance are now explicit.</p><p class="cn">现在补上了方法、证据权重、信号边界、安全交互、AI 角色与合作治理。</p></article>
+        </div>
+      </div>
+
+      <div class="card span-12" id="collaboration-governance">
+        <div class="eyebrow">COLLABORATION GOVERNANCE // 合作不是找执行方</div>
+        <h2>Partner labs may change the hypothesis, measures, stimuli, and name of the construct.</h2>
+        <h2 class="cn">合作实验室可以改假设、指标、刺激材料，甚至改构念名称。</h2>
+        <table class="method-table"><thead><tr><th>Decision area</th><th>Lab authority</th><th>Wei's contribution</th><th>What remains open</th></tr></thead><tbody>
+          <tr><td>Research question</td><td>May narrow, reject, or split hypotheses before preregistration.</td><td>Brings the Human Return / QDR construct and user-facing interface logic.</td><td>Whether “qualia alignment” is the right term is open.</td></tr>
+          <tr><td>Outcome metrics</td><td>May replace prediction scoring, questionnaires, or signal endpoints.</td><td>Provides candidate operational definitions and interaction data schema.</td><td>Thresholds for improvement are estimated, not asserted.</td></tr>
+          <tr><td>Sound stimuli</td><td>May use lab-owned, licensed, non-AI, or AI-assisted stimuli.</td><td>Directs acoustic families and user-facing naming prompts.</td><td>AI generation is optional, not required for the pilot.</td></tr>
+          <tr><td>Hardware</td><td>May use existing validated lab equipment and discard visual hardware prototypes.</td><td>Provides triadic product vision and event-labeling requirements.</td><td>Custom AI headphones/head patch/wristband are future design, not current requirement.</td></tr>
+        </tbody></table>
+      </div>
+    </div></section>
+
+    <section id="method-supplement"><div class="grid">
+      <div class="card span-12 neon-card pi-gate-card">
+        <div class="eyebrow">METHOD SUPPLEMENT v0.1 // 方法学补充</div>
+        <h2>Three falsifiable hypotheses, not one giant promise.</h2>
+        <h2 class="cn">三个可证伪假设，而不是一个巨大承诺。</h2>
+        <p class="sub en">This supplement translates the page into a pilot protocol. It is not yet a full IRB application, but it gives a PI concrete variables, outcomes, failure criteria, and analysis logic.</p>
+        <p class="sub cn">这个补充把页面翻译成试点协议。它还不是完整 IRB 文件，但它给 PI 提供具体变量、结局指标、失败判准与分析逻辑。</p>
+      </div>
+
+      <div class="card span-12"><div class="eyebrow">FALSIFIABLE HYPOTHESES // 可证伪假设</div>
+        <table class="method-table"><thead><tr><th>Hypothesis</th><th>Operational test</th><th>Falsification / negative result</th></tr></thead><tbody>
+          <tr><td>H1: Self-prediction improves</td><td>Pre-probe prediction error decreases across sessions for the same participant and/or same sound family.</td><td>No downward slope in prediction error, or performance worsens after exposure.</td></tr>
+          <tr><td>H2: Naming becomes more stable and granular</td><td>Post-probe labels show higher within-person semantic consistency and more specific body/affect/action descriptors over time.</td><td>Labels remain generic, unstable, or become more confused.</td></tr>
+          <tr><td>H3: Multimodal alignment adds value</td><td>Sound + wrist/head proxies explain prediction/naming changes better than self-report-only or sound-only ablations.</td><td>Triadic data adds no explanatory value beyond self-report and session order.</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="card span-12"><div class="eyebrow">PRIMARY OUTCOMES // 主要结局操作化</div>
+        <table class="method-table"><thead><tr><th>Outcome</th><th>Definition</th><th>Computation</th><th>Boundary</th></tr></thead><tbody>
+          <tr><td>Pre-probe self-prediction accuracy</td><td>Before sound, user predicts direction and magnitude of changes in tension, clarity, body return, movement urge, stop/unsafe, and emotional pressure.</td><td>Compare predicted direction/magnitude with post-probe change from baseline. Score via direction match + normalized absolute error; analyze within-person slope.</td><td>Not a “truth of the body”; it is calibration between forecast and self-report/proxy patterns.</td></tr>
+          <tr><td>State-naming stability</td><td>Whether user labels for repeated sound-family conditions become more consistent and precise.</td><td>Track label reuse, edit distance/semantic similarity, body-location specificity, action-tendency terms, and human-coded categories.</td><td>Stability is not conformity to AI. User rejection and renaming are valid data.</td></tr>
+          <tr><td>Qualia granularity</td><td>Specificity of felt-texture vocabulary beyond generic “good/bad/calm/stressed.”</td><td>Count distinct body-affect-sensory-action descriptors, optional coder rating, and reduction in vague labels.</td><td>Granularity is exploratory until coding scheme is validated.</td></tr>
+          <tr><td>Interpretive agency</td><td>User ability to accept, edit, reject, rename, delete, pause, or stop.</td><td>Behavioral logs + post-session agency rating. Key events: stop, ground, delete, reject, rename.</td><td>Agency is a safety and HCI outcome, not a neural biomarker.</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="card span-12"><div class="eyebrow">STATISTICS // 统计计划草案</div>
+        <div class="pi-grid-3">
+          <article class="pi-mini"><h3>Phase 0</h3><p>N=5–12 is a usability/feasibility sample, not a powered confirmatory study. Report effect sizes, uncertainty, completion rate, and adverse UX events.</p><p class="cn">N=5–12 是可用性/可行性样本，不是有统计功效的确认性研究。报告效应量、不确定性、完成率与负面交互事件。</p></article>
+          <article class="pi-mini"><h3>Model</h3><p>Use within-subject repeated measures. Candidate model: mixed-effects regression with random intercepts for participant and sound family, session number as predictor, and condition as fixed effect.</p><p class="cn">使用个体内重复测量。候选模型：混合效应回归，参与者与声音家族作随机截距，session 序号为预测变量，条件为固定效应。</p></article>
+          <article class="pi-mini"><h3>Next sample</h3><p>Use pilot variance to run power simulation for Phase 1. Do not claim efficacy from Phase 0.</p><p class="cn">用试点方差为 Phase 1 做功效模拟。Phase 0 不声明有效性。</p></article>
+        </div>
+        <table class="method-table"><thead><tr><th>Analysis target</th><th>Candidate method</th><th>Report</th></tr></thead><tbody>
+          <tr><td>Prediction error slope</td><td>Mixed-effects model / robust regression / permutation check.</td><td>Within-person slope, confidence interval, and individual plots.</td></tr>
+          <tr><td>Event-locked physiology</td><td>Predefined windows around sound onset, drop, vocal entry, silence, and recovery.</td><td>EDA phasic response, HRV/RMSSD windows, respiration/motion trend; uncertainty and artifacts.</td></tr>
+          <tr><td>Ablation</td><td>Compare self-report-only, sound-only, wrist-only, head-only, full triad where feasible.</td><td>Incremental predictive value, not “neural truth.”</td></tr>
+          <tr><td>Failure</td><td>Usability failure, no improvement, safety discomfort, signal unusability, high missingness.</td><td>Explicit negative results are valid outcomes.</td></tr>
+        </tbody></table>
+      </div>
+    </div></section>
+
+    <section id="evidence-logic"><div class="grid">
+      <div class="card span-12 neon-card pi-gate-card">
+        <div class="eyebrow">EVIDENCE LOGIC // 文献不是装饰</div>
+        <h2>Use evidence as a ladder, not a decorative matrix.</h2>
+        <h2 class="cn">证据要成为推导链，而不是装饰性表格。</h2>
+        <p class="sub en">The page should separate established frameworks from plausible mechanisms and from original, still-unvalidated constructs. This prevents weak evidence from sitting beside strong evidence as if they had the same weight.</p>
+        <p class="sub cn">页面应把成熟框架、合理机制与尚未验证的原创构念分开，避免弱证据和强证据并排放置，看起来像同等权重。</p>
+        <div class="evidence-ladder">
+          <article class="evidence-step"><div class="level">LEVEL 1</div><h3>Established frameworks</h3><p>Interoception, allostasis, predictive processing, affective construction, EMA/ESM, personal informatics.</p><p class="cn">内感受、稳态调节、预测加工、情绪构成、EMA/ESM、个人信息学。</p></article>
+          <article class="evidence-step"><div class="level">LEVEL 2</div><h3>Mechanistic plausibility</h3><p>Music/sound can affect attention, arousal, breathing, movement timing, memory association, and autonomic proxies.</p><p class="cn">音乐/声音可能影响注意、唤醒、呼吸、运动时间、记忆联想和自主神经代理。</p></article>
+          <article class="evidence-step"><div class="level">LEVEL 3</div><h3>Design hypothesis</h3><p>Sound probes + self-prediction + editable AI summaries may improve state naming and self-calibration.</p><p class="cn">声音探针 + 自我预测 + 可编辑 AI 总结，可能提升状态命名与自我校准。</p></article>
+          <article class="evidence-step"><div class="level">LEVEL 4</div><h3>Original construct</h3><p>“Qualia alignment” and “Human Return” are project constructs. They must be operationalized and may be revised by data.</p><p class="cn">“感质对齐”与“Human Return”是项目构念，必须操作化，也可以被数据修正。</p></article>
+        </div>
+      </div>
+    </div></section>
+
+
+    <section id="lab-gate"><div class="grid">
+      <div class="card span-12 neon-card pi-gate-card">
+        <div class="eyebrow">LAB VALIDATION GATE // 实验室验证入口</div>
+        <h2>The first study is feasibility and construct calibration, not clinical validation.</h2>
+        <h2 class="cn">第一项研究是可行性与构念校准，不是临床验证。</h2>
+        <p class="sub cn">研究问题是：在非临床用户中，声音探针 + 自我预测 + 可编辑命名 + 可穿戴/神经代理，是否能形成可重复、可解释、且不损害解释自主的个体内模式。</p>
+      </div>
+      <div class="card span-12"><div class="eyebrow">PILOT STUDY DESIGN // 试点研究设计</div>
+        <table class="method-table"><tbody>
+          <tr><td><strong>Study type</strong></td><td>Within-subject feasibility pilot; repeated sessions; non-clinical participants; no treatment claim.</td><td>个体内可行性试点；重复 session；非临床参与者；不做治疗声明。</td></tr>
+          <tr><td><strong>Sample rationale</strong></td><td>N=5–12 only supports usability, data-quality estimation, adverse UX discovery, and variance estimates for a later powered study.</td><td>N=5–12 只支持可用性、数据质量估计、负面交互发现，以及为后续功效研究估计方差。</td></tr>
+          <tr><td><strong>Primary outcome</strong></td><td>Within-person change in pre-probe prediction error across sessions.</td><td>跨 session 的个体内声音前预测误差变化。</td></tr>
+          <tr><td><strong>Secondary outcomes</strong></td><td>State-naming stability, qualia granularity, interpretive-agency events, completion rate, discomfort/stop events.</td><td>状态命名稳定性、感质颗粒度、解释自主事件、完成率、不适/停止事件。</td></tr>
+          <tr><td><strong>Signals</strong></td><td>Self-report first; HRV/RMSSD, EDA/SCR, respiration, temperature, motion second; EEG/fNIRS optional and lab-dependent.</td><td>自评优先；HRV/RMSSD、EDA/SCR、呼吸、皮温、运动其次；EEG/fNIRS 可选且由实验室条件决定。</td></tr>
+          <tr><td><strong>Controls / ablations</strong></td><td>Self-report only; fixed sound + self-report; wrist + sound; head + sound; full triad; silence/neutral field where appropriate.</td><td>仅自评；固定声音 + 自评；腕 + 声音；头 + 声音；完整三件套；适当加入静默/中性场。</td></tr>
+          <tr><td><strong>Analysis</strong></td><td>Mixed-effects model, event-locked descriptive analysis, ablation comparison, missing-data report, artifact report, individual plots.</td><td>混合效应模型、事件锁定描述分析、消融比较、缺失数据报告、伪迹报告、个体图。</td></tr>
+        </tbody></table>
+      </div>
+      <div class="card span-12"><div class="eyebrow">FAILURE CRITERIA // 失败判准</div>
+        <div class="system-loop"><article class="loop-item"><div class="num">USABILITY</div><h3>Log failure</h3><p class="cn">用户无法完成预测、播放、报告、拒绝或退出流程。</p></article><article class="loop-item"><div class="num">PREDICTION</div><h3>No improvement</h3><p class="cn">预测误差无下降，或暴露后更混乱。</p></article><article class="loop-item"><div class="num">SAFETY</div><h3>Agency loss</h3><p class="cn">用户感觉被诱导、被诊断、被声音推着走或无法退出。</p></article><article class="loop-item"><div class="num">SIGNAL</div><h3>Noise too high</h3><p class="cn">同步失败、伪迹太高、缺失过多，无法支持分析。</p></article></div>
+      </div>
+    </div></section>
+
+
+    <section id="safety-flow"><div class="grid">
+      <div class="card span-12 neon-card pi-gate-card">
+        <div class="eyebrow">SAFETY INTERACTION FLOW // 安全交互流程</div>
+        <h2>Ethics must appear as interaction, not only as principle.</h2>
+        <h2 class="cn">伦理必须落实为交互，而不能只停留在原则声明。</h2>
+        <p class="sub en">The page already says Stop / Ground / Delete. The pilot must show where those controls live, when the system pauses itself, and when interpretation is suppressed.</p>
+        <p class="sub cn">页面已经写了 Stop / Ground / Delete。试点必须展示这些控件在哪里、系统何时自动暂停，以及何时禁止继续解释。</p>
+      </div>
+      <div class="card span-12"><div class="eyebrow">SESSION SAFETY STATE MACHINE // 单次 session 安全状态机</div>
+        <div class="safety-flow">
+          <div class="safety-node"><b>1. Consent gate</b><p>User chooses sound family, intensity ceiling, stop method, data sharing, and whether AI summaries are allowed.</p><p class="cn">用户先选择声音家族、强度上限、停止方式、数据分享与是否允许 AI 总结。</p></div>
+          <div class="safety-node"><b>2. Persistent controls</b><p>Stop, Ground, Volume Down, Skip, and Delete remain visible before, during, and after playback.</p><p class="cn">播放前、中、后始终显示停止、落地、降音量、跳过、删除。</p></div>
+          <div class="safety-node"><b>3. Auto-pause triggers</b><p>Self-report unsafe, repeated stop gestures, non-response after prompt, rapid discomfort rating increase, or lab-defined physiology threshold.</p><p class="cn">自评不安全、重复停止、不回应提示、不适评分快速上升，或实验室定义的生理阈值触发自动暂停。</p></div>
+          <div class="safety-node"><b>4. Grounding mode</b><p>Fade out sound, suppress interpretation, show grounding prompt, offer human contact / researcher check-in.</p><p class="cn">声音淡出，暂停解释，显示落地提示，提供人工联系或研究人员 check-in。</p></div>
+          <div class="safety-node redline"><b>5. No crisis system</b><p>This is not emergency detection or therapy. High-risk disclosures leave the protocol and follow lab-approved human safety procedures.</p><p class="cn">这不是危机检测或治疗系统。高风险表露应退出协议，进入实验室批准的人类安全流程。</p></div>
+        </div>
+      </div>
+      <div class="card span-12"><div class="eyebrow">UI REQUIREMENTS // UI 必备项</div>
+        <div class="pi-grid-3">
+          <article class="pi-mini"><h3>Always visible exit</h3><p>Stop must be larger than decorative controls, keyboard/touch accessible, and logged as a valid outcome rather than failure.</p><p class="cn">Stop 必须比装饰控件更显眼，支持键盘/触控，并作为有效结果记录，而不是失败。</p></article>
+          <article class="pi-mini"><h3>No post-trigger analysis</h3><p>If the system enters grounding mode, AI-QDR does not produce a deep interpretation. It only summarizes user-owned safety actions.</p><p class="cn">进入落地模式后，AI-QDR 不做深度解释，只总结用户拥有的安全行动。</p></article>
+          <article class="pi-mini"><h3>Agency as data</h3><p>Reject, rename, stop, delete, and skip are primary interaction events, not UI afterthoughts.</p><p class="cn">拒绝、重命名、停止、删除、跳过是核心交互事件，不是界面附属品。</p></article>
+        </div>
+      </div>
+    </div></section>
 
     <section id="overview-map"><div class="grid">
   <div class="card span-12 neon-card"><div class="eyebrow">3-MINUTE LAB BRIEF // 三分钟实验室摘要</div><h2>BCI - The Human Return Protocol is a rhythm-recovery system.</h2><h2 class="cn">BCI - The Human Return Protocol 是节律恢复系统。</h2><p class="sub en">It does not simply push a user into a desired state. It maps how sound events, body rhythms, autonomic nervous system responses, neural/listening-state proxies, self-report, meaning, and qualia move together — then returns the map to the user.</p><p class="sub cn">它不是简单把用户推入某种想要的状态。它映射声音事件、身体节律、自主神经反应、神经/聆听状态代理、自我报告、意义与感质如何一起变化，然后把这张地图还给用户。</p></div>
@@ -4197,6 +4407,7 @@
         <h2 class="cn">三件套需要三个可见身体：声音输出、神经代理、自主神经见证。</h2>
         <p class="sub en">This section completes the hardware imagination: AI headphones deliver adaptive sound probes; the head patch reads listening-state proxies; the wristband records autonomic/body rhythm. The system only becomes BCI - The Human Return Protocol when all three are synchronized with user naming and neural autonomy.</p>
         <p class="sub cn">这一节补全硬件想象：AI 耳机输出自适应声音探针；头部贴片读取聆听状态代理；腕环记录自主神经与身体节律。只有三者与用户命名和神经自主性同步时，系统才成为 BCI - The Human Return Protocol。</p>
+        <div class="visual-only-banner"><strong>Visual prototype only // 视觉原型</strong><br>These device renders are not engineering specifications. A lab pilot should use existing validated lab equipment first. The consumer triad is a long-term design target after usability, signal quality, time synchronization, safety, and regulatory posture are resolved.<br><span class="cn">这些设备图不是工程规格书。实验室试点应优先使用现成且经验证的实验室设备。消费级三件套是长期设计目标，必须在可用性、信号质量、时间同步、安全与监管路径解决之后再谈。</span></div>
       </div>
 
       <div class="prototype-triad-stage span-12">
@@ -4257,6 +4468,34 @@
       </div>
     </div></section>
 
+
+    <section id="tech-feasibility"><div class="grid">
+      <div class="card span-12 neon-card pi-gate-card">
+        <div class="eyebrow">TECHNICAL FEASIBILITY // 技术可行性说明</div>
+        <h2>The pilot should not depend on custom hardware.</h2>
+        <h2 class="cn">试点不应依赖自研硬件。</h2>
+        <p class="sub en">The hardware triad remains the product vision. For collaboration, the practical plan is to use existing lab-grade or research-accepted devices, record every audio event on a shared clock, and treat EEG/fNIRS as optional extensions rather than the core proof.</p>
+        <p class="sub cn">硬件三件套保留为产品愿景。合作阶段的实际方案是：使用实验室已有或研究可接受的设备，在共享时钟上记录每个音频事件，把 EEG/fNIRS 作为可选扩展，而不是核心证明。</p>
+      </div>
+      <div class="card span-12"><div class="eyebrow">IMPLEMENTATION ASSUMPTIONS // 实施假设</div>
+        <table class="method-table"><thead><tr><th>Layer</th><th>Feasible pilot choice</th><th>Known risk</th><th>Mitigation</th></tr></thead><tbody>
+          <tr><td>Audio stimuli</td><td>Fixed WAV files, fixed loudness normalization, trial-level event markers, optional audio loopback confirmation.</td><td>Bluetooth latency and device-specific delay.</td><td>For the lab pilot, use wired playback or measured onset markers. Analyze ANS in second-level windows; use EEG timing only when onset is verified.</td></tr>
+          <tr><td>Time sync</td><td>Shared event log with monotonic timestamps; Lab Streaming Layer or lab-selected equivalent where available.</td><td>Clock drift across devices.</td><td>Start/end sync pulses, audio onset checks, per-session clock-offset correction, exclusion rule for failed sync.</td></tr>
+          <tr><td>Wrist / ANS</td><td>Existing EDA/PPG/temperature/IMU device selected by the lab.</td><td>EDA has multi-second latency; skin temperature is slow and context-sensitive.</td><td>Analyze phasic SCR windows, tonic level, recovery slopes, and within-person changes; never interpret ANS as a specific emotion.</td></tr>
+          <tr><td>EEG</td><td>Optional lab EEG first; cosmetic head patch is not required for pilot.</td><td>Fp1/Fp2 are vulnerable to eye movement and muscle artifacts.</td><td>Predefine preprocessing: bandpass/notch, ocular artifact handling, ICA/ASR when appropriate, trial rejection, and report usable data percentage.</td></tr>
+          <tr><td>fNIRS</td><td>Separate future substudy unless the lab already has a stable combined setup.</td><td>Motion, hair/optode contact, and EEG/fNIRS co-wear complexity.</td><td>Do not make fNIRS necessary for the first validation; treat it as future workload/regulation proxy.</td></tr>
+          <tr><td>Data export</td><td>Session-level CSV/JSON: stimulus IDs, timestamps, self-report, agency events, physiological features.</td><td>Overclaiming from noisy multimodal data.</td><td>Predefine missing-data and exclusion rules; report uncertainty and negative results.</td></tr>
+        </tbody></table>
+      </div>
+      <div class="card span-12"><div class="eyebrow">ENGINEERING RED LINES // 工程红线</div>
+        <div class="pi-grid-3">
+          <article class="pi-mini redline"><h3>No cosmetic EEG proof</h3><p>A beautiful head patch does not equal a reliable EEG system. The first lab version should privilege signal quality over product aesthetics.</p><p class="cn">漂亮头贴不等于可靠 EEG。第一版实验室系统应优先保证信号质量，而不是消费级外观。</p></article>
+          <article class="pi-mini redline"><h3>No millisecond claim without verification</h3><p>Event-locking claims require measured audio onset and shared timestamp integrity.</p><p class="cn">没有测量音频起点和共享时间戳完整性，就不做毫秒级事件锁定声明。</p></article>
+          <article class="pi-mini redline"><h3>No hidden-state decoding</h3><p>Signals are proxies. They can support alignment hypotheses, not reveal hidden truth.</p><p class="cn">信号只是代理。它们支持对齐假设，不揭示隐藏真相。</p></article>
+        </div>
+      </div>
+    </div></section>
+
     <section id="data-vault"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">BODY–BRAIN–AUTONOMIC DATA ALIGNMENT // 人体表征数据 × 大脑数据 × 自主神经</div><h2>Alignment is synchronization, event-locking, individual calibration, and neural autonomy.</h2><h2 class="cn">对齐是时间同步、事件锁定、个体校准与神经自主性保护。</h2><p class="sub en">BCI - The Human Return Protocol should never say “EDA means anxiety” or “alpha means healing.” It should say: for this user, in this context, after this sound event, these body, autonomic, brain, and self-report patterns tend to move together — and the user remains the final interpreter.</p><p class="sub cn">BCI - The Human Return Protocol 不应说“皮电等于焦虑”或“alpha 等于疗愈”。它应该说：对这个用户，在这个情境中，在这个声音事件之后，这些身体、自主神经、大脑与自我报告模式经常一起变化——而用户仍然是最终解释者。</p></div><div class="card span-12"><div class="eyebrow">SHARED TIMELINE // 共享时间轴</div><table class="therapy-table"><thead><tr><th>Time</th><th>Event</th><th>Aligned data</th><th>Meaning</th></tr></thead><tbody><tr><td>T0</td><td>Baseline</td><td>EEG/fNIRS + HRV/EDA/respiration + movement + self-report</td><td>建立个体当前场。</td></tr><tr><td>T1</td><td>Sound begins</td><td>BPM, volume, spectrum, timbre, spatial field, predictability</td><td>声音是可控探针，不只是音乐。</td></tr><tr><td>T2</td><td>Event marker</td><td>Drop, voice, bass, silence, noise shift, breath cue, memory cue</td><td>前后 5s / 30s / 60s / 3min 对比。</td></tr><tr><td>T3</td><td>Autonomic response</td><td>HRV/RMSSD, EDA/SCR, respiration, skin temperature</td><td>看交感/副交感激活、恢复、冻结、返回曲线。</td></tr><tr><td>T4</td><td>Body response</td><td>IMU, posture, micro-motion, muscle-tension report, breath feel</td><td>看身体是否真的落地、松开、行动或收缩。</td></tr><tr><td>T5</td><td>Neural proxy</td><td>Alpha/theta/beta, ERP-like response, phase-locking estimate, HbO/HbR</td><td>看聆听状态、注意、时间预测、负荷。</td></tr><tr><td>T6</td><td>User naming</td><td>Prediction, affect/body label, meaning note, rename, reject, delete</td><td>解释权与神经自主性回到用户。</td></tr></tbody></table></div><div class="card span-4"><div class="eyebrow">BRAIN DATA // 大脑数据</div><table class="therapy-table"><tbody><tr><td><strong>EEG</strong></td><td>Fast timing, arousal/attention proxies, alpha/theta/beta trends. Not deep meaning.</td></tr><tr><td><strong>fNIRS</strong></td><td>Frontal oxygenation and workload/regulation proxies.</td></tr><tr><td><strong>Lab tools</strong></td><td>fMRI/MEG can validate networks such as insula, ACC, mPFC, hippocampus, auditory–motor circuits.</td></tr></tbody></table></div><div class="card span-4"><div class="eyebrow">AUTONOMIC DATA // 自主神经数据</div><table class="therapy-table"><tbody><tr><td><strong>HRV/RMSSD</strong></td><td>Autonomic flexibility and recovery proxies; not “good/bad” by itself.</td></tr><tr><td><strong>EDA/SCR</strong></td><td>Sympathetic arousal; cannot tell joy vs fear alone.</td></tr><tr><td><strong>Respiration/temp</strong></td><td>Breath-vagal coupling, thermal drift, recovery or stress trend.</td></tr></tbody></table></div><div class="card span-4"><div class="eyebrow">NEURAL AUTONOMY // 神经自主性</div><table class="therapy-table"><tbody><tr><td><strong>Agency</strong></td><td>User chooses the probe, intensity, pause, stop, and replay.</td></tr><tr><td><strong>Interpretation</strong></td><td>User can accept, edit, reject, rename, or delete every AI label.</td></tr><tr><td><strong>Boundary</strong></td><td>System must not coerce entrainment, force exposure, or continue when discomfort rises.</td></tr></tbody></table></div></div></section>
 
     <section id="prototype"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">MVP ROADMAP // 第一阶段可建路线</div><h2>Start buildable. Keep the future interface explicit.</h2><h2 class="cn">从可建版本开始，同时清楚标出未来接口。</h2></div><div class="card span-3"><div class="num">LEVEL 1</div><h3>Software MVP</h3><p class="cn">声音探针、预测、自评、事件标记、非诊断报告。</p></div><div class="card span-3"><div class="num">LEVEL 2</div><h3>Wearable pilot</h3><p class="cn">接入现有腕带/头带，测试同步和可用性。</p></div><div class="card span-3"><div class="num">LEVEL 3</div><h3>Lab validation</h3><p class="cn">EEG/fNIRS/EDA/HRV/呼吸受控实验。</p></div><div class="card span-3"><div class="num">LEVEL 4</div><h3>Product triad</h3><p class="cn">AI 耳机 + 头部贴片 + 腕环。</p></div><div class="card span-12"><div class="eyebrow">SAMPLE SESSION // 样例 Session</div><table class="therapy-table"><tbody><tr><td><strong>Prediction</strong></td><td>User predicts: “This track may make me clearer but slightly sad.”</td><td>用户预测：更清楚，但有点想哭。</td></tr><tr><td><strong>Probe</strong></td><td>AI headphones play a user-approved Return Probe.</td><td>AI 耳机播放用户批准的返回探针。</td></tr><tr><td><strong>Response</strong></td><td>EDA rises at vocal entry; respiration pauses, then deepens; HRV recovery appears.</td><td>皮电上升；呼吸暂停后变深；HRV 出现恢复趋势。</td></tr><tr><td><strong>Rename</strong></td><td>User rejects “calm” and renames the state “soft return.”</td><td>用户拒绝“平静”，改名为“柔软返回”。</td></tr></tbody></table></div></div></section>
@@ -4274,7 +4513,7 @@
 
     <section id="four-systems"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">SEVEN ALIGNMENT SYSTEMS // 七层对齐系统</div><h2>Meaning, emotion, cognition, perception, body, autonomic regulation, and neural autonomy are one alignment field.</h2><h2 class="cn">意义、情绪、认知、感知、身体、自主神经调节与神经自主性，是一个对齐场。</h2></div><div class="card span-7"><div class="music-bci-map"><div class="music-core-orb"><span>ALIGNMENT<br><small>全人对齐</small></span></div><div class="orbit-label orbit-meaning">Meaning<br><small>意义</small></div><div class="orbit-label orbit-emotion">Emotion<br><small>情绪</small></div><div class="orbit-label orbit-perception">Perception<br><small>感知</small></div><div class="orbit-label orbit-cognition">Cognition<br><small>认知</small></div></div><div class="tag-row"><span class="tag">BODY / 身体</span><span class="tag">AUTONOMIC NERVOUS SYSTEM / 自主神经</span><span class="tag">NEURAL AUTONOMY / 神经自主性</span></div></div><div class="card span-5"><div class="eyebrow">INTERACTIVE SYSTEM SELECTOR</div><h3 id="fourSystemTitle">Meaning System</h3><h3 class="cn" id="fourSystemTitleCN">意义系统</h3><p id="fourSystemDesc" class="en">The meaning system asks: why does this matter?</p><p id="fourSystemDescCN" class="cn">意义系统会问：这为什么重要？</p><div class="sound-controls"><button class="sound-btn four-system-btn active" data-four-system-btn="meaning">Meaning / 意义</button><button class="sound-btn four-system-btn" data-four-system-btn="emotion">Emotion / 情绪</button><button class="sound-btn four-system-btn" data-four-system-btn="cognition">Cognition / 认知</button><button class="sound-btn four-system-btn" data-four-system-btn="perception">Perception / 感知</button><button class="sound-btn four-system-btn" data-four-system-btn="body">Body / 身体</button><button class="sound-btn four-system-btn" data-four-system-btn="autonomic">ANS / 自主神经</button><button class="sound-btn four-system-btn" data-four-system-btn="autonomy">Neural Autonomy / 神经自主性</button></div><div class="dashboard"><div class="dash"><strong>LAYER</strong><p id="fourMetricLayer">Narrative · association</p></div><div class="dash"><strong>QUALIA</strong><p id="fourMetricQualia">Purpose · coherence</p></div><div class="dash"><strong>ACTION</strong><p id="fourMetricAction">Re-author meaning</p></div><div class="dash"><strong>LIMIT</strong><p>Proxy, not diagnosis. Agency first.</p></div></div></div></div></section>
 
-    <section id="breakbeats-protocol"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">BREAKBEATS AS ACTIVATION PROBE // 高密度激活探针</div><h2>Breakbeats are one probe, not the whole system.</h2><h2 class="cn">Breakbeats 是一类探针，不是整个系统。</h2></div><div class="card span-5"><h3 id="breakUserTitle">Mellow Type — Full Density Entry</h3><h3 class="cn" id="breakUserTitleCN">Mellow 型 — 全密度入口</h3><p id="breakUserDesc" class="cn">高密度并不必然危险；对某些用户，它可能是进入身体的语言。</p><div class="sound-controls"><button class="sound-btn break-btn active" data-break-user="mellow">Mellow / 全密度</button><button class="sound-btn break-btn" data-break-user="agnes">Stallion / 渐进</button></div><div class="transport"><button class="button" id="playBreakbeat">PLAY PROBE</button><button class="button" id="stopBreakbeat">STOP</button></div></div><div class="card span-7"><div class="breakbeat-stage"><canvas id="breakbeatCanvas"></canvas><div class="music-core-orb breakbeat-core"><span id="breakCoreLabel">BREAK<br>PROBE</span></div></div><div class="dashboard"><div class="dash"><strong>BPM</strong><p id="breakBpm">150–170 BPM / full density</p></div><div class="dash"><strong>SYNC</strong><p id="breakSync">High syncopation</p></div><div class="dash"><strong>ENTRY</strong><p id="breakEntry">45–90 sec neural entry</p></div><div class="dash"><strong>BOUNDARY</strong><p>User can stop instantly.</p></div></div></div></div></section>
+    <section id="breakbeats-protocol"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">BREAKBEATS AS ACTIVATION PROBE // 高密度激活探针</div><h2>Breakbeats are one probe, not the whole system.</h2><h2 class="cn">Breakbeats 是一类探针，不是整个系统。</h2></div><div class="card span-5"><h3 id="breakUserTitle">High-Density Entry</h3><h3 class="cn" id="breakUserTitleCN">高密度进入</h3><p id="breakUserDesc" class="cn">高密度并不必然危险；对某些用户，它可能是进入身体的语言。</p><div class="sound-controls"><button class="sound-btn break-btn active" data-break-user="mellow">高密度 / High-density</button><button class="sound-btn break-btn" data-break-user="agnes">渐进 / Gradual</button></div><div class="transport"><button class="button" id="playBreakbeat">PLAY PROBE</button><button class="button" id="stopBreakbeat">STOP</button></div></div><div class="card span-7"><div class="breakbeat-stage"><canvas id="breakbeatCanvas"></canvas><div class="music-core-orb breakbeat-core"><span id="breakCoreLabel">BREAK<br>PROBE</span></div></div><div class="dashboard"><div class="dash"><strong>BPM</strong><p id="breakBpm">150–170 BPM / full density</p></div><div class="dash"><strong>SYNC</strong><p id="breakSync">High syncopation</p></div><div class="dash"><strong>ENTRY</strong><p id="breakEntry">45–90 sec neural entry</p></div><div class="dash"><strong>BOUNDARY</strong><p>User can stop instantly.</p></div></div></div></div></section>
 
     <section id="protocol-anchors"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">PERSONAL SOUND ANCHORS // 个人声音锚点</div><h2>427Hz and 724Hz are personal anchors, not universal neural medicine.</h2><h2 class="cn">427Hz 与 724Hz 是个人锚点，不是通用神经药物。</h2><p class="sub cn">它们可以作为可重复声音探针与身份锚点使用。其效果必须在个体内、跨 session、结合预测与自评来测量。</p><div class="anchor-tone-controls"><button class="button primary" id="play427Anchor">PLAY 427Hz RETURN</button><button class="button stallion-anchor" id="play724Anchor">PLAY 724Hz STABILIZE</button><button class="button" id="stopAnchorTone">STOP ANCHOR</button></div></div></div></section>
 
@@ -4296,20 +4535,45 @@
     <tr><td>Controlled sharpness / 可控尖锐声</td><td>Glitch, metallic transient, siren fragment, sudden stop, abrupt silence</td><td>Orienting/startle response, salience, boundary detection</td><td>Not for calming; useful for mapping boundaries and controlled activation with exit.</td><td>Mechanistically strong; recovery use depends on safety</td></tr>
     <tr><td>Silence and negative space / 静默与负空间</td><td>Intentional pause, fade-out, drop to silence, low-stimulus rest window</td><td>Contrast, sensory unloading, prediction reset, integration window</td><td>Allows the system to feel the after-effect and name the return.</td><td>Design principle; needs user-level validation</td></tr>
   </tbody></table></div>
-  <div class="card span-12"><div class="eyebrow">WEI JUERAN SOUND EXAMPLES // 魏珏然声音实例入口</div><p class="sub en">The project examples are not the whole theory. They are six high-value acoustic entry points for testing rhythm recovery and qualia alignment.</p><p class="sub cn">这些项目实例不是理论上限，而是六个高价值声音入口，用来测试节律恢复与感质对齐。</p><div class="system-loop"><article class="loop-item six-mini active" data-six-card="synthpop"><div class="num">RETURN</div><h3>Synthpop</h3><p class="cn">稳定网格、熟悉 hook、合成器光泽：让结构从命令变成安全回家感。</p></article><article class="loop-item six-mini" data-six-card="hyperpop"><div class="num">IGNITE</div><h3>Hyperpop</h3><p class="cn">高密度、glitch、人声变形：穿透麻木、测试边界，必须可退出。</p></article><article class="loop-item six-mini" data-six-card="darkwave"><div class="num">CONTAIN</div><h3>Darkwave</h3><p class="cn">暗色音色、低温情绪、慢速张力：承载阴影而不淹没人。</p></article><article class="loop-item six-mini" data-six-card="driftphonk"><div class="num">MOVE</div><h3>Drift Phonk</h3><p class="cn">808 / sub-bass / 漂移速度感：把惯性变成向前的身体重量。</p></article><article class="loop-item six-mini" data-six-card="ambient"><div class="num">SCAFFOLD</div><h3>Ambient Techno</h3><p class="cn">稳定脉冲 + 演化质地：给认知一个低摩擦时间脚手架。</p></article><article class="loop-item six-mini" data-six-card="breakbeats"><div class="num">PULSE</div><h3>Breakbeats</h3><p class="cn">切分、断裂、微时差：让不规则不再只是威胁，而成为活着的信号。</p></article></div></div>
+  <div class="card span-12"><div class="eyebrow">DIRECTED ACOUSTIC ENTRY POINTS // 导演的声音入口</div><p class="sub en">The operational stimulus library is the sound-family map above, finalized with the partner lab. The six genres below are illustrative, not the theory and not solo compositions — AI-generated, human-directed examples of how a family can be realized for a given user.</p><p class="sub cn">真正的操作刺激库是上方的声音家族总表，最终由合作实验室确定。下面这六种曲风只是示例——不是理论、也不是独自作曲，而是用 AI 生成、由人指导，演示某一声音家族可以如何为特定用户落地。</p><div class="system-loop"><article class="loop-item six-mini active" data-six-card="synthpop"><div class="num">RETURN</div><h3>Synthpop</h3><p class="cn">稳定网格、熟悉 hook、合成器光泽：让结构从命令变成安全回家感。</p></article><article class="loop-item six-mini" data-six-card="hyperpop"><div class="num">IGNITE</div><h3>Hyperpop</h3><p class="cn">高密度、glitch、人声变形：穿透麻木、测试边界，必须可退出。</p></article><article class="loop-item six-mini" data-six-card="darkwave"><div class="num">CONTAIN</div><h3>Darkwave</h3><p class="cn">暗色音色、低温情绪、慢速张力：承载阴影而不淹没人。</p></article><article class="loop-item six-mini" data-six-card="driftphonk"><div class="num">MOVE</div><h3>Drift Phonk</h3><p class="cn">808 / sub-bass / 漂移速度感：把惯性变成向前的身体重量。</p></article><article class="loop-item six-mini" data-six-card="ambient"><div class="num">SCAFFOLD</div><h3>Ambient Techno</h3><p class="cn">稳定脉冲 + 演化质地：给认知一个低摩擦时间脚手架。</p></article><article class="loop-item six-mini" data-six-card="breakbeats"><div class="num">PULSE</div><h3>Breakbeats</h3><p class="cn">切分、断裂、微时差：让不规则不再只是威胁，而成为活着的信号。</p></article></div></div>
   <div class="card span-5"><h3 id="sixTitle">Synthpop — Reward-Homecoming Channel</h3><h3 class="cn" id="sixTitleCN">Synthpop — 奖赏返回通道</h3><p id="sixDesc" class="cn">结构不再像命令，而成为第一口安全呼吸。</p><div class="transport"><button class="button primary" id="playSix">PLAY CHANNEL</button><button class="button" id="stopSix">STOP</button></div><div class="dashboard"><div class="dash"><strong>FUNCTION</strong><p id="sixFunction">Melodic predictability · resolution · warm vocal</p></div><div class="dash"><strong>TARGET</strong><p id="sixTarget">Reward prediction · autobiographical memory · safety</p></div><div class="dash"><strong>EXIT</strong><p id="sixExit">Structure felt as homecoming, not command</p></div><div class="dash"><strong>LIMIT</strong><p>State matching, low volume, and neural autonomy required.</p></div></div></div>
   <div class="card span-7"><div class="six-stage"><canvas id="sixCanvas"></canvas><div class="music-core-orb six-core"><span id="sixCore">SYNTH<br>POP</span></div></div></div>
   <div class="card span-12"><div class="eyebrow">ACOUSTIC ENTRY PROTOCOL // 声音引入协议</div><table class="therapy-table"><tbody><tr><td><strong>1. Consent + choice</strong></td><td>用户先选择声音家族、强度范围、退出方式。</td></tr><tr><td><strong>2. Baseline</strong></td><td>30–120 秒静息：记录 HRV/EDA/呼吸/运动/神经代理与感质词。</td></tr><tr><td><strong>3. Prediction</strong></td><td>用户预测：这个声音会让我更紧、更松、更清醒、更想哭、更能行动，还是更想停？</td></tr><tr><td><strong>4. Gentle entry</strong></td><td>低音量淡入，标记 bass、人声、drop、glitch、hook、静默等事件点。</td></tr><tr><td><strong>5. Stop-ready</strong></td><td>始终显示 Stop / Ground / Delete。强刺激必须可立即退出。</td></tr><tr><td><strong>6. QDR return</strong></td><td>播放后对齐感质、自主神经、身体、神经代理、意义与用户命名。</td></tr></tbody></table></div>
   <div class="card span-12"><div class="eyebrow">NEURAL AUTONOMY RULE // 神经自主性规则</div><p class="sub cn">任何声音机制只有在用户拥有选择权、音量控制、即时停止、拒绝标签、删除记录和重新命名权时，才属于 BCI - The Human Return Protocol。否则，它就会从“对齐探针”滑向“神经控制”。</p><p class="sub en">A sound mechanism belongs inside BCI - The Human Return Protocol only when the user has choice, volume control, instant stop, label rejection, deletion, and renaming power. Otherwise, it shifts from alignment probe toward neural control.</p></div>
 </div></section>
 
+
+    <section id="acoustic-direction"><div class="grid">
+      <div class="card span-12 neon-card pi-gate-card">
+        <div class="eyebrow">ACOUSTIC PROVENANCE // 声音来源与可复现性</div>
+        <h2>AI is optional in production. The research stimulus is the frozen audio file.</h2>
+        <h2 class="cn">AI 只是在生产阶段可选；研究刺激本身是冻结后的音频文件。</h2>
+        <p class="sub en">For the pilot, the scientific unit is not “AI music.” The unit is a fixed, documented, reproducible sound probe with known acoustic features, licensing status, event markers, and user-facing naming prompts. AI-assisted generation may be used only as a production aid when provenance is clean; the experiment does not require runtime generative AI.</p>
+        <p class="sub cn">在试点中，科学单位不是“AI 音乐”。科学单位是固定、可记录、可复现的声音探针：它有明确声学特征、版权/许可状态、事件标记和用户命名提示。AI 辅助生成只在来源干净时作为生产工具；实验不依赖运行时生成式 AI。</p>
+      </div>
+      <div class="card span-12"><div class="eyebrow">FREEZE MEANS // “冻结”的操作定义</div>
+        <table class="method-table"><thead><tr><th>Step</th><th>Requirement</th><th>Why PI should care</th></tr></thead><tbody>
+          <tr><td>Source sheet</td><td>Every probe lists creator, model/tool if any, license, generation date, editing chain, and rights status.</td><td>Prevents copyright/provenance ambiguity and supports IRB/reproducibility review.</td></tr>
+          <tr><td>Audio archive</td><td>Each stimulus is exported once as a fixed file with duration, sample rate, loudness target, and checksum/hash.</td><td>“Frozen” means the same file is replayed across sessions; randomness is not part of the test.</td></tr>
+          <tr><td>Acoustic features</td><td>Extract BPM/pulse, RMS/loudness, spectral centroid, transient density, silence/drop markers, vocal/non-vocal labels.</td><td>Lets sound become an analyzable probe rather than a poetic category.</td></tr>
+          <tr><td>Human curation</td><td>Human direction selects probes for safety, non-referentiality, and construct fit.</td><td>The human role is construct governance, not a claim that AI itself is therapeutic.</td></tr>
+          <tr><td>Runtime role</td><td>In Phase 0–1, runtime uses fixed playback + logging + user report. Generative adaptation is future work.</td><td>Prevents over-packaging AI when the core study is prediction, naming, and alignment.</td></tr>
+        </tbody></table>
+      </div>
+      <div class="card span-12"><div class="eyebrow">CLAIM LIMIT // 声音主张边界</div>
+        <p class="sub en">The page should say: “these sounds are candidate probes for within-person pattern discovery.” It should not say: “these sounds regulate the brain,” “this frequency heals,” or “AI music caused a state.”</p>
+        <p class="sub cn">页面应该说：“这些声音是用于发现个体内模式的候选探针。”不应该说：“这些声音调控大脑”“某频率疗愈”“AI 音乐导致某状态”。</p>
+        <div class="tag-row"><span class="tag">FIXED AUDIO</span><span class="tag">CHECKSUM</span><span class="tag">LICENSE SHEET</span><span class="tag">EVENT MARKERS</span><span class="tag">NO RUNTIME AI CLAIM</span><span class="tag">NON-REFERENTIAL</span></div>
+      </div>
+    </div></section>
+
     <section id="state-density-matrix"><div class="grid">
       <div class="card span-12 neon-card density-panel">
-        <div class="eyebrow">MELLOW / STALLION DENSITY STATES // 两种声音进入状态</div>
-        <h2>Mellow and Stallion are not diagnoses. They are two acoustic-entry strategies.</h2>
-        <h2 class="cn">Mellow 和 Stallion 不是诊断，而是两种声音进入策略。</h2>
-        <p class="sub en"><strong>Mellow</strong> can enter through higher density and higher sensory saturation when complexity feels like home. <strong>Stallion</strong> needs gradual safety association: low density first, stable pulse first, then intensity is introduced only after the body trusts the rhythm. The protocol adapts density, intensity, transient sharpness, and repetition instead of assuming one sound is universally regulating.</p>
-        <p class="sub cn"><strong>Mellow</strong> 可以通过更高密度、更高感官饱和度进入，因为复杂度对它像“回家”。<strong>Stallion</strong> 需要渐进安全联想：先低密度、先稳定脉冲，只有身体信任节律之后再引入强度。协议调节密度、强度、瞬态锋利度和重复次数，而不是假设某一种声音对所有人都有效。</p>
+        <div class="eyebrow">TWO DENSITY-ENTRY STRATEGIES // 两种密度进入策略</div>
+        <h2>High-density entry and gradual entry are not diagnoses. They are two acoustic-entry strategies.</h2>
+        <h2 class="cn">高密度进入与渐进进入不是诊断，而是两种声音进入策略。</h2>
+        <p class="sub en"><strong>High-density entry</strong> can use higher density and higher sensory saturation when complexity feels like home. <strong>Gradual entry</strong> needs safety association first: low density first, stable pulse first, then intensity is introduced only after the body trusts the rhythm. The protocol adapts density, intensity, transient sharpness, and repetition instead of assuming one sound is universally regulating.</p>
+        <p class="sub cn"><strong>高密度进入</strong>可以用更高密度、更高感官饱和度，当复杂度对这个人像“回家”。<strong>渐进进入</strong>需要先建立安全联想：先低密度、先稳定脉冲，只有身体信任节律之后再引入强度。协议调节密度、强度、瞬态锋利度和重复次数，而不是假设某一种声音对所有人都有效。</p>
       </div>
 
       <div class="card span-12">
@@ -4330,7 +4594,7 @@
           <div>
             <div class="density-state-grid">
               <article class="density-state-card mellow-card">
-                <div class="density-kicker">MELLOW // FULL-DENSITY ENTRY</div>
+                <div class="density-kicker">HIGH-DENSITY ENTRY // 高密度进入</div>
                 <h3 id="v29MellowTitle">Synthpop — layered return</h3>
                 <p id="v29MellowDesc">Layered arps, warm saw pad, bright hook, medium-high sidechain pulse. Complexity works as a safety architecture.</p>
                 <p class="cn" id="v29MellowDescCN">分层琶音、温暖 saw pad、明亮 hook、中高强度 sidechain 脉冲。复杂度本身成为安全结构。</p>
@@ -4341,11 +4605,11 @@
                   <div><b>Entry</b><span id="v29MellowEntry">direct hook within 20–40 sec</span></div>
                 </div>
                 <div class="density-meter-wrap"><div class="density-meter-label"><span>DENSITY</span><span id="v29MellowDensityText">82%</span></div><div class="density-meter"><span id="v29MellowDensityBar" style="width:82%"></span></div><div class="density-meter-label"><span>INTENSITY</span><span id="v29MellowIntensityText">72%</span></div><div class="density-meter"><span id="v29MellowIntensityBar" style="width:72%"></span></div></div>
-                <div class="density-play-row"><button class="button primary" id="playV29Mellow">PLAY MELLOW SAMPLE</button></div>
+                <div class="density-play-row"><button class="button primary" id="playV29Mellow">PLAY HIGH-DENSITY SAMPLE</button></div>
               </article>
 
               <article class="density-state-card stallion-card">
-                <div class="density-kicker">STALLION // GRADUAL SAFETY ASSOCIATION</div>
+                <div class="density-kicker">GRADUAL-SAFETY ENTRY // 渐进安全进入</div>
                 <h3 id="v29StallionTitle">Synthpop — low-density trust build</h3>
                 <p id="v29StallionDesc">One soft pad, one pulse, one hook fragment. The system repeats until the body trusts the grid.</p>
                 <p class="cn" id="v29StallionDescCN">一个柔和 pad、一个脉冲、一个 hook 片段。系统重复到身体信任网格为止。</p>
@@ -4356,7 +4620,7 @@
                   <div><b>Entry</b><span id="v29StallionEntry">2–4 min safety association</span></div>
                 </div>
                 <div class="density-meter-wrap"><div class="density-meter-label"><span>DENSITY</span><span id="v29StallionDensityText">34%</span></div><div class="density-meter"><span id="v29StallionDensityBar" style="width:34%"></span></div><div class="density-meter-label"><span>INTENSITY</span><span id="v29StallionIntensityText">28%</span></div><div class="density-meter"><span id="v29StallionIntensityBar" style="width:28%"></span></div></div>
-                <div class="density-play-row"><button class="button stallion-anchor" id="playV29Stallion">PLAY STALLION SAMPLE</button><button class="button" id="stopV29Density">STOP</button></div>
+                <div class="density-play-row"><button class="button stallion-anchor" id="playV29Stallion">PLAY GRADUAL SAMPLE</button><button class="button" id="stopV29Density">STOP</button></div>
               </article>
             </div>
           </div>
@@ -4365,7 +4629,7 @@
 
       <div class="card span-12">
         <div class="eyebrow">DENSITY / INTENSITY EXAMPLE MATRIX // 密度与强度示例矩阵</div>
-        <div class="density-table-wrap"><table class="density-table"><thead><tr><th>Sound family</th><th>Mellow example</th><th>Stallion example</th><th>What to measure</th></tr></thead><tbody>
+        <div class="density-table-wrap"><table class="density-table"><thead><tr><th>Sound family</th><th>High-density example</th><th>Gradual example</th><th>What to measure</th></tr></thead><tbody>
           <tr><td>Synthpop</td><td>115–132 BPM, layered arps, bright hook, warm saw pad, medium-high sidechain pulse.</td><td>88–106 BPM, one soft pad, rounded kick, hook fragment introduced after repeated safe cycles.</td><td>Reward return, HRV recovery, user naming: “safe structure / 回家感”.</td></tr>
           <tr><td>Hyperpop</td><td>150–170 BPM, dense glitch vocal chops, bright transients, short peak bursts, rapid drop-to-silence exits.</td><td>120–135 BPM, micro-glitch every 8 bars, low high-end, one vocal texture only.</td><td>Arousal peak, boundary reaction, EDA rise + recovery slope, stop readiness.</td></tr>
           <tr><td>Darkwave</td><td>90–115 BPM, thick dark pad, cold bass, heavy reverb, slow minor hook, emotional containment.</td><td>70–90 BPM, sparse minor pad, soft bass, long attack, no sudden transient.</td><td>Shadow containment, breath depth, self-report from “heavy” to “held”.</td></tr>
@@ -4408,8 +4672,6 @@
 </div></section>
 
     <section id="final-synthesis"><div class="final-line card neon-card"><div class="eyebrow">SYNTHESIS // 总结</div><h2>BCI - The Human Return Protocol is rhythm recovery through qualia alignment.</h2><h2 class="cn">BCI - The Human Return Protocol 是通过感质对齐实现节律恢复。</h2><p class="thesis">Sound enters the body. The autonomic nervous system answers. Brain timing shifts. Qualia becomes nameable. Meaning reorganizes. The user returns.</p><p class="thesis cn">声音进入身体。自主神经回应。大脑时间改变。感质变得可命名。意义重新组织。用户返回自身。</p></div></section>
-
-    <section id="lab-gate"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">LAB VALIDATION GATE // 实验室验证入口</div><h2>The coordination claim is testable.</h2><h2 class="cn">三件套协同主张是可验证的。</h2><p class="sub cn">研究问题是：三件套同步是否比单模态条件更能解释状态变化与自我预测力提升。</p></div><div class="card span-12"><div class="eyebrow">PILOT STUDY DESIGN // 试点研究设计</div><table class="therapy-table"><tbody><tr><td><strong>Sample</strong></td><td>N = 5–12 feasibility sample; 2–4 weeks; non-clinical users.</td><td>N=5–12；2–4 周；非临床用户。</td></tr><tr><td><strong>Primary outcome</strong></td><td>Improvement in pre-probe self-prediction accuracy and state naming stability.</td><td>声音前自我预测准确率与状态命名稳定性。</td></tr><tr><td><strong>Signals</strong></td><td>HRV/RMSSD, EDA/SCR, respiration, skin temperature, motion, optional EEG/fNIRS, and user agency events.</td><td>HRV/RMSSD、EDA/SCR、呼吸、皮温、运动、可选 EEG/fNIRS，以及用户选择/暂停/拒绝事件。</td></tr><tr><td><strong>Controls</strong></td><td>Self-report only; wrist only; head only; sound only; full triad; sham/silence where appropriate.</td><td>自评、腕环、头部、声音、完整三件套、静默/假条件。</td></tr><tr><td><strong>Analysis</strong></td><td>Within-subject repeated design, event-locked time series, mixed-effects models, ablation, cross-validation.</td><td>个体内重复设计、事件锁定时间序列、混合效应模型、消融、交叉验证。</td></tr></tbody></table></div><div class="card span-12"><div class="eyebrow">FAILURE CRITERIA // 失败判准</div><div class="system-loop"><article class="loop-item"><div class="num">USABILITY</div><h3>Log failure</h3><p class="cn">用户无法完成记录或报告。</p></article><article class="loop-item"><div class="num">PREDICTION</div><h3>No improvement</h3><p class="cn">自我预测力无提升或下降。</p></article><article class="loop-item"><div class="num">SAFETY</div><h3>Neural autonomy loss</h3><p class="cn">用户感到被诱导、被诊断、被声音推着走或无法退出。</p></article><article class="loop-item"><div class="num">SIGNAL</div><h3>Noise too high</h3><p class="cn">数据质量不足以支持同步分析。</p></article></div></div></div></section>
 
     <section id="compliance-summary"><div class="grid"><div class="card span-12 neon-card"><div class="eyebrow">SAFETY BY DESIGN // 安全内建</div><h2>Research first. Consent first. Exit first.</h2><h2 class="cn">研究优先。同意优先。退出优先。</h2><div class="compliance-grid"><article class="compliance-mini"><h3>NO MEDICAL CLAIM</h3><p>Non-diagnostic, non-treatment, non-crisis system unless separately validated and regulated.</p></article><article class="compliance-mini"><h3>DATA + NEURAL AUTONOMY</h3><p>Local-first, minimal data, explicit consent, export, deletion, revocable sharing, instant stop, label rejection.</p></article><article class="compliance-mini"><h3>TRAUMA-INFORMED</h3><p>Intensity control, instant stop, no forced exposure, no coercive entrainment, no memory certainty, human support referral when needed.</p></article></div><div class="relation-formula">Accept · Edit · Reject · Rename · Delete<br><span class="cn">接受 · 编辑 · 拒绝 · 重命名 · 删除</span></div></div></div></section>
   </main>
@@ -5062,8 +5324,8 @@
   <script>
     (function () {
       var breakData = {
-        mellow: {title:"Mellow Type — Full Density Entry", titleCN:"Mellow 型 — 全密度入口", desc:"Breakbeats are mother tongue: begin at high density, use syncopation as entry point, not destination.", descCN:"Breakbeat 是母语：直接从高密度进入，把切分节律作为入口，而不是终点。", bpm:"150–170 BPM / full density", sync:"High syncopation · irregular accents", entry:"45–90 sec neural entry"},
-        agnes: {title:"Stallion Type — Gradual Safety Association", titleCN:"Stallion 型 — 渐进安全联想", desc:"Begin minimal. Build safety association first. Irregularity enters only after the body trusts the pulse.", descCN:"从最低密度开始。先建立安全联想。只有当身体信任脉冲后，不规则才进入。", bpm:"118–138 BPM / minimal density", sync:"One irregular accent every 4–8 bars", entry:"3–6 min + 66 repetitions"}
+        mellow: {title:"High-Density Entry", titleCN:"高密度进入", desc:"Breakbeats are mother tongue: begin at high density, use syncopation as entry point, not destination.", descCN:"Breakbeat 是母语：直接从高密度进入，把切分节律作为入口，而不是终点。", bpm:"150–170 BPM / full density", sync:"High syncopation · irregular accents", entry:"45–90 sec neural entry"},
+        agnes: {title:"Gradual Safety Entry", titleCN:"渐进安全进入", desc:"Begin minimal. Build safety association first. Irregularity enters only after the body trusts the pulse.", descCN:"从最低密度开始。先建立安全联想。只有当身体信任脉冲后，不规则才进入。", bpm:"118–138 BPM / minimal density", sync:"One irregular accent every 4–8 bars", entry:"3–6 min + 66 repetitions"}
       };
       function setBreakUser(type) {
         var d = breakData[type]; if (!d) return;
